@@ -63,6 +63,7 @@ const translations = {
     
     // About
     'about.title': 'About Al-Shamali',
+    'about.hero.subtitle': 'For over 25 years, we have been the bridge between Syrian agricultural heritage and global markets, bringing authentic, premium-quality products to tables worldwide.',
     'about.vision.title': 'Our Vision & Values',
     'about.journey.title': 'Our Journey',
     'about.global_reach.title': 'Global Reach',
@@ -277,6 +278,7 @@ const translations = {
     
     // About
     'about.title': 'عن الشمالي',
+    'about.hero.subtitle': 'لأكثر من 25 عامًا، كنا الجسر بين التراث الزراعي السوري والأسواق العالمية، نجلب منتجات أصلية عالية الجودة إلى موائد العالم.',
     'about.vision.title': 'رؤيتنا وقيمنا',
     'about.journey.title': 'رحلتنا',
     'about.global_reach.title': 'الوصول العالمي',

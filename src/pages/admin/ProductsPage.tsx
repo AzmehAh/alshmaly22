@@ -27,12 +27,16 @@ const ProductsPage = () => {
     category_id: '',
     base_price: 0,
     availability: 'in-stock' as 'in-stock' | 'out-of-stock' | 'limited',
-    features: [] as string[]
+    features: [] as string[],
+    specifications_en: [] as string[],
+    specifications_ar: [] as string[]
   });
 
   const [images, setImages] = useState<Array<{ image_url: string; alt_text: string; sort_order: number }>>([]);
   const [packages, setPackages] = useState<Array<{ weight: string; price: number; is_default: boolean }>>([]);
   const [newFeature, setNewFeature] = useState('');
+  const [newSpecificationEn, setNewSpecificationEn] = useState('');
+  const [newSpecificationAr, setNewSpecificationAr] = useState('');
 
   useEffect(() => {
     fetchProducts();
@@ -165,7 +169,9 @@ const ProductsPage = () => {
       category_id: product.category_id || '',
       base_price: product.base_price,
       availability: product.availability,
-      features: product.features || []
+      features: product.features || [],
+      specifications_en: product.specifications_en || [],
+      specifications_ar: product.specifications_ar || []
     });
     
     setImages(product.images?.map(img => ({
@@ -243,11 +249,15 @@ const ProductsPage = () => {
       category_id: '',
       base_price: 0,
       availability: 'in-stock',
-      features: []
+      features: [],
+      specifications_en: [],
+      specifications_ar: []
     });
     setImages([]);
     setPackages([]);
     setNewFeature('');
+    setNewSpecificationEn('');
+    setNewSpecificationAr('');
     setEditingProduct(null);
     setShowForm(false);
   };
@@ -266,6 +276,25 @@ const ProductsPage = () => {
     }
   };
 
+  const addSpecificationEn = () => {
+    if (newSpecificationEn.trim()) {
+      setFormData(prev => ({
+        ...prev,
+        specifications_en: [...prev.specifications_en, newSpecificationEn.trim()]
+      }));
+      setNewSpecificationEn('');
+    }
+  };
+
+  const addSpecificationAr = () => {
+    if (newSpecificationAr.trim()) {
+      setFormData(prev => ({
+        ...prev,
+        specifications_ar: [...prev.specifications_ar, newSpecificationAr.trim()]
+      }));
+      setNewSpecificationAr('');
+    }
+  };
   const removeFeature = (index: number) => {
     setFormData(prev => ({
       ...prev,
@@ -273,6 +302,19 @@ const ProductsPage = () => {
     }));
   };
 
+  const removeSpecificationEn = (index: number) => {
+    setFormData(prev => ({
+      ...prev,
+      specifications_en: prev.specifications_en.filter((_, i) => i !== index)
+    }));
+  };
+
+  const removeSpecificationAr = (index: number) => {
+    setFormData(prev => ({
+      ...prev,
+      specifications_ar: prev.specifications_ar.filter((_, i) => i !== index)
+    }));
+  };
   const addImage = () => {
     setImages(prev => [...prev, { image_url: '', alt_text: '', sort_order: prev.length }]);
   };
@@ -588,12 +630,12 @@ const ProductsPage = () => {
 
                 {/* Features */}
                 <div className="bg-gray-50 p-6 rounded-lg">
-                  <h4 className="text-lg font-semibold text-[#054239] mb-4">Product Features & Specifications</h4>
+                  <h4 className="text-lg font-semibold text-[#054239] mb-4">Product Features</h4>
                   
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     {/* English Features */}
                     <div>
-                      <h5 className="text-md font-medium text-[#054239] mb-3">Features & Specifications (EN)</h5>
+                      <h5 className="text-md font-medium text-[#054239] mb-3">Features (EN)</h5>
                       <div className="space-y-3">
                         {formData.features.map((feature, index) => (
                           <div key={index} className="flex items-center space-x-2">
@@ -621,7 +663,7 @@ const ProductsPage = () => {
                             type="text"
                             value={newFeature}
                             onChange={(e) => setNewFeature(e.target.value)}
-                            placeholder="Add new feature or specification"
+                            placeholder="Add new feature"
                             className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
                             onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addFeature())}
                           />
@@ -638,9 +680,109 @@ const ProductsPage = () => {
 
                     {/* Arabic Features - Placeholder for future implementation */}
                     <div>
-                      <h5 className="text-md font-medium text-[#054239] mb-3">Features & Specifications (AR)</h5>
+                      <h5 className="text-md font-medium text-[#054239] mb-3">Features (AR)</h5>
                       <div className="space-y-3">
-                        <div className="text-gray-500 italic">Arabic features & specifications coming soon...</div>
+                        <div className="text-gray-500 italic">Arabic features coming soon...</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Specifications - Bilingual */}
+                <div className="bg-gray-50 p-6 rounded-lg">
+                  <h4 className="text-lg font-semibold text-[#054239] mb-4">Product Specifications</h4>
+                  
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    {/* English Specifications */}
+                    <div>
+                      <h5 className="text-md font-medium text-[#054239] mb-3">Specifications (EN)</h5>
+                      <div className="space-y-3">
+                        {formData.specifications_en.map((spec, index) => (
+                          <div key={index} className="flex items-center space-x-2">
+                            <input
+                              type="text"
+                              value={spec}
+                              onChange={(e) => {
+                                const newSpecs = [...formData.specifications_en];
+                                newSpecs[index] = e.target.value;
+                                setFormData({ ...formData, specifications_en: newSpecs });
+                              }}
+                              className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+                            />
+                            <button
+                              type="button"
+                              onClick={() => removeSpecificationEn(index)}
+                              className="text-red-600 hover:text-red-800"
+                            >
+                              <X size={20} />
+                            </button>
+                          </div>
+                        ))}
+                        <div className="flex items-center space-x-2">
+                          <input
+                            type="text"
+                            value={newSpecificationEn}
+                            onChange={(e) => setNewSpecificationEn(e.target.value)}
+                            placeholder="Add specification in English"
+                            className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+                            onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addSpecificationEn())}
+                          />
+                          <button
+                            type="button"
+                            onClick={addSpecificationEn}
+                            className="bg-[#b9a779] text-white px-4 py-2 rounded-lg hover:bg-[#054239] transition-colors"
+                          >
+                            Add
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Arabic Specifications */}
+                    <div>
+                      <h5 className="text-md font-medium text-[#054239] mb-3">Specifications (AR)</h5>
+                      <div className="space-y-3">
+                        {formData.specifications_ar.map((spec, index) => (
+                          <div key={index} className="flex items-center space-x-2">
+                            <input
+                              type="text"
+                              value={spec}
+                              onChange={(e) => {
+                                const newSpecs = [...formData.specifications_ar];
+                                newSpecs[index] = e.target.value;
+                                setFormData({ ...formData, specifications_ar: newSpecs });
+                              }}
+                              className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+                              dir="rtl"
+                              placeholder="أضف مواصفة بالعربية"
+                            />
+                            <button
+                              type="button"
+                              onClick={() => removeSpecificationAr(index)}
+                              className="text-red-600 hover:text-red-800"
+                            >
+                              <X size={20} />
+                            </button>
+                          </div>
+                        ))}
+                        <div className="flex items-center space-x-2">
+                          <input
+                            type="text"
+                            value={newSpecificationAr}
+                            onChange={(e) => setNewSpecificationAr(e.target.value)}
+                            placeholder="أضف مواصفة بالعربية"
+                            className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+                            dir="rtl"
+                            onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addSpecificationAr())}
+                          />
+                          <button
+                            type="button"
+                            onClick={addSpecificationAr}
+                            className="bg-[#b9a779] text-white px-4 py-2 rounded-lg hover:bg-[#054239] transition-colors"
+                          >
+                            إضافة
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
