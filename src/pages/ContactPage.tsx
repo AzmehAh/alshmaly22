@@ -293,8 +293,8 @@ const ContactPage = () => {
                   </div>
                   
                   {/* In a real implementation, you would integrate with Google Maps, Mapbox, or similar */}
-               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3220.021842769755!2d36.769716739654555!3d36.19035061456288!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15257b2abd015b51%3A0x8c7ccf0d0af4520a!2z2YXYpNiz2LPYqSDYp9mE2LTZhdin2YTZiiDYp9mE2KrYrNin2LHZitipIEFMU0hNQUxZIEFHUk8!5e0!3m2!1sen!2snl!4v1752479443663!5m2!1sen!2snl" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3220.021842769755!2d36.769716739654555!3d36.19035061456288!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15257b2abd015b51%3A0x8c7ccf0d0af4520a!2z2YXYpNiz2LPYqSDYp9mE2LTZhdin2YTZiiDYp9mE2KrYrNin2LHZitipIEFMU0hNQUxZIEFHUk8!5e0!3m2!1sen!2snl!4v1752479443663!5m2!1sen!2snl" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div> 
                 
                 <div className="mt-6 p-4 bg-gray-50 rounded-xl">
                   <p className="text-gray-600 text-sm">
