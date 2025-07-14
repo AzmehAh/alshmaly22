@@ -24,37 +24,33 @@ const AboutPage = () => {
   }, []);
  
   const timeline = [
-    { 
-      year: '1998',
-      title: 'Company Foundation',
-      description: 'Al-Shamali was established in Idlib, Syria, with a vision to export premium Syrian agricultural products.'
-    },
-    {
-      year: '2005',
-      title: 'First International Export',
-      description: 'Successfully exported our first shipment of freekeh and legumes to European markets.'
-    },
-    {
-      year: '2010',
-      title: 'Quality Certification',
-      description: 'Obtained ISO certification and implemented modern Sortex cleaning technology.'
-    },
-    {
-      year: '2015',
-      title: 'Market Expansion',
-      description: 'Expanded operations to serve over 20 countries across Europe, Asia, and the Americas.'
-    },
-    {
-      year: '2020',
-      title: 'Digital Transformation',
-      description: 'Launched online platform and enhanced supply chain management systems.'
-    },
-    {
-      year: '2024',
-      title: 'Sustainable Future',
-      description: 'Committed to sustainable farming practices and supporting local Syrian farmers.'
-    }
-  ];
+  { 
+    year: '1998',
+    title: 'Company Foundation',
+    description: 'Al-Shamali was established in Idlib, Syria, with a vision to export premium Syrian agricultural products.'
+  },
+  {
+    year: '2005',
+    title: 'First International Export',
+    description: 'Successfully exported our first shipment of freekeh and legumes to European markets.'
+  },
+  {
+    year: '2010',
+    title: 'Quality Certifications',
+    description: 'Obtained ISO 9001 and ISO 22000 certifications and implemented modern Sortex cleaning technology.'
+  },
+  {
+    year: '2020',
+    title: 'Our Export Launch',
+    description: 'Started exporting through Souqna First Gate in Qatar, gradually expanding to other countries with a product range exceeding 30 items.'
+  },
+  {
+    year: '2024',
+    title: 'Sustainable Future',
+    description: 'Committed to sustainable farming practices and supporting local Syrian farmers.'
+  }
+];
+
 
  
 
