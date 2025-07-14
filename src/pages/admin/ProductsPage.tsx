@@ -631,44 +631,59 @@ const ProductsPage = () => {
                 {/* Features */}
                 <div className="bg-gray-50 p-6 rounded-lg">
                   <h4 className="text-lg font-semibold text-[#054239] mb-4">Product Features</h4>
-                  <div className="space-y-3">
-                    {formData.features.map((feature, index) => (
-                      <div key={index} className="flex items-center space-x-2">
-                        <input
-                          type="text"
-                          value={feature}
-                          onChange={(e) => {
-                            const newFeatures = [...formData.features];
-                            newFeatures[index] = e.target.value;
-                            setFormData({ ...formData, features: newFeatures });
-                          }}
-                          className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                        />
-                        <button
-                          type="button"
-                          onClick={() => removeFeature(index)}
-                          className="text-red-600 hover:text-red-800"
-                        >
-                          <X size={20} />
-                        </button>
+                  
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    {/* English Features */}
+                    <div>
+                      <h5 className="text-md font-medium text-[#054239] mb-3">Features (EN)</h5>
+                      <div className="space-y-3">
+                        {formData.features.map((feature, index) => (
+                          <div key={index} className="flex items-center space-x-2">
+                            <input
+                              type="text"
+                              value={feature}
+                              onChange={(e) => {
+                                const newFeatures = [...formData.features];
+                                newFeatures[index] = e.target.value;
+                                setFormData({ ...formData, features: newFeatures });
+                              }}
+                              className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+                            />
+                            <button
+                              type="button"
+                              onClick={() => removeFeature(index)}
+                              className="text-red-600 hover:text-red-800"
+                            >
+                              <X size={20} />
+                            </button>
+                          </div>
+                        ))}
+                        <div className="flex items-center space-x-2">
+                          <input
+                            type="text"
+                            value={newFeature}
+                            onChange={(e) => setNewFeature(e.target.value)}
+                            placeholder="Add new feature"
+                            className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+                            onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addFeature())}
+                          />
+                          <button
+                            type="button"
+                            onClick={addFeature}
+                            className="bg-[#b9a779] text-white px-4 py-2 rounded-lg hover:bg-[#054239] transition-colors"
+                          >
+                            Add
+                          </button>
+                        </div>
                       </div>
-                    ))}
-                    <div className="flex items-center space-x-2">
-                      <input
-                        type="text"
-                        value={newFeature}
-                        onChange={(e) => setNewFeature(e.target.value)}
-                        placeholder="Add new feature"
-                        className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                        onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addFeature())}
-                      />
-                      <button
-                        type="button"
-                        onClick={addFeature}
-                        className="bg-[#b9a779] text-white px-4 py-2 rounded-lg hover:bg-[#054239] transition-colors"
-                      >
-                        Add
-                      </button>
+                    </div>
+
+                    {/* Arabic Features - Placeholder for future implementation */}
+                    <div>
+                      <h5 className="text-md font-medium text-[#054239] mb-3">Features (AR)</h5>
+                      <div className="space-y-3">
+                        <div className="text-gray-500 italic">Arabic features coming soon...</div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1004,6 +1019,11 @@ const ProductsPage = () => {
                           </div>
                         </div>
                       ))}
+                    {availableProducts
+                      .filter(product => !relations.some(rel => rel.related_product_id === product.id))
+                      .length === 0 && (
+                      <p className="text-gray-500 text-center py-4">All available products are already related.</p>
+                    )}
                   </div>
                 </div>
               </div>

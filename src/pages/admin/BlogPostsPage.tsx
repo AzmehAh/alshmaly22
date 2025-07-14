@@ -31,6 +31,8 @@ const BlogPostsPage = () => {
     author_ar: 'فريق الشمالي',
     read_time: '5 min read',
     read_time_ar: '5 دقائق قراءة',
+    event_date_en: '',
+    event_date_ar: '',
     featured_image: '',
     published: true
   });
@@ -118,6 +120,8 @@ const BlogPostsPage = () => {
       author_ar: post.author_ar || 'فريق الشمالي',
       read_time: post.read_time,
       read_time_ar: post.read_time_ar || '5 دقائق قراءة',
+      event_date_en: post.event_date_en || '',
+      event_date_ar: post.event_date_ar || '',
       featured_image: post.featured_image || '',
       published: post.published
     });
@@ -188,6 +192,8 @@ const BlogPostsPage = () => {
       author_ar: 'فريق الشمالي',
       read_time: '5 min read',
       read_time_ar: '5 دقائق قراءة',
+      event_date_en: '',
+      event_date_ar: '',
       featured_image: '',
       published: true
     });
@@ -525,6 +531,31 @@ const BlogPostsPage = () => {
                   </div>
                 </div>
 
+                {/* Event Dates - Bilingual */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Event Date (EN)</label>
+                    <input
+                      type="text"
+                      value={formData.event_date_en}
+                      onChange={(e) => setFormData({ ...formData, event_date_en: e.target.value })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+                      placeholder="August 1, 2025"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Event Date (AR)</label>
+                    <input
+                      type="text"
+                      value={formData.event_date_ar}
+                      onChange={(e) => setFormData({ ...formData, event_date_ar: e.target.value })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+                      placeholder="١ أغسطس ٢٠٢٥"
+                      dir="rtl"
+                    />
+                  </div>
+                </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
@@ -660,6 +691,11 @@ const BlogPostsPage = () => {
                           </div>
                         </div>
                       ))}
+                    {availablePosts
+                      .filter(post => !relations.some(rel => rel.related_blog_post_id === post.id))
+                      .length === 0 && (
+                      <p className="text-gray-500 text-center py-4">All available posts are already related.</p>
+                    )}
                   </div>
                 </div>
               </div>

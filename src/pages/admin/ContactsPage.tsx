@@ -9,21 +9,21 @@ const ContactsPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedStatus, setSelectedStatus] = useState('all');
   const [selectedContact, setSelectedContact] = useState<ContactMessage | null>(null);
+  const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
 
   const handleDelete = async (id: string) => {
-    if (window.confirm('Are you sure you want to delete this contact message? This action cannot be undone.')) {
-      try {
-        const { error } = await supabase
-          .from('contact_messages')
-          .delete()
-          .eq('id', id);
+    try {
+      const { error } = await supabase
+        .from('contact_messages')
+        .delete()
+        .eq('id', id);
 
-        if (error) throw error;
-        await fetchContacts();
-      } catch (error) {
-        console.error('Error deleting contact message:', error);
-        alert('Error deleting contact message. Please try again.');
-      }
+      if (error) throw error;
+      await fetchContacts();
+      setDeleteConfirm(null);
+    } catch (error) {
+      console.error('Error deleting contact message:', error);
+      alert('Error deleting contact message. Please try again.');
     }
   };
   useEffect(() => {
@@ -209,7 +209,7 @@ const ContactsPage = () => {
                         <Eye size={16} />
                       </button>
                       <button
-                        onClick={() => handleDelete(contact.id)}
+                        onClick={() => setDeleteConfirm(contact.id)}
                         className="text-red-600 hover:text-red-900 p-1 rounded"
                         title="Delete Message"
                       >
@@ -301,6 +301,36 @@ const ContactsPage = () => {
                 >
                   Reply via Email
                 </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Delete Confirmation Modal */}
+      {deleteConfirm && (
+        <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
+          <div className="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+            <div className="mt-3 text-center">
+              <h3 className="text-lg font-medium text-gray-900">Delete Contact Message</h3>
+              <div className="mt-2 px-7 py-3">
+                <p className="text-sm text-gray-500">
+                  Are you sure you want to delete this contact message? This action cannot be undone.
+                </p>
+              </div>
+              <div className="flex justify-center space-x-3 pt-4">
+                <button
+                  onClick={() => setDeleteConfirm(null)}
+                  className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors duration-200"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={() => handleDelete(deleteConfirm)}
+                  className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors duration-200"
+                >
+                  Delete
+                </button>
               </div>
             </div>
           </div>

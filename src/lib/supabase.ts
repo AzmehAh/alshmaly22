@@ -109,6 +109,8 @@ export interface BlogPost {
   read_time: string;
   read_time_ar?: string;
   read_time_ar?: string;
+  event_date_en?: string;
+  event_date_ar?: string;
   featured_image?: string;
   published: boolean;
   published_at: string;
