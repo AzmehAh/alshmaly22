@@ -114,7 +114,7 @@ export class ProductsAPI {
     const { data: relatedData, error: relatedError } = await supabase
       .from('product_relations')
       .select(`
-        related_product:products(
+        related_product:related_product_id!products(
           *,
           category:categories(*),
           images:product_images(*)
