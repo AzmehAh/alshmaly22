@@ -153,7 +153,7 @@ Friday: Closed
   <button
     onClick={() => {
       const phoneNumber = "963956556410";
-      const message = "Hello! Thank you for reaching out. How can we assist you ?";
+      const message = "مرحبًا! شكرًا لتواصلك معنا. كيف يمكننا مساعدتك اليوم؟";
       const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
       window.open(url, '_blank');
     }}
@@ -171,8 +171,6 @@ Friday: Closed
     Call Now
   </a>
 </div>
-                </div>
-
 
 
             {/* Contact Form and Map */}
