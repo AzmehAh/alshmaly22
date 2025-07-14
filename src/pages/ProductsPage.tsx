@@ -203,7 +203,7 @@ const ProductsPage = () => {
   }
 </p>
 
-                    <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center justify-end mb-4">
                       {/* <span className="text-2xl font-bold text-[#b9a779]">
                         ${defaultPackage?.price || product.base_price}
                       </span>*/}
