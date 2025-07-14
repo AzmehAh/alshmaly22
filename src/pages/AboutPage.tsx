@@ -27,29 +27,29 @@ const AboutPage = () => {
  
   const timeline = [
   { 
-    year: '1998',
-    title: 'Company Foundation',
-    description: 'Al-Shamali was established in Idlib, Syria, with a vision to export premium Syrian agricultural products.'
+    year: '1998', 
+    title: t('timeline.foundation.title'),
+    description: t('timeline.foundation.description')
   },
   {
     year: '2005',
-    title: 'First International Export',
-    description: 'Successfully exported our first shipment of freekeh and legumes to European markets.'
+    title: t('timeline.first_export.title'),
+    description: t('timeline.first_export.description')
   },
   {
     year: '2010',
-    title: 'Quality Certifications',
-    description: 'Obtained ISO 9001 and ISO 22000 certifications and implemented modern Sortex cleaning technology.'
+    title: t('timeline.certifications.title'),
+    description: t('timeline.certifications.description')
   },
   {
     year: '2020',
-    title: 'Our Export Launch',
-    description: 'Started exporting through Souqna First Gate in Qatar, gradually expanding to other countries with a product range exceeding 30 items.'
+    title: t('timeline.export_launch.title'),
+    description: t('timeline.export_launch.description')
   },
   {
     year: '2024',
-    title: 'Sustainable Future',
-    description: 'Committed to sustainable farming practices and supporting local Syrian farmers.'
+    title: t('timeline.sustainable_future.title'),
+    description: t('timeline.sustainable_future.description')
   }
 ];
 
@@ -120,7 +120,7 @@ return (
               />
               <div className="absolute -bottom-6 -right-6  bg-[#054239]   text-white p-6 rounded-2xl">
                 
-                <p className="text-sm font-semibold">{t('misc.established')}</p>
+                <p className="text-sm font-semibold">{t('about.established')}</p>
                 <p className="text-2xl font-bold">1999</p>
               </div>
             </div>

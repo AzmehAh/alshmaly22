@@ -154,6 +154,49 @@ const translations = {
     'buttons.request_quote': 'Request Quote',
     'buttons.load_more': 'Load More',
     
+    // Marquee section
+    'marquee.natural': '100% Natural',
+    'marquee.quality_standards': 'Global Quality Standards',
+    'marquee.years_expertise': '25+ Years of Expertise',
+    'marquee.customer_satisfaction': 'Customer Satisfaction First',
+    'marquee.trader_support': 'Ongoing Trader Support',
+    
+    // Statistics
+    'statistics.satisfied_clients': 'Satisfied Clients',
+    'statistics.exporting_countries': 'Exporting Countries',
+    'statistics.years_experience': 'Years of Experience',
+    
+    // Timeline
+    'timeline.foundation.title': 'Company Foundation',
+    'timeline.foundation.description': 'Al-Shamali was established in Idlib, Syria, with a vision to export premium Syrian agricultural products.',
+    'timeline.first_export.title': 'First International Export',
+    'timeline.first_export.description': 'Successfully exported our first shipment of freekeh and legumes to European markets.',
+    'timeline.certifications.title': 'Quality Certifications',
+    'timeline.certifications.description': 'Obtained ISO 9001 and ISO 22000 certifications and implemented modern Sortex cleaning technology.',
+    'timeline.export_launch.title': 'Export Expansion',
+    'timeline.export_launch.description': 'Started exporting through Souqna First Gate in Qatar, gradually expanding to other countries with a product range exceeding 30 items.',
+    'timeline.sustainable_future.title': 'Sustainable Future',
+    'timeline.sustainable_future.description': 'Committed to sustainable farming practices and supporting local Syrian farmers.',
+    
+    // FAQ
+    'faq.minimum_order.question': 'What is your minimum order quantity?',
+    'faq.minimum_order.answer': 'Our minimum order quantity varies by product. For most items, it\'s 1 ton, but we can accommodate smaller orders for sample testing.',
+    'faq.certificates.question': 'Do you provide certificates of origin and quality?',
+    'faq.certificates.answer': 'Yes, we provide all necessary documentation including certificates of origin, quality certificates, and phytosanitary certificates for international shipping.',
+    'faq.payment_terms.question': 'What are your payment terms?',
+    'faq.payment_terms.answer': 'We accept various payment methods including T/T, L/C, and other internationally recognized payment terms. Specific terms can be discussed based on order size and relationship.',
+    'faq.shipping_time.question': 'How long does shipping take?',
+    'faq.shipping_time.answer': 'Shipping times vary by destination. Typically, it takes 2-4 weeks for sea freight and 3-7 days for air freight to most international destinations.',
+    'faq.private_labeling.question': 'Do you offer private labeling services?',
+    'faq.private_labeling.answer': 'Yes, we offer private labeling services with your brand. We can customize packaging design and labeling according to your specifications.',
+    
+    // About page
+    'about.established': 'Established',
+    
+    // Contact location
+    'contact.location.industrial_zone': 'Industrial Zone',
+    'contact.location.full_address': 'Idlib, Sarmada, Syria',
+    
     // Footer sections
     'footer.company_description': 'We export the best of Syrian nature to the world, bringing authenticity and quality to your table.',
     'footer.made_by': 'Made by',
@@ -324,6 +367,49 @@ const translations = {
     'buttons.contact_supplier': 'اتصل بالمورد',
     'buttons.request_quote': 'طلب عرض سعر',
     'buttons.load_more': 'تحميل المزيد',
+    
+    // Marquee section
+    'marquee.natural': '100% طبيعي',
+    'marquee.quality_standards': 'معايير الجودة العالمية',
+    'marquee.years_expertise': '25+ سنة من الخبرة',
+    'marquee.customer_satisfaction': 'رضا العملاء أولاً',
+    'marquee.trader_support': 'دعم مستمر للتجار',
+    
+    // Statistics
+    'statistics.satisfied_clients': 'عميل راضٍ',
+    'statistics.exporting_countries': 'دولة مصدرة إليها',
+    'statistics.years_experience': 'سنوات من الخبرة',
+    
+    // Timeline
+    'timeline.foundation.title': 'تأسيس الشركة',
+    'timeline.foundation.description': 'تأسست الشمالي في إدلب، سوريا، برؤية لتصدير المنتجات الزراعية السورية المتميزة.',
+    'timeline.first_export.title': 'أول تصدير دولي',
+    'timeline.first_export.description': 'نجحنا في تصدير أول شحنة من الفريكة والبقوليات إلى الأسواق الأوروبية.',
+    'timeline.certifications.title': 'شهادات الجودة',
+    'timeline.certifications.description': 'حصلنا على شهادات الآيزو 9001 و22000 وطبقنا تقنية التنظيف الحديثة Sortex.',
+    'timeline.export_launch.title': 'توسيع التصدير',
+    'timeline.export_launch.description': 'بدأنا التصدير عبر سوقنا البوابة الأولى في قطر، وتوسعنا تدريجياً إلى دول أخرى بمجموعة منتجات تتجاوز 30 صنفاً.',
+    'timeline.sustainable_future.title': 'مستقبل مستدام',
+    'timeline.sustainable_future.description': 'التزمنا بممارسات الزراعة المستدامة ودعم المزارعين السوريين المحليين.',
+    
+    // FAQ
+    'faq.minimum_order.question': 'ما هي الكمية الدنيا للطلب؟',
+    'faq.minimum_order.answer': 'تختلف الكمية الدنيا للطلب حسب المنتج. بالنسبة لمعظم الأصناف، هي طن واحد، لكن يمكننا استيعاب طلبات أصغر لأغراض اختبار العينات.',
+    'faq.certificates.question': 'هل تقدمون شهادات المنشأ والجودة؟',
+    'faq.certificates.answer': 'نعم، نقدم جميع الوثائق اللازمة بما في ذلك شهادات المنشأ وشهادات الجودة والشهادات النباتية للشحن الدولي.',
+    'faq.payment_terms.question': 'ما هي شروط الدفع لديكم؟',
+    'faq.payment_terms.answer': 'نقبل طرق دفع متنوعة بما في ذلك T/T و L/C وشروط دفع دولية أخرى معترف بها. يمكن مناقشة الشروط المحددة بناءً على حجم الطلب والعلاقة.',
+    'faq.shipping_time.question': 'كم من الوقت يستغرق الشحن؟',
+    'faq.shipping_time.answer': 'تختلف أوقات الشحن حسب الوجهة. عادة، يستغرق 2-4 أسابيع للشحن البحري و3-7 أيام للشحن الجوي إلى معظم الوجهات الدولية.',
+    'faq.private_labeling.question': 'هل تقدمون خدمات العلامة التجارية الخاصة؟',
+    'faq.private_labeling.answer': 'نعم، نقدم خدمات العلامة التجارية الخاصة بعلامتكم التجارية. يمكننا تخصيص تصميم التعبئة ووضع العلامات وفقاً لمواصفاتكم.',
+    
+    // About page
+    'about.established': 'تأسست عام',
+    
+    // Contact location
+    'contact.location.industrial_zone': 'المنطقة الصناعية',
+    'contact.location.full_address': 'إدلب، سرمدا، سوريا',
     
     // Footer sections
     'footer.company_description': 'نصدر أفضل ما في الطبيعة السورية إلى العالم، ونجلب الأصالة والجودة إلى مائدتك.',

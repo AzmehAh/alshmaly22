@@ -60,24 +60,24 @@ const ContactPage = () => {
 
   const faqData = [
     {
-      question: "What is your minimum order quantity?",
-      answer: "Our minimum order quantity varies by product. For most items, it's 1 ton, but we can accommodate smaller orders for sample testing."
+      question: t('faq.minimum_order.question'),
+      answer: t('faq.minimum_order.answer')
     },
     {
-      question: "Do you provide certificates of origin and quality?",
-      answer: "Yes, we provide all necessary documentation including certificates of origin, quality certificates, and phytosanitary certificates for international shipping."
+      question: t('faq.certificates.question'),
+      answer: t('faq.certificates.answer')
     },
     {
-      question: "What are your payment terms?",
-      answer: "We accept various payment methods including T/T, L/C, and other internationally recognized payment terms. Specific terms can be discussed based on order size and relationship."
+      question: t('faq.payment_terms.question'),
+      answer: t('faq.payment_terms.answer')
     },
     {
-      question: "How long does shipping take?",
-      answer: "Shipping times vary by destination. Typically, it takes 2-4 weeks for sea freight and 3-7 days for air freight to most international destinations."
+      question: t('faq.shipping_time.question'),
+      answer: t('faq.shipping_time.answer')
     },
     {
-      question: "Do you offer private labeling services?",
-      answer: "Yes, we offer private labeling services with your brand. We can customize packaging design and labeling according to your specifications."
+      question: t('faq.private_labeling.question'),
+      answer: t('faq.private_labeling.answer')
     }
   ];
 
@@ -111,8 +111,8 @@ const ContactPage = () => {
                     <div>
                       <h3 className="font-semibold text-[#054239] mb-1">{t('contact.address')}</h3>
                       <p className="text-gray-600">
-                        {t('misc.industrial_zone')}<br />
-                       Idlib, Sarmada, Syria
+                      {t('contact.location.industrial_zone')}<br />
+                      {t('contact.location.full_address')}
                       </p>
                     </div>
                   </div>

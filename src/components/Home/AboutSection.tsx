@@ -98,19 +98,19 @@ const AboutSection = () => {
                 <div className="text-3xl font-bold text-[#b9a779] mb-2">
                   {clients.toLocaleString()}+
                 </div>
-                <p className="text-[#F7F7F7]  font-medium">Satisfied Clients</p>
+                <p className="text-[#F7F7F7] font-medium">{t('statistics.satisfied_clients')}</p>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-[#b9a779]  mb-2">
                   {countries}+
                 </div>
-                <p className="text-[#F7F7F7]  font-medium">Exporting Countries</p>
+                <p className="text-[#F7F7F7] font-medium">{t('statistics.exporting_countries')}</p>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-[#b9a779] mb-2">
                   {years}
                 </div>
-                <p className="text-[#F7F7F7]  font-medium">Years of Experience</p>
+                <p className="text-[#F7F7F7] font-medium">{t('statistics.years_experience')}</p>
               </div>
             </div>
           </div>
