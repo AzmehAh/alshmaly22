@@ -13,8 +13,10 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 export interface Category {
   id: string;
   name: string;
+  name_ar?: string;
   slug: string;
   description?: string;
+  description_ar?: string;
   created_at: string;
   updated_at: string;
 }
@@ -22,8 +24,10 @@ export interface Category {
 export interface Product {
   id: string;
   name: string;
+  name_ar?: string;
   slug: string;
   description: string;
+  description_ar?: string;
   category_id?: string;
   base_price: number;
   availability: 'in-stock' | 'out-of-stock' | 'limited';
@@ -40,6 +44,7 @@ export interface ProductImage {
   product_id: string;
   image_url: string;
   alt_text?: string;
+  alt_text_ar?: string;
   sort_order: number;
   created_at: string;
 }
@@ -56,6 +61,7 @@ export interface ProductPackage {
 export interface BlogCategory {
   id: string;
   name: string;
+  name_ar?: string;
   slug: string;
   created_at: string;
 }
@@ -63,12 +69,17 @@ export interface BlogCategory {
 export interface BlogPost {
   id: string;
   title: string;
+  title_ar?: string;
   slug: string;
   excerpt: string;
+  excerpt_ar?: string;
   content: string;
+  content_ar?: string;
   category_id?: string;
   author: string;
+  author_ar?: string;
   read_time: string;
+  read_time_ar?: string;
   featured_image?: string;
   published: boolean;
   published_at: string;
@@ -83,6 +94,7 @@ export interface BlogImage {
   blog_post_id: string;
   image_url: string;
   alt_text?: string;
+  alt_text_ar?: string;
   sort_order: number;
   created_at: string;
 }
@@ -116,8 +128,11 @@ export interface ContactMessage {
 export interface ExportCountry {
   id: string;
   name: string;
+  name_ar?: string;
   annual_exports: string;
+  annual_exports_ar?: string;
   main_products: string;
+  main_products_ar?: string;
   display_order: number;
   is_active: boolean;
   created_at: string;

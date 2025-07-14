@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const AboutSection = () => {
+  const { t } = useLanguage();
   const [clients, setClients] = useState(0);
   const [countries, setCountries] = useState(0);
   const [years, setYears] = useState(0);
@@ -85,14 +87,10 @@ const AboutSection = () => {
 
           {/* Content */}
           <div>
-            <h2 className="text-4xl font-bold text-[#F7F7F7]  mb-6">
-              We bring authenticity into your world
+            <h2 className="text-4xl font-bold text-[#F7F7F7] mb-6">
+              {t('home.about.title')}
             </h2>
-            <p className="text-[#edebe0] text-lg leading-relaxed mb-8">
-              For over 25 years, Al-Shamali has been the trusted name in exporting premium Syrian agricultural products. 
-              Our commitment to quality and authenticity has made us a preferred partner for traders worldwide, 
-              bringing the finest legumes, spices, oils, and herbs from Syrian soil to tables across the globe.
-            </p>
+            {/* This content could be made dynamic from database */}
 
             {/* Counters */}
             <div className="grid grid-cols-3 gap-8">

@@ -13,8 +13,11 @@ const ExportCountriesPage = () => {
 
   const [formData, setFormData] = useState({
     name: '',
+    name_ar: '',
     annual_exports: '',
+    annual_exports_ar: '',
     main_products: '',
+    main_products_ar: '',
     display_order: 0,
     is_active: true
   });
@@ -62,8 +65,11 @@ const ExportCountriesPage = () => {
     setEditingCountry(country);
     setFormData({
       name: country.name,
+      name_ar: country.name_ar || '',
       annual_exports: country.annual_exports,
+      annual_exports_ar: country.annual_exports_ar || '',
       main_products: country.main_products,
+      main_products_ar: country.main_products_ar || '',
       display_order: country.display_order,
       is_active: country.is_active
     });
@@ -116,8 +122,11 @@ const ExportCountriesPage = () => {
   const resetForm = () => {
     setFormData({
       name: '',
+      name_ar: '',
       annual_exports: '',
+      annual_exports_ar: '',
       main_products: '',
+      main_products_ar: '',
       display_order: 0,
       is_active: true
     });
@@ -275,40 +284,82 @@ const ExportCountriesPage = () => {
                 {editingCountry ? 'Edit Export Country' : 'Add New Export Country'}
               </h3>
               <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Country Name</label>
-                  <input
-                    type="text"
-                    required
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                    placeholder="Country name"
-                  />
+                {/* Country Name - Bilingual */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Country Name (EN)</label>
+                    <input
+                      type="text"
+                      required
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+                      placeholder="Country name in English"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Country Name (AR)</label>
+                    <input
+                      type="text"
+                      value={formData.name_ar}
+                      onChange={(e) => setFormData({ ...formData, name_ar: e.target.value })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+                      placeholder="اسم الدولة بالعربية"
+                      dir="rtl"
+                    />
+                  </div>
                 </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Annual Exports</label>
-                  <input
-                    type="text"
-                    required
-                    value={formData.annual_exports}
-                    onChange={(e) => setFormData({ ...formData, annual_exports: e.target.value })}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                    placeholder="e.g., 2,000 tons/year"
-                  />
+                {/* Annual Exports - Bilingual */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Annual Exports (EN)</label>
+                    <input
+                      type="text"
+                      required
+                      value={formData.annual_exports}
+                      onChange={(e) => setFormData({ ...formData, annual_exports: e.target.value })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+                      placeholder="e.g., 2,000 tons/year"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Annual Exports (AR)</label>
+                    <input
+                      type="text"
+                      value={formData.annual_exports_ar}
+                      onChange={(e) => setFormData({ ...formData, annual_exports_ar: e.target.value })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+                      placeholder="مثال: 2000 طن/سنة"
+                      dir="rtl"
+                    />
+                  </div>
                 </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Main Products</label>
-                  <textarea
-                    required
-                    rows={3}
-                    value={formData.main_products}
-                    onChange={(e) => setFormData({ ...formData, main_products: e.target.value })}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                    placeholder="e.g., Spices, Dried Herbs, Legumes"
-                  />
+                {/* Main Products - Bilingual */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Main Products (EN)</label>
+                    <textarea
+                      required
+                      rows={3}
+                      value={formData.main_products}
+                      onChange={(e) => setFormData({ ...formData, main_products: e.target.value })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+                      placeholder="e.g., Spices, Dried Herbs, Legumes"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Main Products (AR)</label>
+                    <textarea
+                      rows={3}
+                      value={formData.main_products_ar}
+                      onChange={(e) => setFormData({ ...formData, main_products_ar: e.target.value })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+                      placeholder="مثال: البهارات، الأعشاب المجففة، البقوليات"
+                      dir="rtl"
+                    />
+                  </div>
                 </div>
 
                 <div className="flex items-center">

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Award, Users, Globe, Calendar, MapPin, CheckCircle } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 import { ExportCountriesAPI } from '../lib/api/export-countries';
 import type { ExportCountry } from '../lib/supabase';
 
 const AboutPage = () => {
+  const { t, getLocalizedField } = useLanguage();
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [exportCountries, setExportCountries] = useState<ExportCountry[]>([]);
   const [loading, setLoading] = useState(true);
@@ -95,10 +97,9 @@ return (
     
       <div className="relative z-10 container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-5xl font-bold mb-6 drop-shadow-lg">About Al-Shamali</h1>
+          <h1 className="text-5xl font-bold mb-6 drop-shadow-lg">{t('about.title')}</h1>
           <p className="text-xl text-gray-100 leading-relaxed drop-shadow-md">
-            For over 25 years, we have been the bridge between Syrian agricultural heritage and global markets, 
-            bringing authentic, premium-quality products to tables worldwide.
+            {t('about.hero.subtitle')}
           </p>
         </div>
       </div>
@@ -110,17 +111,8 @@ return (
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
             <div>
-              <h2 className="text-4xl font-bold text-[#054239] mb-6">Our Vision & Values</h2>
-              <p className="text-gray-600 text-lg leading-relaxed mb-8">
-                At Al-Shamali, we believe that quality speaks for itself. Our mission is to preserve and share 
-                the rich agricultural heritage of Syria while building sustainable partnerships that benefit 
-                farmers, traders, and consumers worldwide.
-              </p>
-              <p className="text-gray-600 text-lg leading-relaxed">
-                We are committed to maintaining the highest standards of quality, authenticity, and customer 
-                service in everything we do. Our products carry the essence of Syrian soil and the dedication 
-                of generations of farmers.
-              </p>
+              <h2 className="text-4xl font-bold text-[#054239] mb-6">{t('about.vision.title')}</h2>
+              {/* Vision content - could be made dynamic */}
             </div> 
             <div className="relative">
               <img 
@@ -155,10 +147,8 @@ return (
       <section className="py-20 bg-[#F7F7F7]  border-b-2  border-t-2 border-b-[#edebe0] border-t-[#edebe0]">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-[#054239] mb-4">Our Journey</h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              From humble beginnings to global reach, discover the milestones that shaped Al-Shamali
-            </p>
+           <h2 className="text-4xl font-bold text-[#054239] mb-4">{t('about.journey.title')}</h2>
+           {/* Journey subtitle could be made dynamic */}
           </div>
 
           <div className="relative">
@@ -194,9 +184,9 @@ return (
 <section className="py-20 bg-[#F7F7F7] ">
   <div className="container mx-auto px-4">
     <div className="text-center mb-16">
-      <h2 className="text-4xl font-bold text-[#054239] mb-4">Global Reach</h2>
+      <h2 className="text-4xl font-bold text-[#054239] mb-4">{t('about.global_reach.title')}</h2>
       <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-        We proudly export to over 30 countries worldwide, bringing Syrian agricultural excellence to global markets
+        {t('about.global_reach.subtitle')}
       </p>
     </div>
 
@@ -215,10 +205,16 @@ return (
           >
             <div className="flex items-center mb-3">
               <MapPin size={20} className="text-[#b9a779] mr-2" />
-              <h3 className="text-lg font-semibold text-[#054239]">{country.name}</h3>
+              <h3 className="text-lg font-semibold text-[#054239]">
+                {getLocalizedField(country, 'name')}
+              </h3>
             </div>
-            <p className="text-gray-600 text-sm mb-2">Annual Exports: {country.annual_exports}</p>
-            <p className="text-gray-500 text-sm">Main Products: {country.main_products}</p>
+            <p className="text-gray-600 text-sm mb-2">
+              Annual Exports: {getLocalizedField(country, 'annual_exports')}
+            </p>
+            <p className="text-gray-500 text-sm">
+              Main Products: {getLocalizedField(country, 'main_products')}
+            </p>
           </div>
         ))}
       </div>

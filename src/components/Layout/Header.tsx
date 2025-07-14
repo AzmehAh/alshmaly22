@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { Search, Download, Menu, X } from 'lucide-react';
+import { Download, Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
+import { useLanguage } from '../../contexts/LanguageContext';
+import LanguageSwitcher from '../ui/LanguageSwitcher';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const { t, direction } = useLanguage();
 
   const isActive = (path) => location.pathname === path;
  
@@ -33,7 +36,7 @@ const Header = () => {
                 isActive('/') ? 'text-[#b9a779]' : 'text-[#054239] hover:text-[#b9a779]'
               }`}
             >
-              Home
+              {t('nav.home')}
             </Link>
             <Link 
               to="/products" 
@@ -41,7 +44,7 @@ const Header = () => {
                 isActive('/products') ? 'text-[#b9a779]' : 'text-[#054239] hover:text-[#b9a779]'
               }`}
             >
-              Products
+              {t('nav.products')}
             </Link>
             <Link 
               to="/about" 
@@ -49,7 +52,7 @@ const Header = () => {
                 isActive('/about') ? 'text-[#b9a779]' : 'text-[#054239] hover:text-[#b9a779]'
               }`}
             >
-              About Us
+              {t('nav.about')}
             </Link>
             <Link 
               to="/blog" 
@@ -57,7 +60,7 @@ const Header = () => {
                 isActive('/blog') || location.pathname.startsWith('/blog/') ? 'text-[#b9a779]' : 'text-[#054239] hover:text-[#b9a779]'
               }`}
             >
-              Blog
+              {t('nav.blog')}
             </Link>
             <Link 
               to="/contact" 
@@ -65,22 +68,17 @@ const Header = () => {
                 isActive('/contact') ? 'text-[#b9a779]' : 'text-[#054239] hover:text-[#b9a779]'
               }`}
             >
-              Contact
+              {t('nav.contact')}
             </Link>
             <button className="flex items-center space-x-1 text-[#b9a779] hover:text-[#054239] transition-colors duration-300">
               <Download size={16} />
-              <span className="text-sm">ISO Certificate</span>
+              <span className="text-sm">{t('nav.iso_certificate')}</span>
             </button>
           </nav>
 
-          {/* Search Bar */}
-          <div className="hidden md:flex items-center bg-gray-50 rounded-full px-4 py-2 max-w-xs">
-            <Search size={18} className="text-gray-400 mr-2" />
-            <input 
-              type="text" 
-              placeholder="Search products..."
-              className="bg-transparent outline-none text-sm flex-1"
-            />
+          {/* Language Switcher */}
+          <div className="hidden md:flex">
+            <LanguageSwitcher />
           </div>
 
           {/* Mobile Menu Button */}
@@ -103,7 +101,7 @@ const Header = () => {
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >
-                Home
+                {t('nav.home')}
               </Link>
               <Link 
                 to="/products" 
@@ -112,7 +110,7 @@ const Header = () => {
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >
-                Products
+                {t('nav.products')}
               </Link>
               <Link 
                 to="/about" 
@@ -121,7 +119,7 @@ const Header = () => {
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >
-                About Us
+                {t('nav.about')}
               </Link>
               <Link 
                 to="/blog" 
@@ -130,7 +128,7 @@ const Header = () => {
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >
-                Blog
+                {t('nav.blog')}
               </Link>
               <Link 
                 to="/contact" 
@@ -139,12 +137,17 @@ const Header = () => {
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               > 
-                Contact
+                {t('nav.contact')}
               </Link>
               <button className="flex items-center space-x-1 text-[#b9a779] hover:text-[#054239] transition-colors duration-300">
                 <Download size={16} />
-                <span>ISO Certificate</span>
+                <span>{t('nav.iso_certificate')}</span>
               </button>
+              
+              {/* Mobile Language Switcher */}
+              <div className="pt-4 border-t border-gray-200">
+                <LanguageSwitcher />
+              </div>
             </nav>
           </div>
         )}

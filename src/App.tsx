@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { LanguageProvider } from './contexts/LanguageContext';
 import Header from './components/Layout/Header';
 import Footer from './components/Layout/Footer';
 import WhatsAppButton from './components/Layout/WhatsAppButton';
@@ -24,45 +25,47 @@ import ExportCountriesPage from './pages/admin/ExportCountriesPage';
 
 function App() {
   return (
-    <Router>
-      <ScrollToTop />
-      <div className="min-h-screen bg-white overflow-x-hidden">
-        <Routes>
-          {/* Admin Routes */}
-          <Route path="/admin/login" element={<LoginPage />} />
-          <Route path="/admin/*" element={<AdminLayout />}>
-            <Route path="dashboard" element={<DashboardPage />} />
-            <Route path="homepage" element={<HomepageManagementPage />} />
-            <Route path="products" element={<ProductsAdminPage />} />
-            <Route path="categories" element={<CategoriesPage />} />
-            <Route path="export-countries" element={<ExportCountriesPage />} />
-            <Route path="blog-posts" element={<BlogPostsPage />} />
-            <Route path="blog-categories" element={<BlogCategoriesPage />} />
-            <Route path="contacts" element={<ContactsPage />} />
-          </Route>
-          
-          {/* Public Routes */}
-          <Route path="/*" element={
-            <>
-              <Header />
-              <main className="overflow-x-hidden">
-                <Routes>
-                  <Route path="/" element={<HomePage />} />
-                  <Route path="/products" element={<ProductsPage />} />
-                  <Route path="/product/:id" element={<ProductDetailsPage />} />
-                  <Route path="/about" element={<AboutPage />} />
-                  <Route path="/contact" element={<ContactPage />} />
-                  <Route path="/blog" element={<BlogPage />} />
-                  <Route path="/blog/:id" element={<BlogPostPage />} />
-                </Routes>
-              </main>
-              <Footer />
-              <WhatsAppButton />
-            </>
-          } />
-        </Routes>
-      </div>
-    </Router>
+    <LanguageProvider>
+      <Router>
+        <ScrollToTop />
+        <div className="min-h-screen bg-white overflow-x-hidden">
+          <Routes>
+            {/* Admin Routes */}
+            <Route path="/admin/login" element={<LoginPage />} />
+            <Route path="/admin/*" element={<AdminLayout />}>
+              <Route path="dashboard" element={<DashboardPage />} />
+              <Route path="homepage" element={<HomepageManagementPage />} />
+              <Route path="products" element={<ProductsAdminPage />} />
+              <Route path="categories" element={<CategoriesPage />} />
+              <Route path="export-countries" element={<ExportCountriesPage />} />
+              <Route path="blog-posts" element={<BlogPostsPage />} />
+              <Route path="blog-categories" element={<BlogCategoriesPage />} />
+              <Route path="contacts" element={<ContactsPage />} />
+            </Route>
+            
+            {/* Public Routes */}
+            <Route path="/*" element={
+              <>
+                <Header />
+                <main className="overflow-x-hidden">
+                  <Routes>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/products" element={<ProductsPage />} />
+                    <Route path="/product/:id" element={<ProductDetailsPage />} />
+                    <Route path="/about" element={<AboutPage />} />
+                    <Route path="/contact" element={<ContactPage />} />
+                    <Route path="/blog" element={<BlogPage />} />
+                    <Route path="/blog/:id" element={<BlogPostPage />} />
+                  </Routes>
+                </main>
+                <Footer />
+                <WhatsAppButton />
+              </>
+            } />
+          </Routes>
+        </div>
+      </Router>
+    </LanguageProvider>
   );
 }
 

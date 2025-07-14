@@ -1,8 +1,11 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const HeroSection = () => {
+  const { t } = useLanguage();
+
   return (
     <section id="home" className="relative min-h-[100vh] flex items-center overflow-hidden w-full">
       {/* Background Video */}
@@ -23,26 +26,25 @@ const HeroSection = () => {
       <div className="relative z-10 w-full">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl">
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-              Al-Shamali –{' '}
-              <span className="text-[#b9a779]">Quality Speaks</span>
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight text-center lg:text-left">
+              {t('home.hero.title')}
             </h1>
             <p className="text-xl text-gray-200 mb-8 leading-relaxed">
-              We export the best of Syrian nature to the world, bringing authenticity and premium quality to your table.
+              {t('home.hero.subtitle')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link 
                 to="/products"
                 className="bg-[#b9a779] hover:bg-[#054239] text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 flex items-center justify-center group"
               >
-                Explore Our Products
+                {t('home.hero.explore_products')}
                 <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
               </Link>
               <Link 
                 to="/contact"
                 className="border-2 border-white text-white hover:bg-white hover:text-[#054239] px-8 py-4 rounded-full font-semibold transition-all duration-300 text-center"
               >
-                Contact Us
+                {t('common.contact_us')}
               </Link>
             </div>
           </div>
