@@ -105,7 +105,7 @@ const BlogSection = () => {
                 to="/blog"
                 className="bg-[#b9a779] hover:bg-[#054239] text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:shadow-lg"
               >
-                Browse All Articles
+                {t('buttons.browse_all_articles')}
               </Link>
             </div>
           </>

@@ -96,7 +96,7 @@ const ProductsSection = () => {
             to="/products"
             className="bg-[#b9a779] hover:bg-[#054239] text-white px-12 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:shadow-lg inline-block"
           >
-            Explore All Products
+            {t('buttons.explore_all_products')}
           </Link>
         </div>
       </div>

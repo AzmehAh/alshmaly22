@@ -76,7 +76,7 @@ const ProductDetailsPage = () => {
           className="inline-flex items-center text-[#b9a779] hover:text-[#054239] font-medium mb-8 transition-colors duration-300"
         >
           <ArrowLeft size={20} className="mr-2" />
-           {t('common.contact_us')}
+           {t('common.back')} to {t('nav.products')}
         </Link>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
@@ -123,7 +123,7 @@ const ProductDetailsPage = () => {
 {/* Packaging Options */}
 {product.packages && product.packages.length > 0 && (
   <div className="mb-8 max-w-full overflow-x-auto">
-    <h3 className="text-xl font-semibold text-[#054239] mb-4">Packaging </h3>
+    <h3 className="text-xl font-semibold text-[#054239] mb-4">{t('products.packaging_options')}</h3>
     <div className="flex space-x-4">
       {product.packages.map((pkg) => (
         <button
@@ -150,7 +150,7 @@ const ProductDetailsPage = () => {
     to="/contact"
     className="bg-[#b9a779] hover:bg-[#054239] text-white py-4 px-6 rounded-full font-semibold transition-all duration-300"
   >
-    Contact Supplier
+    {t('buttons.contact_supplier')}
   </Link>
 </div>
 
@@ -160,7 +160,7 @@ const ProductDetailsPage = () => {
               <div className="bg-[#f7f7f7] rounded-2xl p-6 shadow-lg">
                 <h3 className="text-xl font-semibold text-[#054239] mb-4 flex items-center">
                   <Award size={24} className="mr-2 text-[#b9a779]" />
-                  Additional Information
+                  {t('products.additional_info')}
                 </h3>
                 <ul className="space-y-3">
                   {product.features.map((feature, index) => (
@@ -178,7 +178,7 @@ const ProductDetailsPage = () => {
         {/* Related Products */}
         {relatedProducts.length > 0 && (
           <div>
-            <h2 className="text-3xl font-bold text-[#054239] mb-8">Related Products</h2>
+            <h2 className="text-3xl font-bold text-[#054239] mb-8">{t('products.related_products')}</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {relatedProducts.map(relatedProduct => (
                 <Link
@@ -199,7 +199,7 @@ const ProductDetailsPage = () => {
                       <span className="text-2xl font-bold text-[#b9a779]">
                         ${relatedProduct.packages?.[0]?.price || relatedProduct.base_price}
                       </span>
-                      <span className="text-[#b9a779] font-medium">View Details →</span>
+                      <span className="text-[#b9a779] font-medium">{t('common.view_details')} →</span>
                     </div>
                   </div>
                 </Link>

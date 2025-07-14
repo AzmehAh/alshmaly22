@@ -4,7 +4,7 @@ import { ContactAPI } from '../lib/api/contact';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const ContactPage = () => {
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -45,10 +45,10 @@ const ContactPage = () => {
         message: ''
       }); 
       
-      setSubmitMessage('Thank you for your message! We will get back to you soon.');
+      setSubmitMessage(t('contact.form.success'));
     } catch (error) {
       console.error('Error submitting contact form:', error);
-      setSubmitMessage('Failed to send message. Please try again.');
+      setSubmitMessage(t('contact.form.error'));
     } finally {
       setIsSubmitting(false);
     }
@@ -87,10 +87,9 @@ const ContactPage = () => {
       <section className="py-20 bg-[#054239] text-white ">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-5xl font-bold mb-6">Contact Us</h1>
+            <h1 className="text-5xl font-bold mb-6">{t('contact.title')}</h1>
             <p className="text-xl text-gray-200 leading-relaxed">
-              Ready to start your journey with premium Syrian agricultural products? 
-              Get in touch with our team today.
+              {t('contact.hero.subtitle')}
             </p>
           </div>
         </div>
@@ -102,7 +101,7 @@ const ContactPage = () => {
             {/* Contact Information */}
             <div className="lg:col-span-1">
               <div className="bg-[#f7f7f7] rounded-2xl p-8 shadow-lg h-fit sticky top-24">
-                <h2 className="text-2xl font-bold text-[#054239] mb-8">Get in Touch</h2>
+                <h2 className="text-2xl font-bold text-[#054239] mb-8">{t('contact.get_in_touch')}</h2>
                 
                 <div className="space-y-6">
                   <div className="flex items-start space-x-4">
@@ -110,9 +109,9 @@ const ContactPage = () => {
                       <MapPin size={20} className="text-white" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-[#054239] mb-1">Address</h3>
+                      <h3 className="font-semibold text-[#054239] mb-1">{t('contact.address')}</h3>
                       <p className="text-gray-600">
-                        Industrial Zone<br />
+                        {t('misc.industrial_zone')}<br />
                        Idlib, Sarmada, Syria
                       </p>
                     </div>
@@ -123,7 +122,7 @@ const ContactPage = () => {
                       <Phone size={20} className="text-white" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-[#054239] mb-1">Phone</h3>
+                      <h3 className="font-semibold text-[#054239] mb-1">{t('contact.phone')}</h3>
                       <p className="text-gray-600">syria  : +963 956 556 410</p>
                       <p className="text-gray-600">turkey : +90 538 687 6411</p>
                     </div>
@@ -134,7 +133,7 @@ const ContactPage = () => {
                       <Mail size={20} className="text-white" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-[#054239] mb-1">Email</h3>
+                      <h3 className="font-semibold text-[#054239] mb-1">{t('contact.email')}</h3>
                       <p className="text-gray-600">alshmaly.sy@gmail.com</p>
                     </div>
                   </div>
@@ -144,10 +143,10 @@ const ContactPage = () => {
                       <Clock size={20} className="text-white" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-[#054239] mb-1">Business Hours</h3>
+                      <h3 className="font-semibold text-[#054239] mb-1">{t('contact.business_hours.title')}</h3>
                       <p className="text-gray-600">
-                       Open Saturday to Thursday: 9:00 AM – 5:00 PM<br />
-Friday: Closed
+                       {t('contact.business_hours.weekdays')}<br />
+                       {t('contact.business_hours.friday')}
                       </p>
                     </div>
                   </div>
@@ -165,7 +164,7 @@ Friday: Closed
     className="w-full bg-green-500 hover:bg-green-600 text-white py-3 px-4 rounded-full font-medium transition-all duration-300 flex items-center justify-center"
   >
     <MessageCircle size={20} className="mr-2" />
-    WhatsApp Chat
+    {t('contact.whatsapp')}
   </button>
 
   <a
@@ -173,7 +172,7 @@ Friday: Closed
     className="w-full bg-[#b9a779] hover:bg-[#054239] text-white py-3 px-4 rounded-full font-medium transition-all duration-300 flex items-center justify-center"
   >
     <Phone size={20} className="mr-2" />
-    Call Now
+    {t('contact.call_now')}
   </a>
 </div>
                 </div>
@@ -185,12 +184,12 @@ Friday: Closed
             <div className="lg:col-span-2 space-y-8">
               {/* Contact Form */}
               <div className="bg-[#f7f7f7]  rounded-2xl p-8 shadow-lg">
-                <h2 className="text-2xl font-bold text-[#054239] mb-8">Send us a Message</h2>
+                <h2 className="text-2xl font-bold text-[#054239] mb-8">{t('contact.send_message')}</h2>
                 
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {submitMessage && (
                     <div className={`p-4 rounded-lg ${
-                      submitMessage.includes('Thank you') 
+                      submitMessage.includes(t('contact.form.success').substring(0, 5)) 
                         ? 'bg-green-50 text-green-700 border border-green-200' 
                         : 'bg-red-50 text-red-700 border border-red-200'
                     }`}>
@@ -201,7 +200,7 @@ Friday: Closed
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                        Full Name *
+                        {t('contact.form.full_name')} *
                       </label>
                       <input
                         type="text"
@@ -211,12 +210,12 @@ Friday: Closed
                         onChange={handleInputChange}
                         required
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent transition-all duration-300"
-                        placeholder="Your full name"
+                        placeholder={t('contact.form.placeholder.name')}
                       />
                     </div>
                     <div>
                       <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                        Email Address *
+                        {t('contact.form.email')} *
                       </label>
                       <input
                         type="email"
@@ -226,7 +225,7 @@ Friday: Closed
                         onChange={handleInputChange}
                         required
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent transition-all duration-300"
-                        placeholder="your.email@example.com"
+                        placeholder={t('contact.form.placeholder.email')}
                       />
                     </div>
                   </div>
@@ -234,7 +233,7 @@ Friday: Closed
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-                        Phone Number
+                        {t('contact.form.phone')}
                       </label>
                       <input
                         type="tel"
@@ -243,12 +242,12 @@ Friday: Closed
                         value={formData.phone}
                         onChange={handleInputChange}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent transition-all duration-300"
-                        placeholder="+1 (555) 123-4567"
+                        placeholder={t('contact.form.placeholder.phone')}
                       />
                     </div>
                     <div>
                       <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
-                        Subject *
+                        {t('contact.form.subject')} *
                       </label>
                       <select
                         id="subject"
@@ -258,20 +257,20 @@ Friday: Closed
                         required
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent transition-all duration-300"
                       >
-                        <option value="">Select a subject</option>
-                        <option value="product-inquiry">Product Inquiry</option>
-                        <option value="bulk-order">Bulk Order</option>
-                        <option value="partnership">Partnership Opportunity</option>
-                        <option value="quality-question">Quality Question</option>
-                        <option value="shipping">Shipping & Logistics</option>
-                        <option value="other">Other</option>
+                        <option value="">{t('misc.select_subject')}</option>
+                        <option value="product-inquiry">{t('misc.subject_options.product_inquiry')}</option>
+                        <option value="bulk-order">{t('misc.subject_options.bulk_order')}</option>
+                        <option value="partnership">{t('misc.subject_options.partnership')}</option>
+                        <option value="quality-question">{t('misc.subject_options.quality_question')}</option>
+                        <option value="shipping">{t('misc.subject_options.shipping')}</option>
+                        <option value="other">{t('misc.subject_options.other')}</option>
                       </select>
                     </div>
                   </div>
 
                   <div>
                     <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                      Message *
+                      {t('contact.form.message')} *
                     </label>
                     <textarea
                       id="message"
@@ -281,7 +280,7 @@ Friday: Closed
                       required
                       rows={6}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent transition-all duration-300 resize-none"
-                      placeholder="Tell us about your requirements, questions, or how we can help you..."
+                      placeholder={t('contact.form.placeholder.message')}
                     ></textarea>
                   </div>
 
@@ -291,14 +290,14 @@ Friday: Closed
                     className="w-full bg-[#b9a779] hover:bg-[#054239] text-white py-4 px-6 rounded-full font-semibold transition-all duration-300 flex items-center justify-center group"
                   >
                     <Send size={20} className="mr-2 group-hover:translate-x-1 transition-transform duration-300" />
-                    {isSubmitting ? 'Sending...' : 'Send Message'}
+                    {isSubmitting ? t('contact.form.sending') : t('contact.form.send')}
                   </button>
                 </form>
               </div>
 
               {/* Map */}
               <div className="bg-[#f7f7f7]  rounded-2xl p-8 shadow-lg">
-                <h2 className="text-2xl font-bold text-[#054239] mb-6">Our Location</h2>
+                <h2 className="text-2xl font-bold text-[#054239] mb-6">{t('contact.location')}</h2>
                 <div className="relative bg-gray-100 rounded-xl h-96 overflow-hidden">
                   {/* Map Placeholder */}
                   <div className="absolute inset-0 flex items-center justify-center">
@@ -339,9 +338,9 @@ Friday: Closed
      <section className="py-20 bg-[#f7f7f7]   border-t-2  border-t-[#edebe0]">
   <div className="container mx-auto px-4">
     <div className="text-center mb-16">
-      <h2 className="text-4xl font-bold text-[#054239] mb-4">Frequently Asked Questions</h2>
+      <h2 className="text-4xl font-bold text-[#054239] mb-4">{t('contact.faq.title')}</h2>
       <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-        Quick answers to common questions about our products and services
+        {t('contact.faq.subtitle')}
       </p>
     </div>
 

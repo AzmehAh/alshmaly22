@@ -179,6 +179,12 @@ const translations = {
     'misc.subject_options.quality_question': 'Quality Question',
     'misc.subject_options.shipping': 'Shipping & Logistics',
     'misc.subject_options.other': 'Other',
+    
+    // Products
+    'products.packaging_options': 'Packaging Options',
+    'products.additional_info': 'Additional Information',
+    'products.related_products': 'Related Products',
+    'products.discover': 'Discover our premium Syrian agricultural products, carefully selected and processed to bring you the authentic taste of Syria.',
   },
   ar: {
     // Navigation
@@ -344,6 +350,12 @@ const translations = {
     'misc.subject_options.quality_question': 'سؤال عن الجودة',
     'misc.subject_options.shipping': 'الشحن واللوجستيات',
     'misc.subject_options.other': 'أخرى',
+    
+    // Products
+    'products.packaging_options': 'خيارات التعبئة',
+    'products.additional_info': 'معلومات إضافية',
+    'products.related_products': 'منتجات ذات صلة',
+    'products.discover': 'اكتشف منتجاتنا الزراعية السورية المتميزة، مختارة ومعالجة بعناية لنقدم لك الطعم الأصيل لسوريا.',
   }
 };
 
