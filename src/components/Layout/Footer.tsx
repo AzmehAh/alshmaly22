@@ -43,11 +43,11 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-start space-x-3">
                 <MapPin size={16} className="text-[#b9a779] mt-1" />
-                <p className="text-gray-300 text-sm">Idlib, Syria</p>
+                <p className="text-gray-300 text-sm">Idlib, Sarmada, Syria</p>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone size={16} className="text-[#b9a779]" />
-                <p className="text-gray-300 text-sm">+963 XXX XXX XXX</p>
+                <p className="text-gray-300 text-sm">+963 956 556 410</p>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail size={16} className="text-[#b9a779]" />
@@ -60,7 +60,7 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold text-lg mb-4">Follow Us</h4>
             <div className="flex space-x-4">
-              <a href="#" className="w-10 h-10 bg-[#b9a779] rounded-full flex items-center justify-center hover:bg-white hover:text-[#054239] transition-all duration-300">
+              <a href="https://www.facebook.com/alshmaly.sy?locale=ar_AR" className="w-10 h-10 bg-[#b9a779] rounded-full flex items-center justify-center hover:bg-white hover:text-[#054239] transition-all duration-300">
                 <Facebook size={20} />
               </a>
               <a href="#" className="w-10 h-10 bg-[#b9a779] rounded-full flex items-center justify-center hover:bg-white hover:text-[#054239] transition-all duration-300">
