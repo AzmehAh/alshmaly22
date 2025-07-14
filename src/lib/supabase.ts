@@ -23,6 +23,22 @@ export interface Category {
   updated_at: string;
 }
 
+export interface QuoteRequest {
+  id: string;
+  product_id?: string;
+  customer_name: string;
+  customer_email: string;
+  customer_phone?: string;
+  company_name?: string;
+  quantity: number;
+  package_size: string;
+  message?: string;
+  status: 'pending' | 'reviewed' | 'responded' | 'closed';
+  created_at: string;
+  updated_at: string;
+  product?: Product;
+}
+
 export interface Product {
   id: string;
   name: string;

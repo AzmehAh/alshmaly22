@@ -5,9 +5,7 @@ import { supabase } from '../../lib/supabase';
 interface DashboardStats {
   totalProducts: number;
   totalBlogPosts: number;
-  totalQuotes: number;
   totalContacts: number;
-  recentQuotes: any[];
   recentContacts: any[];
 }
 
@@ -15,9 +13,7 @@ const DashboardPage = () => {
   const [stats, setStats] = useState<DashboardStats>({
     totalProducts: 0,
     totalBlogPosts: 0,
-    totalQuotes: 0,
     totalContacts: 0,
-    recentQuotes: [],
     recentContacts: []
   });
   const [loading, setLoading] = useState(true);
@@ -31,25 +27,19 @@ const DashboardPage = () => {
       const [
         { count: productsCount },
         { count: postsCount },
-        { count: quotesCount },
         { count: contactsCount },
-        { data: recentQuotes },
         { data: recentContacts }
       ] = await Promise.all([
         supabase.from('products').select('*', { count: 'exact', head: true }),
         supabase.from('blog_posts').select('*', { count: 'exact', head: true }),
-        supabase.from('quote_requests').select('*', { count: 'exact', head: true }),
         supabase.from('contact_messages').select('*', { count: 'exact', head: true }),
-        supabase.from('quote_requests').select('*, product:products(name)').order('created_at', { ascending: false }).limit(5),
         supabase.from('contact_messages').select('*').order('created_at', { ascending: false }).limit(5)
       ]);
 
       setStats({
         totalProducts: productsCount || 0,
         totalBlogPosts: postsCount || 0,
-        totalQuotes: quotesCount || 0,
         totalContacts: contactsCount || 0,
-        recentQuotes: recentQuotes || [],
         recentContacts: recentContacts || []
       });
     } catch (error) {
@@ -74,7 +64,6 @@ const DashboardPage = () => {
       color: 'bg-green-500',
       change: '+8%'
     },
-   
     {
       title: 'Contact Messages',
       value: stats.totalContacts,
@@ -124,7 +113,6 @@ const DashboardPage = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      
         {/* Recent Contact Messages */}
         <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
           <h2 className="text-xl font-semibold text-[#054239] mb-4">Recent Contact Messages</h2>
