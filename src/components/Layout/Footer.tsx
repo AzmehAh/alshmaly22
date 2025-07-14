@@ -75,7 +75,7 @@ const Footer = () => {
   href="#"
   target="_blank"
   rel="noopener noreferrer"
-  className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 text-[#054239] hover:text-white hover:bg-gradient-to-tr hover:from-pink-500 hover:via-red-500 hover:to-yellow-500"
+  className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 text-[#054239] bg-[#b9a779] hover:text-white hover:bg-gradient-to-tr hover:from-pink-500 hover:via-red-500 hover:to-yellow-500"
 >
   <Instagram size={20} />
 </a>
