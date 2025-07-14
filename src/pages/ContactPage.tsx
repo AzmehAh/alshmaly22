@@ -148,19 +148,30 @@ Friday: Closed
                   </div>
                 </div>
 
-                {/* Quick Contact Buttons */}
-                <div className="mt-8 space-y-3">
-                  <button className="w-full bg-green-500 hover:bg-green-600 text-white py-3 px-4 rounded-full font-medium transition-all duration-300 flex items-center justify-center">
-                    <MessageCircle size={20} className="mr-2" />
-                    WhatsApp Chat
-                  </button>
-                  <button className="w-full bg-[#b9a779] hover:bg-[#054239] text-white py-3 px-4 rounded-full font-medium transition-all duration-300 flex items-center justify-center">
-                    <Phone size={20} className="mr-2" />
-                    Call Now
-                  </button>
-                </div>
-              </div>
-            </div>
+               {/* Quick Contact Buttons */}
+<div className="mt-8 space-y-3">
+  <button
+    onClick={() => {
+      const phoneNumber = "963956556410";
+      const message = "Hello! Thank you for reaching out. How can we assist you ?";
+      const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank');
+    }}
+    className="w-full bg-green-500 hover:bg-green-600 text-white py-3 px-4 rounded-full font-medium transition-all duration-300 flex items-center justify-center"
+  >
+    <MessageCircle size={20} className="mr-2" />
+    WhatsApp Chat
+  </button>
+
+  <a
+    href="tel:+963956556410"
+    className="w-full bg-[#b9a779] hover:bg-[#054239] text-white py-3 px-4 rounded-full font-medium transition-all duration-300 flex items-center justify-center"
+  >
+    <Phone size={20} className="mr-2" />
+    Call Now
+  </a>
+</div>
+
 
             {/* Contact Form and Map */}
             <div className="lg:col-span-2 space-y-8">
