@@ -82,7 +82,7 @@ const DashboardPage = () => {
   }
 
   return (
-    <div className="space-y-6 dir="ltr">
+    <div className="space-y-6" dir="ltr">
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold text-[#054239]">Dashboard Overview</h1>
         <div className="flex items-center space-x-2 text-sm text-gray-500">
