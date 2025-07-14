@@ -148,7 +148,7 @@ Friday: Closed
                   </div>
                 </div>
 
-               {/* Quick Contact Buttons */}
+       {/* Quick Contact Buttons */}
 <div className="mt-8 space-y-3">
   <button
     onClick={() => {
@@ -171,6 +171,9 @@ Friday: Closed
     Call Now
   </a>
 </div>
+                </div>
+
+              </div>
 
 
             {/* Contact Form and Map */}
