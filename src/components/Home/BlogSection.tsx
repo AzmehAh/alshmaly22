@@ -5,7 +5,7 @@ import { HomepageAPI } from '../../lib/api/homepage';
 import { useLanguage } from '../../contexts/LanguageContext';
 
 const BlogSection = () => {
-  const { t, getLocalizedField } = useLanguage();
+  const { t, getLocalizedField, language } = useLanguage();
   const [blogPosts, setBlogPosts] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState(null);
@@ -69,7 +69,8 @@ const BlogSection = () => {
                   <div className="p-6 flex flex-col flex-grow">
                     <div className="flex items-center text-[#054239] text-sm mb-3">
                       <Calendar size={16} className="mr-2" />
-                      {new Date(post.published_at).toLocaleDateString('en-US', {
+                      {new Date(post.published_at).toLocaleDateString(
+                        language === 'ar' ? 'ar-SA' : 'en-US', {
                         year: 'numeric',
                         month: 'long',
                         day: 'numeric',

@@ -5,7 +5,7 @@ import { useBlogPosts } from '../hooks/useBlog';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const BlogPage = () => {
-  const { t, getLocalizedField } = useLanguage();
+  const { t, getLocalizedField, language } = useLanguage();
   const [selectedCategory, setSelectedCategory] = React.useState('All');
   const { posts: blogPosts, categories, loading, error } = useBlogPosts({
     category: selectedCategory === 'All' ? undefined : selectedCategory
@@ -80,7 +80,8 @@ const BlogPage = () => {
                   <div className="flex items-center text-gray-500 text-sm mb-3 space-x-4">
                     <div className="flex items-center">
                       <Calendar size={16} className="mr-2" />
-                      {new Date(post.published_at).toLocaleDateString('en-US', { 
+                      {new Date(post.published_at).toLocaleDateString(
+                        language === 'ar' ? 'ar-SA' : 'en-US', { 
                         year: 'numeric', 
                         month: 'long', 
                         day: 'numeric' 

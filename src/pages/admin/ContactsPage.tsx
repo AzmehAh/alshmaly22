@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Eye, Mail, Calendar, User } from 'lucide-react';
+import { Search, Eye, Mail, Calendar, User, Trash2 } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import type { ContactMessage } from '../../lib/supabase';
 
@@ -10,6 +10,22 @@ const ContactsPage = () => {
   const [selectedStatus, setSelectedStatus] = useState('all');
   const [selectedContact, setSelectedContact] = useState<ContactMessage | null>(null);
 
+  const handleDelete = async (id: string) => {
+    if (window.confirm('Are you sure you want to delete this contact message? This action cannot be undone.')) {
+      try {
+        const { error } = await supabase
+          .from('contact_messages')
+          .delete()
+          .eq('id', id);
+
+        if (error) throw error;
+        await fetchContacts();
+      } catch (error) {
+        console.error('Error deleting contact message:', error);
+        alert('Error deleting contact message. Please try again.');
+      }
+    }
+  };
   useEffect(() => {
     fetchContacts();
   }, []);
@@ -179,18 +195,27 @@ const ContactsPage = () => {
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                    <button
-                      onClick={() => {
-                        setSelectedContact(contact);
-                        if (contact.status === 'unread') {
-                          updateContactStatus(contact.id, 'read');
-                        }
-                      }}
-                      className="text-[#b9a779] hover:text-[#054239] p-1 rounded"
-                      title="View Details"
-                    >
-                      <Eye size={16} />
-                    </button>
+                    <div className="flex items-center space-x-2">
+                      <button
+                        onClick={() => {
+                          setSelectedContact(contact);
+                          if (contact.status === 'unread') {
+                            updateContactStatus(contact.id, 'read');
+                          }
+                        }}
+                        className="text-[#b9a779] hover:text-[#054239] p-1 rounded"
+                        title="View Details"
+                      >
+                        <Eye size={16} />
+                      </button>
+                      <button
+                        onClick={() => handleDelete(contact.id)}
+                        className="text-red-600 hover:text-red-900 p-1 rounded"
+                        title="Delete Message"
+                      >
+                        <Trash2 size={16} />
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))}

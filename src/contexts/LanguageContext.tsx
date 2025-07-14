@@ -226,6 +226,7 @@ const translations = {
     // Products
     'products.packaging_options': 'Packaging Options',
     'products.additional_info': 'Additional Information',
+    'products.specifications': 'Specifications',
     'products.related_products': 'Related Products',
     'products.discover': 'Discover our premium Syrian agricultural products, carefully selected and processed to bring you the authentic taste of Syria.',
   },
@@ -440,6 +441,7 @@ const translations = {
     // Products
     'products.packaging_options': 'خيارات التعبئة',
     'products.additional_info': 'معلومات إضافية',
+    'products.specifications': 'المواصفات',
     'products.related_products': 'منتجات ذات صلة',
     'products.discover': 'اكتشف منتجاتنا الزراعية السورية المتميزة، مختارة ومعالجة بعناية لنقدم لك الطعم الأصيل لسوريا.',
   }

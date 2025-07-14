@@ -5,7 +5,7 @@ import { useBlogPost } from '../hooks/useBlog';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const BlogPostPage = () => {
-  const { t, getLocalizedField } = useLanguage();
+  const { t, getLocalizedField, language } = useLanguage();
   const { id } = useParams();
   const { post, relatedPosts, loading, error } = useBlogPost(id || '');
   const [selectedImageIndex, setSelectedImageIndex] = React.useState(0);
@@ -85,10 +85,12 @@ const BlogPostPage = () => {
               </div>
               <div className="flex items-center">
                 <Calendar size={16} className="mr-2" />
-                {new Date(post.published_at).toLocaleDateString('en-US', {
+                {new Date(post.published_at).toLocaleDateString(
+                  language === 'ar' ? 'ar-SA' : 'en-US', {
                   year: 'numeric',
                   month: 'long',
                   day: 'numeric',
+                  ...(language === 'ar' && { calendar: 'gregory' })
                 })}
               </div>
               <div className="flex items-center">
