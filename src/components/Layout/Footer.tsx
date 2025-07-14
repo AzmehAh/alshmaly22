@@ -50,7 +50,7 @@ const Footer = () => {
                 <p className="text-gray-300 text-sm">+963 956 556 410</p>
               </div>
               <div className="flex items-center space-x-3">
-                <Mail size={16} className="text-[#b9a779]" />
+                <Youtube size={16} className="text-[#b9a779]" />
                 <p className="text-gray-300 text-sm">info@al-shamali.com</p>
               </div>
             </div>
