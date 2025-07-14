@@ -130,8 +130,7 @@ const ContactPage = () => {
                     </div>
                     <div>
                       <h3 className="font-semibold text-[#054239] mb-1">Email</h3>
-                      <p className="text-gray-600">info@al-shamali.com</p>
-                      <p className="text-gray-600">sales@al-shamali.com</p>
+                      <p className="text-gray-600">alshmaly.sy@gmail.com</p>
                     </div>
                   </div>
 
