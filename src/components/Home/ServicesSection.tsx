@@ -3,27 +3,28 @@ import { Package, Truck, FileText, Users } from 'lucide-react';
 
 const ServicesSection = () => {
   const services = [
-    {
-      icon: Package,
-      title: 'Packaging & Filling',
-      description: 'Professional packaging solutions with custom labeling options'
-    },
-    {
-      icon: Truck,
-      title: 'Shipping & Export',
-      description: 'Worldwide shipping with reliable logistics partners'
-    },
-    {
-      icon: FileText,
-      title: 'Customs Supply',
-      description: 'Complete documentation and customs clearance support'
-    },
-    {
-      icon: Users,
-      title: 'Agricultural Consulting',
-      description: 'Expert consulting services for traders and distributors'
-    }
-  ];
+  {
+    icon: Package,
+    title: 'Packaging & Filling',
+    description: 'Professional packaging solutions with custom labeling options'
+  },
+  {
+    icon: Truck,
+    title: 'Shipping & Export',
+    description: 'Worldwide shipping with reliable logistics partners'
+  },
+  {
+    icon: FileText,
+    title: 'Wholesale Supply',
+    description: 'Complete documentation and customs clearance support'
+  },
+  {
+    icon: Users,
+    title: 'Agricultural Consulting',
+    description: 'Expert consulting services for traders and distributors'
+  }
+];
+
  
   return (
     <section id="services" className="py-20 bg-[#054239]">
