@@ -96,7 +96,7 @@ const Footer = () => {
 
 
 
-        <<div className="border-t border-gray-700 mt-8 pt-8 text-center">
+       <div className="border-t border-gray-700 mt-8 pt-8 text-center">
   <p className="text-gray-300 text-sm">
     © 2024 Al-Shamali Agricultural Products. All rights reserved. <br />
     Made by{' '}
@@ -110,8 +110,8 @@ const Footer = () => {
     </a>
   </p>
 </div>
-          </div>  </div>
 
+      </div>
     </footer>
   );
 };
