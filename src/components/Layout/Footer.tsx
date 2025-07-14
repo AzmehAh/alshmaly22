@@ -1,5 +1,5 @@
 import React from 'react';
-import { Facebook, Instagram, Mail, Phone, MapPin } from 'lucide-react';
+import { Facebook, Instagram, youtube, Phone, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
@@ -67,7 +67,7 @@ const Footer = () => {
                 <Instagram size={20} />
               </a>
               <a href="https://youtube.com/@hasan.alshmaly?si=3ucyNyVXCMJITi2q" className="w-10 h-10 bg-[#b9a779] rounded-full flex items-center justify-center hover:bg-white hover:text-[#054239] transition-all duration-300">
-                <Mail size={20} />
+                <youtube size={20} />
               </a>
             </div>
           </div>
