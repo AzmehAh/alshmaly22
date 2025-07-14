@@ -13,6 +13,7 @@ const BlogCategoriesPage = () => {
 
   const [formData, setFormData] = useState({
     name: '',
+    name_ar: '',
     slug: ''
   });
 
@@ -70,6 +71,7 @@ const BlogCategoriesPage = () => {
     setEditingCategory(category);
     setFormData({
       name: category.name,
+      name_ar: category.name_ar || '',
       slug: category.slug
     });
     setShowForm(true);
@@ -94,6 +96,7 @@ const BlogCategoriesPage = () => {
   const resetForm = () => {
     setFormData({
       name: '',
+      name_ar: '',
       slug: ''
     });
     setEditingCategory(null);
@@ -211,21 +214,35 @@ const BlogCategoriesPage = () => {
                 {editingCategory ? 'Edit Blog Category' : 'Add New Blog Category'}
               </h3>
               <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
-                  <input
-                    type="text"
-                    required
-                    value={formData.name}
-                    onChange={(e) => {
-                      setFormData({ ...formData, name: e.target.value });
-                      if (!editingCategory) {
-                        setFormData(prev => ({ ...prev, slug: generateSlug(e.target.value) }));
-                      }
-                    }}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                    placeholder="Category name"
-                  />
+                {/* Category Name - Bilingual */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Name (EN)</label>
+                    <input
+                      type="text"
+                      required
+                      value={formData.name}
+                      onChange={(e) => {
+                        setFormData({ ...formData, name: e.target.value });
+                        if (!editingCategory) {
+                          setFormData(prev => ({ ...prev, slug: generateSlug(e.target.value) }));
+                        }
+                      }}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+                      placeholder="Category name in English"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Name (AR)</label>
+                    <input
+                      type="text"
+                      value={formData.name_ar}
+                      onChange={(e) => setFormData({ ...formData, name_ar: e.target.value })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+                      placeholder="اسم الفئة بالعربية"
+                      dir="rtl"
+                    />
+                  </div>
                 </div>
 
                 <div>

@@ -13,8 +13,10 @@ const CategoriesPage = () => {
 
   const [formData, setFormData] = useState({
     name: '',
+    name_ar: '',
     slug: '',
-    description: ''
+    description: '',
+    description_ar: ''
   });
 
   useEffect(() => {
@@ -71,8 +73,10 @@ const CategoriesPage = () => {
     setEditingCategory(category);
     setFormData({
       name: category.name,
+      name_ar: category.name_ar || '',
       slug: category.slug,
-      description: category.description || ''
+      description: category.description || '',
+      description_ar: category.description_ar || ''
     });
     setShowForm(true);
   };
@@ -96,8 +100,10 @@ const CategoriesPage = () => {
   const resetForm = () => {
     setFormData({
       name: '',
+      name_ar: '',
       slug: '',
-      description: ''
+      description: '',
+      description_ar: ''
     });
     setEditingCategory(null);
     setShowForm(false);
@@ -223,21 +229,35 @@ const CategoriesPage = () => {
                 {editingCategory ? 'Edit Category' : 'Add New Category'}
               </h3>
               <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
-                  <input
-                    type="text"
-                    required
-                    value={formData.name}
-                    onChange={(e) => {
-                      setFormData({ ...formData, name: e.target.value });
-                      if (!editingCategory) {
-                        setFormData(prev => ({ ...prev, slug: generateSlug(e.target.value) }));
-                      }
-                    }}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                    placeholder="Category name"
-                  />
+                {/* Category Name - Bilingual */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Name (EN)</label>
+                    <input
+                      type="text"
+                      required
+                      value={formData.name}
+                      onChange={(e) => {
+                        setFormData({ ...formData, name: e.target.value });
+                        if (!editingCategory) {
+                          setFormData(prev => ({ ...prev, slug: generateSlug(e.target.value) }));
+                        }
+                      }}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+                      placeholder="Category name in English"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Name (AR)</label>
+                    <input
+                      type="text"
+                      value={formData.name_ar}
+                      onChange={(e) => setFormData({ ...formData, name_ar: e.target.value })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+                      placeholder="اسم الفئة بالعربية"
+                      dir="rtl"
+                    />
+                  </div>
                 </div>
 
                 <div>
@@ -252,15 +272,29 @@ const CategoriesPage = () => {
                   />
                 </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
-                  <textarea
-                    rows={3}
-                    value={formData.description}
-                    onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                    placeholder="Category description (optional)"
-                  />
+                {/* Description - Bilingual */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Description (EN)</label>
+                    <textarea
+                      rows={3}
+                      value={formData.description}
+                      onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+                      placeholder="Category description in English"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Description (AR)</label>
+                    <textarea
+                      rows={3}
+                      value={formData.description_ar}
+                      onChange={(e) => setFormData({ ...formData, description_ar: e.target.value })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+                      placeholder="وصف الفئة بالعربية"
+                      dir="rtl"
+                    />
+                  </div>
                 </div>
 
                 <div className="flex justify-end space-x-3 pt-4">

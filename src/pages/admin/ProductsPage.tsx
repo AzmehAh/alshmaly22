@@ -20,8 +20,10 @@ const ProductsPage = () => {
 
   const [formData, setFormData] = useState({
     name: '',
+    name_ar: '',
     slug: '',
     description: '',
+    description_ar: '',
     category_id: '',
     base_price: 0,
     availability: 'in-stock' as 'in-stock' | 'out-of-stock' | 'limited',
@@ -156,8 +158,10 @@ const ProductsPage = () => {
     setEditingProduct(product);
     setFormData({
       name: product.name,
+      name_ar: product.name_ar || '',
       slug: product.slug,
       description: product.description,
+      description_ar: product.description_ar || '',
       category_id: product.category_id || '',
       base_price: product.base_price,
       availability: product.availability,
@@ -232,8 +236,10 @@ const ProductsPage = () => {
   const resetForm = () => {
     setFormData({
       name: '',
+      name_ar: '',
       slug: '',
       description: '',
+      description_ar: '',
       category_id: '',
       base_price: 0,
       availability: 'in-stock',
@@ -466,9 +472,11 @@ const ProductsPage = () => {
                 {/* Basic Information */}
                 <div className="bg-gray-50 p-6 rounded-lg">
                   <h4 className="text-lg font-semibold text-[#054239] mb-4">Basic Information</h4>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  
+                  {/* Product Name - Bilingual */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Product Name *</label>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Product Name (EN) *</label>
                       <input
                         type="text"
                         required
@@ -480,9 +488,24 @@ const ProductsPage = () => {
                           }
                         }}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                        placeholder="Enter product name"
+                        placeholder="Enter product name in English"
                       />
                     </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Product Name (AR)</label>
+                      <input
+                        type="text"
+                        value={formData.name_ar}
+                        onChange={(e) => setFormData({ ...formData, name_ar: e.target.value })}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+                        placeholder="أدخل اسم المنتج بالعربية"
+                        dir="rtl"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Slug Field */}
+                  <div className="mb-6">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Slug *</label>
                       <input
@@ -496,16 +519,30 @@ const ProductsPage = () => {
                     </div>
                   </div>
 
-                  <div className="mt-6">
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Description *</label>
-                    <textarea
-                      required
-                      rows={4}
-                      value={formData.description}
-                      onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                      placeholder="Enter product description"
-                    />
+                  {/* Description - Bilingual */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Description (EN) *</label>
+                      <textarea
+                        required
+                        rows={4}
+                        value={formData.description}
+                        onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+                        placeholder="Enter product description in English"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Description (AR)</label>
+                      <textarea
+                        rows={4}
+                        value={formData.description_ar}
+                        onChange={(e) => setFormData({ ...formData, description_ar: e.target.value })}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+                        placeholder="أدخل وصف المنتج بالعربية"
+                        dir="rtl"
+                      />
+                    </div>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
