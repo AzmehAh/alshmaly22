@@ -204,9 +204,9 @@ const ProductsPage = () => {
 </p>
 
                     <div className="flex items-center justify-between mb-4">
-                      <span className="text-2xl font-bold text-[#b9a779]">
+                      {/* <span className="text-2xl font-bold text-[#b9a779]">
                         ${defaultPackage?.price || product.base_price}
-                      </span>
+                      </span>*/}
                       <span className="text-sm text-gray-500">
                         {defaultPackage?.weight || 'Various sizes'}
                       </span>
