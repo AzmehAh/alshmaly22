@@ -2,8 +2,10 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Calendar, Clock, Share2, User, Loader2 } from 'lucide-react';
 import { useBlogPost } from '../hooks/useBlog';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const BlogPostPage = () => {
+  const { t, getLocalizedField } = useLanguage();
   const { id } = useParams();
   const { post, relatedPosts, loading, error } = useBlogPost(id || '');
   const [selectedImageIndex, setSelectedImageIndex] = React.useState(0);
@@ -60,7 +62,7 @@ const BlogPostPage = () => {
           className="inline-flex items-center text-[#b9a779] hover:text-[#054239] font-medium mb-8 transition-colors duration-300"
         >
           <ArrowLeft size={20} className="mr-2" />
-          Back to Blog
+          {t('common.back')} to {t('nav.blog')}
         </Link>
 
         <article className="max-w-4xl mx-auto">
@@ -68,18 +70,18 @@ const BlogPostPage = () => {
           <header className="mb-8">
             <div className="mb-4">
               <span className="bg-[#b9a779] text-white px-4 py-2 rounded-full text-sm font-medium">
-                {post.category?.name || 'Blog'}
+                {getLocalizedField(post.category, 'name') || t('nav.blog')}
               </span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl font-bold text-[#054239] mb-6 leading-tight">
-              {post.title}
+            <h1 className="text-4xl md:text-5xl font-bold text-[#054239] mb-6 leading-tight"> 
+              {getLocalizedField(post, 'title')}
             </h1>
 
             <div className="flex flex-wrap items-center text-gray-600 text-sm space-x-6 mb-6">
               <div className="flex items-center">
                 <User size={16} className="mr-2" />
-                {post.author}
+                {getLocalizedField(post, 'author')}
               </div>
               <div className="flex items-center">
                 <Calendar size={16} className="mr-2" />
@@ -91,11 +93,13 @@ const BlogPostPage = () => {
               </div>
               <div className="flex items-center">
                 <Clock size={16} className="mr-2" />
-                {post.read_time}
+                {getLocalizedField(post, 'read_time')}
               </div>
             </div>
 
-            <p className="text-xl text-gray-600 leading-relaxed mb-8">{post.excerpt}</p>
+            <p className="text-xl text-gray-600 leading-relaxed mb-8">
+              {getLocalizedField(post, 'excerpt')}
+            </p>
 
             {/* Share Button */}
             <div className="flex items-center space-x-4 pb-8 border-b border-gray-200">
@@ -104,7 +108,7 @@ const BlogPostPage = () => {
                 className="flex items-center space-x-2 bg-[#b9a779] hover:bg-[#054239] text-white px-4 py-2 rounded-full transition-colors duration-300"
               >
                 <Share2 size={16} />
-                <span>Share Article</span>
+                <span>{t('blog.share')}</span>
               </button>
             </div>
           </header>
@@ -117,7 +121,7 @@ const BlogPostPage = () => {
                 post.images?.[selectedImageIndex]?.image_url ||
                 'https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=800&h=600'
               }
-              alt={post.title}
+            alt={getLocalizedField(post, 'title')}
               className="w-full h-96 object-cover rounded-2xl shadow-lg"
             />
           </div>
@@ -126,7 +130,7 @@ const BlogPostPage = () => {
           <div className="bg-[#f7f7f7] rounded-2xl p-8 shadow-lg mb-8">
             <div
               className="prose prose-lg max-w-none text-gray-700 leading-relaxed"
-              dangerouslySetInnerHTML={{ __html: post.content }}
+             dangerouslySetInnerHTML={{ __html: getLocalizedField(post, 'content') }}
               style={{
                 lineHeight: '1.8',
               }}

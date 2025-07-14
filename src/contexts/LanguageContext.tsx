@@ -83,6 +83,8 @@ const translations = {
     'blog.subtitle': 'Stay updated with our latest news, insights, and stories from the world of Syrian agriculture',
     'blog.all_categories': 'All',
     'blog.no_posts': 'No blog posts found in this category.',
+    'blog.load_more': 'Load More Articles',
+    'blog.share': 'Share Article',
     
     // Footer
     'footer.description': 'We export the best of Syrian nature to the world, bringing authenticity and quality to your table.',
@@ -159,6 +161,8 @@ const translations = {
     'blog.subtitle': 'ابق على اطلاع بآخر أخبارنا ورؤانا وقصصنا من عالم الزراعة السورية',
     'blog.all_categories': 'الكل',
     'blog.no_posts': 'لم يتم العثور على مقالات في هذه الفئة.',
+    'blog.load_more': 'تحميل المزيد من المقالات',
+    'blog.share': 'مشاركة المقال',
     
     // Footer
     'footer.description': 'نصدر أفضل ما في الطبيعة السورية إلى العالم، ونجلب الأصالة والجودة إلى مائدتك.',

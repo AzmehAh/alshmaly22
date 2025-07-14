@@ -2,15 +2,20 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, ArrowRight, Clock, Loader2 } from 'lucide-react';
 import { useBlogPosts } from '../hooks/useBlog';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const BlogPage = () => {
+  const { t, getLocalizedField } = useLanguage();
   const [selectedCategory, setSelectedCategory] = React.useState('All');
   const { posts: blogPosts, categories, loading, error } = useBlogPosts({
     category: selectedCategory === 'All' ? undefined : selectedCategory
   });
 
   // Prepare categories for display
-  const displayCategories = ['All', ...categories.map(cat => cat.name)];
+  const displayCategories = [
+    { name: 'All', name_ar: 'الكل' },
+    ...categories
+  ];
 
   return (
     <div className="min-h-screen bg-[#F7F7F7] pt-20">
@@ -18,9 +23,9 @@ const BlogPage = () => {
       <section className="py-20 bg-[#054239] text-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-5xl font-bold mb-6">Al-Shamali Blog</h1>
+            <h1 className="text-5xl font-bold mb-6">{t('blog.title')}</h1>
             <p className="text-xl text-gray-200 leading-relaxed">
-              Stay updated with our latest news, insights, and stories from the world of Syrian agriculture
+              {t('blog.subtitle')}
             </p>
           </div>
         </div> 
@@ -32,15 +37,15 @@ const BlogPage = () => {
           <div className="flex flex-wrap justify-center gap-4 mb-12">
             {displayCategories.map(category => (
               <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
+                key={category.name || category}
+                onClick={() => setSelectedCategory(typeof category === 'string' ? category : category.name)}
                 className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
-                  selectedCategory === category
+                  selectedCategory === (typeof category === 'string' ? category : category.name)
                     ? 'bg-[#b9a779] text-white shadow-lg'
                     : 'bg-[#f7f7f7] text-[#054239] hover:bg-[#054239] hover:text-white shadow-md'
                 }`}
               >
-                {category}
+                {typeof category === 'string' ? category : getLocalizedField(category, 'name')}
               </button>
             ))}
           </div>
@@ -83,21 +88,23 @@ const BlogPage = () => {
                     </div>
                     <div className="flex items-center">
                       <Clock size={16} className="mr-2" />
-                      {post.read_time}
+                      {getLocalizedField(post, 'read_time')}
                     </div>
                   </div>
                   
-                  <h3 className="text-xl font-semibold text-[#054239] mb-3 group-hover:text-[#b9a779] transition-colors duration-300 line-clamp-2">
-                    {post.title}
+                  <h3 className="text-xl font-semibold text-[#054239] mb-3 group-hover:text-[#b9a779] transition-colors duration-300 line-clamp-2"> 
+                    {getLocalizedField(post, 'title')}
                   </h3>
                   
-                  <p className="text-gray-600 mb-4 line-clamp-3">{post.excerpt}</p>
+                  <p className="text-gray-600 mb-4 line-clamp-3">
+                    {getLocalizedField(post, 'excerpt')}
+                  </p>
                   
                   <Link
                     to={`/blog/${post.id}`}
                     className="inline-flex items-center text-[#b9a779] hover:text-[#054239] font-medium transition-colors duration-300 group"
                   >
-                    Read More
+                    {t('common.read_more')}
                     <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
                   </Link>
                 </div>
@@ -108,15 +115,15 @@ const BlogPage = () => {
 
           {!loading && !error && blogPosts.length === 0 && (
             <div className="text-center py-12">
-              <p className="text-gray-500 text-lg">No blog posts found in this category.</p>
+              <p className="text-gray-500 text-lg">{t('blog.no_posts')}</p>
             </div>
           )}
 
           {/* Load More Button */}
           {!loading && !error && blogPosts.length > 0 && (
             <div className="text-center mt-12">
-              <button className="bg-[#b9a779] hover:bg-[#054239] text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:shadow-lg">
-                Load More Articles
+              <button className="bg-[#b9a779] hover:bg-[#054239] text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:shadow-lg"> 
+                {t('blog.load_more')}
               </button>
             </div>
           )}

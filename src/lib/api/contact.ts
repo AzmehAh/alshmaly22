@@ -7,14 +7,21 @@ export interface ContactMessageData {
   phone?: string;
   subject: string;
   message: string;
+  language?: 'en' | 'ar';
 }
 
 export class ContactAPI {
   // Submit a contact message
   static async submitContactMessage(messageData: ContactMessageData): Promise<ContactMessage> {
+    // Default to English if language not specified
+    const dataWithLanguage = {
+      ...messageData,
+      language: messageData.language || 'en'
+    };
+    
     const { data, error } = await supabase
       .from('contact_messages')
-      .insert(messageData)
+      .insert(dataWithLanguage)
       .select()
       .single();
 

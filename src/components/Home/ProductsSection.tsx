@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { HomepageAPI } from '../../lib/api/homepage';
 import { Loader2 } from 'lucide-react';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const ProductsSection = () => {
+  const { t, getLocalizedField } = useLanguage();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -30,10 +32,10 @@ const ProductsSection = () => {
       <div className="container mx-auto px-4"> 
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-[#054239] mb-4">
-           Featured Products
+           {t('home.products.title')}
           </h2>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            Discover our premium selection of Syrian agricultural products, carefully selected and processed for quality
+            {t('products.discover')}
           </p>
         </div>
 
@@ -68,13 +70,17 @@ const ProductsSection = () => {
     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300"></div>
   </div>
   <div className="p-6 flex flex-col flex-grow">
-    <h3 className="text-xl font-semibold text-[#054239] mb-2">{product.name}</h3>
-    <p className="text-gray-600 mb-4 flex-grow">{product.description}</p>
+    <h3 className="text-xl font-semibold text-[#054239] mb-2">
+      {getLocalizedField(product, 'name')}
+    </h3>
+    <p className="text-gray-600 mb-4 flex-grow">
+      {getLocalizedField(product, 'description')}
+    </p>
     <Link
       to={`/product/${product.id}`}
       className="w-full bg-[#b9a779] hover:bg-[#054239] text-white py-3 rounded-full font-medium transition-all duration-300 text-center mt-auto"
     >
-      View Details
+      {t('common.view_details')}
     </Link>
   </div>
 </div>

@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Package, Shield, Award, Truck, Loader2 } from 'lucide-react';
 import { useProduct } from '../hooks/useProducts';
-import { QuotesAPI } from '../lib/api/quotes';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const ProductDetailsPage = () => {
+  const { t, getLocalizedField } = useLanguage();
   const { id } = useParams();
   const { product, relatedProducts, loading, error } = useProduct(id || '');
   const [selectedPackage, setSelectedPackage] = useState<string>('');
@@ -75,7 +76,7 @@ const ProductDetailsPage = () => {
           className="inline-flex items-center text-[#b9a779] hover:text-[#054239] font-medium mb-8 transition-colors duration-300"
         >
           <ArrowLeft size={20} className="mr-2" />
-          Back to Products
+           {t('common.contact_us')}
         </Link>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
@@ -108,9 +109,15 @@ const ProductDetailsPage = () => {
           {/* Product Details */}
           <div>
             <div className="mb-6">
-              <span className="text-[#b9a779] font-medium">{product.category?.name || 'Product'}</span>
-              <h1 className="text-4xl font-bold text-[#054239] mt-2 mb-4">{product.name}</h1>
-              <p className="text-gray-600 text-lg leading-relaxed">{product.description}</p>
+              <span className="text-[#b9a779] font-medium">
+                {getLocalizedField(product.category, 'name') || t('common.product')}
+              </span>
+              <h1 className="text-4xl font-bold text-[#054239] mt-2 mb-4">
+                {getLocalizedField(product, 'name')}
+              </h1>
+              <p className="text-gray-600 text-lg leading-relaxed">
+                {getLocalizedField(product, 'description')}
+              </p>
             </div>
 
 {/* Packaging Options */}

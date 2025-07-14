@@ -20,12 +20,17 @@ const BlogPostsPage = () => {
 
   const [formData, setFormData] = useState({
     title: '',
+    title_ar: '',
     slug: '',
     excerpt: '',
+    excerpt_ar: '',
     content: '',
+    content_ar: '',
     category_id: '',
     author: 'Al-Shamali Team',
+    author_ar: 'فريق الشمالي',
     read_time: '5 min read',
+    read_time_ar: '5 دقائق قراءة',
     featured_image: '',
     published: true
   });
@@ -102,12 +107,17 @@ const BlogPostsPage = () => {
     setEditingPost(post);
     setFormData({
       title: post.title,
+      title_ar: post.title_ar || '',
       slug: post.slug,
       excerpt: post.excerpt,
+      excerpt_ar: post.excerpt_ar || '',
       content: post.content,
+      content_ar: post.content_ar || '',
       category_id: post.category_id || '',
       author: post.author,
+      author_ar: post.author_ar || 'فريق الشمالي',
       read_time: post.read_time,
+      read_time_ar: post.read_time_ar || '5 دقائق قراءة',
       featured_image: post.featured_image || '',
       published: post.published
     });
@@ -167,12 +177,17 @@ const BlogPostsPage = () => {
   const resetForm = () => {
     setFormData({
       title: '',
+      title_ar: '',
       slug: '',
       excerpt: '',
+      excerpt_ar: '',
       content: '',
+      content_ar: '',
       category_id: '',
       author: 'Al-Shamali Team',
+      author_ar: 'فريق الشمالي',
       read_time: '5 min read',
+      read_time_ar: '5 دقائق قراءة',
       featured_image: '',
       published: true
     });
@@ -350,9 +365,10 @@ const BlogPostsPage = () => {
                 {editingPost ? 'Edit Post' : 'Add New Post'}
               </h3>
               <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* Title - Bilingual */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Title (EN)</label>
                     <input
                       type="text"
                       required
@@ -364,42 +380,85 @@ const BlogPostsPage = () => {
                         }
                       }}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+                      placeholder="Post title in English"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Slug</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Title (AR)</label>
                     <input
                       type="text"
-                      required
-                      value={formData.slug}
-                      onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
+                      value={formData.title_ar}
+                      onChange={(e) => setFormData({ ...formData, title_ar: e.target.value })}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+                      placeholder="عنوان المقال بالعربية"
+                      dir="rtl"
                     />
                   </div>
                 </div>
 
+                {/* Slug */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Excerpt</label>
-                  <textarea
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Slug</label>
+                  <input
+                    type="text"
                     required
-                    rows={2}
-                    value={formData.excerpt}
-                    onChange={(e) => setFormData({ ...formData, excerpt: e.target.value })}
+                    value={formData.slug}
+                    onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                    placeholder="Brief description of the post..."
+                    placeholder="post-slug"
                   />
                 </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Content</label>
-                  <textarea
-                    required
-                    rows={8}
-                    value={formData.content}
-                    onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                    placeholder="Write your post content here..."
-                  />
+                {/* Excerpt - Bilingual */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Excerpt (EN)</label>
+                    <textarea
+                      required
+                      rows={3}
+                      value={formData.excerpt}
+                      onChange={(e) => setFormData({ ...formData, excerpt: e.target.value })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+                      placeholder="Brief description in English..."
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Excerpt (AR)</label>
+                    <textarea
+                      rows={3}
+                      value={formData.excerpt_ar}
+                      onChange={(e) => setFormData({ ...formData, excerpt_ar: e.target.value })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+                      placeholder="وصف مختصر بالعربية..."
+                      dir="rtl"
+                    />
+                  </div>
+                </div>
+
+                {/* Content - Bilingual */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Content (EN)</label>
+                    <textarea
+                      required
+                      rows={8}
+                      value={formData.content}
+                      onChange={(e) => setFormData({ ...formData, content: e.target.value })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+                      placeholder="Write your post content in English..."
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Content (AR)</label>
+                    <textarea
+                      rows={8}
+                      value={formData.content_ar}
+                      onChange={(e) => setFormData({ ...formData, content_ar: e.target.value })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+                      placeholder="اكتب محتوى المقال بالعربية..."
+                      dir="rtl"
+                    />
+                  </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -417,17 +476,18 @@ const BlogPostsPage = () => {
                     </select>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Author</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Author (EN)</label>
                     <input
                       type="text"
                       required
                       value={formData.author}
                       onChange={(e) => setFormData({ ...formData, author: e.target.value })}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+                      placeholder="Author name in English"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Read Time</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Read Time (EN)</label>
                     <input
                       type="text"
                       required
@@ -437,6 +497,35 @@ const BlogPostsPage = () => {
                       placeholder="5 min read"
                     />
                   </div>
+                </div>
+
+                {/* Arabic Author and Read Time */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Author (AR)</label>
+                    <input
+                      type="text"
+                      value={formData.author_ar}
+                      onChange={(e) => setFormData({ ...formData, author_ar: e.target.value })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+                      placeholder="اسم الكاتب بالعربية"
+                      dir="rtl"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Read Time (AR)</label>
+                    <input
+                      type="text"
+                      value={formData.read_time_ar}
+                      onChange={(e) => setFormData({ ...formData, read_time_ar: e.target.value })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+                      placeholder="5 دقائق قراءة"
+                      dir="rtl"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
                     <select

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { MapPin, Phone, Mail, Clock, Send, MessageCircle, ChevronDown, ChevronUp } from 'lucide-react';
 import { ContactAPI } from '../lib/api/contact';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const ContactPage = () => {
+  const { language } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -29,7 +31,10 @@ const ContactPage = () => {
       setIsSubmitting(true);
       setSubmitMessage('');
       
-      await ContactAPI.submitContactMessage(formData);
+      await ContactAPI.submitContactMessage({
+        ...formData,
+        language
+      });
       
       // Reset form
       setFormData({

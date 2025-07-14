@@ -2,8 +2,10 @@ import React, { useState, useMemo } from 'react';
 import { Filter, Grid, List, Search, Loader2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useProducts } from '../hooks/useProducts';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const ProductsPage = () => {
+  const { t, getLocalizedField } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [sortBy, setSortBy] = useState('name');
   const [selectedWeight, setSelectedWeight] = useState('all');
@@ -46,8 +48,8 @@ const ProductsPage = () => {
       <div className="container mx-auto px-4 py-8">
         {/* Page Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-[#054239] mb-4">Our Products</h1>
-          <p className="text-gray-600 text-lg">Discover our premium selection of Syrian agricultural products</p>
+          <h1 className="text-4xl font-bold text-[#054239] mb-4">{t('products.title')}</h1>
+          <p className="text-gray-600 text-lg">{t('products.discover')}</p>
         </div>
 
         <div className="flex flex-col lg:flex-row gap-8">
@@ -88,7 +90,7 @@ const ProductsPage = () => {
                           : 'hover:bg-gray-100 text-gray-700'
                       }`}
                     >
-                      {category.name}
+                      {getLocalizedField(category, 'name')}
                     </button>
                   ))}
                 </div> 
@@ -195,11 +197,14 @@ const ProductsPage = () => {
                     )}
                   </div>
                   <div className={`${viewMode === 'list' ? 'ml-4 flex-1' : 'p-6'}`}>
-                    <h3 className="text-xl font-semibold text-[#054239] mb-2">{product.name}</h3>
+                    <h3 className="text-xl font-semibold text-[#054239] mb-2">
+                      {getLocalizedField(product, 'name')}
+                    </h3>
                    <p className="text-gray-600 mb-2">
-  {product.description.length > 100
-    ? product.description.slice(0, 50) + "..."
-    : product.description
+  {(() => {
+    const description = getLocalizedField(product, 'description');
+    return description.length > 100 ? description.slice(0, 50) + "..." : description;
+  })()
   }
 </p>
 
@@ -215,7 +220,7 @@ const ProductsPage = () => {
                       to={`/product/${product.id}`}
                       className="w-full bg-[#b9a779] hover:bg-[#054239] text-white py-3 px-4 rounded-full font-medium transition-all duration-300 text-center block"
                     >
-                      View Details
+                      {t('common.view_details')}
                     </Link>
                   </div>
                 </div>

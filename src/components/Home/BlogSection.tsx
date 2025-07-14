@@ -2,8 +2,10 @@ import React from 'react';
 import { Calendar, ArrowRight, Loader2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { HomepageAPI } from '../../lib/api/homepage';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const BlogSection = () => {
+  const { t, getLocalizedField } = useLanguage();
   const [blogPosts, setBlogPosts] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState(null);
@@ -29,10 +31,10 @@ const BlogSection = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-[#054239] mb-4">
-            Latest News & Updates
+            {t('home.blog.title')}
           </h2>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            Stay updated with our latest news, product launches, and industry insights
+            {t('blog.subtitle')}
           </p>
         </div>
 
@@ -74,19 +76,19 @@ const BlogSection = () => {
                       })}
                     </div>
 
-                    <h3 className="text-xl font-semibold text-[#054239] mb-3 group-hover:text-[#b9a779] transition-colors duration-300 min-h-[3.5rem]">
-                      {post.title}
+                    <h3 className="text-xl font-semibold text-[#054239] mb-3 group-hover:text-[#b9a779] transition-colors duration-300 min-h-[3.5rem]"> 
+                      {getLocalizedField(post, 'title')}
                     </h3>
 
-                    <p className="text-gray-600 mb-4 line-clamp-3 flex-grow">
-                      {post.excerpt}
+                    <p className="text-gray-600 mb-4 line-clamp-3 flex-grow"> 
+                      {getLocalizedField(post, 'excerpt')}
                     </p>
 
                     <Link
                       to={`/blog/${post.id}`}
                       className="flex items-center mt-auto text-[#b9a779] hover:text-[#054239] font-medium transition-colors duration-300 group"
                     >
-                      Read More
+                      {t('common.read_more')}
                       <ArrowRight
                         size={16}
                         className="ml-2 group-hover:translate-x-1 transition-transform duration-300"
