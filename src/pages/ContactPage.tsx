@@ -108,7 +108,7 @@ const ContactPage = () => {
                       <h3 className="font-semibold text-[#054239] mb-1">Address</h3>
                       <p className="text-gray-600">
                         Industrial Zone<br />
-                        Idlib, Syria
+                       Idlib, Sarmada, Syria
                       </p>
                     </div>
                   </div>
@@ -119,8 +119,8 @@ const ContactPage = () => {
                     </div>
                     <div>
                       <h3 className="font-semibold text-[#054239] mb-1">Phone</h3>
-                      <p className="text-gray-600">+963 XXX XXX XXX</p>
-                      <p className="text-gray-600">+963 XXX XXX XXX</p>
+                      <p className="text-gray-600">syria  : +963 956 556 410</p>
+                      <p className="text-gray-600">turkey : +90 538 687 6411</p>
                     </div>
                   </div>
 
