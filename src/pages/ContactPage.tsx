@@ -171,6 +171,8 @@ Friday: Closed
     Call Now
   </a>
 </div>
+                </div>
+
 
 
             {/* Contact Form and Map */}
