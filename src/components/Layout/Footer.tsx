@@ -66,7 +66,7 @@ const Footer = () => {
               <a href="#" className="w-10 h-10 bg-[#b9a779] rounded-full flex items-center justify-center hover:bg-white hover:text-[#054239] transition-all duration-300">
                 <Instagram size={20} />
               </a>
-              <a href="#" className="w-10 h-10 bg-[#b9a779] rounded-full flex items-center justify-center hover:bg-white hover:text-[#054239] transition-all duration-300">
+              <a href="https://youtube.com/@hasan.alshmaly?si=3ucyNyVXCMJITi2q" className="w-10 h-10 bg-[#b9a779] rounded-full flex items-center justify-center hover:bg-white hover:text-[#054239] transition-all duration-300">
                 <Mail size={20} />
               </a>
             </div>
