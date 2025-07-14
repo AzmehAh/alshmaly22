@@ -96,12 +96,21 @@ const Footer = () => {
 
 
 
-        <div className="border-t border-gray-700 mt-8 pt-8 text-center">
-          <p className="text-gray-300 text-sm">
-            © 2024 Al-Shamali Agricultural Products. All rights reserved.
-          </p>
-        </div>
-      </div>
+        <<div className="border-t border-gray-700 mt-8 pt-8 text-center">
+  <p className="text-gray-300 text-sm">
+    © 2024 Al-Shamali Agricultural Products. All rights reserved. <br />
+    Made by{' '}
+    <a
+      href="https://ymedia.design/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-[#b9a779] hover:underline"
+    >
+      Y-Media
+    </a>
+  </p>
+</div>
+
     </footer>
   );
 };
