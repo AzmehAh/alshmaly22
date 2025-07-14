@@ -1,5 +1,7 @@
 import React from 'react';
 import { Package, Truck, FileText, Users } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
 
 const ServicesSection = () => {
   const services = [
@@ -57,9 +59,12 @@ const ServicesSection = () => {
         </div>
  
         <div className="text-center mt-12">
-          <button className="bg-[#b9a779] hover:bg-[#054239] hover:text-[#b9a779] border-2 border-transparent rounded-2xl p-8 hover:border-[#b9a779] text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:shadow-lg">
-            Contact Us Today 
-          </button>
+          <Link
+  to="/contact"
+  className="bg-[#b9a779] hover:bg-[#054239] hover:text-[#b9a779] border-2 border-transparent rounded-2xl p-8 hover:border-[#b9a779] text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:shadow-lg inline-block text-center"
+>
+  Contact Us Today
+</Link>
         </div>
       </div>
     </section>
