@@ -56,22 +56,42 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Social Media */}
-          <div>
-            <h4 className="font-semibold text-lg mb-4">Follow Us</h4>
-            <div className="flex space-x-4">
-              <a href="https://www.facebook.com/alshmaly.sy?locale=ar_AR" className="w-10 h-10 bg-[#b9a779] rounded-full flex items-center justify-center hover:bg-white hover:text-[#054239] transition-all duration-300">
-                <Facebook size={20} />
-              </a>
-              <a href="#" className="w-10 h-10 bg-[#b9a779] rounded-full flex items-center justify-center hover:bg-white hover:text-[#054239] transition-all duration-300">
-                <Instagram size={20} />
-              </a>
-              <a href="https://youtube.com/@hasan.alshmaly?si=3ucyNyVXCMJITi2q" className="w-10 h-10 bg-[#b9a779] rounded-full flex items-center justify-center hover:bg-white hover:text-[#054239] transition-all duration-300">
-                <Youtube size={20} />
-              </a>
-            </div>
-          </div> 
-        </div>
+        {/* Social Media */}
+<div>
+  <h4 className="font-semibold text-lg mb-4">Follow Us</h4>
+  <div className="flex space-x-4">
+    {/* Facebook */}
+    <a
+      href="https://www.facebook.com/alshmaly.sy?locale=ar_AR"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="w-10 h-10 bg-[#b9a779] rounded-full flex items-center justify-center transition-all duration-300 hover:bg-[#1877F2] hover:text-white"
+    >
+      <Facebook size={20} />
+    </a>
+
+    {/* Instagram */}
+    <a
+      href="#"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="w-10 h-10 bg-[#b9a779] rounded-full flex items-center justify-center transition-all duration-300 hover:bg-[#C13584] hover:text-white"
+    >
+      <Instagram size={20} />
+    </a>
+
+    {/* YouTube */}
+    <a
+      href="https://youtube.com/@hasan.alshmaly?si=3ucyNyVXCMJITi2q"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="w-10 h-10 bg-[#b9a779] rounded-full flex items-center justify-center transition-all duration-300 hover:bg-[#FF0000] hover:text-white"
+    >
+      <Youtube size={20} />
+    </a>
+  </div>
+</div>
+
 
         <div className="border-t border-gray-700 mt-8 pt-8 text-center">
           <p className="text-gray-300 text-sm">
