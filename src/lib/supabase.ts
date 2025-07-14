@@ -112,3 +112,14 @@ export interface ContactMessage {
   status: 'unread' | 'read' | 'responded';
   created_at: string;
 }
+
+export interface ExportCountry {
+  id: string;
+  name: string;
+  annual_exports: string;
+  main_products: string;
+  display_order: number;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+}

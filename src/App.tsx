@@ -20,6 +20,7 @@ import BlogPostsPage from './pages/admin/BlogPostsPage';
 import BlogCategoriesPage from './pages/admin/BlogCategoriesPage';
 import ContactsPage from './pages/admin/ContactsPage';
 import HomepageManagementPage from './pages/admin/HomepageManagementPage';
+import ExportCountriesPage from './pages/admin/ExportCountriesPage';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
             <Route path="homepage" element={<HomepageManagementPage />} />
             <Route path="products" element={<ProductsAdminPage />} />
             <Route path="categories" element={<CategoriesPage />} />
+            <Route path="export-countries" element={<ExportCountriesPage />} />
             <Route path="blog-posts" element={<BlogPostsPage />} />
             <Route path="blog-categories" element={<BlogCategoriesPage />} />
             <Route path="contacts" element={<ContactsPage />} />

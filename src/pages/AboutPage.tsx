@@ -1,8 +1,27 @@
 import React, { useState } from 'react';
 import { Award, Users, Globe, Calendar, MapPin, CheckCircle } from 'lucide-react';
+import { ExportCountriesAPI } from '../lib/api/export-countries';
+import type { ExportCountry } from '../lib/supabase';
 
 const AboutPage = () => {
   const [selectedCountry, setSelectedCountry] = useState(null);
+  const [exportCountries, setExportCountries] = useState<ExportCountry[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  React.useEffect(() => {
+    const fetchExportCountries = async () => {
+      try {
+        const countries = await ExportCountriesAPI.getActiveExportCountries();
+        setExportCountries(countries);
+      } catch (error) {
+        console.error('Error fetching export countries:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchExportCountries();
+  }, []);
  
   const timeline = [
     { 
@@ -38,21 +57,6 @@ const AboutPage = () => {
   ];
 
  
-    const exportCountries = [
-  { name: 'China', exports: '2,000 tons/year', products: 'Spices, Dried Herbs' },
-  { name: 'Sri Lanka', exports: '1,200 tons/year', products: 'Tea, Spices' },
-  { name: 'Libya', exports: '950 tons/year', products: 'Legumes, Oils' },
-  { name: 'Egypt', exports: '2,300 tons/year', products: 'Freekeh, Lentils, Herbs' },
-  { name: 'Palestine', exports: '1,000 tons/year', products: 'Olive Oil, Thyme, Dates' },
-  { name: 'Kuwait', exports: '1,100 tons/year', products: 'Spices, Grains' },
-  { name: 'Qatar', exports: '1,300 tons/year', products: 'Nuts, Dried Fruits' },
-  { name: 'Saudi Arabia', exports: '2,800 tons/year', products: 'Freekeh, Traditional Herbs' },
-  { name: 'Turkey', exports: '2,500 tons/year', products: 'Spices, Pulses, Preserves' },
-  { name: 'Austria', exports: '900 tons/year', products: 'Dried Herbs, Organic Oils' },
-  { name: 'Jordan', exports: '2,700 tons/year', products: 'Freekeh, Spices, Thyme' },
-  { name: 'Iraq', exports: '1,500 tons/year', products: 'Lentils, Herbs, Dates' },
-
-];
 
 
   const values = [
@@ -201,22 +205,34 @@ return (
     </div>
 
     {/* Export Countries Grid */}
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {exportCountries.map((country, index) => (
-        <div 
-          key={index}
-          className="bg-[#F7F7F7]  rounded-xl p-6 hover:bg-[#b9a779]/10 transition-all duration-300 cursor-pointer"
-          onClick={() => setSelectedCountry(country)}
-        >
-          <div className="flex items-center mb-3">
-            <MapPin size={20} className="text-[#b9a779] mr-2" />
-            <h3 className="text-lg font-semibold text-[#054239]">{country.name}</h3>
+    {loading ? (
+      <div className="flex justify-center items-center py-12">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#b9a779]"></div>
+      </div>
+    ) : (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {exportCountries.map((country) => (
+          <div 
+            key={country.id}
+            className="bg-[#F7F7F7] rounded-xl p-6 hover:bg-[#b9a779]/10 transition-all duration-300 cursor-pointer"
+            onClick={() => setSelectedCountry(country)}
+          >
+            <div className="flex items-center mb-3">
+              <MapPin size={20} className="text-[#b9a779] mr-2" />
+              <h3 className="text-lg font-semibold text-[#054239]">{country.name}</h3>
+            </div>
+            <p className="text-gray-600 text-sm mb-2">Annual Exports: {country.annual_exports}</p>
+            <p className="text-gray-500 text-sm">Main Products: {country.main_products}</p>
           </div>
-          <p className="text-gray-600 text-sm mb-2">Annual Exports: {country.exports}</p>
-          <p className="text-gray-500 text-sm">Main Products: {country.products}</p>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    )}
+
+    {!loading && exportCountries.length === 0 && (
+      <div className="text-center py-12">
+        <p className="text-gray-500 text-lg">No export countries available at the moment.</p>
+      </div>
+    )}
   </div>
 </section>
  </div>

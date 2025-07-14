@@ -11,7 +11,8 @@ import {
   Menu, 
   X,
   User,
-  Home
+  Home,
+  Globe
 } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 
@@ -56,6 +57,7 @@ const AdminLayout = () => {
     { name: 'Homepage', href: '/admin/homepage', icon: Home },
     { name: 'Products', href: '/admin/products', icon: Package },
     { name: 'Categories', href: '/admin/categories', icon: FolderOpen },
+    { name: 'Export Countries', href: '/admin/export-countries', icon: Globe },
     { name: 'Blog Posts', href: '/admin/blog-posts', icon: FileText },
     { name: 'Blog Categories', href: '/admin/blog-categories', icon: FolderOpen },
     { name: 'Quote Requests', href: '/admin/quotes', icon: MessageSquare },
