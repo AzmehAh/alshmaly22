@@ -1,29 +1,32 @@
 import React from 'react';
 import { Package, Truck, FileText, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 
 const ServicesSection = () => {
+  const { t } = useLanguage();
+  
   const services = [
   {
     icon: Package,
-    title: 'Packaging & Filling',
-    description: 'Professional packaging solutions with custom labeling options'
+    title: t('services.packaging.title'),
+    description: t('services.packaging.description')
   },
   {
     icon: Truck,
-    title: 'Shipping & Export',
-    description: 'Worldwide shipping with reliable logistics partners'
+    title: t('services.shipping.title'),
+    description: t('services.shipping.description')
   },
   {
     icon: FileText,
-    title: 'Wholesale Supply',
-    description: 'Complete documentation and customs clearance support'
+    title: t('services.wholesale.title'),
+    description: t('services.wholesale.description')
   },
   {
     icon: Users,
-    title: 'Agricultural Consulting',
-    description: 'Expert consulting services for traders and distributors'
+    title: t('services.consulting.title'),
+    description: t('services.consulting.description')
   }
 ];
 
@@ -33,10 +36,10 @@ const ServicesSection = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-[#F7F7F7]  mb-4">
-            Our Services
+            {t('services.title')}
           </h2>
           <p className="text-[#edebe0] text-lg max-w-2xl mx-auto">
-            From packaging to delivery, we provide comprehensive solutions for your agricultural product needs
+            {t('services.subtitle')}
           </p>
         </div>
 
@@ -63,7 +66,7 @@ const ServicesSection = () => {
   to="/contact"
   className="bg-[#b9a779] hover:bg-[#054239] hover:text-[#b9a779] border-2 border-transparent rounded-2xl p-8 hover:border-[#b9a779] text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:shadow-lg inline-block text-center"
 >
-  Contact Us Today
+  {t('common.contact_us')}
 </Link>
         </div>
       </div>

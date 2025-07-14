@@ -1,8 +1,11 @@
 import React from 'react';
 import { Facebook, Instagram,Mail, Youtube, Phone, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const Footer = () => {
+  const { t } = useLanguage();
+  
   return (
     <footer className="bg-[#054239] text-white">
       <div className="container mx-auto px-4 py-12">
@@ -21,33 +24,36 @@ const Footer = () => {
               </div>
             </div>
             <p className="text-gray-300 text-sm leading-relaxed">
-              We export the best of Syrian nature to the world, bringing authenticity and quality to your table.
+              {t('footer.company_description')}
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-semibold text-lg mb-4">Quick Links</h4>
+            <h4 className="font-semibold text-lg mb-4">{t('footer.quick_links')}</h4>
             <ul className="space-y-2">
-              <li><Link to="/" className="text-gray-300 hover:text-[#b9a779] transition-colors duration-300">Home</Link></li>
-              <li><Link to="/products" className="text-gray-300 hover:text-[#b9a779] transition-colors duration-300">Products</Link></li>
-              <li><Link to="/about" className="text-gray-300 hover:text-[#b9a779] transition-colors duration-300">About Us</Link></li>
-              <li><Link to="/blog" className="text-gray-300 hover:text-[#b9a779] transition-colors duration-300">Blog</Link></li>
-              <li><Link to="/contact" className="text-gray-300 hover:text-[#b9a779] transition-colors duration-300">Contact</Link></li>
+              <li><Link to="/" className="text-gray-300 hover:text-[#b9a779] transition-colors duration-300">{t('nav.home')}</Link></li>
+              <li><Link to="/products" className="text-gray-300 hover:text-[#b9a779] transition-colors duration-300">{t('nav.products')}</Link></li>
+              <li><Link to="/about" className="text-gray-300 hover:text-[#b9a779] transition-colors duration-300">{t('nav.about')}</Link></li>
+              <li><Link to="/blog" className="text-gray-300 hover:text-[#b9a779] transition-colors duration-300">{t('nav.blog')}</Link></li>
+              <li><Link to="/contact" className="text-gray-300 hover:text-[#b9a779] transition-colors duration-300">{t('nav.contact')}</Link></li>
             </ul>
           </div>
 
           {/* Contact Info */}
           <div>
-            <h4 className="font-semibold text-lg mb-4">Contact Info</h4>
+            <h4 className="font-semibold text-lg mb-4">{t('footer.contact_info')}</h4>
             <div className="space-y-3">
               <div className="flex items-start space-x-3">
                 <MapPin size={16} className="text-[#b9a779] mt-1" />
-                <p className="text-gray-300 text-sm">Idlib, Sarmada, Syria</p>
+                <p className="text-gray-300 text-sm">{t('contact.address')}<br />Idlib, Sarmada, Syria</p>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone size={16} className="text-[#b9a779]" />
-                <p className="text-gray-300 text-sm">+963 956 556 410</p>
+                <div className="text-gray-300 text-sm">
+                  <p>syria: +963 956 556 410</p>
+                  <p>turkey: +90 538 687 6411</p>
+                </div>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail size={16} className="text-[#b9a779]" />
@@ -58,7 +64,7 @@ const Footer = () => {
 
         {/* Social Media */}
 <div>
-  <h4 className="font-semibold text-lg mb-4">Follow Us</h4>
+  <h4 className="font-semibold text-lg mb-4">{t('footer.follow_us')}</h4>
   <div className="flex space-x-4">
     {/* Facebook */}
     <a
@@ -98,8 +104,8 @@ const Footer = () => {
 
        <div className="border-t border-gray-700 mt-8 pt-8 text-center">
   <p className="text-gray-300 text-sm">
-    © 2024 Al-Shamali Agricultural Products. All rights reserved. <br />
-    Made by{' '}
+    © 2024 Al-Shamali Agricultural Products. {t('footer.all_rights')} <br />
+    {t('footer.made_by')}{' '}
     <a
       href="https://ymedia.design/"
       target="_blank"

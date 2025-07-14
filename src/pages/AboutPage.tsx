@@ -59,24 +59,20 @@ const AboutPage = () => {
 
   const values = [
     {
+      key: 'quality',
       icon: Award,
-      title: 'Quality Excellence',
-      description: 'We maintain the highest standards in every product we export, ensuring authenticity and premium quality.'
     },
     {
+      key: 'customer',
       icon: Users,
-      title: 'Customer Focus',
-      description: 'Our customers are at the heart of everything we do. We build lasting partnerships based on trust and reliability.'
     },
     {
+      key: 'global',
       icon: Globe,
-      title: 'Global Reach',
-      description: 'We connect Syrian agricultural heritage with global markets, bringing authentic flavors worldwide.'
     },
     {
+      key: 'sustainability',
       icon: CheckCircle,
-      title: 'Sustainability',
-      description: 'We are committed to sustainable farming practices that support local communities and the environment.'
     }
   ];
 
@@ -112,7 +108,9 @@ return (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
             <div>
               <h2 className="text-4xl font-bold text-[#054239] mb-6">{t('about.vision.title')}</h2>
-              {/* Vision content - could be made dynamic */}
+              <p className="text-gray-600 leading-relaxed text-lg mb-6">
+                {t('about.vision.content')}
+              </p>
             </div> 
             <div className="relative">
               <img 
@@ -122,7 +120,7 @@ return (
               />
               <div className="absolute -bottom-6 -right-6  bg-[#054239]   text-white p-6 rounded-2xl">
                 
-                <p className="text-sm font-semibold">Established</p>
+                <p className="text-sm font-semibold">{t('misc.established')}</p>
                 <p className="text-2xl font-bold">1999</p>
               </div>
             </div>
@@ -135,8 +133,8 @@ return (
                 <div className="w-16 h-16 bg-[#054239] rounded-full flex items-center justify-center mb-6">
                   <value.icon size={32} className="text-white" />
                 </div>
-                <h3 className="text-xl font-semibold text-[#054239] mb-4">{value.title}</h3>
-                <p className="text-gray-600">{value.description}</p>
+                <h3 className="text-xl font-semibold text-[#054239] mb-4">{t(`about.values.${value.key}.title`)}</h3>
+                <p className="text-gray-600">{t(`about.values.${value.key}.description`)}</p>
               </div>
             ))}
           </div>
@@ -148,7 +146,9 @@ return (
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
            <h2 className="text-4xl font-bold text-[#054239] mb-4">{t('about.journey.title')}</h2>
-           {/* Journey subtitle could be made dynamic */}
+           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+             {t('about.journey.subtitle')}
+           </p>
           </div>
 
           <div className="relative">
