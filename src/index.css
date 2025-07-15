@@ -98,16 +98,16 @@ select option:checked {
 }
 
 @keyframes marquee-rtl {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(33.33%); }
+  0% { transform: translateX(-33.33%); }
+  100% { transform: translateX(0); }
 }
 
 .animate-marquee-rtl {
   animation: marquee-rtl 10s linear infinite;
   will-change: transform;
   width: 300%;
-  direction: rtl;
 }
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
