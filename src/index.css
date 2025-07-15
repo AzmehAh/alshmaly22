@@ -95,7 +95,7 @@ select option:checked {
 }
 
 .animate-marquee {
-  animation: marquee 20s linear infinite; 
+  animation: marquee 15s linear infinite; 
   will-change: transform; 
   width: 300%;
 }
@@ -106,7 +106,7 @@ select option:checked {
 }
 
 .animate-marquee-rtl {
-  animation: marquee-rtl 20s linear infinite;
+  animation: marquee-rtl 15s linear infinite;
   will-change: transform;
   width: 300%;
   direction: rtl;
