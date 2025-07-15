@@ -467,7 +467,7 @@ const translations = {
     'products.specifications': 'المواصفات',
     'products.related_products': 'منتجات ذات صلة',
     'products.discover': 'اكتشف منتجاتنا الزراعية السورية المتميزة، مختارة ومعالجة بعناية لنقدم لك الطعم الأصيل لسوريا.',
-    'back': 'الرجوع إلى المنتجات',
+    'back': 'العودة إلى المنتجات',
   }
 };
 
