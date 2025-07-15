@@ -164,7 +164,11 @@ const BlogPostsPage = () => {
       await fetchRelations(postId);
     } catch (error) {
       console.error('Error adding relation:', error);
-      alert('Error adding relation. Please try again.');
+      if (error.code === '23505') {
+        alert('This relation already exists.');
+      } else {
+        alert('Error adding relation. Please try again.');
+      }
     }
   };
 
