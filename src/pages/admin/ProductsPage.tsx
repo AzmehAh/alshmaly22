@@ -678,16 +678,7 @@ const ProductsPage = () => {
                       </div>
                     </div>
 
-                    {/* Arabic Features - Placeholder for future implementation */}
-                    <div>
-                      <h5 className="text-md font-medium text-[#054239] mb-3">Features (AR)</h5>
-                      <div className="space-y-3">
-                        <div className="text-gray-500 italic">Arabic features coming soon...</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
+                    
                 {/* Specifications - Bilingual */}
                 <div className="bg-gray-50 p-6 rounded-lg">
                   <h4 className="text-lg font-semibold text-[#054239] mb-4">Product Specifications</h4>
