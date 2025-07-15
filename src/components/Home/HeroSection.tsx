@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
 
 const HeroSection = () => { 
-  const { t, language } = useLanguage(); // تأكد أن language موجود في الcontext
+  const { t, language } = useLanguage(); 
   const isArabic = language === 'ar'; 
   
 
