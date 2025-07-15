@@ -3,9 +3,9 @@ import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
 
-const HeroSection = () => { 
-  const { t, language } = useLanguage(); // تأكد أن language موجود في الcontext
-  const isArabic = language === 'ar';
+const HeroSection = () => {
+  const { t } = useLanguage();
+
   return (
     <section id="home" className="relative min-h-[100vh] flex items-center overflow-hidden w-full">
       {/* Background Video */}
@@ -25,8 +25,8 @@ const HeroSection = () => {
       {/* Content */}
       <div className="relative z-10 w-full">
         <div className="container mx-auto px-4">
-          <div className={`max-w-2xl ${isArabic ? 'text-right' : 'text-left'}`}>
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+          <div className="max-w-2xl">
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight text-center lg:text-left">
               {t('home.hero.title')}
             </h1>
             <p className="text-xl text-gray-200 mb-8 leading-relaxed">
@@ -57,7 +57,6 @@ const HeroSection = () => {
           <div className="w-1 h-3 bg-white rounded-full mt-2 animate-pulse"></div>
         </div>
       </div>
-      
     </section>
   );
 };
