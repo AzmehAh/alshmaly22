@@ -60,7 +60,7 @@ const ProductDetailsPage = () => {
             to="/products"
             className="text-[#b9a779] hover:text-[#054239] font-medium"
           >
-            ← {t('Back')}
+         ← Back to Products
           </Link>
         </div>
       </div>
