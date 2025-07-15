@@ -19,7 +19,7 @@ const HeroSection = () => {
           className="w-full h-full object-cover min-w-full min-h-full"
           poster="https://streamable.com/bxt7mp"
         >
-          <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-corn-field-44232-large.mp4" type="video/mp4" />
+          <source src="https://streamable.com/bxt7mp" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-black/50 w-full h-full"></div>
       </div>
