@@ -14,12 +14,15 @@ const MarqueeSection = () => {
   ];
 
   return ( 
-    <section className="py-3 bg-[#F7F7F7] border-b-2 border-b-[#edebe0] overflow-hidden w-full">
+    <section
+      className="py-3 bg-[#F7F7F7] border-b-2 border-b-[#edebe0] overflow-hidden w-full"
+      dir={language === 'ar' ? 'rtl' : 'ltr'}
+    >
       <div className="w-full relative">
         <div className={`flex whitespace-nowrap min-w-max ${
-          language === 'ar' ? 'animate-marquee-rtl' : 'animate-marquee'
+          language === 'ar' ? 'animate-marquee-rtl flex-row-reverse' : 'animate-marquee'
         }`}>
-          {[...features, ...features, ...features, ...features].map((feature, index) => (
+          {[...features, ...features, ...features].map((feature, index) => (
             <div 
               key={index} 
               className={`inline-flex items-center px-8 md:px-12 text-[#054239] flex-shrink-0 ${
