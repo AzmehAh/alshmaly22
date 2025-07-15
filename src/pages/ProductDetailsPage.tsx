@@ -76,7 +76,7 @@ const ProductDetailsPage = () => {
           className="inline-flex items-center text-[#b9a779] hover:text-[#054239] font-medium mb-8 transition-colors duration-300"
         >
           <ArrowLeft size={20} className="mr-2" />
-           {t('common.back')} to {t('nav.products')}
+             ← {t('Back')}
         </Link>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
