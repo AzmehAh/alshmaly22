@@ -127,7 +127,7 @@ const ProductsPage = () => {
 */}
               {/* Sort By */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-3">Sort By</label>
+                <label className="block text-sm font-medium text-gray-700 mb-3">{t('products.sort_by')}</label>
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
