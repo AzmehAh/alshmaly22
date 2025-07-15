@@ -62,7 +62,7 @@ const BlogPostPage = () => {
           className="inline-flex items-center text-[#b9a779] hover:text-[#054239] font-medium mb-8 transition-colors duration-300"
         >
           <ArrowLeft size={20} className="mr-2" />
-          {t('common.back')} to {t('nav.blog')}
+          {t('back.blog')} 
         </Link>
 
         <article className="max-w-4xl mx-auto">
