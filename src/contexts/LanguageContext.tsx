@@ -232,27 +232,19 @@ const translations = {
     'misc.subject_options.shipping': 'Shipping & Logistics',
     'misc.subject_options.other': 'Other',
     
-{
-  "products": {
-    "packaging_options": "Packaging Options",
-    "additional_info": "Additional Information",
-    "specifications": "Specifications",
-    "related_products": "Related Products",
-    "discover": "Discover our premium Syrian agricultural products, carefully selected and processed to bring you the authentic taste of Syria."
+    // Products
+    'products.packaging_options': 'Packaging Options',
+    'products.additional_info': 'Additional Information',
+    'products.specifications': 'Specifications',
+    'products.related_products': 'Related Products',
+    'products.discover': 'Discover our premium Syrian agricultural products, carefully selected and processed to bring you the authentic taste of Syria.',
+    
   },
-  "filters": {
-    "sort_by": "Sort By",
-    "name": "Name",
-    "price_low": "Price: Low to High",
-    "price_high": "Price: High to Low"
-  }
-}
-
   ar: {
     // Navigation
     'nav.home': 'الرئيسية',
     'nav.products': 'المنتجات',
-    'nav.about': 'من نحن',
+    'nav.about': 'من نحن', 
     'nav.blog': 'المدونة',
     'nav.contact': 'اتصل بنا',
     'nav.iso_certificate': 'شهادة الآيزو',
