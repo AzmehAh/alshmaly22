@@ -68,6 +68,9 @@ const translations = {
     'about.title': 'About Al-Shamali',
     'about.hero.subtitle': 'For over 25 years, we have been the bridge between Syrian agricultural heritage and global markets, bringing authentic, premium-quality products to tables worldwide.',
     'about.vision.title': 'Our Vision & Values',
+    'about.vision.description.1': 'At Al-Shamali, we believe that quality speaks for itself. Our mission is to preserve and share the rich agricultural heritage of Syria while building sustainable partnerships that benefit farmers, traders, and consumers worldwide.',
+'about.vision.description.2': 'We are committed to maintaining the highest standards of quality, authenticity, and customer service in everything we do. Our products carry the essence of Syrian soil and the dedication of generations of farmers.',
+
     'about.journey.title': 'Our Journey',
     'about.global_reach.title': 'Global Reach',
     'about.global_reach.subtitle': 'We proudly export to over 30 countries worldwide, bringing Syrian agricultural excellence to global markets',
@@ -291,8 +294,6 @@ const translations = {
     'about.vision.title': 'رؤيتنا وقيمنا',
  'about.vision.description.1': 'في الشمالي، نؤمن بأن الجودة تتحدث عن نفسها. تتمثل مهمتنا في الحفاظ على التراث الزراعي الغني في سوريا ومشاركته، مع بناء شراكات مستدامة تعود بالفائدة على المزارعين والتجار والمستهلكين حول العالم.',
 'about.vision.description.2': 'نحن ملتزمون بالحفاظ على أعلى معايير الجودة والأصالة وخدمة العملاء في كل ما نقوم به. منتجاتنا تحمل جوهر الأرض السورية وتفاني أجيال من المزارعين.',
-
-    
     'about.journey.title': 'رحلتنا',
     'about.global_reach.title': 'الوصول العالمي',
     'about.global_reach.subtitle': 'نفخر بالتصدير إلى أكثر من 30 دولة حول العالم، نجلب التميز الزراعي السوري إلى الأسواق العالمية',
