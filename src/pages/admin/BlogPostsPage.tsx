@@ -481,9 +481,7 @@ const BlogPostsPage = () => {
                     >
                       <option value="">Select Category</option>
                       {categories.map(category => (
-                        <option key={category.id} value={category.id}>
-                          {category.name}{category.name_ar ? ` | ${category.name_ar}` : ''}
-                        </option>
+                        <option key={category.id} value={category.id}>{category.name}</option>
                       ))}
                     </select>
                   </div>
