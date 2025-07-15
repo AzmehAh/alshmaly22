@@ -3,8 +3,8 @@ import { Leaf, Award, Users, Clock, HandHeart } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 
 const MarqueeSection = () => {
-  const { t } = useLanguage();
-  
+  const { t, language } = useLanguage(); // ← تأكد من أن LanguageContext يُرجع اللغة أيضًا
+
   const features = [
     { icon: Leaf, text: t('marquee.natural') },
     { icon: Award, text: t('marquee.quality_standards') },
@@ -13,10 +13,15 @@ const MarqueeSection = () => {
     { icon: HandHeart, text: t('marquee.trader_support') },
   ];
 
+  const isArabic = language === 'ar';
+
   return ( 
-    <section className="py-3 bg-[#F7F7F7] border-b-2 border-b-[#edebe0] overflow-hidden w-full">
+    <section 
+      className="py-3 bg-[#F7F7F7] border-b-2 border-b-[#edebe0] overflow-hidden w-full"
+      dir={isArabic ? 'rtl' : 'ltr'}
+    >
       <div className="w-full relative">
-        <div className="flex animate-marquee whitespace-nowrap min-w-max">
+        <div className={`flex animate-marquee whitespace-nowrap min-w-max ${isArabic ? 'flex-row-reverse' : ''}`}>
           {[...features, ...features, ...features].map((feature, index) => (
             <div 
               key={index} 
@@ -25,7 +30,9 @@ const MarqueeSection = () => {
               <div className="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center">
                 <feature.icon size={20} className="md:w-6 md:h-6" />
               </div>
-              <span className="ml-3 md:ml-4 text-sm md:text-xl font-semibold">{feature.text}</span>
+              <span className={`ml-3 md:ml-4 text-sm md:text-xl font-semibold ${isArabic ? 'ml-0 mr-3 md:mr-4' : ''}`}>
+                {feature.text}
+              </span>
             </div>
           ))}
         </div>
