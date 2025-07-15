@@ -3,7 +3,7 @@ import { Leaf, Award, Users, Clock, HandHeart } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 
 const MarqueeSection = () => {
-  const { t, language } = useLanguage(); /
+  const { t, language } = useLanguage(); 
 
   const features = [
     { icon: Leaf, text: t('marquee.natural') },
