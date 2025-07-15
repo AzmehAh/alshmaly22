@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
-import { getProducts } from '../lib/api/products';
-import { getCategories } from '../lib/api/products';
+import { ProductsAPI } from '../lib/api/products';
 
 interface Product {
   id: string;
@@ -46,7 +45,7 @@ const ProductsPage: React.FC = () => {
 
   const fetchProducts = async () => {
     try {
-      const data = await getProducts();
+      const data = await ProductsAPI.getProducts();
       setProducts(data);
     } catch (error) {
       console.error('Error fetching products:', error);
@@ -57,7 +56,7 @@ const ProductsPage: React.FC = () => {
 
   const fetchCategories = async () => {
     try {
-      const data = await getCategories();
+      const data = await ProductsAPI.getCategories();
       setCategories(data);
     } catch (error) {
       console.error('Error fetching categories:', error);
