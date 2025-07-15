@@ -26,9 +26,16 @@ const HeroSection = () => {
       <div className="relative z-10 w-full">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl">
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight text-center lg:text-left">
-              {t('home.hero.title')}
-            </h1>
+           <h1 
+  className={`
+    text-4xl md:text-6xl font-bold text-white mb-6 leading-tight
+    text-center lg:text-left
+    ${t('direction') === 'rtl' ? 'font-arabic' : 'font-english'}
+  `}
+  dir={t('direction')}
+>
+  {t('home.hero.title')}
+</h1>
             <p className="text-xl text-gray-200 mb-8 leading-relaxed">
               {t('home.hero.subtitle')}
             </p>
