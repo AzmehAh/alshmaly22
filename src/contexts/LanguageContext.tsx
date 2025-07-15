@@ -59,6 +59,7 @@ const translations = {
     'products.title': 'Our Products',
     'products.all_categories': 'All Products',
     'products.no_products': 'No products found matching your criteria.',
+    'products.weight_by': 'weight'
     'products.sort_by': 'Sort By',
     'products.sort.name': 'Name',
     'products.sort.price_low': 'Price: Low to High',
