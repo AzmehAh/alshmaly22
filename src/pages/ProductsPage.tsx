@@ -111,20 +111,7 @@ const ProductsPage = () => {
                 </select>
               </div>
 
-              {/* Availability Filter */}
-              {/*  <div className="mb-6">
-                <label className="block text-sm font-medium text-gray-700 mb-3">Availability</label>
-                <select
-                  value={selectedAvailability}
-                  onChange={(e) => setSelectedAvailability(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                >
-                  <option value="all">All Products</option>
-                  <option value="in-stock">In Stock</option>
-                  <option value="out-of-stock">Out of Stock</option>
-                </select>
-              </div>
-*/}
+              
               {/* Sort By */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-3">{t('products.sort_by')}</label>
