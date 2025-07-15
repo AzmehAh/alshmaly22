@@ -3,7 +3,7 @@ import { Leaf, Award, Users, Clock, HandHeart } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 
 const MarqueeSection = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   
   const features = [ 
     { icon: Leaf, text: t('marquee.natural') },
@@ -16,16 +16,22 @@ const MarqueeSection = () => {
   return ( 
     <section className="py-3 bg-[#F7F7F7] border-b-2 border-b-[#edebe0] overflow-hidden w-full">
       <div className="w-full relative">
-        <div className="flex animate-marquee whitespace-nowrap min-w-max">
-          {[...features, ...features, ...features].map((feature, index) => (
+        <div className={`flex whitespace-nowrap min-w-max ${
+          language === 'ar' ? 'animate-marquee-rtl' : 'animate-marquee'
+        }`}>
+          {[...features, ...features, ...features, ...features].map((feature, index) => (
             <div 
               key={index} 
-              className="inline-flex items-center px-8 md:px-12 text-[#054239] flex-shrink-0"
+              className={`inline-flex items-center px-8 md:px-12 text-[#054239] flex-shrink-0 ${
+                language === 'ar' ? 'flex-row-reverse' : ''
+              }`}
             > 
               <div className="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center">
                 <feature.icon size={20} className="md:w-6 md:h-6" />
               </div>
-              <span className="ml-3 md:ml-4 text-sm md:text-xl font-semibold">{feature.text}</span>
+              <span className={`text-sm md:text-xl font-semibold ${
+                language === 'ar' ? 'mr-3 md:mr-4' : 'ml-3 md:ml-4'
+              }`}>{feature.text}</span>
             </div>
           ))}
         </div>
