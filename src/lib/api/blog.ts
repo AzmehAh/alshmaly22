@@ -112,7 +112,7 @@ export class BlogAPI {
     const { data: relatedData, error: relatedError } = await supabase
       .from('blog_post_relations')
       .select(`
-        related_blog_post:related_blog_post_id!blog_posts(
+        related_blog_post:blog_posts!related_blog_post_id(
           *,
           category:blog_categories(*)
         )
