@@ -76,6 +76,8 @@ const translations = {
     'contact.send_message': 'Send us a Message',
     'contact.address': 'Address',
     'contact.phone': 'Phone',
+    'contact.phone.1': 'syria: +963 956 556 410',
+    'contact.phone.2': 'turkey : +90 538 687 6411',
     'contact.email': 'Email',
     'contact.business_hours': 'Business Hours',
     
@@ -293,6 +295,8 @@ const translations = {
     'contact.send_message': 'أرسل لنا رسالة',
     'contact.address': 'العنوان',
     'contact.phone': 'الهاتف',
+    'contact.phone.1': 'سوريا: +963 956 556 410',
+    'contact.phone.2': 'تركيا: +90 538 687 6411',
     'contact.email': 'البريد الإلكتروني',
     'contact.business_hours': 'ساعات العمل',
     
