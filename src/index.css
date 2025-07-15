@@ -58,45 +58,44 @@ select option:checked {
   }
 }
 
-@@layer utilities {
-  @keyframes marquee-ltr {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-33.33%); }
+@layer utilities {
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
   }
-
-  @keyframes marquee-rtl {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(33.33%); }
+  
+  .animate-marquee {
+    animation: marquee 30s linear infinite;
   }
-
-  .animate-marquee-ltr {
-    animation: marquee-ltr 10s linear infinite;
-    will-change: transform;
-    width: 300%;
-  }
-
-  .animate-marquee-rtl {
-    animation: marquee-rtl 10s linear infinite;
-    will-change: transform;
-    width: 300%;
-  }
-
-  .animate-marquee-ltr:hover,
-  .animate-marquee-rtl:hover {
+  
+  .animate-marquee:hover {
     animation-play-state: paused;
   }
 
-  /* إخفاء السكروول بار */
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
-
+  
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
 }
 
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.33%); }
+}
+
+.animate-marquee {
+  animation: marquee 10s linear infinite; 
+  will-change: transform;
+  width: 300%;
+}
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
