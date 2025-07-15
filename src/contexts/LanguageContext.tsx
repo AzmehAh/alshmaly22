@@ -48,7 +48,7 @@ const translations = {
     'home.hero.subtitle': 'We export the best of Syrian nature to the world, bringing authenticity and premium quality to your table.',
     'home.hero.explore_products': 'Explore Our Products',
     'home.about.title': 'We bring authenticity into your world',
-    'home.about.description': 'For over 25 years, Al-Shamaly has been the trusted name in exporting high-quality Syrian agricultural products. Our commitment to quality and authenticity has made us the preferred partner for traders around the world, offering the finest legumes, spices, oils, and herbs from Syrian soil to tables across the globe.',
+    'home.about.description': 'For over 25 years Al-Shamaly has been the trusted name in exporting high-quality Syrian agricultural products. Our commitment to quality and authenticity has made us the preferred partner for traders around the world, offering the finest legumes, spices, oils, and herbs from Syrian soil to tables across the globe.',
     'home.products.title': 'Featured Products',
     'home.services.title': 'Our Services',
     'home.blog.title': 'Latest News & Updates',
