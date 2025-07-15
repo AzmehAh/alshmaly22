@@ -378,7 +378,9 @@ const ProductsPage = () => {
           >
             <option value="all">All Categories</option>
             {categories.map(category => (
-              <option key={category.id} value={category.id}>{category.name}</option>
+              <option key={category.id} value={category.id}>
+                {category.name}{category.name_ar ? ` / ${category.name_ar}` : ''}
+              </option>
             ))}
           </select>
         </div>
@@ -424,7 +426,12 @@ const ProductsPage = () => {
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <span className="text-sm text-gray-900">{product.category?.name || 'Uncategorized'}</span>
+                    <div className="text-sm text-gray-900">
+                      {product.category?.name || 'Uncategorized'}
+                      {product.category?.name_ar && (
+                        <div className="text-xs text-gray-500 mt-1">{product.category.name_ar}</div>
+                      )}
+                    </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span className="text-sm font-medium text-[#b9a779]">${product.base_price}</span>
@@ -584,7 +591,9 @@ const ProductsPage = () => {
                       >
                         <option value="">Select Category</option>
                         {categories.map(category => (
-                          <option key={category.id} value={category.id}>{category.name}</option>
+                          <option key={category.id} value={category.id}>
+                            {category.name}{category.name_ar ? ` / ${category.name_ar}` : ''}
+                          </option>
                         ))}
                       </select>
                     </div>
