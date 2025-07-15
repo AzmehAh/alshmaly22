@@ -48,14 +48,14 @@ const Footer = () => {
                 <MapPin size={16} className="text-[#b9a779] mt-1" />
                 <p className="text-gray-300 text-sm">{t('contact.address')}<br /> {t('footer.contact_adress')}</p>
               </div>
-              <div className="flex items-center space-x-3">
+              <div className="flex items-center gap-3">
                 <Phone size={16} className="text-[#b9a779]" />
                 <div className="text-gray-300 text-sm" dir="ltr">
                   <p> +963 956 556 410</p>
                  
                 </div>
               </div>
-              <div className="flex items-center space-x-3">
+              <div className="flex items-center gap-3">
                 <Mail size={16} className="text-[#b9a779]" />
                 <p className="text-gray-300 text-sm">alshmaly.sy@gmail.com</p>
               </div>
