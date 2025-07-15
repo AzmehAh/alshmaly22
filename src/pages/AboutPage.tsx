@@ -111,6 +111,13 @@ return (
               <p className="text-gray-600 leading-relaxed text-lg mb-6">
                 {t('about.vision.content')}
               </p>
+             
+              <p className="text-gray-600 text-lg leading-relaxed">
+                {t('about.vision.description.1')}
+                 </p>
+              <p className="text-gray-600 text-lg leading-relaxed">
+                {t('about.vision.description.2')}
+                 </p>
             </div> 
             <div className="relative">
               <img 
