@@ -104,7 +104,7 @@ const Footer = () => {
 
        <div className="border-t border-gray-700 mt-8 pt-8 text-center">
   <p className="text-gray-300 text-sm">
-    © 2024 Al-Shamali Agricultural Products. {t('footer.all_rights')} <br />
+    © 2025 Al-Shamaly Agricultural Products. {t('footer.all_rights')} <br />
     {t('footer.made_by')}{' '}
     <a
       href="https://ymedia.design/"
