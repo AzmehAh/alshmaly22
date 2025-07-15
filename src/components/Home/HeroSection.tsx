@@ -17,9 +17,9 @@ const HeroSection = () => {
           muted 
           loop 
           className="w-full h-full object-cover min-w-full min-h-full"
-          poster="https://streamable.com/bxt7mp"
+          poster="https://files.catbox.moe/lmy00m.mp4"
         >
-          <source src="https://streamable.com/bxt7mp" type="video/mp4" />
+          <source src="https://files.catbox.moe/lmy00m.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-black/50 w-full h-full"></div>
       </div>
