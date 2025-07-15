@@ -60,7 +60,6 @@ const AdminLayout = () => {
     { name: 'Export Countries', href: '/admin/export-countries', icon: Globe },
     { name: 'Blog Posts', href: '/admin/blog-posts', icon: FileText },
     { name: 'Blog Categories', href: '/admin/blog-categories', icon: FolderOpen },
-    { name: 'Quote Requests', href: '/admin/quotes', icon: MessageSquare },
     { name: 'Contact Messages', href: '/admin/contacts', icon: Mail },
   ];
 
