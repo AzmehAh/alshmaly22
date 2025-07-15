@@ -112,7 +112,7 @@ const ProductsPage = () => {
               </div>
 
               {/* Availability Filter */}
-              <div className="mb-6">
+              {/*  <div className="mb-6">
                 <label className="block text-sm font-medium text-gray-700 mb-3">Availability</label>
                 <select
                   value={selectedAvailability}
@@ -124,7 +124,7 @@ const ProductsPage = () => {
                   <option value="out-of-stock">Out of Stock</option>
                 </select>
               </div>
-
+*/}
               {/* Sort By */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-3">Sort By</label>
