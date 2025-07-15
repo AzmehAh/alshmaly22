@@ -14,10 +14,8 @@ export interface Category {
   id: string;
   name: string;
   name_ar?: string;
-  name_ar?: string;
   slug: string;
   description?: string;
-  description_ar?: string;
   description_ar?: string;
   created_at: string;
   updated_at: string;
@@ -43,10 +41,8 @@ export interface Product {
   id: string;
   name: string;
   name_ar?: string;
-  name_ar?: string;
   slug: string;
   description: string;
-  description_ar?: string;
   description_ar?: string;
   category_id?: string;
   base_price: number;
@@ -67,7 +63,6 @@ export interface ProductImage {
   image_url: string;
   alt_text?: string;
   alt_text_ar?: string;
-  alt_text_ar?: string;
   sort_order: number;
   created_at: string;
 }
@@ -85,7 +80,6 @@ export interface BlogCategory {
   id: string;
   name: string;
   name_ar?: string;
-  name_ar?: string;
   slug: string;
   created_at: string;
 }
@@ -94,20 +88,15 @@ export interface BlogPost {
   id: string;
   title: string;
   title_ar?: string;
-  title_ar?: string;
   slug: string;
   excerpt: string;
   excerpt_ar?: string;
-  excerpt_ar?: string;
   content: string;
-  content_ar?: string;
   content_ar?: string;
   category_id?: string;
   author: string;
   author_ar?: string;
-  author_ar?: string;
   read_time: string;
-  read_time_ar?: string;
   read_time_ar?: string;
   event_date_en?: string;
   event_date_ar?: string;
@@ -125,7 +114,6 @@ export interface BlogImage {
   blog_post_id: string;
   image_url: string;
   alt_text?: string;
-  alt_text_ar?: string;
   alt_text_ar?: string;
   sort_order: number;
   created_at: string;
