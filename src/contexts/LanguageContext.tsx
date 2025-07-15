@@ -295,7 +295,7 @@ const translations = {
     'contact.send_message': 'أرسل لنا رسالة',
     'contact.address': 'العنوان',
     'contact.phone': 'الهاتف',
-    'contact.phone.1': 'سوريا: +963 956 556 410',
+    'contact.phone.1': 'سوريا: \u200E+963 956 556 410\u200E',
     'contact.phone.2': 'تركيا: +90 538 687 6411',
     'contact.email': 'البريد الإلكتروني',
     'contact.business_hours': 'ساعات العمل',
