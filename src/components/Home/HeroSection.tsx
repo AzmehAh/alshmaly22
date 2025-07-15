@@ -1,97 +1,51 @@
-import React, { useRef, useState } from 'react';
-import { ArrowRight, Pause, Play, Volume2, VolumeX } from 'lucide-react';
+import React from 'react';
+import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
 
 const HeroSection = () => {
-  const { t, language } = useLanguage();
-  const isArabic = language === 'ar';
-
-  const videoRef = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [isMuted, setIsMuted] = useState(true);
-
-  const toggleVideo = () => {
-    const video = videoRef.current;
-    if (video) {
-      if (video.paused) {
-        video.play();
-        setIsPlaying(true);
-      } else {
-        video.pause();
-        setIsPlaying(false);
-      }
-    }
-  };
-
-  const toggleMute = () => {
-    const video = videoRef.current;
-    if (video) {
-      video.muted = !video.muted;
-      setIsMuted(video.muted);
-    }
-  };
+  const { t } = useLanguage();
 
   return (
     <section id="home" className="relative min-h-[100vh] flex items-center overflow-hidden w-full">
       {/* Background Video */}
       <div className="absolute inset-0 z-0 w-full h-full">
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          loop
+        <video  
+          autoPlay 
+          muted 
+          loop 
           className="w-full h-full object-cover min-w-full min-h-full"
-          poster="https://images.pexels.com/photos/1595104/pexels-photo-1595104.jpeg"
+          poster="https://images.pexels.com/photos/1595104/pexels-photo-1595104.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080"
         >
-          <source src="https://files.catbox.moe/lmy00m.mp4" type="video/mp4" />
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-corn-field-44232-large.mp4" type="video/mp4" />
         </video>
-
-        {/* Video Control Buttons */}
-        <div className={`absolute top-4 z-20 flex gap-2 ${isArabic ? 'left-4' : 'right-4'}`}>
-          <button
-            onClick={toggleVideo}
-            className="bg-black/60 hover:bg-black/80 text-white rounded-full p-3 backdrop-blur transition-all duration-300"
-            title={isPlaying ? t('common.pause') : t('common.play')}
-          >
-            {isPlaying ? <Pause size={24} /> : <Play size={24} />}
-          </button>
-          <button
-            onClick={toggleMute}
-            className="bg-black/60 hover:bg-black/80 text-white rounded-full p-3 backdrop-blur transition-all duration-300"
-            title={isMuted ? t('common.unmute') : t('common.mute')}
-          >
-            {isMuted ? <VolumeX size={24} /> : <Volume2 size={24} />}
-          </button>
-        </div>
+        <div className="absolute inset-0 bg-black/50 w-full h-full"></div>
       </div>
 
       {/* Content */}
       <div className="relative z-10 w-full">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl">
-            <div className={`${isArabic ? 'text-right' : 'text-left'}`}>
-              <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-                {t('home.hero.title')}
-              </h1>
-              <p className="text-xl text-gray-200 mb-8 leading-relaxed">
-                {t('home.hero.subtitle')}
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link
-                  to="/products"
-                  className="bg-[#b9a779] hover:bg-[#054239] text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 flex items-center justify-center group"
-                >
-                  {t('home.hero.explore_products')}
-                  <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-                </Link>
-                <Link
-                  to="/contact"
-                  className="border-2 border-white text-white hover:bg-white hover:text-[#054239] px-8 py-4 rounded-full font-semibold transition-all duration-300 text-center"
-                >
-                  {t('common.contact_us')}
-                </Link>
-              </div>
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight text-center lg:text-left">
+              {t('home.hero.title')}
+            </h1>
+            <p className="text-xl text-gray-200 mb-8 leading-relaxed">
+              {t('home.hero.subtitle')}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link 
+                to="/products"
+                className="bg-[#b9a779] hover:bg-[#054239] text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 flex items-center justify-center group"
+              >
+                {t('home.hero.explore_products')}
+                <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+              </Link>
+              <Link 
+                to="/contact"
+                className="border-2 border-white text-white hover:bg-white hover:text-[#054239] px-8 py-4 rounded-full font-semibold transition-all duration-300 text-center"
+              >
+                {t('common.contact_us')}
+              </Link>
             </div>
           </div>
         </div>
