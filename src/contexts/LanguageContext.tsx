@@ -243,8 +243,8 @@ const translations = {
     'sort_by': 'Sort By',
     'name': 'Name',
     'price_low': 'Price: Low to High',
-    'price_high': 'Price: High to Low',
-  },
+    'price_high': 'Price: High to Low'
+  }
   },
   ar: {
     // Navigation
