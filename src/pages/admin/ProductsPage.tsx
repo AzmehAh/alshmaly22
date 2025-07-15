@@ -945,7 +945,9 @@ const ProductsPage = () => {
                               Complementary
                             </button>
                           </div>
-                        </div>
+                        <option key={category.id} value={category.id}>
+                          {category.name}{category.name_ar ? ` | ${category.name_ar}` : ''}
+                        </option>
                       ))}
                     {availableProducts
                       .filter(product => !relations.some(rel => rel.related_product_id === product.id))
