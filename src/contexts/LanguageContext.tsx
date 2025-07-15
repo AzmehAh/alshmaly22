@@ -285,6 +285,7 @@ const translations = {
     'products.title': 'منتجاتنا',
     'products.all_categories': 'جميع المنتجات',
     'products.no_products': 'لم يتم العثور على منتجات تطابق معاييرك.',
+     'products.weight_by': 'الوزن',
     'products.sort_by': 'ترتيب حسب',
     'products.sort.name': 'الاسم',
     'products.sort.price_low': 'السعر: من الأقل إلى الأعلى',
