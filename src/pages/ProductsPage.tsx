@@ -9,14 +9,14 @@ const ProductsPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [sortBy, setSortBy] = useState('name');
   const [selectedWeight, setSelectedWeight] = useState('all');
-  
+  const [selectedAvailability, setSelectedAvailability] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
   const [viewMode, setViewMode] = useState('grid');
 
   // Fetch products with current filters
   const { products, categories, loading, error } = useProducts({
     category: selectedCategory === 'all' ? undefined : selectedCategory,
-   
+    availability: selectedAvailability,
     search: searchTerm,
     sortBy: sortBy
   });
@@ -110,8 +110,21 @@ const ProductsPage = () => {
                   ))}
                 </select>
               </div>
-
-              
+ 
+              {/* Availability Filter */}
+              {/*  <div className="mb-6">
+                <label className="block text-sm font-medium text-gray-700 mb-3">Availability</label>
+                <select
+                  value={selectedAvailability}
+                  onChange={(e) => setSelectedAvailability(e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+                >
+                  <option value="all">All Products</option>
+                  <option value="in-stock">In Stock</option>
+                  <option value="out-of-stock">Out of Stock</option>
+                </select>
+              </div>
+*/}
               {/* Sort By */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-3">{t('products.sort_by')}</label>
@@ -178,7 +191,11 @@ const ProductsPage = () => {
                       alt={product.name}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
-                   
+                    {product.availability === 'out-of-stock' && (
+                      <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+                        <span className="text-white font-semibold text-sm">Out of Stock</span>
+                      </div>
+                    )}
                   </div>
                   <div className={`${viewMode === 'list' ? 'ml-4 flex-1' : 'p-6'}`}>
                     <h3 className="text-xl font-semibold text-[#054239] mb-2">
