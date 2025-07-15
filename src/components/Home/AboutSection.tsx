@@ -80,8 +80,8 @@ const AboutSection = () => {
               className="rounded-2xl shadow-2xl w-full h-96 object-cover"
             />
             <div className="absolute -bottom-6 -right-6 bg-[#b9a779] text-white p-6 rounded-2xl">
-              <p className="text-sm font-semibold">Trusted by</p>
-              <p className="text-2xl font-bold">5000+ Clients</p>
+              <p className="text-sm font-semibold"> {t('home.about.1')}</p>
+              <p className="text-2xl font-bold">{t('home.about.2')}</p>
             </div>
           </div>
 
