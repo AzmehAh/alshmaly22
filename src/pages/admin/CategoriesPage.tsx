@@ -180,7 +180,12 @@ const CategoriesPage = () => {
               {filteredCategories.map((category) => (
                 <tr key={category.id} className="hover:bg-gray-50">
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm font-medium text-[#054239]">{category.name}</div>
+                    <div>
+                      <div className="text-sm font-medium text-[#054239]">{category.name}</div>
+                      {category.name_ar && (
+                        <div className="text-xs text-gray-500 mt-1">{category.name_ar}</div>
+                      )}
+                    </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm text-gray-500">{category.slug}</div>
