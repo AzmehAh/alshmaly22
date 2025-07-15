@@ -125,7 +125,6 @@ const ContactPage = () => {
                       <h3 className="font-semibold text-[#054239] mb-1">{t('contact.phone')}</h3>
                       <p className="text-gray-600">{t('contact.phone.1')}</p>
                       <p className="text-gray-600">{t('contact.phone.2')}</p>
-                   
                     </div>
                   </div>
 
