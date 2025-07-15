@@ -238,9 +238,6 @@ const translations = {
     'products.specifications': 'Specifications',
     'products.related_products': 'Related Products',
     'products.discover': 'Discover our premium Syrian agricultural products, carefully selected and processed to bring you the authentic taste of Syria.',
-    'products.availability.in_stock': 'In Stock',
-    'products.availability.limited': 'Limited',
-    'products.availability.all': 'All Products',
   },
   ar: {
     // Navigation
@@ -464,9 +461,6 @@ const translations = {
     'products.specifications': 'المواصفات',
     'products.related_products': 'منتجات ذات صلة',
     'products.discover': 'اكتشف منتجاتنا الزراعية السورية المتميزة، مختارة ومعالجة بعناية لنقدم لك الطعم الأصيل لسوريا.',
-    'products.availability.in_stock': 'متوفر',
-    'products.availability.limited': 'محدود',
-    'products.availability.all': 'جميع المنتجات',
   }
 };
 
