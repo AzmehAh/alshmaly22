@@ -3,10 +3,10 @@ import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
 
-const HeroSection = () => {
- 
+const HeroSection= () => {
   const { t, i18n } = useTranslation();
   const isArabic = i18n.language === 'ar';
+  
 
   return (
     <section id="home" className="relative min-h-[100vh] flex items-center overflow-hidden w-full">
