@@ -65,7 +65,7 @@ const Footer = () => {
         {/* Social Media */}
 <div>
   <h4 className="font-semibold text-lg mb-4">{t('footer.follow_us')}</h4>
-  <div className="flex space-x-4">
+  <div className="flex gap-4">
     {/* Facebook */}
     <a
       href="https://www.facebook.com/alshmaly.sy?locale=ar_AR"
