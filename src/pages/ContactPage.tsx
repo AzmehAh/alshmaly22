@@ -119,7 +119,7 @@ const ContactPage = () => {
 
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 bg-[#b9a779] rounded-full flex items-center justify-center flex-shrink-0">
-                      <Phone size={20} className="text-white" />
+                      <Phone size={20} className="text-white" dir="ltr" />
                     </div>
                     <div>
                       <h3 className="font-semibold text-[#054239] mb-1">{t('contact.phone')}</h3>
