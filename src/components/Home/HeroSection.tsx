@@ -34,7 +34,7 @@ const HeroSection = () => {
   `}
   dir={t('direction')}
 >
-  {t('home.hero.title')}
+  {t('home.hero.title')} 
 </h1>
             <p className="text-xl text-gray-200 mb-8 leading-relaxed">
               {t('home.hero.subtitle')}
