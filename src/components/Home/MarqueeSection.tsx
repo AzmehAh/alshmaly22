@@ -16,29 +16,28 @@ const MarqueeSection = () => {
   const isArabic = language === 'ar';
 
   return ( 
-  <section 
-  className="py-3 bg-[#F7F7F7] border-b-2 border-b-[#edebe0] overflow-hidden w-full"
-  dir={isArabic ? 'rtl' : 'ltr'}
->
-  <div className="w-full relative">
-    <div className={`flex whitespace-nowrap min-w-max
-      ${isArabic ? 'animate-marquee-rtl' : 'animate-marquee'}`}>
-      {[...features, ...features, ...features].map((feature, index) => (
-        <div 
-          key={index} 
-          className="inline-flex items-center px-8 md:px-12 text-[#054239] flex-shrink-0"
-        > 
-          <div className="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center">
-            <feature.icon size={20} className="md:w-6 md:h-6" />
-          </div>
-          <span className={`ml-3 md:ml-4 text-sm md:text-xl font-semibold ${isArabic ? 'ml-0 mr-3 md:mr-4' : ''}`}>
-            {feature.text}
-          </span>
+ <section 
+      className="py-3 bg-[#F7F7F7] border-b-2 border-b-[#edebe0] overflow-hidden w-full"
+      dir={isArabic ? 'rtl' : 'ltr'}
+    >
+      <div className="w-full relative overflow-x-hidden no-scrollbar">
+        <div className={`flex whitespace-nowrap min-w-max ${isArabic ? 'animate-marquee-rtl' : 'animate-marquee-ltr'}`}>
+          {[...features, ...features, ...features].map((feature, index) => (
+            <div 
+              key={index} 
+              className="inline-flex items-center px-8 md:px-12 text-[#054239] flex-shrink-0"
+            >
+              <div className="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center">
+                <feature.icon size={20} className="md:w-6 md:h-6" />
+              </div>
+              <span className={`ml-3 md:ml-4 text-sm md:text-xl font-semibold ${isArabic ? 'ml-0 mr-3 md:mr-4' : ''}`}>
+                {feature.text}
+              </span>
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
-  </div>
-</section>
+      </div>
+    </section>
 
   );
 };
