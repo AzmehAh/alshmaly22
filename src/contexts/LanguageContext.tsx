@@ -380,8 +380,8 @@ const translations = {
     'marquee.trader_support': 'دعم مستمر للتجار',
     
     // Statistics
-    'statistics.satisfied_clients': 'عميل راضٍ',
-    'statistics.exporting_countries': 'دولة مصدرة إليها',
+    'statistics.satisfied_clients': 'العملاء الراضون',
+    'statistics.exporting_countries': 'الدول المصدِّرة إليها',
     'statistics.years_experience': 'سنوات من الخبرة',
     
     // Timeline
