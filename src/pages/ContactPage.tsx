@@ -102,8 +102,8 @@ const ContactPage = () => {
             <div className="lg:col-span-1">
               <div className="bg-[#f7f7f7] rounded-2xl p-8 shadow-lg h-fit sticky top-24">
                 <h2 className="text-2xl font-bold text-[#054239] mb-8">{t('contact.get_in_touch')}</h2>
-                
-                <div className="gap-6">
+                 
+                <div className="space-y-6">
                   <div className="flex items-start space-x-4">
                     <div className="w-12 h-12 bg-[#b9a779] rounded-full flex items-center justify-center flex-shrink-0">
                       <MapPin size={20} className="text-white" />
