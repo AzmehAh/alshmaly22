@@ -27,7 +27,7 @@ const ProductsPage = () => {
     category_id: '',
     base_price: 0,
     availability: 'in-stock' as 'in-stock' | 'out-of-stock' | 'limited',
-    features: [] as string[],
+   
     specifications_en: [] as string[],
     specifications_ar: [] as string[]
   });
@@ -169,7 +169,7 @@ const ProductsPage = () => {
       category_id: product.category_id || '',
       base_price: product.base_price,
       availability: product.availability,
-      features: product.features || [],
+     
       specifications_en: product.specifications_en || [],
       specifications_ar: product.specifications_ar || []
     });
@@ -249,7 +249,7 @@ const ProductsPage = () => {
       category_id: '',
       base_price: 0,
       availability: 'in-stock',
-      features: [],
+     
       specifications_en: [],
       specifications_ar: []
     });
@@ -266,15 +266,7 @@ const ProductsPage = () => {
     return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
   };
 
-  const addFeature = () => {
-    if (newFeature.trim()) {
-      setFormData(prev => ({
-        ...prev,
-        features: [...prev.features, newFeature.trim()]
-      }));
-      setNewFeature('');
-    }
-  };
+ 
 
   const addSpecificationEn = () => {
     if (newSpecificationEn.trim()) {
@@ -295,12 +287,7 @@ const ProductsPage = () => {
       setNewSpecificationAr('');
     }
   };
-  const removeFeature = (index: number) => {
-    setFormData(prev => ({
-      ...prev,
-      features: prev.features.filter((_, i) => i !== index)
-    }));
-  };
+ 
 
   const removeSpecificationEn = (index: number) => {
     setFormData(prev => ({
@@ -628,57 +615,7 @@ const ProductsPage = () => {
                   </div>
                 </div>
 
-                {/* Features */}
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <h4 className="text-lg font-semibold text-[#054239] mb-4">Product Features</h4>
-                  
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    {/* English Features */}
-                    <div>
-                      <h5 className="text-md font-medium text-[#054239] mb-3">Features (EN)</h5>
-                      <div className="space-y-3">
-                        {formData.features.map((feature, index) => (
-                          <div key={index} className="flex items-center space-x-2">
-                            <input
-                              type="text"
-                              value={feature}
-                              onChange={(e) => {
-                                const newFeatures = [...formData.features];
-                                newFeatures[index] = e.target.value;
-                                setFormData({ ...formData, features: newFeatures });
-                              }}
-                              className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                            />
-                            <button
-                              type="button"
-                              onClick={() => removeFeature(index)}
-                              className="text-red-600 hover:text-red-800"
-                            >
-                              <X size={20} />
-                            </button>
-                          </div>
-                        ))}
-                        <div className="flex items-center space-x-2">
-                          <input
-                            type="text"
-                            value={newFeature}
-                            onChange={(e) => setNewFeature(e.target.value)}
-                            placeholder="Add new feature"
-                            className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                            onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addFeature())}
-                          />
-                          <button
-                            type="button"
-                            onClick={addFeature}
-                            className="bg-[#b9a779] text-white px-4 py-2 rounded-lg hover:bg-[#054239] transition-colors"
-                          >
-                            Add
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-
-                    
+               
                 {/* Specifications - Bilingual */}
                 <div className="bg-gray-50 p-6 rounded-lg">
                   <h4 className="text-lg font-semibold text-[#054239] mb-4">Product Specifications</h4>
