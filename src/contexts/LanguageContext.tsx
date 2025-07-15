@@ -48,8 +48,7 @@ const translations = {
     'home.hero.subtitle': 'We export the best of Syrian nature to the world, bringing authenticity and premium quality to your table.',
     'home.hero.explore_products': 'Explore Our Products',
     'home.about.title': 'We bring authenticity into your world',
-    'home.about.description': 'For over 25 years, Al-Shamaly has been the trusted name in exporting high-quality Syrian agricultural products. Our commitment to quality and authenticity has made us the preferred partner for traders around the world, offering the finest legumes, spices, oils, and herbs from Syrian soil to tables across the globe.'
-
+    'home.about.description': 'For over 25 years, Al-Shamaly has been the trusted name in exporting high-quality Syrian agricultural products. Our commitment to quality and authenticity has made us the preferred partner for traders around the world, offering the finest legumes, spices, oils, and herbs from Syrian soil to tables across the globe.',
     'home.products.title': 'Featured Products',
     'home.services.title': 'Our Services',
     'home.blog.title': 'Latest News & Updates',
@@ -265,7 +264,7 @@ const translations = {
     'home.hero.subtitle': 'نصدر أفضل ما في الطبيعة السورية إلى العالم، ونقدم الأصالة والجودة المميزة لمائدتك.',
     'home.hero.explore_products': 'استكشف منتجاتنا',
     'home.about.title': 'نحن نجلب الأصالة إلى عالمك',
-   'home.about.description': 'لأكثر من 25 عامًا، كانت "الشمالي" الاسم الموثوق في تصدير المنتجات الزراعية السورية عالية الجودة. لقد جعلنا التزامنا بالجودة والأصالة الشريك المفضل للتجار حول العالم، حيث نُقدِّم أفضل أنواع البقوليات، والتوابل، والزيوت، والأعشاب من الأرض السورية إلى موائد العالم.'
+   'home.about.description': 'لأكثر من 25 عامًا، كانت "الشمالي" الاسم الموثوق في تصدير المنتجات الزراعية السورية عالية الجودة. لقد جعلنا التزامنا بالجودة والأصالة الشريك المفضل للتجار حول العالم، حيث نُقدِّم أفضل أنواع البقوليات، والتوابل، والزيوت، والأعشاب من الأرض السورية إلى موائد العالم.',
     'home.products.title': 'المنتجات المميزة',
     'home.services.title': 'خدماتنا',
     'home.blog.title': 'آخر الأخبار والتحديثات',
