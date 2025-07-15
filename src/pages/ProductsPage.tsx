@@ -134,8 +134,8 @@ const ProductsPage = () => {
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
                 >
                  <option value="name">{t('filters.name')}</option>
-                 <option value="price-low">{t('filters.price_low')}</option>
-                 <option value="price-high">{t('filters.price_high')}</option>
+                 <option value="price-low">{t('products.sort.price_low')}</option>
+                 <option value="price-high">{t('products.sort.price_high')}</option>
 
                 </select>
               </div>
