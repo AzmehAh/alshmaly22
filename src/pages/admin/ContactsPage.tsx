@@ -10,18 +10,34 @@ const ContactsPage = () => {
   const [selectedStatus, setSelectedStatus] = useState('all');
   const [selectedContact, setSelectedContact] = useState<ContactMessage | null>(null);
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
-  const [deletingId, setDeletingId] = useState<string | null>(null);
 
-  // دالة جلب البيانات من Supabase
+  const handleDelete = async (id: string) => {
+    try {
+      const { error } = await supabase
+        .from('contact_messages')
+        .delete()
+        .eq('id', id);
+
+      if (error) throw error;
+      await fetchContacts();
+      setDeleteConfirm(null);
+    } catch (error) {
+      console.error('Error deleting contact message:', error);
+      alert('Error deleting contact message. Please try again.');
+    }
+  };
+  useEffect(() => {
+    fetchContacts();
+  }, []);
+
   const fetchContacts = async () => {
     try {
-      setLoading(true);
       const { data, error } = await supabase
         .from('contact_messages')
         .select('*')
         .order('created_at', { ascending: false });
 
-      if (error) throw error;
+      if (error) throw error; 
       setContacts(data || []);
     } catch (error) {
       console.error('Error fetching contacts:', error);
@@ -30,11 +46,6 @@ const ContactsPage = () => {
     }
   };
 
-  useEffect(() => {
-    fetchContacts();
-  }, []);
-
-  // دالة تحديث حالة الرسالة
   const updateContactStatus = async (id: string, status: string) => {
     try {
       const { error } = await supabase
@@ -43,39 +54,13 @@ const ContactsPage = () => {
         .eq('id', id);
 
       if (error) throw error;
-      fetchContacts();
+      await fetchContacts();
     } catch (error) {
       console.error('Error updating contact status:', error);
       alert('Error updating contact status. Please try again.');
     }
   };
 
-  // دالة حذف الرسالة - الحل الكامل
-  const handleDelete = async (id: string) => {
-    setDeletingId(id);
-    try {
-      const { error } = await supabase
-        .from('contact_messages')
-        .delete()
-        .eq('id', id);
-
-      if (error) throw error;
-      
-      // تحديث الحالة المحلية مباشرة بدون إعادة جلب البيانات
-      setContacts(prevContacts => prevContacts.filter(contact => contact.id !== id));
-      setDeleteConfirm(null);
-      
-      // يمكنك استبدال هذا التنبيه بمكتبة إشعارات مثل react-toastify
-      alert('تم حذف الرسالة بنجاح');
-    } catch (error) {
-      console.error('Error deleting contact message:', error);
-      alert('حدث خطأ أثناء حذف الرسالة. يرجى المحاولة مرة أخرى.');
-    } finally {
-      setDeletingId(null);
-    }
-  };
-
-  // تصفية الرسائل حسب البحث والحالة
   const filteredContacts = contacts.filter(contact => {
     const matchesSearch = contact.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          contact.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -84,7 +69,6 @@ const ContactsPage = () => {
     return matchesSearch && matchesStatus;
   });
 
-  // تحديد لون الحالة
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'unread': return 'bg-red-100 text-red-800';
@@ -101,7 +85,6 @@ const ContactsPage = () => {
       </div>
     );
   }
-
 
   return (
     <div className="space-y-6">
