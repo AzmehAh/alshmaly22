@@ -48,7 +48,7 @@ const Footer = () => {
                 <MapPin size={16} className="text-[#b9a779] mt-1" />
                 <p className="text-gray-300 text-sm">{t('contact.address')}<br />Idlib, Sarmada, Syria</p>
               </div>
-              <div className="flex items-center space-x-3 dir="rtl">
+              <div className="flex items-center space-x-3" dir="rtl">
                 <Phone size={16} className="text-[#b9a779]" />
                 <div className="text-gray-300 text-sm ">
                   <p> +963 956 556 410</p>
