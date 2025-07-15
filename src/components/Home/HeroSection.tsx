@@ -17,7 +17,7 @@ const HeroSection = () => {
           muted 
           loop 
           className="w-full h-full object-cover min-w-full min-h-full"
-          poster="https://images.pexels.com/photos/1595104/pexels-photo-1595104.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080"
+          poster="https://streamable.com/bxt7mp"
         >
           <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-corn-field-44232-large.mp4" type="video/mp4" />
         </video>
