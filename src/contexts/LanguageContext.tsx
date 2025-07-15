@@ -95,6 +95,7 @@ const translations = {
     'blog.no_posts': 'No blog posts found in this category.',
     'blog.load_more': 'Load More Articles',
     'blog.share': 'Share Article',
+    'back.blog': 'Back to Blog',
     
     // Footer
     'footer.description': 'We export the best of Syrian nature to the world, bringing authenticity and quality to your table.',
@@ -322,7 +323,7 @@ const translations = {
     'blog.no_posts': 'لم يتم العثور على مقالات في هذه الفئة.',
     'blog.load_more': 'تحميل المزيد من المقالات',
     'blog.share': 'مشاركة المقال',
-    'back': 'العودة إلى المدونة',
+    'back.blog': 'العودة إلى المدونة',
     // Footer
     'footer.description': 'نصدر أفضل ما في الطبيعة السورية إلى العالم، ونجلب الأصالة والجودة إلى مائدتك.',
     'footer.quick_links': 'روابط سريعة',
