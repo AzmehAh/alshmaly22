@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
 
 const HeroSection = () => { 
-  const { t } = useLanguage();
+  const { t, language } = useLanguage(); // تأكد أن language موجود في الcontext
+  const isArabic = language === 'ar'; 
   
 
   return (
@@ -27,13 +28,11 @@ const HeroSection = () => {
       <div className="relative z-10 w-full">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl">
-           <h1
-      className={`text-4xl md:text-6xl font-bold text-white mb-6 leading-tight ${
-        isArabic ? 'text-right' : 'text-left'
-      }`}
-    >
-      {t('home.hero.title')}
-    </h1>
+<div className={`max-w-2xl ${isArabic ? 'text-right' : 'text-left'}`}>
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+              {t('home.hero.title')}
+            </h1>
+          </div>
             <p className="text-xl text-gray-200 mb-8 leading-relaxed">
               {t('home.hero.subtitle')}
             </p>
