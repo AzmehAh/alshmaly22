@@ -19,14 +19,19 @@ export class ContactAPI {
       language: messageData.language || 'en'
     };
     
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from('contact_messages')
-      .insert(dataWithLanguage)
-      .select()
-      .single();
+      .insert(dataWithLanguage);
 
     if (error) throw error;
-    return data;
+    
+    // Return a minimal object since we don't need the full data
+    return {
+      id: 'submitted',
+      ...dataWithLanguage,
+      status: 'unread',
+      created_at: new Date().toISOString()
+    } as ContactMessage;
   }
 
   // Get all contact messages (admin only)
