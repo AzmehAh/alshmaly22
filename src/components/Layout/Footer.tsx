@@ -46,7 +46,7 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-start space-x-3">
                 <MapPin size={16} className="text-[#b9a779] mt-1" />
-                <p className="text-gray-300 text-sm">{t('footer.contact_adress')}<br />Idlib, Sarmada, Syria</p>
+                <p className="text-gray-300 text-sm">{t('contact.address')}<br /> {t('footer.contact_adress')}</p>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone size={16} className="text-[#b9a779]" />
