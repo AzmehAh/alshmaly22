@@ -609,18 +609,7 @@ const ProductsPage = () => {
                         placeholder="0.00"
                       />
                     </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Availability *</label>
-                      <select
-                        value={formData.availability}
-                        onChange={(e) => setFormData({ ...formData, availability: e.target.value as any })}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                      >
-                        <option value="in-stock">In Stock</option>
-                        <option value="limited">Limited</option>
-                        <option value="out-of-stock">Out of Stock</option>
-                      </select>
-                    </div>
+                    
                   </div>
                 </div>
 
