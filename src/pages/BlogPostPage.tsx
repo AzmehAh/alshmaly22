@@ -85,13 +85,21 @@ const BlogPostPage = () => {
               </div>
               <div className="flex items-center">
                 <Calendar size={16} className="mr-2" />
-                {new Date(post.published_at).toLocaleDateString(
-                  language === 'ar' ? 'ar-SA' : 'en-US', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                  ...(language === 'ar' && { calendar: 'gregory' })
-                })}
+                {(() => {
+                  // Use event date if available, otherwise fall back to published date
+                  const eventDate = getLocalizedField(post, 'event_date');
+                  if (eventDate) {
+                    return eventDate;
+                  }
+                  // Fallback to published date if no event date
+                  return new Date(post.published_at).toLocaleDateString(
+                    language === 'ar' ? 'ar-SA' : 'en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    ...(language === 'ar' && { calendar: 'gregory' })
+                  });
+                })()}
               </div>
               <div className="flex items-center">
                 <Clock size={16} className="mr-2" />
