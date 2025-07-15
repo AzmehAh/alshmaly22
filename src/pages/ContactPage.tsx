@@ -117,7 +117,7 @@ const ContactPage = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-start space-x-4">
+                  <div className="flex items-start gap-4">
                     <div className="w-12 h-12 bg-[#b9a779] rounded-full flex items-center justify-center flex-shrink-0">
                       <Phone size={20} className="text-white" />
                     </div>
@@ -128,7 +128,7 @@ const ContactPage = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-start space-x-4">
+                  <div className="flex items-start gap-4">
                     <div className="w-12 h-12 bg-[#b9a779] rounded-full flex items-center justify-center flex-shrink-0">
                       <Mail size={20} className="text-white" />
                     </div>
@@ -138,7 +138,7 @@ const ContactPage = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-start space-x-4">
+                  <div className="flex items-start gap-4">
                     <div className="w-12 h-12 bg-[#b9a779] rounded-full flex items-center justify-center flex-shrink-0">
                       <Clock size={20} className="text-white" />
                     </div>
