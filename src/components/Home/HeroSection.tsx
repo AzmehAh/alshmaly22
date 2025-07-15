@@ -51,31 +51,33 @@ const HeroSection = () => {
         )}
       </div>
 
-      {/* Video Controls */}
-      <div className="absolute end-24 right-6 z-20 flex flex-col space-y-4">
-        <button
-          onClick={togglePlayPause}
-          className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
-            isPlaying 
-              ? 'bg-white/20 hover:bg-white/30 text-white' 
-              : 'bg-red-500/80 hover:bg-red-600/80 text-white shadow-lg'
-          }`}
-          title={isPlaying ? 'Pause Video' : 'Play Video'}
-        >
-          {isPlaying ? <Pause size={20} /> : <Play size={20} />}
-        </button>
-        
-        <button
-          onClick={toggleMute}
-          className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
-            isMuted 
-              ? 'bg-white/20 hover:bg-white/30 text-white' 
-              : 'bg-blue-500/80 hover:bg-blue-600/80 text-white shadow-lg'
-          }`}
-          title={isMuted ? 'Unmute Video' : 'Mute Video'}
-        >
-          {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
-        </button>
+    {/* Video Controls */}
+<div className="absolute bottom-6 left-6 z-20 flex flex-row space-x-4">
+  <button
+    onClick={togglePlayPause}
+    className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
+      isPlaying 
+        ? 'bg-white/20 hover:bg-white/30 text-white' 
+        : 'bg-red-500/80 hover:bg-red-600/80 text-white shadow-lg'
+    }`}
+    title={isPlaying ? 'Pause Video' : 'Play Video'}
+  >
+    {isPlaying ? <Pause size={20} /> : <Play size={20} />}
+  </button>
+  
+  <button
+    onClick={toggleMute}
+    className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
+      isMuted 
+        ? 'bg-white/20 hover:bg-white/30 text-white' 
+        : 'bg-blue-500/80 hover:bg-blue-600/80 text-white shadow-lg'
+    }`}
+    title={isMuted ? 'Unmute Video' : 'Mute Video'}
+  >
+    {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
+  </button>
+</div>
+
       </div>
       {/* Content */}
       <div className="relative z-10 w-full">
