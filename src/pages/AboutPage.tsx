@@ -159,13 +159,16 @@ return (
           </div>
 
           <div className="relative">
-            {/* Timeline Line */}
+            {/* Timeline Line - Desktop */}
             <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-[#054239] hidden lg:block"></div>
+            
+            {/* Timeline Line - Mobile */}
+            <div className="absolute left-8 w-1 h-full bg-[#054239] lg:hidden"></div>
 
-            <div className="space-y-12">
+            <div className="space-y-12 lg:space-y-12">
               {timeline.map((item, index) => (
-                <div key={index} className={`flex items-center ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}>
-                  <div className={`lg:w-1/2 ${index % 2 === 0 ? 'lg:pr-12' : 'lg:pl-12'}`}>
+                <div key={index} className={`flex items-center ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} pl-16 lg:pl-0`}>
+                  <div className={`lg:w-1/2 ${index % 2 === 0 ? 'lg:pr-12' : 'lg:pl-12'} w-full`}>
                     <div className="bg-[#f7f7f7] rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
                       <div className="flex items-center mb-4">
                         <Calendar size={20} className="text-[#b9a779] mr-2" />
@@ -178,6 +181,9 @@ return (
                   
                   {/* Timeline Dot */}
                   <div className="hidden lg:block w-6 h-6 bg-[#054239] rounded-full border-4 border-white shadow-lg z-10"></div>
+                  
+                  {/* Timeline Dot - Mobile */}
+                  <div className="absolute left-6 w-6 h-6 bg-[#054239] rounded-full border-4 border-white shadow-lg z-10 lg:hidden"></div>
                   
                   <div className="lg:w-1/2"></div>
                 </div>
