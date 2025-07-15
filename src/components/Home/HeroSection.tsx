@@ -1,24 +1,23 @@
-iimport React from 'react';
+import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
 
 const HeroSection = () => {
-  const { t, language } = useLanguage(); // <-- تأكد أنك تأخذ اللغة
-  const isArabic = language === 'ar'; // <-- أضف هذا السطر
+  const { t } = useLanguage();
 
   return (
     <section id="home" className="relative min-h-[100vh] flex items-center overflow-hidden w-full">
       {/* Background Video */}
       <div className="absolute inset-0 z-0 w-full h-full">
-        <video  
+        <video 
           autoPlay 
-          muted 
+          muted  
           loop 
           className="w-full h-full object-cover min-w-full min-h-full"
-          poster="https://images.pexels.com/photos/1595104/pexels-photo-1595104.jpeg"
+          poster="https://images.pexels.com/photos/1595104/pexels-photo-1595104.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080"
         >
-          <source src="https://files.catbox.moe/lmy00m.mp4" type="video/mp4" />
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-corn-field-44232-large.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-black/50 w-full h-full"></div>
       </div>
@@ -26,8 +25,8 @@ const HeroSection = () => {
       {/* Content */}
       <div className="relative z-10 w-full">
         <div className="container mx-auto px-4">
-          <div className={`max-w-2xl ${isArabic ? 'text-right' : 'text-left'}`}>
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+          <div className="max-w-2xl">
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight text-center lg:text-left">
               {t('home.hero.title')}
             </h1>
             <p className="text-xl text-gray-200 mb-8 leading-relaxed">
