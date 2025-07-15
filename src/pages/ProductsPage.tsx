@@ -104,7 +104,7 @@ const ProductsPage = () => {
                   onChange={(e) => setSelectedWeight(e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
                 >
-                  <option value="all">All Weights</option>
+                  <option value="all">{t('products.weight')}</option>
                   {weights.map(weight => (
                     <option key={weight} value={weight}>{weight}</option>
                   ))}
