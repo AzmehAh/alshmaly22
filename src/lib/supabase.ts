@@ -50,8 +50,7 @@ export interface Product {
   description_ar?: string;
   category_id?: string;
   base_price: number;
-  availability: 'in-stock' | 'out-of-stock' | 'limited';
-  features: string[];
+  availability: 'in-stock' | 'limited';
   specifications_en: string[];
   specifications_ar: string[];
   created_at: string;

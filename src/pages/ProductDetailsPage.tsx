@@ -156,22 +156,6 @@ const ProductDetailsPage = () => {
 
 
             {/* Product Features */}
-            {product.features && product.features.length > 0 && (
-              <div className="bg-[#f7f7f7] rounded-2xl p-6 shadow-lg">
-                <h3 className="text-xl font-semibold text-[#054239] mb-4 flex items-center">
-                  <Award size={24} className="mr-2 text-[#b9a779]" />
-                  {t('products.additional_info')}
-                </h3>
-                <ul className="space-y-3">
-                  {product.features.map((feature, index) => (
-                    <li key={index} className="flex items-start">
-                      <Shield size={16} className="text-[#b9a779] mr-3 mt-1 flex-shrink-0" />
-                      <span className="text-gray-700">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
 
             {/* Product Specifications */}
             {((product.specifications_en && product.specifications_en.length > 0) || 
