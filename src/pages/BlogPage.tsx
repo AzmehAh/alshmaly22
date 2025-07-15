@@ -91,6 +91,10 @@ const BlogPage = () => {
                       <Clock size={16} className="mr-2" />
                       {getLocalizedField(post, 'read_time')}
                     </div>
+                    <div className="flex items-center">
+                      <Calendar size={16} className="mr-2" />
+                      {getLocalizedField(post, 'Event Date')}
+                    </div>
                   </div>
                   
                   <h3 className="text-xl font-semibold text-[#054239] mb-3 group-hover:text-[#b9a779] transition-colors duration-300 line-clamp-2"> 
