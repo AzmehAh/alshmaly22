@@ -239,11 +239,11 @@ const translations = {
     'products.related_products': 'Related Products',
     'products.discover': 'Discover our premium Syrian agricultural products, carefully selected and processed to bring you the authentic taste of Syria.',
     {
-  "filters": {
-    "sort_by": "Sort By",
-    "name": "Name",
-    "price_low": "Price: Low to High",
-    "price_high": "Price: High to Low"
+  'filters': {
+    'sort_by': 'Sort By',
+    'name': 'Name',
+    'price_low': 'Price: Low to High',
+    'price_high': 'Price: High to Low',
   }
 
 
