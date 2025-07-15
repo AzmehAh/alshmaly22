@@ -90,8 +90,10 @@ const AboutSection = () => {
             <h2 className="text-4xl font-bold text-[#F7F7F7] mb-6">
               {t('home.about.title')}
             </h2>
-            {/* This content could be made dynamic from database */}
-
+           
+<p className="text-[#edebe0] text-lg leading-relaxed mb-8">
+               {t('home.about.description')}
+            </p>
             {/* Counters */}
             <div className="grid grid-cols-3 gap-8">
               <div className="text-center">
