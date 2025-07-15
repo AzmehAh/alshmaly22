@@ -305,6 +305,7 @@ const translations = {
     'footer.description': 'نصدر أفضل ما في الطبيعة السورية إلى العالم، ونجلب الأصالة والجودة إلى مائدتك.',
     'footer.quick_links': 'روابط سريعة',
     'footer.contact_info': 'معلومات الاتصال',
+     'footer.contact_adress':'إدلب، سرمدا، سوريا',
     'footer.follow_us': 'تابعنا',
     'footer.rights': 'جميع الحقوق محفوظة.',
     
