@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Eye, Mail, Calendar, User, Trash2 } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
+import { ContactAPI } from '../../lib/api/contact';
 import type { ContactMessage } from '../../lib/supabase';
 
 const ContactsPage = () => {
@@ -13,12 +14,7 @@ const ContactsPage = () => {
 
   const handleDelete = async (id: string) => {
     try {
-      const { error } = await supabase
-        .from('contact_messages')
-        .delete()
-        .eq('id', id);
-
-      if (error) throw error;
+      await ContactAPI.deleteContactMessage(id);
       await fetchContacts();
       setDeleteConfirm(null);
     } catch (error) {

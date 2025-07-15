@@ -82,6 +82,9 @@ export class ProductsAPI {
 
   // Get single product by ID or slug
   static async getProduct(identifier: string): Promise<Product | null> {
+    // Check if identifier is a UUID (ID) or a slug
+    const isUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(identifier);
+    
     const { data, error } = await supabase
       .from('products')
       .select(`
@@ -90,7 +93,7 @@ export class ProductsAPI {
         images:product_images(*),
         packages:product_packages(*)
       `)
-      .or(`id.eq.${identifier},slug.eq.${identifier}`)
+      .eq(isUUID ? 'id' : 'slug', identifier)
       .single();
 
     if (error) {

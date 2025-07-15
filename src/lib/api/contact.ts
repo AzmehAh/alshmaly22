@@ -82,12 +82,19 @@ export class ContactAPI {
 
   // Delete contact message (admin only)
   static async deleteContactMessage(id: string): Promise<void> {
+    if (!id) {
+      throw new Error('Contact message ID is required');
+    }
+    
     const { error } = await supabase
       .from('contact_messages')
       .delete()
       .eq('id', id);
 
-    if (error) throw error;
+    if (error) {
+      console.error('Error deleting contact message:', error);
+      throw new Error(`Failed to delete contact message: ${error.message}`);
+    }
   }
 
   // Get contact statistics (admin only)
