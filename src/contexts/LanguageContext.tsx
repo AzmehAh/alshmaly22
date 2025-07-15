@@ -91,6 +91,7 @@ const translations = {
     'footer.description': 'We export the best of Syrian nature to the world, bringing authenticity and quality to your table.',
     'footer.quick_links': 'Quick Links',
     'footer.contact_info': 'Contact Info',
+    'footer.contact_adress':'Idlib, Sarmada, Syria',
     'footer.follow_us': 'Follow Us',
     'footer.rights': 'All rights reserved.',
     
