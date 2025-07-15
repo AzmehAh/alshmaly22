@@ -288,7 +288,7 @@ const translations = {
     'products.all_categories': 'جميع المنتجات',
     'products.no_products': 'لم يتم العثور على منتجات تطابق معاييرك.',
      'products.weight_by': 'الوزن',
-      'products.weight': 'كل الأوزان',
+      'products.weight':  'كل الأحجام '
     'products.sort_by': 'ترتيب حسب',
     'products.sort.name': 'الاسم',
     'products.sort.price_low': 'السعر: من الأقل إلى الأعلى',
