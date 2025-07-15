@@ -14,6 +14,11 @@ const ContactsPage = () => {
 
   const handleDelete = async (id: string) => {
     try {
+      if (!id) {
+        alert('No message ID provided');
+        return;
+      }
+      
       await ContactAPI.deleteContactMessage(id);
       await fetchContacts();
       setDeleteConfirm(null);
@@ -323,6 +328,7 @@ const ContactsPage = () => {
                 </button>
                 <button
                   onClick={() => handleDelete(deleteConfirm)}
+                  disabled={!deleteConfirm}
                   className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors duration-200"
                 >
                   Delete

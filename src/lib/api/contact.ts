@@ -86,6 +86,8 @@ export class ContactAPI {
       throw new Error('Contact message ID is required');
     }
     
+    console.log('Attempting to delete contact message with ID:', id);
+    
     const { error } = await supabase
       .from('contact_messages')
       .delete()
@@ -95,6 +97,8 @@ export class ContactAPI {
       console.error('Error deleting contact message:', error);
       throw new Error(`Failed to delete contact message: ${error.message}`);
     }
+    
+    console.log('Successfully deleted contact message');
   }
 
   // Get contact statistics (admin only)
