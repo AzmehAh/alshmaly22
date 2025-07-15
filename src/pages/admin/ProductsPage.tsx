@@ -1,38 +1,43 @@
-Here's the fixed version with the missing closing brackets and tags added:
+The main issue in this file is a misplaced closing bracket for the categories mapping inside the related products modal. Here's the corrected version of that section:
 
 ```jsx
-import React, { useState, useEffect } from 'react';
-// [previous imports remain the same...]
-
-const ProductsPage = () => {
-  // [previous state and functions remain the same...]
-
-  return (
-    <div className="space-y-6">
-      {/* [previous JSX remains the same until the categories mapping...] */}
-      
-      {categories.map(category => (
-        <option key={category.id} value={category.id}>
-          {category.name}{category.name_ar ? ` | ${category.name_ar}` : ''}
-        </option>
-      ))}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+{availableProducts
+  .filter(product => !relations.some(rel => rel.related_product_id === product.id))
+  .map((product) => (
+    <div key={product.id} className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+      <div className="flex items-center">
+        <img
+          src={product.images?.[0]?.image_url || 'https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=100&h=100'}
+          alt={product.name}
+          className="h-10 w-10 rounded-lg object-cover mr-3"
+        />
+        <div>
+          <div className="font-medium text-[#054239]">{product.name}</div>
+          <div className="text-sm text-gray-500">{product.category?.name}</div>
         </div>
-      )}
-
-      {/* [rest of the modals and JSX remain the same...] */}
+      </div>
+      <div className="flex space-x-2">
+        <button
+          onClick={() => handleAddRelation(showRelationsModal!, product.id, 'related')}
+          className="bg-[#b9a779] hover:bg-[#054239] text-white px-3 py-1 rounded text-sm transition-colors duration-200"
+        >
+          Related
+        </button>
+        <button
+          onClick={() => handleAddRelation(showRelationsModal!, product.id, 'similar')}
+          className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm transition-colors duration-200"
+        >
+          Similar
+        </button>
+        <button
+          onClick={() => handleAddRelation(showRelationsModal!, product.id, 'complementary')}
+          className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded text-sm transition-colors duration-200"
+        >
+          Complementary
+        </button>
+      </div>
     </div>
-  );
-};
-
-export default ProductsPage;
+  ))}
 ```
 
-I've added the missing closing tags and brackets that were needed to properly close the nested structure in the component. The main issues were in the categories mapping section where several closing tags were missing. The fixed version maintains the proper nesting and structure of the component.
+I've removed the misplaced category option element and its associated closing brackets. The rest of the file remains unchanged.
