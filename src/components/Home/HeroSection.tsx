@@ -2,7 +2,7 @@ import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
-
+import { useTranslation } from 'react-i18next';
 const HeroSection= () => {
   const { t, i18n } = useTranslation();
   const isArabic = i18n.language === 'ar';
