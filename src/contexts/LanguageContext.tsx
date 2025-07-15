@@ -245,8 +245,6 @@ const translations = {
     'price_low': 'Price: Low to High',
     'price_high': 'Price: High to Low',
   }
-
-
   },
   ar: {
     // Navigation
