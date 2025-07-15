@@ -52,7 +52,7 @@ const HeroSection = () => {
       </div>
 
       {/* Video Controls */}
-      <div className="absolute top-24 right-6 z-20 flex flex-col space-y-4">
+      <div className="absolute end-24 right-6 z-20 flex flex-col space-y-4">
         <button
           onClick={togglePlayPause}
           className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
