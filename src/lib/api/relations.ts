@@ -30,7 +30,7 @@ export class RelationsAPI {
       .from('product_relations')
       .select(`
         *,
-        related_product:related_product_id!products(
+        related_product:products(
           *,
           category:categories(*),
           images:product_images(*)
@@ -91,7 +91,7 @@ export class RelationsAPI {
       .from('blog_post_relations')
       .select(`
         *,
-        related_blog_post:blog_posts!related_blog_post_id(
+        related_blog_post:blog_posts(
           *,
           category:blog_categories(*)
         )
