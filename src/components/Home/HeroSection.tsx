@@ -3,9 +3,9 @@ import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
 
-const HeroSection = () => {
-  const { t } = useLanguage();
-
+const HeroSection = () => { 
+  const { t, language } = useLanguage(); // تأكد أن language موجود في الcontext
+  const isArabic = language === 'ar';
   return (
     <section id="home" className="relative min-h-[100vh] flex items-center overflow-hidden w-full">
       {/* Background Video */}
