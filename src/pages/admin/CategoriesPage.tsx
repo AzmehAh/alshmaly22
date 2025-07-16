@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Plus, Search, Edit, Trash2 } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import type { Category } from '../../lib/supabase';
-
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const CategoriesPage = () => {
+   const { t, direction } = useLanguage()
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
