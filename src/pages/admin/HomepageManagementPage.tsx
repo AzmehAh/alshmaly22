@@ -140,19 +140,20 @@ const HomepageManagementPage = () => {
     );
   }
 
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-3">
           <Home size={24} className="text-[#b9a779]" />
-          <h1 className="text-3xl font-bold text-[#054239]"> {t('admin.homepage.management')}</h1>
+          <h1 className="text-3xl font-bold text-[#054239]">{t('admin.homepage.management')}</h1>
         </div>
         <button
           onClick={() => setShowAddModal(true)}
           className="bg-[#b9a779] hover:bg-[#054239] text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200 flex items-center"
         >
           <Plus size={20} className="mr-2" />
-           {t('add.to.homepage')}
+          {t('add.to.homepage')}
         </button>
       </div>
 
@@ -167,7 +168,7 @@ const HomepageManagementPage = () => {
                 : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
             }`}
           >
-            Homepage Products ({homepageProducts.length})
+            {t('homepage.products')} ({homepageProducts.length})
           </button>
           <button
             onClick={() => setActiveTab('blog')}
@@ -177,35 +178,36 @@ const HomepageManagementPage = () => {
                 : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
             }`}
           >
-            Homepage Blog Posts ({homepageBlogPosts.length})
+            {t('homepage.blog.posts')} ({homepageBlogPosts.length})
           </button>
         </div>
 
-        {/* Content Table */}
+        {/* Table headers */}
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Order
+                  {t('order')}
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  {activeTab === 'products' ? 'Product' : 'Blog Post'}
+                  {activeTab === 'products' ? t('product') : t('blog.post')}
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Status
+                  {t('status')}
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Actions
+                  {t('actions')}
                 </th>
               </tr>
             </thead>
+
             <tbody className="bg-white divide-y divide-gray-200">
               {(activeTab === 'products' ? homepageProducts : homepageBlogPosts).map((item, index) => {
-                const content = activeTab === 'products' 
-                  ? (item as HomepageProduct).product 
+                const content = activeTab === 'products'
+                  ? (item as HomepageProduct).product
                   : (item as HomepageBlogPost).blog_post;
-                
+
                 return (
                   <tr key={item.id} className="hover:bg-gray-50">
                     <td className="px-6 py-4 whitespace-nowrap">
@@ -229,6 +231,7 @@ const HomepageManagementPage = () => {
                         </div>
                       </div>
                     </td>
+
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
                         {activeTab === 'products' && (
@@ -244,46 +247,48 @@ const HomepageManagementPage = () => {
                           </div>
                           {activeTab === 'products' && (
                             <div className="text-sm text-gray-500">
-                              {(content as Product)?.category?.name || 'Uncategorized'}
+                              {(content as Product)?.category?.name || t('uncategorized')}
                             </div>
                           )}
                         </div>
                       </div>
                     </td>
+
                     <td className="px-6 py-4 whitespace-nowrap">
                       <button
                         onClick={() => handleToggleActive(item.id, item.is_active)}
                         className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full cursor-pointer transition-colors duration-200 ${
-                          item.is_active 
-                            ? 'bg-green-100 text-green-800 hover:bg-green-200' 
+                          item.is_active
+                            ? 'bg-green-100 text-green-800 hover:bg-green-200'
                             : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
                         }`}
                       >
-                        {item.is_active ? 'Active' : 'Inactive'}
+                        {item.is_active ? t('active') : t('inactive')}
                       </button>
                     </td>
+
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                       <div className="flex items-center space-x-2">
                         <button
                           onClick={() => window.open(
-                            activeTab === 'products' 
-                              ? `/product/${(item as HomepageProduct).product_id}` 
-                              : `/blog/${(item as HomepageBlogPost).blog_post_id}`, 
+                            activeTab === 'products'
+                              ? `/product/${(item as HomepageProduct).product_id}`
+                              : `/blog/${(item as HomepageBlogPost).blog_post_id}`,
                             '_blank'
                           )}
                           className="text-blue-600 hover:text-blue-900 p-1 rounded"
-                          title="View Item"
+                          title={t('view.item')}
                         >
                           <Eye size={16} />
                         </button>
                         <button
                           onClick={() => handleRemoveFromHomepage(
-                            activeTab === 'products' 
-                              ? (item as HomepageProduct).product_id 
+                            activeTab === 'products'
+                              ? (item as HomepageProduct).product_id
                               : (item as HomepageBlogPost).blog_post_id
                           )}
                           className="text-red-600 hover:text-red-900 p-1 rounded"
-                          title="Remove from Homepage"
+                          title={t('remove.from.homepage')}
                         >
                           <Trash2 size={16} />
                         </button>
@@ -297,14 +302,16 @@ const HomepageManagementPage = () => {
         </div>
       </div>
 
-      {/* Add to Homepage Modal */}
+      {/* Modal */}
       {showAddModal && (
         <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
           <div className="relative top-20 mx-auto p-5 border w-11/12 md:w-2/3 lg:w-1/2 shadow-lg rounded-md bg-white">
             <div className="mt-3">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-lg font-medium text-[#054239]">
-                  Add {activeTab === 'products' ? 'Product' : 'Blog Post'} to Homepage
+                  {t('add.item.to.homepage', {
+                    type: t(activeTab === 'products' ? 'product' : 'blog.post'),
+                  })}
                 </h3>
                 <button
                   onClick={() => setShowAddModal(false)}
@@ -320,7 +327,7 @@ const HomepageManagementPage = () => {
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
                   <input
                     type="text"
-                    placeholder={`Search ${activeTab}...`}
+                    placeholder={t(activeTab === 'products' ? 'search.products' : 'search.blog')}
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="pl-10 w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
@@ -328,7 +335,7 @@ const HomepageManagementPage = () => {
                 </div>
               </div>
 
-              {/* Available Items */}
+              {/* List */}
               <div className="max-h-96 overflow-y-auto">
                 <div className="space-y-2">
                   {getAvailableItems().map((item) => (
@@ -350,7 +357,7 @@ const HomepageManagementPage = () => {
                           </div>
                           {activeTab === 'products' && (
                             <div className="text-sm text-gray-500">
-                              {(item as Product).category?.name || 'Uncategorized'}
+                              {(item as Product).category?.name || t('uncategorized')}
                             </div>
                           )}
                         </div>
@@ -359,7 +366,7 @@ const HomepageManagementPage = () => {
                         onClick={() => handleAddToHomepage(item.id)}
                         className="bg-[#b9a779] hover:bg-[#054239] text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200"
                       >
-                        Add
+                        {t('add')}
                       </button>
                     </div>
                   ))}
@@ -368,7 +375,7 @@ const HomepageManagementPage = () => {
 
               {getAvailableItems().length === 0 && (
                 <div className="text-center py-8 text-gray-500">
-                  No available {activeTab} found.
+                  {t(activeTab === 'products' ? 'no.available.products' : 'no.available.blog.posts')}
                 </div>
               )}
             </div>
