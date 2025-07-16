@@ -640,7 +640,7 @@ const ProductsPage = () => {
                             type="text"
                             value={newSpecificationEn}
                             onChange={(e) => setNewSpecificationEn(e.target.value)}
-                            placeholder={t('admin.add')} {t('admin.specifications')}
+                            placeholder={`${t('admin.add')} ${t('admin.specifications')}`}
                             className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
                             onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addSpecificationEn())}
                           />
@@ -687,7 +687,7 @@ const ProductsPage = () => {
                             type="text"
                             value={newSpecificationAr}
                             onChange={(e) => setNewSpecificationAr(e.target.value)}
-                            placeholder={t('admin.add')} {t('admin.specifications')}
+                            placeholder={`${t('admin.add')} ${t('admin.specifications')}`}
                             className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
                             dir="rtl"
                             onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addSpecificationAr())}
