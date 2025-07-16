@@ -243,7 +243,7 @@ const translations = {
     'products.discover': 'Discover our premium Syrian agricultural products, carefully selected and processed to bring you the authentic taste of Syria.',
     'back': 'Back to Products',
       // Admin Interface
-    'Add.to.Homepage' : 'Add to Homepage'
+    'Add.to.Homepage' : 'Add to Homepage',
    
   },
   ar: {
