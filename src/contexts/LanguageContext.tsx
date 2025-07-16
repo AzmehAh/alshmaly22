@@ -2784,7 +2784,7 @@ const adminTranslations = {
   'categories.delete_modal.title': 'Delete Confirmation',
   'categories.delete_modal.message': 'Are you sure you want to delete this category? This action cannot be undone.',
   'categories.delete_modal.cancel': 'Cancel',
-  'categories.delete_modal.delete': 'Delete'
+  'categories.delete_modal.delete': 'Delete',
 
 
 
