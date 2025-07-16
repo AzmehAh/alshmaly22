@@ -2760,7 +2760,33 @@ const adminTranslations = {
   'admin.complementary': 'Complementary',
   'admin.product': 'Product',
   'admin.confirm_delete': 'Confirm Delete',
-  'admin.delete_warning': 'You won\'t be able to revert this!'
+  'admin.delete_warning': 'You won\'t be able to revert this!',
+    
+  'categories.title': 'Categories Management',
+  'categories.add_category': 'Add Category',
+  'categories.search_placeholder': 'Search categories...',
+  'categories.table.name': 'Name',
+  'categories.table.slug': 'Slug',
+  'categories.table.description': 'Description',
+  'categories.table.created': 'Created At',
+  'categories.table.actions': 'Actions',
+  'categories.form.add_title': 'Add Category',
+  'categories.form.edit_title': 'Edit Category',
+  'categories.form.name_en': 'Name (English)',
+  'categories.form.name_ar': 'Name (Arabic)',
+  'categories.form.slug': 'Slug',
+  'categories.form.description_en': 'Description (English)',
+  'categories.form.description_ar': 'Description (Arabic)',
+  'categories.form.cancel': 'Cancel',
+  'categories.form.saving': 'Saving...',
+  'categories.form.update': 'Update',
+  'categories.form.create': 'Create',
+  'categories.delete_modal.title': 'Delete Confirmation',
+  'categories.delete_modal.message': 'Are you sure you want to delete this category? This action cannot be undone.',
+  'categories.delete_modal.cancel': 'Cancel',
+  'categories.delete_modal.delete': 'Delete'
+
+
 
   }, 
   ar: {
@@ -2833,7 +2859,31 @@ const adminTranslations = {
   'admin.product': 'المنتج',
   'admin.confirm_delete': 'تأكيد الحذف',
   'admin.delete_warning': 'لن تتمكن من استعادة هذا العنصر بعد الحذف.'
-    
+  
+  'categories.title': 'إدارة الفئات',
+  'categories.add_category': 'إضافة فئة',
+  'categories.search_placeholder': 'ابحث في الفئات...',
+  'categories.table.name': 'الاسم',
+  'categories.table.slug': 'المُعرّف',
+  'categories.table.description': 'الوصف',
+  'categories.table.created': 'تاريخ الإضافة',
+  'categories.table.actions': 'الإجراءات',
+  'categories.form.add_title': 'إضافة فئة',
+  'categories.form.edit_title': 'تعديل الفئة',
+  'categories.form.name_en': 'الاسم (إنجليزي)',
+  'categories.form.name_ar': 'الاسم (عربي)',
+  'categories.form.slug': 'المُعرّف',
+  'categories.form.description_en': 'الوصف (إنجليزي)',
+  'categories.form.description_ar': 'الوصف (عربي)',
+  'categories.form.cancel': 'إلغاء',
+  'categories.form.saving': 'جارٍ الحفظ...',
+  'categories.form.update': 'تحديث',
+  'categories.form.create': 'إنشاء',
+  'categories.delete_modal.title': 'تأكيد الحذف',
+  'categories.delete_modal.message': 'هل أنت متأكد أنك تريد حذف هذه الفئة؟ لا يمكن التراجع عن هذا الإجراء.',
+  'categories.delete_modal.cancel': 'إلغاء',
+  'categories.delete_modal.delete': 'حذف'
+
 
   }
 };
