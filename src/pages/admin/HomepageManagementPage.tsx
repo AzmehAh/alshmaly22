@@ -143,14 +143,14 @@ const HomepageManagementPage = () => {
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-3">
           <Home size={24} className="text-[#b9a779]" />
-          <h1 className="text-3xl font-bold text-[#054239]">Homepage Management</h1>
+          <h1 className="text-3xl font-bold text-[#054239]">  {t('Homepage.Management')}</h1>
         </div>
         <button
           onClick={() => setShowAddModal(true)}
           className="bg-[#b9a779] hover:bg-[#054239] text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200 flex items-center"
         >
           <Plus size={20} className="mr-2" />
-          Add to Homepage
+           {t('Add.to.Homepage')}
         </button>
       </div>
 
