@@ -2709,7 +2709,6 @@ const adminTranslations = {
     'admin.language.arabic': 'العربية',
   }, 
   ar: {
-    
     'admin.products.management': 'إدارة المنتجات',
     'admin.categories.management': 'إدارة الفئات',
     'admin.blog.management': 'إدارة المدونة',
