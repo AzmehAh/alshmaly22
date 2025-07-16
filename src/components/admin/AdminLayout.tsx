@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
-import { 
-  LayoutDashboard, 
-  Package, 
-  FileText, 
-  MessageSquare, 
-  Mail, 
-  FolderOpen, 
-  LogOut, 
-  Menu, 
+import {
+  LayoutDashboard,
+  Package,
+  FileText,
+  Mail,
+  FolderOpen,
+  LogOut,
+  Menu,
   X,
   User,
   Home,
-  Globe
+  Globe,
 } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import { useLanguage } from '../../contexts/LanguageContext';
@@ -26,7 +25,6 @@ const AdminLayout = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Check if user is authenticated
     const checkAuth = async () => {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) {
@@ -38,7 +36,6 @@ const AdminLayout = () => {
 
     checkAuth();
 
-    // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === 'SIGNED_OUT' || !session) {
         navigate('/admin/login');
@@ -47,7 +44,9 @@ const AdminLayout = () => {
       }
     });
 
-    return () => subscription.unsubscribe();
+    return () => {
+      if (subscription?.unsubscribe) subscription.unsubscribe();
+    };
   }, [navigate]);
 
   const handleLogout = async () => {
@@ -62,11 +61,11 @@ const AdminLayout = () => {
     { name: t('admin.categories.management'), href: '/admin/categories', icon: FolderOpen },
     { name: t('admin.export_countries.management'), href: '/admin/export-countries', icon: Globe },
     { name: t('admin.blog.management'), href: '/admin/blog-posts', icon: FileText },
-    { name: t('admin.categories.management'), href: '/admin/blog-categories', icon: FolderOpen },
+    { name: t('admin.blog_categories.management'), href: '/admin/blog-categories', icon: FolderOpen },
     { name: t('admin.contacts.management'), href: '/admin/contacts', icon: Mail },
   ];
 
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (path: string) => location.pathname.startsWith(path);
 
   return (
     <div className="min-h-screen bg-gray-50 flex" dir={direction}>
@@ -78,17 +77,22 @@ const AdminLayout = () => {
       )}
 
       {/* Sidebar */}
-      <div className={`fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg transform ${
-        sidebarOpen ? 'translate-x-0' : '-translate-x-full'
-      } transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 flex flex-col`}>
-        
+      <div
+        className={`fixed inset-y-0 ${
+          direction === 'rtl' ? 'right-0' : 'left-0'
+        } z-50 w-64 bg-white shadow-lg transform ${
+          sidebarOpen ? 'translate-x-0' : direction === 'rtl' ? 'translate-x-full' : '-translate-x-full'
+        } transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 flex flex-col`}
+      >
         {/* Logo Section */}
         <div className="flex items-center justify-between h-16 px-6 border-b border-gray-200 flex-shrink-0">
           <div className="flex items-center space-x-3">
-            <img 
-              src="https://i.postimg.cc/0Q8pxwTM/logo.png" 
-              alt="Al-Shamali Logo" 
+            <img
+              src="https://i.postimg.cc/0Q8pxwTM/logo.png"
+              alt="Al-Shamali Logo"
               className="h-8 w-8 object-contain"
+              width={32}
+              height={32}
             />
             <div>
               <h1 className="text-lg font-bold text-[#054239]">Al-Shamali</h1>
@@ -108,7 +112,7 @@ const AdminLayout = () => {
           <div className="space-y-2">
             {navigation.map((item) => (
               <Link
-                key={item.name}
+                key={item.href}
                 to={item.href}
                 className={`group flex items-center px-3 py-3 text-sm font-medium rounded-lg transition-colors duration-200 ${
                   isActive(item.href)
@@ -162,7 +166,7 @@ const AdminLayout = () => {
             >
               <Menu size={20} />
             </button>
-            
+
             <div className="flex items-center space-x-4" dir="ltr">
               <AdminLanguageSwitcher />
               <div className="border-l border-gray-200 pl-4">
