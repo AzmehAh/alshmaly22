@@ -2719,6 +2719,7 @@ const adminTranslations = {
     'admin.language.current': 'اللغة الحالية',
     'admin.language.english': 'English',
     'admin.language.arabic': 'العربية',
+     'add.to.homepage' : 'اضافة لصفحة الرئيسية',
   }
 };
 
