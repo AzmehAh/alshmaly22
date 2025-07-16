@@ -2856,7 +2856,7 @@ const adminTranslations = {
   'admin.complementary': 'مُكمل',
   'admin.product': 'المنتج',
   'admin.confirm_delete': 'تأكيد الحذف',
-  'admin.delete_warning': 'لن تتمكن من استعادة هذا العنصر بعد الحذف.'
+  'admin.delete_warning': 'لن تتمكن من استعادة هذا العنصر بعد الحذف.',
   
   'categories.title': 'إدارة الفئات',
   'categories.add_category': 'إضافة فئة',
