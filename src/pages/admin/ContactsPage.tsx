@@ -3,8 +3,10 @@ import { Search, Eye, Mail, Calendar, User, Trash2 } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import { ContactAPI } from '../../lib/api/contact';
 import type { ContactMessage } from '../../lib/supabase';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const ContactsPage = () => {
+   const { t, direction } = useLanguage()
   const [contacts, setContacts] = useState<ContactMessage[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
