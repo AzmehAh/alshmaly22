@@ -2691,6 +2691,7 @@ const translations = {
 // Enhanced admin translations for specific pages
 const adminTranslations = {
   en: {
+    'admin.dashboard':'Dashboard',
     'admin.products.management': 'Products Management',
     'admin.categories.management': 'Categories Management', 
     'admin.blog.management': 'Blog Management',
@@ -2705,7 +2706,7 @@ const adminTranslations = {
     'admin.language.arabic': 'العربية',
   }, 
   ar: {
-    'admin.dashboard':'Dashboard',
+    
     'admin.products.management': 'إدارة المنتجات',
     'admin.categories.management': 'إدارة الفئات',
     'admin.blog.management': 'إدارة المدونة',
