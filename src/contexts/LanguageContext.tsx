@@ -2784,7 +2784,7 @@ const adminTranslations = {
   'categories.delete_modal.title': 'Delete Confirmation',
   'categories.delete_modal.message': 'Are you sure you want to delete this category? This action cannot be undone.',
   'categories.delete_modal.cancel': 'Cancel',
-  'categories.delete_modal.delete': 'Delete',
+  'categories.delete_modal.delete': 'Delete'
 
   }, 
   ar: {
@@ -2880,7 +2880,7 @@ const adminTranslations = {
   'categories.delete_modal.title': 'تأكيد الحذف',
   'categories.delete_modal.message': 'هل أنت متأكد أنك تريد حذف هذه الفئة؟ لا يمكن التراجع عن هذا الإجراء.',
   'categories.delete_modal.cancel': 'إلغاء',
-  'categories.delete_modal.delete': 'حذف',
+  'categories.delete_modal.delete': 'حذف'
 
 };
 
