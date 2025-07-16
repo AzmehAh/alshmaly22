@@ -2885,7 +2885,7 @@ const adminTranslations = {
   'categories.delete_modal.delete': 'حذف',
 
 
-  }
+
 };
 
 // Merge admin translations with main translations
