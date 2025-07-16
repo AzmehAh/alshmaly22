@@ -3,6 +3,7 @@ import { Plus, Search, Edit, Trash2 } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import type { Category } from '../../lib/supabase';
 
+
 const CategoriesPage = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
@@ -127,25 +128,28 @@ const CategoriesPage = () => {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6" dir={direction}>
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold text-[#054239]">Product Categories</h1>
+        <h1 className="text-3xl font-bold text-[#054239]">{t("categories.title")}</h1>
         <button
           onClick={() => setShowForm(true)}
           className="bg-[#b9a779] hover:bg-[#054239] text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200 flex items-center"
         >
           <Plus size={20} className="mr-2" />
-          Add Category
+          {t("categories.add_category")}
         </button>
       </div>
 
       {/* Search */}
       <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
         <div className="relative max-w-md">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+          <Search
+            className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+            size={20}
+          />
           <input
             type="text"
-            placeholder="Search categories..."
+            placeholder={t("categories.search_placeholder")}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="pl-10 w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
@@ -160,66 +164,73 @@ const CategoriesPage = () => {
             <thead className="bg-gray-50">
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Name
+                  {t("categories.table.name")}
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Slug
+                  {t("categories.table.slug")}
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Description
+                  {t("categories.table.description")}
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Created
+                  {t("categories.table.created")}
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Actions
+                  {t("categories.table.actions")}
                 </th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {filteredCategories.map((category) => (
-                <tr key={category.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div>
-                      <div className="text-sm font-medium text-[#054239]">{category.name}</div>
-                      {category.name_ar && (
-                        <div className="text-xs text-gray-500 mt-1">{category.name_ar}</div>
-                      )}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-500">{category.slug}</div>
-                  </td>
-                  <td className="px-6 py-4">
-                    <div className="text-sm text-gray-900 max-w-xs truncate">
-                      {category.description || 'No description'}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-500">
-                      {new Date(category.created_at).toLocaleDateString()}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                    <div className="flex items-center space-x-2">
-                      <button
-                        onClick={() => handleEdit(category)}
-                        className="text-[#b9a779] hover:text-[#054239] p-1 rounded"
-                        title="Edit Category"
-                      >
-                        <Edit size={16} />
-                      </button>
-                      <button
-                        onClick={() => setDeleteConfirm(category.id)}
-                        className="text-red-600 hover:text-red-900 p-1 rounded"
-                        title="Delete Category"
-                      >
-                        <Trash2 size={16} />
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
+              {filteredCategories
+                .filter((cat) =>
+                  cat.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                  (cat.name_ar && cat.name_ar.includes(searchTerm))
+                )
+                .map((category) => (
+                  <tr key={category.id} className="hover:bg-gray-50">
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div>
+                        <div className="text-sm font-medium text-[#054239]">
+                          {direction === "ar" ? category.name_ar || category.name : category.name}
+                        </div>
+                        {category.name_ar && direction !== "ar" && (
+                          <div className="text-xs text-gray-500 mt-1">{category.name_ar}</div>
+                        )}
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="text-sm text-gray-500">{category.slug}</div>
+                    </td>
+                    <td className="px-6 py-4">
+                      <div className="text-sm text-gray-900 max-w-xs truncate">
+                        {direction === "ar" ? category.description_ar || category.description || t("categories.table.description") : category.description || t("categories.table.description")}
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="text-sm text-gray-500">
+                        {new Date(category.created_at).toLocaleDateString()}
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                      <div className="flex items-center space-x-2">
+                        <button
+                          onClick={() => handleEdit(category)}
+                          className="text-[#b9a779] hover:text-[#054239] p-1 rounded"
+                          title={t("categories.form.edit_title")}
+                        >
+                          <Edit size={16} />
+                        </button>
+                        <button
+                          onClick={() => setDeleteConfirm(category.id)}
+                          className="text-red-600 hover:text-red-900 p-1 rounded"
+                          title={t("categories.delete_modal.title")}
+                        >
+                          <Trash2 size={16} />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>
@@ -231,13 +242,17 @@ const CategoriesPage = () => {
           <div className="relative top-20 mx-auto p-5 border w-11/12 md:w-1/2 lg:w-1/3 shadow-lg rounded-md bg-white">
             <div className="mt-3">
               <h3 className="text-lg font-medium text-[#054239] mb-4">
-                {editingCategory ? 'Edit Category' : 'Add New Category'}
+                {editingCategory
+                  ? t("categories.form.edit_title")
+                  : t("categories.form.add_title")}
               </h3>
               <form onSubmit={handleSubmit} className="space-y-4">
                 {/* Category Name - Bilingual */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Name (EN)</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      {t("categories.form.name_en")}
+                    </label>
                     <input
                       type="text"
                       required
@@ -245,58 +260,80 @@ const CategoriesPage = () => {
                       onChange={(e) => {
                         setFormData({ ...formData, name: e.target.value });
                         if (!editingCategory) {
-                          setFormData(prev => ({ ...prev, slug: generateSlug(e.target.value) }));
+                          setFormData((prev) => ({
+                            ...prev,
+                            slug: generateSlug(e.target.value),
+                          }));
                         }
                       }}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                      placeholder="Category name in English"
+                      placeholder={t("categories.form.name_en")}
+                      dir="ltr"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Name (AR)</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      {t("categories.form.name_ar")}
+                    </label>
                     <input
                       type="text"
                       value={formData.name_ar}
-                      onChange={(e) => setFormData({ ...formData, name_ar: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, name_ar: e.target.value })
+                      }
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                      placeholder="اسم الفئة بالعربية"
+                      placeholder={t("categories.form.name_ar")}
                       dir="rtl"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Slug</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    {t("categories.form.slug")}
+                  </label>
                   <input
                     type="text"
                     required
                     value={formData.slug}
-                    onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, slug: e.target.value })
+                    }
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
                     placeholder="category-slug"
+                    dir="ltr"
                   />
                 </div>
 
                 {/* Description - Bilingual */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Description (EN)</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      {t("categories.form.description_en")}
+                    </label>
                     <textarea
                       rows={3}
                       value={formData.description}
-                      onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, description: e.target.value })
+                      }
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                      placeholder="Category description in English"
+                      placeholder={t("categories.form.description_en")}
+                      dir="ltr"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Description (AR)</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      {t("categories.form.description_ar")}
+                    </label>
                     <textarea
                       rows={3}
                       value={formData.description_ar}
-                      onChange={(e) => setFormData({ ...formData, description_ar: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, description_ar: e.target.value })
+                      }
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                      placeholder="وصف الفئة بالعربية"
+                      placeholder={t("categories.form.description_ar")}
                       dir="rtl"
                     />
                   </div>
@@ -308,14 +345,18 @@ const CategoriesPage = () => {
                     onClick={resetForm}
                     className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors duration-200"
                   >
-                    Cancel
+                    {t("categories.form.cancel")}
                   </button>
                   <button
                     type="submit"
                     disabled={loading}
                     className="px-4 py-2 bg-[#b9a779] text-white rounded-lg hover:bg-[#054239] transition-colors duration-200 disabled:opacity-50"
                   >
-                    {loading ? 'Saving...' : editingCategory ? 'Update' : 'Create'}
+                    {loading
+                      ? t("categories.form.saving")
+                      : editingCategory
+                      ? t("categories.form.update")
+                      : t("categories.form.create")}
                   </button>
                 </div>
               </form>
@@ -329,10 +370,12 @@ const CategoriesPage = () => {
         <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
           <div className="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
             <div className="mt-3 text-center">
-              <h3 className="text-lg font-medium text-gray-900">Delete Category</h3>
+              <h3 className="text-lg font-medium text-gray-900">
+                {t("categories.delete_modal.title")}
+              </h3>
               <div className="mt-2 px-7 py-3">
                 <p className="text-sm text-gray-500">
-                  Are you sure you want to delete this category? This action cannot be undone.
+                  {t("categories.delete_modal.message")}
                 </p>
               </div>
               <div className="flex justify-center space-x-3 pt-4">
@@ -340,13 +383,13 @@ const CategoriesPage = () => {
                   onClick={() => setDeleteConfirm(null)}
                   className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors duration-200"
                 >
-                  Cancel
+                  {t("categories.delete_modal.cancel")}
                 </button>
                 <button
                   onClick={() => handleDelete(deleteConfirm)}
                   className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors duration-200"
                 >
-                  Delete
+                  {t("categories.delete_modal.delete")}
                 </button>
               </div>
             </div>
