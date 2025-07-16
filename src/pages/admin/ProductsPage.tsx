@@ -4,8 +4,10 @@ import { supabase } from '../../lib/supabase';
 import { RelationsAPI } from '../../lib/api/relations';
 import type { Product, Category } from '../../lib/supabase';
 import type { ProductRelation } from '../../lib/api/relations';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const ProductsPage = () => {
+  const { t, direction } = useLanguage();
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
@@ -346,15 +348,15 @@ const ProductsPage = () => {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6" dir={direction}>
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold text-[#054239]">Products Management</h1>
+        <h1 className="text-3xl font-bold text-[#054239]">{t('admin.products.management')}</h1>
         <button
           onClick={() => setShowForm(true)}
           className="bg-[#b9a779] hover:bg-[#054239] text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200 flex items-center"
         >
           <Plus size={20} className="mr-2" />
-          Add Product
+          {t('admin.add')} {t('admin.products.management')}
         </button>
       </div>
 
@@ -365,7 +367,7 @@ const ProductsPage = () => {
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
             <input
               type="text"
-              placeholder="Search products..."
+              placeholder={t('admin.search')}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-10 w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
@@ -376,7 +378,7 @@ const ProductsPage = () => {
             onChange={(e) => setSelectedCategory(e.target.value)}
             className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
           >
-            <option value="all">All Categories</option>
+            <option value="all">{t('admin.all')} {t('admin.category')}</option>
             {categories.map(category => (
               <option key={category.id} value={category.id}>
                 {category.name}{category.name_ar ? ` / ${category.name_ar}` : ''}
@@ -393,19 +395,19 @@ const ProductsPage = () => {
             <thead className="bg-gray-50">
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Product
+                  {t('admin.products.management')}
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Category
+                  {t('admin.category')}
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Price
+                  {t('admin.price')}
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Availability
+                  {t('admin.availability')}
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Actions
+                  {t('admin.actions')}
                 </th>
               </tr>
             </thead>
@@ -427,7 +429,7 @@ const ProductsPage = () => {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm text-gray-900">
-                      {product.category?.name || 'Uncategorized'}
+                      {product.category?.name || t('admin.uncategorized')}
                       {product.category?.name_ar && (
                         <div className="text-xs text-gray-500 mt-1">{product.category.name_ar}</div>
                       )}
@@ -450,14 +452,14 @@ const ProductsPage = () => {
                       <button
                         onClick={() => window.open(`/product/${product.id}`, '_blank')}
                         className="text-blue-600 hover:text-blue-900 p-1 rounded"
-                        title="View Product"
+                        title={t('admin.view')}
                       >
                         <Eye size={16} />
                       </button>
                       <button
                         onClick={() => handleEdit(product)}
                         className="text-[#b9a779] hover:text-[#054239] p-1 rounded"
-                        title="Edit Product"
+                        title={t('admin.edit')}
                       >
                         <Edit size={16} />
                       </button>
@@ -467,14 +469,14 @@ const ProductsPage = () => {
                           fetchRelations(product.id);
                         }}
                         className="text-[#b9a779] hover:text-[#054239] p-1 rounded"
-                        title="Manage Related Products"
+                        title={t('admin.manage')}
                       >
                         <LinkIcon size={16} />
                       </button>
                       <button
                         onClick={() => setDeleteConfirm(product.id)}
                         className="text-red-600 hover:text-red-900 p-1 rounded"
-                        title="Delete Product"
+                        title={t('admin.delete')}
                       >
                         <Trash2 size={16} />
                       </button>
@@ -494,7 +496,7 @@ const ProductsPage = () => {
             <div className="mt-3">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-2xl font-bold text-[#054239]">
-                  {editingProduct ? 'Edit Product' : 'Add New Product'}
+                  {editingProduct ? t('admin.edit') : t('admin.add')} {t('admin.products.management')}
                 </h3>
                 <button
                   onClick={resetForm}
@@ -507,12 +509,12 @@ const ProductsPage = () => {
               <form onSubmit={handleSubmit} className="space-y-8">
                 {/* Basic Information */}
                 <div className="bg-gray-50 p-6 rounded-lg">
-                  <h4 className="text-lg font-semibold text-[#054239] mb-4">Basic Information</h4>
+                  <h4 className="text-lg font-semibold text-[#054239] mb-4">{t('admin.basic_info')}</h4>
                   
                   {/* Product Name - Bilingual */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Product Name (EN) *</label>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">{t('admin.name')} ({t('admin.english')}) *</label>
                       <input
                         type="text"
                         required
@@ -524,17 +526,17 @@ const ProductsPage = () => {
                           }
                         }}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                        placeholder="Enter product name in English"
+                        placeholder={t('admin.name')}
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Product Name (AR)</label>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">{t('admin.name')} ({t('admin.arabic')})</label>
                       <input
                         type="text"
                         value={formData.name_ar}
                         onChange={(e) => setFormData({ ...formData, name_ar: e.target.value })}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                        placeholder="أدخل اسم المنتج بالعربية"
+                        placeholder={t('admin.name')}
                         dir="rtl"
                       />
                     </div>
@@ -558,24 +560,24 @@ const ProductsPage = () => {
                   {/* Description - Bilingual */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Description (EN) *</label>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">{t('admin.description')} ({t('admin.english')}) *</label>
                       <textarea
                         required
                         rows={4}
                         value={formData.description}
                         onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                        placeholder="Enter product description in English"
+                        placeholder={t('admin.description')}
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Description (AR)</label>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">{t('admin.description')} ({t('admin.arabic')})</label>
                       <textarea
                         rows={4}
                         value={formData.description_ar}
                         onChange={(e) => setFormData({ ...formData, description_ar: e.target.value })}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                        placeholder="أدخل وصف المنتج بالعربية"
+                        placeholder={t('admin.description')}
                         dir="rtl"
                       />
                     </div>
@@ -583,13 +585,13 @@ const ProductsPage = () => {
 
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">{t('admin.category')}</label>
                       <select
                         value={formData.category_id}
                         onChange={(e) => setFormData({ ...formData, category_id: e.target.value })}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
                       >
-                        <option value="">Select Category</option>
+                        <option value="">{t('admin.select')} {t('admin.category')}</option>
                         {categories.map(category => (
                           <option key={category.id} value={category.id}>
                             {category.name}{category.name_ar ? ` / ${category.name_ar}` : ''}
@@ -605,12 +607,12 @@ const ProductsPage = () => {
                
                 {/* Specifications - Bilingual */}
                 <div className="bg-gray-50 p-6 rounded-lg">
-                  <h4 className="text-lg font-semibold text-[#054239] mb-4">Product Specifications</h4>
+                  <h4 className="text-lg font-semibold text-[#054239] mb-4">{t('admin.specifications')}</h4>
                   
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     {/* English Specifications */}
                     <div>
-                      <h5 className="text-md font-medium text-[#054239] mb-3">Specifications (EN)</h5>
+                      <h5 className="text-md font-medium text-[#054239] mb-3">{t('admin.specifications')} ({t('admin.english')})</h5>
                       <div className="space-y-3">
                         {formData.specifications_en.map((spec, index) => (
                           <div key={index} className="flex items-center space-x-2">
@@ -638,7 +640,7 @@ const ProductsPage = () => {
                             type="text"
                             value={newSpecificationEn}
                             onChange={(e) => setNewSpecificationEn(e.target.value)}
-                            placeholder="Add specification in English"
+                            placeholder={t('admin.add')} {t('admin.specifications')}
                             className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
                             onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addSpecificationEn())}
                           />
@@ -647,7 +649,7 @@ const ProductsPage = () => {
                             onClick={addSpecificationEn}
                             className="bg-[#b9a779] text-white px-4 py-2 rounded-lg hover:bg-[#054239] transition-colors"
                           >
-                            Add
+                            {t('admin.add')}
                           </button>
                         </div>
                       </div>
@@ -655,7 +657,7 @@ const ProductsPage = () => {
 
                     {/* Arabic Specifications */}
                     <div>
-                      <h5 className="text-md font-medium text-[#054239] mb-3">Specifications (AR)</h5>
+                      <h5 className="text-md font-medium text-[#054239] mb-3">{t('admin.specifications')} ({t('admin.arabic')})</h5>
                       <div className="space-y-3">
                         {formData.specifications_ar.map((spec, index) => (
                           <div key={index} className="flex items-center space-x-2">
@@ -669,7 +671,7 @@ const ProductsPage = () => {
                               }}
                               className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
                               dir="rtl"
-                              placeholder="أضف مواصفة بالعربية"
+                              placeholder={t('admin.add')} {t('admin.specifications')}
                             />
                             <button
                               type="button"
@@ -685,7 +687,7 @@ const ProductsPage = () => {
                             type="text"
                             value={newSpecificationAr}
                             onChange={(e) => setNewSpecificationAr(e.target.value)}
-                            placeholder="أضف مواصفة بالعربية"
+                            placeholder={t('admin.add')} {t('admin.specifications')}
                             className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
                             dir="rtl"
                             onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addSpecificationAr())}
@@ -695,7 +697,7 @@ const ProductsPage = () => {
                             onClick={addSpecificationAr}
                             className="bg-[#b9a779] text-white px-4 py-2 rounded-lg hover:bg-[#054239] transition-colors"
                           >
-                            إضافة
+                            {t('admin.add')}
                           </button>
                         </div>
                       </div>
@@ -705,21 +707,21 @@ const ProductsPage = () => {
                 {/* Images */}
                 <div className="bg-gray-50 p-6 rounded-lg">
                   <div className="flex items-center justify-between mb-4">
-                    <h4 className="text-lg font-semibold text-[#054239]">Product Images</h4>
+                    <h4 className="text-lg font-semibold text-[#054239]">{t('admin.image')}</h4>
                     <button
                       type="button"
                       onClick={addImage}
                       className="bg-[#b9a779] text-white px-4 py-2 rounded-lg hover:bg-[#054239] transition-colors flex items-center"
                     >
                       <ImageIcon size={16} className="mr-2" />
-                      Add Image
+                      {t('admin.add')} {t('admin.image')}
                     </button>
                   </div>
                   <div className="space-y-4">
                     {images.map((image, index) => (
                       <div key={index} className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 border border-gray-200 rounded-lg">
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-1">Image URL</label>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">{t('admin.image')} URL</label>
                           <input
                             type="url"
                             value={image.image_url}
@@ -729,18 +731,18 @@ const ProductsPage = () => {
                           />
                         </div>
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-1">Alt Text</label>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">{t('admin.alt_text')}</label>
                           <input
                             type="text"
                             value={image.alt_text}
                             onChange={(e) => updateImage(index, 'alt_text', e.target.value)}
                             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                            placeholder="Image description"
+                            placeholder={t('admin.description')}
                           />
                         </div>
                         <div className="flex items-end space-x-2">
                           <div className="flex-1">
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Sort Order</label>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('admin.order')}</label>
                             <input
                               type="number"
                               value={image.sort_order}
@@ -764,21 +766,21 @@ const ProductsPage = () => {
                 {/* Packages */}
                 <div className="bg-gray-50 p-6 rounded-lg">
                   <div className="flex items-center justify-between mb-4">
-                    <h4 className="text-lg font-semibold text-[#054239]">Product Packages</h4>
+                    <h4 className="text-lg font-semibold text-[#054239]">{t('admin.packages')}</h4>
                     <button
                       type="button"
                       onClick={addPackage}
                       className="bg-[#b9a779] text-white px-4 py-2 rounded-lg hover:bg-[#054239] transition-colors flex items-center"
                     >
                       <Package size={16} className="mr-2" />
-                      Add Package
+                      {t('admin.add')} {t('admin.packages')}
                     </button>
                   </div>
                   <div className="space-y-4">
                     {packages.map((pkg, index) => (
                       <div key={index} className="grid grid-cols-1 md:grid-cols-4 gap-4 p-4 border border-gray-200 rounded-lg">
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-1">Weight</label>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">{t('admin.weight')}</label>
                           <input
                             type="text"
                             value={pkg.weight}
@@ -788,7 +790,7 @@ const ProductsPage = () => {
                           />
                         </div>
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-1">Price</label>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">{t('admin.price')}</label>
                           <input
                             type="number"
                             step="0.01"
@@ -806,7 +808,7 @@ const ProductsPage = () => {
                               onChange={(e) => updatePackage(index, 'is_default', e.target.checked)}
                               className="mr-2"
                             />
-                            <span className="text-sm text-gray-700">Default Package</span>
+                            <span className="text-sm text-gray-700">{t('admin.default')}</span>
                           </label>
                         </div>
                         <div className="flex items-end">
@@ -830,14 +832,14 @@ const ProductsPage = () => {
                     onClick={resetForm}
                     className="px-6 py-3 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors duration-200"
                   >
-                    Cancel
+                    {t('admin.cancel')}
                   </button>
                   <button
                     type="submit"
                     disabled={loading}
                     className="px-6 py-3 bg-[#b9a779] text-white rounded-lg hover:bg-[#054239] transition-colors duration-200 disabled:opacity-50"
                   >
-                    {loading ? 'Saving...' : editingProduct ? 'Update Product' : 'Create Product'}
+                    {loading ? t('admin.saving') : editingProduct ? t('admin.update') : t('admin.create')}
                   </button>
                 </div>
               </form>
@@ -852,7 +854,7 @@ const ProductsPage = () => {
           <div className="relative top-10 mx-auto p-5 border w-11/12 md:w-4/5 lg:w-3/4 shadow-lg rounded-md bg-white">
             <div className="mt-3">
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-2xl font-bold text-[#054239]">Manage Related Products</h3>
+                <h3 className="text-2xl font-bold text-[#054239]">{t('admin.manage')} {t('admin.related')}</h3>
                 <button
                   onClick={() => setShowRelationsModal(null)}
                   className="text-gray-400 hover:text-gray-600"
@@ -864,7 +866,7 @@ const ProductsPage = () => {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* Current Relations */}
                 <div>
-                  <h4 className="text-lg font-semibold text-[#054239] mb-4">Current Related Products</h4>
+                  <h4 className="text-lg font-semibold text-[#054239] mb-4">{t('admin.current')} {t('admin.related')}</h4>
                   <div className="space-y-3 max-h-96 overflow-y-auto">
                     {relations.map((relation) => (
                       <div key={relation.id} className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
@@ -888,14 +890,14 @@ const ProductsPage = () => {
                       </div>
                     ))}
                     {relations.length === 0 && (
-                      <p className="text-gray-500 text-center py-4">No related products added yet.</p>
+                      <p className="text-gray-500 text-center py-4">{t('admin.no_data')}</p>
                     )}
                   </div>
                 </div>
 
                 {/* Add Relations */}
                 <div>
-                  <h4 className="text-lg font-semibold text-[#054239] mb-4">Add Related Products</h4>
+                  <h4 className="text-lg font-semibold text-[#054239] mb-4">{t('admin.add')} {t('admin.related')}</h4>
                   <div className="space-y-3 max-h-96 overflow-y-auto">
                     {availableProducts
                       .filter(product => !relations.some(rel => rel.related_product_id === product.id))
@@ -917,19 +919,19 @@ const ProductsPage = () => {
                               onClick={() => handleAddRelation(showRelationsModal!, product.id, 'related')}
                               className="bg-[#b9a779] hover:bg-[#054239] text-white px-3 py-1 rounded text-sm transition-colors duration-200"
                             >
-                              Related
+                              {t('admin.related')}
                             </button>
                             <button
                               onClick={() => handleAddRelation(showRelationsModal!, product.id, 'similar')}
                               className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm transition-colors duration-200"
                             >
-                              Similar
+                              {t('admin.similar')}
                             </button>
                             <button
                               onClick={() => handleAddRelation(showRelationsModal!, product.id, 'complementary')}
                               className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded text-sm transition-colors duration-200"
                             >
-                              Complementary
+                              {t('admin.complementary')}
                             </button>
                           </div>
                         </div>
@@ -937,7 +939,7 @@ const ProductsPage = () => {
                     {availableProducts
                       .filter(product => !relations.some(rel => rel.related_product_id === product.id))
                       .length === 0 && (
-                      <p className="text-gray-500 text-center py-4">All available products are already related.</p>
+                      <p className="text-gray-500 text-center py-4">{t('admin.no_data')}</p>
                     )}
                   </div>
                 </div>
@@ -952,10 +954,10 @@ const ProductsPage = () => {
         <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
           <div className="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
             <div className="mt-3 text-center">
-              <h3 className="text-lg font-medium text-gray-900">Delete Product</h3>
+              <h3 className="text-lg font-medium text-gray-900">{t('admin.delete')} {t('admin.product')}</h3>
               <div className="mt-2 px-7 py-3">
                 <p className="text-sm text-gray-500">
-                  Are you sure you want to delete this product? This action cannot be undone and will also delete all associated images and packages.
+                  {t('admin.confirm_delete')} {t('admin.delete_warning')}
                 </p>
               </div>
               <div className="flex justify-center space-x-3 pt-4">
@@ -963,13 +965,13 @@ const ProductsPage = () => {
                   onClick={() => setDeleteConfirm(null)}
                   className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors duration-200"
                 >
-                  Cancel
+                  {t('admin.cancel')}
                 </button>
                 <button
                   onClick={() => handleDelete(deleteConfirm)}
                   className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors duration-200"
                 >
-                  Delete
+                  {t('admin.delete')}
                 </button>
               </div>
             </div>

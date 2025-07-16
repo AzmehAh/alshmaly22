@@ -15,8 +15,11 @@ import {
   Globe
 } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
+import { useLanguage } from '../../contexts/LanguageContext';
+import AdminLanguageSwitcher from './AdminLanguageSwitcher';
 
 const AdminLayout = () => {
+  const { t, direction } = useLanguage();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [user, setUser] = useState<any>(null);
   const location = useLocation();
@@ -53,20 +56,20 @@ const AdminLayout = () => {
   };
 
   const navigation = [
-    { name: 'Dashboard', href: '/admin/dashboard', icon: LayoutDashboard },
-    { name: 'Homepage', href: '/admin/homepage', icon: Home },
-    { name: 'Products', href: '/admin/products', icon: Package },
-    { name: 'Categories', href: '/admin/categories', icon: FolderOpen },
-    { name: 'Export Countries', href: '/admin/export-countries', icon: Globe },
-    { name: 'Blog Posts', href: '/admin/blog-posts', icon: FileText },
-    { name: 'Blog Categories', href: '/admin/blog-categories', icon: FolderOpen },
-    { name: 'Contact Messages', href: '/admin/contacts', icon: Mail },
+    { name: t('admin.dashboard'), href: '/admin/dashboard', icon: LayoutDashboard },
+    { name: t('admin.homepage.management'), href: '/admin/homepage', icon: Home },
+    { name: t('admin.products.management'), href: '/admin/products', icon: Package },
+    { name: t('admin.categories.management'), href: '/admin/categories', icon: FolderOpen },
+    { name: t('admin.export_countries.management'), href: '/admin/export-countries', icon: Globe },
+    { name: t('admin.blog.management'), href: '/admin/blog-posts', icon: FileText },
+    { name: t('admin.categories.management'), href: '/admin/blog-categories', icon: FolderOpen },
+    { name: t('admin.contacts.management'), href: '/admin/contacts', icon: Mail },
   ];
 
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <div className="min-h-screen bg-gray-50 flex">
+    <div className="min-h-screen bg-gray-50 flex" dir={direction}>
       {/* Mobile sidebar overlay */}
       {sidebarOpen && (
         <div className="fixed inset-0 z-40 lg:hidden">
@@ -89,7 +92,7 @@ const AdminLayout = () => {
             />
             <div>
               <h1 className="text-lg font-bold text-[#054239]">Al-Shamali</h1>
-              <p className="text-xs text-[#b9a779]">Admin Panel</p>
+              <p className="text-xs text-[#b9a779]">{t('admin.dashboard')}</p>
             </div>
           </div>
           <button
@@ -135,7 +138,7 @@ const AdminLayout = () => {
               <p className="text-sm font-medium text-gray-900 truncate">
                 {user?.email || 'Admin User'}
               </p>
-              <p className="text-xs text-gray-500">Administrator</p>
+              <p className="text-xs text-gray-500">{t('admin.dashboard')}</p>
             </div>
           </div>
           <button
@@ -143,7 +146,7 @@ const AdminLayout = () => {
             className="w-full flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 hover:text-red-600 transition-colors duration-200"
           >
             <LogOut className="mr-3 h-4 w-4 flex-shrink-0" />
-            <span>Sign Out</span>
+            <span>{t('admin.logout')}</span>
           </button>
         </div>
       </div>
@@ -160,10 +163,13 @@ const AdminLayout = () => {
               <Menu size={20} />
             </button>
             
-            <div className="flex items-center space-x-4">
-              <span className="text-sm text-gray-500">
-                Welcome back, {user?.email?.split('@')[0] || 'Admin'}
-              </span>
+            <div className="flex items-center space-x-4" dir="ltr">
+              <AdminLanguageSwitcher />
+              <div className="border-l border-gray-200 pl-4">
+                <span className="text-sm text-gray-500">
+                  {t('admin.welcome')}, {user?.email?.split('@')[0] || 'Admin'}
+                </span>
+              </div>
             </div>
           </div>
         </div>

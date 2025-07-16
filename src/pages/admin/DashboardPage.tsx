@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BarChart3, Package, FileText, MessageSquare, Users, TrendingUp } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 interface DashboardStats {
   totalProducts: number;
@@ -10,6 +11,7 @@ interface DashboardStats {
 }
 
 const DashboardPage = () => {
+  const { t, direction } = useLanguage();
   const [stats, setStats] = useState<DashboardStats>({
     totalProducts: 0,
     totalBlogPosts: 0,
@@ -51,21 +53,21 @@ const DashboardPage = () => {
 
   const statCards = [
     {
-      title: 'Total Products',
+      title: t('admin.products.management'),
       value: stats.totalProducts,
       icon: Package,
       color: 'bg-blue-500',
       change: '+12%'
     },
     {
-      title: 'Blog Posts',
+      title: t('admin.blog.management'),
       value: stats.totalBlogPosts,
       icon: FileText,
       color: 'bg-green-500',
       change: '+8%'
     },
     {
-      title: 'Contact Messages',
+      title: t('admin.contacts.management'),
       value: stats.totalContacts,
       icon: Users,
       color: 'bg-purple-500',
@@ -82,12 +84,12 @@ const DashboardPage = () => {
   }
 
   return (
-    <div className="space-y-6" dir="ltr">
+    <div className="space-y-6" dir={direction}>
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold text-[#054239]">Dashboard Overview</h1>
+        <h1 className="text-3xl font-bold text-[#054239]">{t('admin.dashboard.overview')}</h1>
         <div className="flex items-center space-x-2 text-sm text-gray-500">
           <BarChart3 size={16} />
-          <span>Last updated: {new Date().toLocaleString()}</span>
+          <span>{t('admin.last_updated')}: {new Date().toLocaleString()}</span>
         </div>
       </div>
 
@@ -115,7 +117,7 @@ const DashboardPage = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Recent Contact Messages */}
         <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
-          <h2 className="text-xl font-semibold text-[#054239] mb-4">Recent Contact Messages</h2>
+          <h2 className="text-xl font-semibold text-[#054239] mb-4">{t('admin.contacts.management')}</h2>
           <div className="space-y-4">
             {stats.recentContacts.map((contact) => (
               <div key={contact.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
@@ -136,7 +138,7 @@ const DashboardPage = () => {
               </div>
             ))}
             {stats.recentContacts.length === 0 && (
-              <p className="text-gray-500 text-center py-4">No recent contact messages</p>
+              <p className="text-gray-500 text-center py-4">{t('admin.no_data')}</p>
             )}
           </div>
         </div>
