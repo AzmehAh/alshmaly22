@@ -143,7 +143,7 @@ const HomepageManagementPage = () => {
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-3">
           <Home size={24} className="text-[#b9a779]" />
-          <h1 className="text-3xl font-bold text-[#054239]">  {t('admin.homepage.management')}</h1>
+          <h1 className="text-3xl font-bold text-[#054239]"> {t('admin.homepage.management')}</h1>
         </div>
         <button
           onClick={() => setShowAddModal(true)}
