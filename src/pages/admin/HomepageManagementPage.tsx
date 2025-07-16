@@ -5,8 +5,10 @@ import { ProductsAPI } from '../../lib/api/products';
 import { BlogAPI } from '../../lib/api/blog';
 import type { HomepageProduct, HomepageBlogPost } from '../../lib/api/homepage';
 import type { Product, BlogPost } from '../../lib/supabase';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const HomepageManagementPage = () => {
+   const { t, direction } = useLanguage();
   const [activeTab, setActiveTab] = useState<'products' | 'blog'>('products');
   const [homepageProducts, setHomepageProducts] = useState<HomepageProduct[]>([]);
   const [homepageBlogPosts, setHomepageBlogPosts] = useState<HomepageBlogPost[]>([]);
