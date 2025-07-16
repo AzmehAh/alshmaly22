@@ -2695,6 +2695,7 @@ const adminTranslations = {
     'admin.categories.management': 'Categories Management', 
     'admin.blog.management': 'Blog Management',
     'admin.contacts.management': 'Contacts Management',
+    'admin.blog_categories.management': 'blog Categories',
     'admin.homepage.management': 'Homepage Management',
     'admin.export_countries.management': 'Export Countries Management',
     'admin.dashboard.overview': 'Dashboard Overview',
