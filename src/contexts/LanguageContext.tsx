@@ -2703,7 +2703,7 @@ const adminTranslations = {
     'admin.language.current': 'Current Language',
     'admin.language.english': 'English',
     'admin.language.arabic': 'العربية',
-  },
+  }, 
   ar: {
     'admin.products.management': 'إدارة المنتجات',
     'admin.categories.management': 'إدارة الفئات',
