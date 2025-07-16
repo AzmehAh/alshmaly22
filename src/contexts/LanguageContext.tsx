@@ -2761,7 +2761,7 @@ const adminTranslations = {
   'admin.product': 'Product',
   'admin.confirm_delete': 'Confirm Delete',
   'admin.delete_warning': 'You won\'t be able to revert this!',
-    
+  
   'categories.title': 'Categories Management',
   'categories.add_category': 'Add Category',
   'categories.search_placeholder': 'Search categories...',
@@ -2785,8 +2785,6 @@ const adminTranslations = {
   'categories.delete_modal.message': 'Are you sure you want to delete this category? This action cannot be undone.',
   'categories.delete_modal.cancel': 'Cancel',
   'categories.delete_modal.delete': 'Delete',
-
-
 
   }, 
   ar: {
@@ -2883,8 +2881,6 @@ const adminTranslations = {
   'categories.delete_modal.message': 'هل أنت متأكد أنك تريد حذف هذه الفئة؟ لا يمكن التراجع عن هذا الإجراء.',
   'categories.delete_modal.cancel': 'إلغاء',
   'categories.delete_modal.delete': 'حذف',
-
-
 
 };
 
