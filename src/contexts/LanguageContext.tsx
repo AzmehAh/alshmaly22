@@ -276,7 +276,7 @@ const translations = {
     
     // Admin Interface
     'admin.dashboard': 'لوحة التحكم',
-    'Add.to.Homepage' : 'اضافة لصفحة الرئيسية'
+    'Add.to.Homepage' : 'اضافة لصفحة الرئيسية',
     'admin.overview': 'نظرة عامة',
     'admin.management': 'إدارة',
     'admin.settings': 'الإعدادات',
