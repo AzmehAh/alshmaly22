@@ -2704,6 +2704,8 @@ const adminTranslations = {
     'admin.language.current': 'Current Language',
     'admin.language.english': 'English',
     'admin.language.arabic': 'العربية',
+     // Admin Interface
+    'add.to.homepage' : 'Add to Homepage',
   }, 
   ar: {
     'admin.products.management': 'إدارة المنتجات',
