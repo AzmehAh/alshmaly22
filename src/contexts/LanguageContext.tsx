@@ -2708,6 +2708,7 @@ const adminTranslations = {
     'admin.products.management': 'إدارة المنتجات',
     'admin.categories.management': 'إدارة الفئات',
     'admin.blog.management': 'إدارة المدونة',
+    'admin.blog_categories.management': 'إدارة  فئات المدونة',
     'admin.contacts.management': 'إدارة جهات الاتصال',
     'admin.homepage.management': 'إدارة الصفحة الرئيسية',
     'admin.export_countries.management': 'إدارة البلدان المصدرة',
