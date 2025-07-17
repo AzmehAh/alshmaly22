@@ -153,14 +153,14 @@ const ExportCountriesPage = () => {
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-3">
           <Globe size={24} className="text-[#b9a779]" />
-          <h1 className="text-3xl font-bold text-[#054239]">Export Countries</h1>
+          <h1 className="text-3xl font-bold text-[#054239]">{t('export.title')}</h1>
         </div>
         <button
           onClick={() => setShowForm(true)}
           className="bg-[#b9a779] hover:bg-[#054239] text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200 flex items-center"
         >
           <Plus size={20} className="mr-2" />
-          Add Country
+          {t('export.add')}
         </button>
       </div>
 
@@ -170,7 +170,7 @@ const ExportCountriesPage = () => {
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
           <input
             type="text"
-            placeholder="Search countries..."
+            placeholder={t('export.search.placeholder')}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="pl-10 w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
@@ -185,22 +185,22 @@ const ExportCountriesPage = () => {
             <thead className="bg-gray-50">
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Order
+                  {t('export.table.order')}
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Country
+                  {t('export.table.country')}
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Annual Exports
+                  {t('export.table.exports')}
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Main Products
+                  {t('export.table.products')}
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Status
+                  {t('export.table.status')}
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Actions
+                  {t('export.table.actions')}
                 </th>
               </tr>
             </thead>
@@ -235,20 +235,18 @@ const ExportCountriesPage = () => {
                     <div className="text-sm text-gray-900">{country.annual_exports}</div>
                   </td>
                   <td className="px-6 py-4">
-                    <div className="text-sm text-gray-900 max-w-xs truncate">
-                      {country.main_products}
-                    </div>
+                    <div className="text-sm text-gray-900 max-w-xs truncate">{country.main_products}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <button
                       onClick={() => handleToggleActive(country.id, country.is_active)}
                       className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full cursor-pointer transition-colors duration-200 ${
-                        country.is_active 
-                          ? 'bg-green-100 text-green-800 hover:bg-green-200' 
+                        country.is_active
+                          ? 'bg-green-100 text-green-800 hover:bg-green-200'
                           : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
                       }`}
                     >
-                      {country.is_active ? 'Active' : 'Inactive'}
+                      {country.is_active ? t('export.status.active') : t('export.status.inactive')}
                     </button>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
@@ -256,14 +254,14 @@ const ExportCountriesPage = () => {
                       <button
                         onClick={() => handleEdit(country)}
                         className="text-[#b9a779] hover:text-[#054239] p-1 rounded"
-                        title="Edit Country"
+                        title={t('export.edit')}
                       >
                         <Edit size={16} />
                       </button>
                       <button
                         onClick={() => setDeleteConfirm(country.id)}
                         className="text-red-600 hover:text-red-900 p-1 rounded"
-                        title="Delete Country"
+                        title={t('export.delete')}
                       >
                         <Trash2 size={16} />
                       </button>
@@ -282,30 +280,30 @@ const ExportCountriesPage = () => {
           <div className="relative top-20 mx-auto p-5 border w-11/12 md:w-1/2 lg:w-1/3 shadow-lg rounded-md bg-white">
             <div className="mt-3">
               <h3 className="text-lg font-medium text-[#054239] mb-4">
-                {editingCountry ? 'Edit Export Country' : 'Add New Export Country'}
+                {editingCountry ? t('export.edit') : t('export.add_new')}
               </h3>
               <form onSubmit={handleSubmit} className="space-y-4">
                 {/* Country Name - Bilingual */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Country Name (EN)</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">{t('export.name_en')}</label>
                     <input
                       type="text"
                       required
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                      placeholder="Country name in English"
+                      placeholder={t('export.name_en')}
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Country Name (AR)</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">{t('export.name_ar')}</label>
                     <input
                       type="text"
                       value={formData.name_ar}
                       onChange={(e) => setFormData({ ...formData, name_ar: e.target.value })}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                      placeholder="اسم الدولة بالعربية"
+                      placeholder={t('export.name_ar')}
                       dir="rtl"
                     />
                   </div>
@@ -314,24 +312,24 @@ const ExportCountriesPage = () => {
                 {/* Annual Exports - Bilingual */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Annual Exports (EN)</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">{t('export.exports_en')}</label>
                     <input
                       type="text"
                       required
                       value={formData.annual_exports}
                       onChange={(e) => setFormData({ ...formData, annual_exports: e.target.value })}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                      placeholder="e.g., 2,000 tons/year"
+                      placeholder={t('export.exports_en')}
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Annual Exports (AR)</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">{t('export.exports_ar')}</label>
                     <input
                       type="text"
                       value={formData.annual_exports_ar}
                       onChange={(e) => setFormData({ ...formData, annual_exports_ar: e.target.value })}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                      placeholder="مثال: 2000 طن/سنة"
+                      placeholder={t('export.exports_ar')}
                       dir="rtl"
                     />
                   </div>
@@ -340,24 +338,24 @@ const ExportCountriesPage = () => {
                 {/* Main Products - Bilingual */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Main Products (EN)</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">{t('export.products_en')}</label>
                     <textarea
                       required
                       rows={3}
                       value={formData.main_products}
                       onChange={(e) => setFormData({ ...formData, main_products: e.target.value })}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                      placeholder="e.g., Spices, Dried Herbs, Legumes"
+                      placeholder={t('export.products_en')}
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Main Products (AR)</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">{t('export.products_ar')}</label>
                     <textarea
                       rows={3}
                       value={formData.main_products_ar}
                       onChange={(e) => setFormData({ ...formData, main_products_ar: e.target.value })}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                      placeholder="مثال: البهارات، الأعشاب المجففة، البقوليات"
+                      placeholder={t('export.products_ar')}
                       dir="rtl"
                     />
                   </div>
@@ -372,7 +370,7 @@ const ExportCountriesPage = () => {
                     className="mr-2"
                   />
                   <label htmlFor="is_active" className="text-sm text-gray-700">
-                    Display on website
+                    {t('export.display_on_site')}
                   </label>
                 </div>
 
@@ -382,14 +380,14 @@ const ExportCountriesPage = () => {
                     onClick={resetForm}
                     className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors duration-200"
                   >
-                    Cancel
+                    {t('export.cancel')}
                   </button>
                   <button
                     type="submit"
                     disabled={loading}
                     className="px-4 py-2 bg-[#b9a779] text-white rounded-lg hover:bg-[#054239] transition-colors duration-200 disabled:opacity-50"
                   >
-                    {loading ? 'Saving...' : editingCountry ? 'Update' : 'Create'}
+                    {loading ? t('export.saving') : editingCountry ? t('export.update') : t('export.create')}
                   </button>
                 </div>
               </form>
@@ -403,24 +401,22 @@ const ExportCountriesPage = () => {
         <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
           <div className="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
             <div className="mt-3 text-center">
-              <h3 className="text-lg font-medium text-gray-900">Delete Export Country</h3>
+              <h3 className="text-lg font-medium text-gray-900">{t('export.delete.title')}</h3>
               <div className="mt-2 px-7 py-3">
-                <p className="text-sm text-gray-500">
-                  Are you sure you want to delete this export country? This action cannot be undone.
-                </p>
+                <p className="text-sm text-gray-500">{t('export.delete.confirmation')}</p>
               </div>
               <div className="flex justify-center space-x-3 pt-4">
                 <button
                   onClick={() => setDeleteConfirm(null)}
                   className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors duration-200"
                 >
-                  Cancel
+                  {t('export.cancel')}
                 </button>
                 <button
                   onClick={() => handleDelete(deleteConfirm)}
                   className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors duration-200"
                 >
-                  Delete
+                  {t('export.delete')}
                 </button>
               </div>
             </div>
