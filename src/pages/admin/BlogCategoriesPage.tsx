@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Plus, Search, Edit, Trash2 } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import type { BlogCategory } from '../../lib/supabase';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const BlogCategoriesPage = () => {
+     const { t, direction } = useLanguage()
   const [categories, setCategories] = useState<BlogCategory[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
@@ -119,16 +121,17 @@ const BlogCategoriesPage = () => {
     );
   }
 
+  
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold text-[#054239]">Blog Categories</h1>
+        <h1 className="text-3xl font-bold text-[#054239]">{t('blogCategories.title')}</h1>
         <button
           onClick={() => setShowForm(true)}
           className="bg-[#b9a779] hover:bg-[#054239] text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200 flex items-center"
         >
           <Plus size={20} className="mr-2" />
-          Add Category
+          {t('blogCategories.add')}
         </button>
       </div>
 
@@ -138,7 +141,7 @@ const BlogCategoriesPage = () => {
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
           <input
             type="text"
-            placeholder="Search blog categories..."
+            placeholder={t('blogCategories.search.placeholder')}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="pl-10 w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
@@ -153,16 +156,16 @@ const BlogCategoriesPage = () => {
             <thead className="bg-gray-50">
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Name
+                  {t('blogCategories.table.name')}
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Slug
+                  {t('blogCategories.table.slug')}
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Created
+                  {t('blogCategories.table.created')}
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Actions
+                  {t('blogCategories.table.actions')}
                 </th>
               </tr>
             </thead>
@@ -190,14 +193,14 @@ const BlogCategoriesPage = () => {
                       <button
                         onClick={() => handleEdit(category)}
                         className="text-[#b9a779] hover:text-[#054239] p-1 rounded"
-                        title="Edit Category"
+                        title={t('blogCategories.edit.title')}
                       >
                         <Edit size={16} />
                       </button>
                       <button
                         onClick={() => setDeleteConfirm(category.id)}
                         className="text-red-600 hover:text-red-900 p-1 rounded"
-                        title="Delete Category"
+                        title={t('blogCategories.delete.title')}
                       >
                         <Trash2 size={16} />
                       </button>
@@ -216,13 +219,13 @@ const BlogCategoriesPage = () => {
           <div className="relative top-20 mx-auto p-5 border w-11/12 md:w-1/2 lg:w-1/3 shadow-lg rounded-md bg-white">
             <div className="mt-3">
               <h3 className="text-lg font-medium text-[#054239] mb-4">
-                {editingCategory ? 'Edit Blog Category' : 'Add New Blog Category'}
+                {editingCategory ? t('blogCategories.edit.title') : t('blogCategories.addNew.title')}
               </h3>
               <form onSubmit={handleSubmit} className="space-y-4">
                 {/* Category Name - Bilingual */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Name (EN)</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">{t('blogCategories.form.name_en')}</label>
                     <input
                       type="text"
                       required
@@ -234,31 +237,31 @@ const BlogCategoriesPage = () => {
                         }
                       }}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                      placeholder="Category name in English"
+                      placeholder={t('blogCategories.form.name_en.placeholder')}
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Name (AR)</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">{t('blogCategories.form.name_ar')}</label>
                     <input
                       type="text"
                       value={formData.name_ar}
                       onChange={(e) => setFormData({ ...formData, name_ar: e.target.value })}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                      placeholder="اسم الفئة بالعربية"
+                      placeholder={t('blogCategories.form.name_ar.placeholder')}
                       dir="rtl"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Slug</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">{t('blogCategories.form.slug')}</label>
                   <input
                     type="text"
                     required
                     value={formData.slug}
                     onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                    placeholder="category-slug"
+                    placeholder={t('blogCategories.form.slug.placeholder')}
                   />
                 </div>
 
@@ -268,14 +271,18 @@ const BlogCategoriesPage = () => {
                     onClick={resetForm}
                     className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors duration-200"
                   >
-                    Cancel
+                    {t('blogCategories.form.cancel')}
                   </button>
                   <button
                     type="submit"
                     disabled={loading}
                     className="px-4 py-2 bg-[#b9a779] text-white rounded-lg hover:bg-[#054239] transition-colors duration-200 disabled:opacity-50"
                   >
-                    {loading ? 'Saving...' : editingCategory ? 'Update' : 'Create'}
+                    {loading
+                      ? t('blogCategories.form.saving')
+                      : editingCategory
+                      ? t('blogCategories.form.update')
+                      : t('blogCategories.form.create')}
                   </button>
                 </div>
               </form>
@@ -289,24 +296,22 @@ const BlogCategoriesPage = () => {
         <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
           <div className="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
             <div className="mt-3 text-center">
-              <h3 className="text-lg font-medium text-gray-900">Delete Blog Category</h3>
+              <h3 className="text-lg font-medium text-gray-900">{t('blogCategories.delete.title')}</h3>
               <div className="mt-2 px-7 py-3">
-                <p className="text-sm text-gray-500">
-                  Are you sure you want to delete this blog category? This action cannot be undone.
-                </p>
+                <p className="text-sm text-gray-500">{t('blogCategories.delete.confirmation')}</p>
               </div>
               <div className="flex justify-center space-x-3 pt-4">
                 <button
                   onClick={() => setDeleteConfirm(null)}
                   className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors duration-200"
                 >
-                  Cancel
+                  {t('blogCategories.delete.cancel')}
                 </button>
                 <button
                   onClick={() => handleDelete(deleteConfirm)}
                   className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors duration-200"
                 >
-                  Delete
+                  {t('blogCategories.delete.delete')}
                 </button>
               </div>
             </div>
