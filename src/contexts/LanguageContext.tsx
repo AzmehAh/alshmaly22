@@ -3088,7 +3088,7 @@ const adminTranslations = {
   'blogCategories.delete.confirmation': 'هل أنت متأكد من حذف هذه الفئة؟ هذا الإجراء لا يمكن التراجع عنه.',
   'blogCategories.delete.cancel': 'إلغاء',
   'blogCategories.delete.delete': 'حذف',
-      'contacts.title': 'رسائل الاتصال',
+   'contacts.title': 'رسائل الاتصال',
   'contacts.totalMessages': ' رسالة إجمالية',
   'contacts.search.placeholder': 'ابحث في الرسائل...',
   'contacts.filter.allStatus': 'كل الحالات',
