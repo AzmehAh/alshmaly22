@@ -647,81 +647,77 @@ return (
         </div>
       )}
 
-      {/* Related Posts Modal */}
-      {showRelationsModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center z-50 overflow-auto p-4">
-          <div className="bg-white rounded-md p-6 max-w-4xl w-full shadow-lg relative">
-            <button
-              onClick={() => setShowRelationsModal(null)}
-              className="absolute top-4 right-4 text-gray-600 hover:text-gray-900"
-              title="Close"
-            >
-              <X size={24} />
-            </button>
-            <h2 className="text-xl font-semibold text-[#054239] mb-4">{t('blog.modal.manage_related_posts')}</h2>
+{/* Related Posts Modal */}
+{showRelationsModal && (
+  <div className="fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center z-50 overflow-auto p-4">
+    <div className="bg-white rounded-md p-6 max-w-4xl w-full shadow-lg relative">
+      <button
+        onClick={() => setShowRelationsModal(null)}
+        className="absolute top-4 right-4 text-gray-600 hover:text-gray-900"
+        title="Close"
+      >
+        <X size={24} />
+      </button>
 
-            {/* Current related posts */}
-            <div className="mb-6">
-              <h3 className="font-medium mb-2">{t('blog.modal.related_posts')}</h3>
-              {relations.length === 0 ? (
-                <p className="text-gray-500">{t('blog.modal.no_related_posts')}</p>
-              ) : (
-                <ul className="space-y-2 max-h-40 overflow-auto border p-3 rounded-md">
-                  {relations.map(rel => (
-                    <li key={rel.id} className="flex justify-between items-center bg-gray-50 px-3 py-2 rounded">
-                      <span>{rel.title}</span>
-                      <button
-                        onClick={() => handleRemoveRelation(rel.id)}
-                        className="text-red-600 hover:text-red-800"
-                        title={t('blog.modal.delete')}
-                      >
-                        <Trash2 size={16} />
-                      </button>
-                      <button
-                        onClick={() => handleRemoveRelation(rel.id, showRelationsModal)}
-                        className="text-red-600 hover:text-red-800"
-                        title={t('blog.modal.delete')}
-                      >
-                        <Trash2 size={16} />
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
+      <h2 className="text-xl font-semibold text-[#054239] mb-4">
+        {t('blog.modal.manage_related_posts')}
+      </h2>
 
-            {/* Add related posts */}
-            <div>
-              <h3 className="font-medium mb-2">{t('blog.modal.add_related_posts')}</h3>
-              {availablePosts.length === 0 ? (
-                <p className="text-gray-500">{t('blog.modal.all_related')}</p>
-              ) : (
-                <ul className="space-y-2 max-h-40 overflow-auto border p-3 rounded-md">
-                  {availablePosts.map(post => (
-                    <li key={post.id} className="flex justify-between items-center bg-gray-50 px-3 py-2 rounded">
-                      <span>{post.title}</span>
-                      <button
-                        onClick={() => handleAddRelation(post.id)}
-                        className="text-green-600 hover:text-green-800"
-                        title={t('blog.modal.add_related_posts')}
-                      >
-                        <Plus size={16} />
-                      </button>
-                      <button
-                        onClick={() => handleAddRelation(showRelationsModal, post.id, 'related')}
-                        className="text-green-600 hover:text-green-800"
-                        title={t('blog.modal.add_related_posts')}
-                      >
-                        <Plus size={16} />
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Current related posts */}
+      <div className="mb-6">
+        <h3 className="font-medium mb-2">{t('blog.modal.related_posts')}</h3>
+        {relations.length === 0 ? (
+          <p className="text-gray-500">{t('blog.modal.no_related_posts')}</p>
+        ) : (
+          <ul className="space-y-2 max-h-40 overflow-auto border p-3 rounded-md">
+            {relations.map(rel => (
+              <li
+                key={rel.id}
+                className="flex justify-between items-center bg-gray-50 px-3 py-2 rounded"
+              >
+                <span>{rel.title}</span>
+                <button
+                  onClick={() => handleRemoveRelation(rel.id)}
+                  className="text-red-600 hover:text-red-800"
+                  title={t('blog.modal.delete')}
+                >
+                  <Trash2 size={16} />
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+
+      {/* Add related posts */}
+      <div>
+        <h3 className="font-medium mb-2">{t('blog.modal.add_related_posts')}</h3>
+        {availablePosts.length === 0 ? (
+          <p className="text-gray-500">{t('blog.modal.all_related')}</p>
+        ) : (
+          <ul className="space-y-2 max-h-40 overflow-auto border p-3 rounded-md">
+            {availablePosts.map(post => (
+              <li
+                key={post.id}
+                className="flex justify-between items-center bg-gray-50 px-3 py-2 rounded"
+              >
+                <span>{post.title}</span>
+                <button
+                  onClick={() => handleAddRelation(post.id)}
+                  className="text-green-600 hover:text-green-800"
+                  title={t('blog.modal.add_related_posts')}
+                >
+                  <Plus size={16} />
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </div>
+  </div>
+)}
+
     </div>
   );
 };
