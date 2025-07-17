@@ -694,13 +694,7 @@ return (
                   {availablePosts.map(post => (
                     <li key={post.id} className="flex justify-between items-center bg-gray-50 px-3 py-2 rounded">
                       <span>{post.title}</span>
-                      <button
-                        onClick={() => handleAddRelation(post.id)}
-                        className="text-green-600 hover:text-green-800"
-                        title={t('blog.modal.add_related_posts')}
-                      >
-                        <Plus size={16} />
-                      </button>
+                     
                       <button
                         onClick={() => handleAddRelation(showRelationsModal, post.id, 'related')}
                         className="text-green-600 hover:text-green-800"
