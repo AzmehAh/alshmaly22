@@ -131,11 +131,11 @@ const ProductDetailsPage = () => {
           onClick={() => setSelectedPackage(pkg.weight)}
           className={`flex flex-col items-center p-3 rounded-xl border-2 transition-all duration-300 min-w-[80px] ${
             selectedPackage === pkg.weight
-              ? 'border-[#b9a779] bg-[#b9a779]/20'
-              : 'bg-[#f7f7f7] border-gray-200 hover:border-[#b9a779]/50'
+              ? 'bg-[#b9a779]/20'
+              : 'bg-[#f7f7f7] border-gray-200 '
           }`}
         >
-          <Package size={24} className="mb-1 text-[#b9a779]" />
+         
           <span className="font-semibold text-[#054239]">{pkg.weight}</span>
         </button>
       ))}
