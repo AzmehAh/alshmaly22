@@ -921,6 +921,7 @@ const ProductsPage = () => {
     )}
   </div>
 </div>
+                )}
 
       {/* Delete Confirmation Modal */}
       {deleteConfirm && (
