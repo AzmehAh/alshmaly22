@@ -52,7 +52,7 @@ const HeroSection = () => {
       </div>
 
     {/* Video Controls */}
-<div className="absolute bottom-6 left-6 z-20 flex flex-row gap-4">
+<div className= dir="ltr" "absolute  bottom-6 left-6 z-20 flex flex-row gap-4">
   <button
     onClick={togglePlayPause}
     className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
