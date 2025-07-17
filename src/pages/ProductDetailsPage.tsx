@@ -124,7 +124,7 @@ const ProductDetailsPage = () => {
 {product.packages && product.packages.length > 0 && (
   <div className="mb-8 max-w-full overflow-x-auto">
     <h3 className="text-xl font-semibold text-[#054239] mb-4 flex items-center gap-2">
-      <Package size={24} /> {/* الأيقونة بجانب العنوان فقط */}
+      <Package size={24} text-[#b9a779] />
       {t('products.packaging_options')}
     </h3>
     <div className="flex space-x-4">
