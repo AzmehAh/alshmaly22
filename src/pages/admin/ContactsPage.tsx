@@ -125,7 +125,7 @@ const ContactsPage = () => {
         </div>
       </div>
 
-      {/* Contacts Table */}
+      {/* Contacts Table */} 
       <div className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
