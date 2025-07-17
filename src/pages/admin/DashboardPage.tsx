@@ -133,7 +133,7 @@ const DashboardPage = () => {
                   contact.status === 'read' ? 'bg-blue-100 text-blue-800' :
                   'bg-green-100 text-green-800'
                 }`}>
-                   {t(`contacts.status.${Contact.status}`)}
+  {t(`contacts.status.${{contact.status}}`)}
                 </span>
               </div>
             ))}
