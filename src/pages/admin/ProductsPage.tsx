@@ -873,7 +873,7 @@ const ProductsPage = () => {
                   </div>
                 </div>
 
-           {/* Add Relations */}
+             {/* Add Relations */}
 <div>
   <h4 className="text-lg font-semibold text-[#054239] mb-4">
     {t('admin.add')} {t('admin.related')}
@@ -921,7 +921,8 @@ const ProductsPage = () => {
     )}
   </div>
 </div>
-                )}
+
+      )}
 
       {/* Delete Confirmation Modal */}
       {deleteConfirm && (
