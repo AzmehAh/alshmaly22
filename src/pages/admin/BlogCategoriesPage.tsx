@@ -189,7 +189,7 @@ const BlogCategoriesPage = () => {
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                    <div className="flex items-center space-x-2">
+                    <div className="flex items-center gap-2">
                       <button
                         onClick={() => handleEdit(category)}
                         className="text-[#b9a779] hover:text-[#054239] p-1 rounded"
