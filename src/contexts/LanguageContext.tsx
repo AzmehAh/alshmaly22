@@ -69,7 +69,7 @@ const translations = {
   'products.filters.search.label': 'Search Products',
   'products.filters.search.placeholder': 'Search products...',
   'products.filters.categories.label': 'Categories',
-    
+    'products.filt': 'Categories',
     // About
     'about.title': 'About Al-Shamali',
     'about.hero.subtitle': 'For over 25 years, we have been the bridge between Syrian agricultural heritage and global markets, bringing authentic, premium-quality products to tables worldwide.',
@@ -249,6 +249,7 @@ const translations = {
     'products.show': 'Showing ',
      'products.show2': 'products ',
     'common.loading': 'Loading...',
+   'categories.all': 'All categories',
 
   },
   ar: {
@@ -486,6 +487,8 @@ const translations = {
     'products.related_products': 'منتجات ذات صلة',
     'products.discover': 'اكتشف منتجاتنا الزراعية السورية المتميزة، مختارة ومعالجة بعناية لنقدم لك الطعم الأصيل لسوريا.',
     'back': 'العودة إلى المنتجات',
+     'categories.all': 'كل تصنيفات',
+
   }
 };
 
