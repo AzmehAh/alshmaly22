@@ -317,7 +317,9 @@ const ProductsPage = () => {
     setImages(prev => prev.filter((_, i) => i !== index));
   };
 
-  
+  const addPackage = () => {
+    setPackages(prev => [...prev, { weight: '', is_default: false }]);
+  };
 
   const updatePackage = (index: number, field: string, value: string | number | boolean) => {
     setPackages(prev => prev.map((pkg, i) => 
@@ -921,7 +923,10 @@ const ProductsPage = () => {
     )}
   </div>
 </div>
-
+              </div>
+            </div>
+          </div>
+        </div>
       )}
 
       {/* Delete Confirmation Modal */}
