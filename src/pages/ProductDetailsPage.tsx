@@ -127,7 +127,7 @@ const ProductDetailsPage = () => {
       <Package size={24} className="text-[#b9a779]" />
       {t('products.packaging_options')}
     </h3>
-    <div className="flex space-x-4">
+    <div className="flex gap-4">
       {product.packages.map((pkg) => (
         <div
           key={pkg.weight}
