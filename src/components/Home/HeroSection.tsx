@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
 
 const HeroSection = () => {
-  const { t, language } = useLanguage();  // تأكد أن useLanguage ترجع language
+  const { t, language } = useLanguage(); 
   const isArabic = language === 'ar';
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(true);
@@ -37,9 +37,9 @@ const HeroSection = () => {
           muted  
           loop 
           className="w-full h-full object-cover min-w-full min-h-full"
-          poster="https://files.catbox.moe/lmy00m.mp4"
+          poster="https://files.catbox.moe/lby5ao.mp4"
         >
-          <source src="https://files.catbox.moe/lmy00m.mp4" type="video/mp4" />
+          <source src="https://files.catbox.moe/lby5ao.mp4" type="video/mp4" />
         </video>
         <div className={`absolute inset-0 w-full h-full transition-all duration-1000 ${
           isPlaying ? 'bg-black/50' : 'bg-black/80 backdrop-blur-sm'
