@@ -2811,7 +2811,7 @@ const adminTranslations = {
   'export.saving': 'Saving...',
   'export.delete.title': 'Delete Export Country',
   'export.delete.confirmation': 'Are you sure you want to delete this export country? This action cannot be undone.',
-  'export.delete': 'Delete'
+  'export.delete': 'Delete',
     'export.title': 'Export Countries',
   'export.add': 'Add Country',
   'export.search.placeholder': 'Search countries...',
