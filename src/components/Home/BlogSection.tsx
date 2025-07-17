@@ -66,16 +66,27 @@ const BlogSection = () => {
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300"></div>
                   </div>
 
-                  <div className="p-6 flex flex-col flex-grow">
-                    <div className="flex items-center text-[#054239] text-sm mb-3">
-                      <Calendar size={16} className="mr-2" />
-                      {new Date(post.published_at).toLocaleDateString(
-                        language === 'ar' ? 'ar-SA' : 'en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
-                      })}
-                    </div>
+                 <div className="p-6 flex flex-col flex-grow">
+  <div className="flex items-center text-[#054239] text-sm mb-3">
+    <Calendar size={16} className="mr-2" />
+    {
+      (() => {
+        const eventDate = getLocalizedField(post, 'event_date');
+        const dateToUse = eventDate || post.published_at;
+        return new Date(dateToUse).toLocaleDateString(
+          language === 'ar' ? 'ar-SA' : 'en-US',
+          {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            ...(language === 'ar' && { calendar: 'gregory' })
+          }
+        );
+      })()
+    }
+  </div>
+</div>
+
 
                     <h3 className="text-xl font-semibold text-[#054239] mb-3 group-hover:text-[#b9a779] transition-colors duration-300 min-h-[3.5rem]"> 
                       {getLocalizedField(post, 'title')}
