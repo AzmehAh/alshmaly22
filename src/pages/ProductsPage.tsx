@@ -23,7 +23,7 @@ const ProductsPage = () => {
   const weights = ['1 kg', '5 kg', '10 kg', '25 kg', '50 kg'];
 
   const displayCategories = [
-    { id: 'all', name: 'All Products', slug: 'all' },
+    { id: 'all', name: t('categories.all'), slug: 'all' },
     ...categories
   ];
 
