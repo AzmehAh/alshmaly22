@@ -310,7 +310,7 @@ const translations = {
   'products.filters.categories.label': 'التصنيفات',
     'products.show': 'عرض ',
     'products.show': 'منتجاً' ,
-    'common.loading': 'جارٍ التحميل...'
+    'common.loading': 'جارٍ التحميل...',
     
     // About
     'about.title': 'عن الشمالي',
