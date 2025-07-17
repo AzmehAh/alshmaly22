@@ -128,7 +128,7 @@ const ProductDetailsPage = () => {
       {product.packages.map((pkg) => (
         <button
           key={pkg.weight}
-          onClick={() => setSelectedPackage(pkg.weight)}
+          
           className={`flex flex-col items-center p-3 rounded-xl border-2 transition-all duration-300 min-w-[80px] ${
             selectedPackage === pkg.weight
               ? 'bg-[#b9a779]/20'
