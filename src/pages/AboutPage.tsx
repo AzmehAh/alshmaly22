@@ -79,7 +79,7 @@ const AboutPage = () => {
 return (
   <div className="min-h-screen bg-[#F7F7F7] pt-20">
     {/* Hero Section */}
-    <section className="relative py-32  [#054239] text-white">
+    <section className="relative py-32 bg-[#054239] text-white">
   
       {/* <div className="absolute inset-0 z-0 overflow-hidden">
         <img 
