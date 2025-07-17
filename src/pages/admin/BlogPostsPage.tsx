@@ -318,7 +318,7 @@ const BlogPostsPage = () => {
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span className="text-sm text-gray-900">{post.author}</span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                   <td className="px-6 py-4 whitespace-nowrap">
                     <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
                       post.published ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
                     }`}>
@@ -662,7 +662,7 @@ const BlogPostsPage = () => {
                     )}
                   </div>
                 </div>
-
+ 
                 {/* Add Relations */}
                 <div>
                   <h4 className="text-lg font-semibold text-[#054239] mb-4">Add Related Posts</h4>
