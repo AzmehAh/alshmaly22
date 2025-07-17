@@ -276,8 +276,7 @@ const translations = {
     'admin.overview': 'نظرة عامة',
     'admin.management': 'إدارة',
     'admin.settings': 'الإعدادات',
-    'admin.logout': 'تسجيل الخروج',
-    'admin.welcome': 'مرحباً بك',
+   
     'admin.last_updated': 'آخر تحديث',
     'admin.total': 'المجموع',
     'admin.active': 'نشط',
@@ -2943,6 +2942,8 @@ const adminTranslations = {
   'contacts.delete.confirmation': 'Are you sure you want to delete this contact message? This action cannot be undone.',
   'contacts.delete.cancel': 'Cancel',
   'contacts.delete.delete': 'Delete',
+     'admin.logout': 'Log out',
+    'admin.welcome': 'Welcome',
   },
   ar: {
     'admin.products.management': 'إدارة المنتجات',
@@ -3169,6 +3170,8 @@ const adminTranslations = {
   'contacts.delete.confirmation': 'هل أنت متأكد من حذف هذه الرسالة؟ هذا الإجراء لا يمكن التراجع عنه.',
   'contacts.delete.cancel': 'إلغاء',
   'contacts.delete.delete': 'حذف',
+     'admin.logout': 'تسجيل الخروج',
+    'admin.welcome': 'مرحباً بك',
   }
 };
 
