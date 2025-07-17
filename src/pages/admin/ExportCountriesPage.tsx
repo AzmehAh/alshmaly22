@@ -151,7 +151,7 @@ const ExportCountriesPage = () => {
  return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center  gap-3">
           <Globe size={24} className="text-[#b9a779]" />
           <h1 className="text-3xl font-bold text-[#054239]">{t('export.title')}</h1>
         </div>
@@ -208,7 +208,7 @@ const ExportCountriesPage = () => {
               {filteredCountries.map((country, index) => (
                 <tr key={country.id} className="hover:bg-gray-50">
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="flex items-center space-x-2">
+                    <div className="flex items-center  gap-2">
                       <span className="text-sm font-medium text-gray-900">#{country.display_order}</span>
                       <div className="flex flex-col space-y-1">
                         <button
@@ -250,7 +250,7 @@ const ExportCountriesPage = () => {
                     </button>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                    <div className="flex items-center space-x-2">
+                    <div className="flex items-center  gap-2">
                       <button
                         onClick={() => handleEdit(country)}
                         className="text-[#b9a779] hover:text-[#054239] p-1 rounded"
@@ -374,7 +374,7 @@ const ExportCountriesPage = () => {
                   </label>
                 </div>
 
-                <div className="flex justify-end space-x-3 pt-4">
+                <div className="flex justify-end  gap-3 pt-4">
                   <button
                     type="button"
                     onClick={resetForm}
@@ -405,7 +405,7 @@ const ExportCountriesPage = () => {
               <div className="mt-2 px-7 py-3">
                 <p className="text-sm text-gray-500">{t('export.delete.confirmation')}</p>
               </div>
-              <div className="flex justify-center space-x-3 pt-4">
+              <div className="flex justify-center  gap-3 pt-4">
                 <button
                   onClick={() => setDeleteConfirm(null)}
                   className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors duration-200"
