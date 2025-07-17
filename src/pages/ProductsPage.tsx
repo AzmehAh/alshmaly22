@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Filter, Grid, List, Search, Loader2 } from 'lucide-react';
+import { Filter, Grid,  Search, Loader2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useProducts } from '../hooks/useProducts';
 import { useLanguage } from '../contexts/LanguageContext';
