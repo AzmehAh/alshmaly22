@@ -873,47 +873,54 @@ const ProductsPage = () => {
                   </div>
                 </div>
 
-                {/* Add Relations */}
-                <div>
-                  <h4 className="text-lg font-semibold text-[#054239] mb-4">{t('admin.add')} {t('admin.related')}</h4>
-                  <div className="space-y-3 max-h-96 overflow-y-auto">
-                    {availableProducts
-                      .filter(product => !relations.some(rel => rel.related_product_id === product.id))
-                      .map((product) => (
-                        <div key={product.id} className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
-                          <div className="flex items-center">
-                            <img
-                              src={product.images?.[0]?.image_url || 'https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=100&h=100'}
-                              alt={product.name}
-                              className="h-10 w-10 rounded-lg object-cover mr-3"
-                            />
-                            <div>
-                              <div className="font-medium text-[#054239]">{product.name}</div>
-                              <div className="text-sm text-gray-500">{product.category?.name}</div>
-                            </div>
-                          </div>
-                          <div className="flex  gap-2">
-                            <button
-                              onClick={() => handleAddRelation(showRelationsModal!, product.id, 'related')}
-                              className="bg-[#b9a779] hover:bg-[#054239] text-white px-3 py-1 rounded text-sm transition-colors duration-200"
-                            >
-                              
-    {t('admin.add')}
-  </button>
-                           
-                      ))}
-                    {availableProducts
-                      .filter(product => !relations.some(rel => rel.related_product_id === product.id))
-                      .length === 0 && (
-                      <p className="text-gray-500 text-center py-4">{t('admin.no_data')}</p>
-                    )}
-                  </div>
-                            
-                </div>
-              </div>
-        
-        
-      )}
+           {/* Add Relations */}
+<div>
+  <h4 className="text-lg font-semibold text-[#054239] mb-4">
+    {t('admin.add')} {t('admin.related')}
+  </h4>
+
+  <div className="space-y-3 max-h-96 overflow-y-auto">
+    {availableProducts
+      .filter(product => !relations.some(rel => rel.related_product_id === product.id))
+      .map((product) => (
+        <div
+          key={product.id}
+          className="flex items-center justify-between p-3 border border-gray-200 rounded-lg"
+        >
+          <div className="flex items-center">
+            <img
+              src={
+                product.images?.[0]?.image_url ||
+                'https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=100&h=100'
+              }
+              alt={product.name}
+              className="h-10 w-10 rounded-lg object-cover mr-3"
+            />
+            <div>
+              <div className="font-medium text-[#054239]">{product.name}</div>
+              <div className="text-sm text-gray-500">{product.category?.name}</div>
+            </div>
+          </div>
+          <div className="flex gap-2">
+            <button
+              onClick={() =>
+                handleAddRelation(showRelationsModal!, product.id, 'related')
+              }
+              className="bg-[#b9a779] hover:bg-[#054239] text-white px-3 py-1 rounded text-sm transition-colors duration-200"
+            >
+              {t('admin.add')}
+            </button>
+          </div>
+        </div>
+      ))}
+
+    {availableProducts.filter(
+      product => !relations.some(rel => rel.related_product_id === product.id)
+    ).length === 0 && (
+      <p className="text-gray-500 text-center py-4">{t('admin.no_data')}</p>
+    )}
+  </div>
+</div>
 
       {/* Delete Confirmation Modal */}
       {deleteConfirm && (
