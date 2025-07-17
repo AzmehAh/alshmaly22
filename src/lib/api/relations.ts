@@ -91,7 +91,7 @@ export class RelationsAPI {
       .from('blog_post_relations')
       .select(`
         *,
-        related_blog_post:blog_posts(
+        related_blog_post:blog_posts!blog_post_relations_related_blog_post_id_fkey(
           *,
           category:blog_categories(*)
         )
