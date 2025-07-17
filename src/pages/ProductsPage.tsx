@@ -25,7 +25,7 @@ const ProductsPage = () => {
 
   // Prepare categories for display 
   const displayCategories = [
-    { id: 'all', name: '{t('products.filt')}', slug: 'all' }, 
+    { id: 'all', name:'{t('products.filt')}', slug: 'all' }, 
     ...categories
   ]; 
 
