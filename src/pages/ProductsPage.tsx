@@ -58,12 +58,12 @@ const ProductsPage = () => {
             <div className="bg-[#f7f7f7] rounded-2xl p-6 shadow-lg sticky top-24">
               <h3 className="text-xl font-semibold text-[#054239] mb-6 flex items-center">
                 <Filter size={20} className="mr-2" />
-                Filters
+                 {t('products.filters.title')}
               </h3>
 
               {/* Search */}
               <div className="mb-6">
-                <label className="block text-sm font-medium text-gray-700 mb-2">Search Products</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2"> {t('products.filters.search.label')}</label>
                 <div className="relative">
                   <Search size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                   <input
@@ -78,7 +78,7 @@ const ProductsPage = () => {
 
               {/* Categories */}
               <div className="mb-6">
-                <label className="block text-sm font-medium text-gray-700 mb-3">Categories</label>
+                <label className="block text-sm font-medium text-gray-700 mb-3">{t('products.filters.categories.label')}</label>
                 <div className="space-y-2">
                   {displayCategories.map(category => (
                     <button
