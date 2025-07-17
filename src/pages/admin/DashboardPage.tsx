@@ -130,10 +130,10 @@ const DashboardPage = () => {
                 </div>
                 <span className={`px-2 py-1 rounded-full text-xs font-medium ${
                   contact.status === 'unread' ? 'bg-red-100 text-red-800' :
-                  contact.status === 'read' ? 'bg-blue-100 text-blue-800' :
+                  contact.status === 'read' ? 'bg-blue-100 text-blue-800' : 
                   'bg-green-100 text-green-800'
                 }`}>
-  {t(`contacts.status.${{contact.status}}`)}
+                  {contact.status}
                 </span>
               </div>
             ))}
