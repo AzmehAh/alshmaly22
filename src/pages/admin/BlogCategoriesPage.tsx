@@ -300,7 +300,7 @@ const BlogCategoriesPage = () => {
               <div className="mt-2 px-7 py-3">
                 <p className="text-sm text-gray-500">{t('blogCategories.delete.confirmation')}</p>
               </div>
-              <div className="flex justify-center space-x-3 pt-4">
+              <div className="flex justify-center gap-3 pt-4">
                 <button
                   onClick={() => setDeleteConfirm(null)}
                   className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors duration-200"
