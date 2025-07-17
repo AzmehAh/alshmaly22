@@ -93,7 +93,7 @@ const ContactsPage = () => {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold text-[#054239]">{t('contacts.title')}</h1>
-        <div className="flex items-center space-x-2 text-sm text-gray-500">
+        <div className="flex items-center  gap-2 text-sm text-gray-500">
           <Mail size={16} />
           <span>{t('contacts.totalMessages', { count: contacts.length })}</span>
         </div>
@@ -130,27 +130,28 @@ const ContactsPage = () => {
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
-              <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  {t('contacts.table.contact')}
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  {t('contacts.table.subject')}
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  {t('contacts.table.status')}
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  {t('contacts.table.date')}
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  {t('contacts.table.language')}
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  {t('contacts.table.actions')}
-                </th>
-              </tr>
-            </thead>
+  <tr>
+    <th className={`px-6 py-3 ${direction === 'rtl' ? 'text-right' : 'text-left'} text-xs font-medium text-gray-500 uppercase tracking-wider`}>
+      {t('contacts.table.contact')}
+    </th>
+    <th className={`px-6 py-3 ${direction === 'rtl' ? 'text-right' : 'text-left'} text-xs font-medium text-gray-500 uppercase tracking-wider`}>
+      {t('contacts.table.subject')}
+    </th>
+    <th className={`px-6 py-3 ${direction === 'rtl' ? 'text-right' : 'text-left'} text-xs font-medium text-gray-500 uppercase tracking-wider`}>
+      {t('contacts.table.status')}
+    </th>
+    <th className={`px-6 py-3 ${direction === 'rtl' ? 'text-right' : 'text-left'} text-xs font-medium text-gray-500 uppercase tracking-wider`}>
+      {t('contacts.table.date')}
+    </th>
+    <th className={`px-6 py-3 ${direction === 'rtl' ? 'text-right' : 'text-left'} text-xs font-medium text-gray-500 uppercase tracking-wider`}>
+      {t('contacts.table.language')}
+    </th>
+    <th className={`px-6 py-3 ${direction === 'rtl' ? 'text-right' : 'text-left'} text-xs font-medium text-gray-500 uppercase tracking-wider`}>
+      {t('contacts.table.actions')}
+    </th>
+  </tr>
+</thead>
+
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredContacts.map((contact) => (
                 <tr key={contact.id} className="hover:bg-gray-50">
@@ -198,7 +199,7 @@ const ContactsPage = () => {
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                    <div className="flex items-center space-x-2">
+                    <div className="flex items-center  gap-2">
                       <button
                         onClick={() => {
                           setSelectedContact(contact);
@@ -291,7 +292,7 @@ const ContactsPage = () => {
                 </div>
               </div>
 
-              <div className="flex justify-end space-x-3 pt-6 border-t border-gray-200 mt-6">
+              <div className="flex justify-end  gap-3 pt-6 border-t border-gray-200 mt-6">
                 <button
                   onClick={() => setSelectedContact(null)}
                   className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors duration-200"
@@ -321,7 +322,7 @@ const ContactsPage = () => {
                   {t('contacts.delete.confirmation')}
                 </p>
               </div>
-              <div className="flex justify-center space-x-3 pt-4">
+              <div className="flex justify-center  gap-3 pt-4">
                 <button
                   onClick={() => setDeleteConfirm(null)}
                   className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors duration-200"
