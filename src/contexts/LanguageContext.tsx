@@ -309,7 +309,7 @@ const translations = {
   'products.filters.search.placeholder': 'ابحث عن المنتجات...',
   'products.filters.categories.label': 'التصنيفات',
     'products.show': 'عرض',
-    'products.show': 'منتجاً' ,
+'products.show2': 'منتجاً',
     'common.loading': 'جارٍ التحميل...',
     
     // About
