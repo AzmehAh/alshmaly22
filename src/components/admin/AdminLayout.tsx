@@ -89,7 +89,7 @@ const AdminLayout = () => {
           <div className="flex items-center gap-3">
             <img
               src="https://i.postimg.cc/0Q8pxwTM/logo.png"
-              alt="Al-Shamali Logo"
+              alt="Al-Shamaly Logo"
               className="h-8 w-8 object-contain"
               width={32}
               height={32}
@@ -122,7 +122,7 @@ const AdminLayout = () => {
                 onClick={() => setSidebarOpen(false)}
               >
                 <item.icon
-                  className={`mr-3 h-5 w-5 flex-shrink-0 ${
+                  className={`gap-3 h-5 w-5 flex-shrink-0 ${
                     isActive(item.href) ? 'text-white' : 'text-gray-400 group-hover:text-[#b9a779]'
                   }`}
                 />
