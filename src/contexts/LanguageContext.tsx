@@ -65,6 +65,10 @@ const translations = {
     'products.sort.name': 'Name',
     'products.sort.price_low': 'Price: Low to High',
     'products.sort.price_high': 'Price: High to Low',
+    'products.filters.title': 'Filters',
+  'products.filters.search.label': 'Search Products',
+  'products.filters.search.placeholder': 'Search products...',
+  'products.filters.categories.label': 'Categories',
     
     // About
     'about.title': 'About Al-Shamali',
