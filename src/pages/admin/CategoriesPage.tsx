@@ -213,7 +213,7 @@ const CategoriesPage = () => {
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                      <div className="flex items-center space-x-2">
+                      <div className="flex items-center gap-2">
                         <button
                           onClick={() => handleEdit(category)}
                           className="text-[#b9a779] hover:text-[#054239] p-1 rounded"
@@ -340,7 +340,7 @@ const CategoriesPage = () => {
                   </div>
                 </div>
 
-                <div className="flex justify-end space-x-3 pt-4">
+                <div className="flex justify-end gap-3 pt-4">
                   <button
                     type="button"
                     onClick={resetForm}
@@ -379,7 +379,7 @@ const CategoriesPage = () => {
                   {t("categories.delete_modal.message")}
                 </p>
               </div>
-              <div className="flex justify-center space-x-3 pt-4">
+              <div className="flex justify-center gap-3 pt-4">
                 <button
                   onClick={() => setDeleteConfirm(null)}
                   className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors duration-200"
