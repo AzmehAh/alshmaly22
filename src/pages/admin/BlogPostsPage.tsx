@@ -614,7 +614,7 @@ return (
                     disabled={loading}
                     className="px-4 py-2 bg-[#b9a779] text-white rounded-md hover:bg-[#054239] transition-colors disabled:opacity-50"
                   >
-                    {loading ? t('blog.modal.saving') : (editingPost ? t('blog.modal.edit_post_btn') : t('blog.modal.add_post'))}
+                    {loading ? t('blog.modal.saving') : (editingPost ? t('blog.modal.edit_post_btn') : t('blog.modal.edit_post_btn''))}
                   </button>
                 </div>
               </form>
