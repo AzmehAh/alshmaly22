@@ -95,7 +95,7 @@ const AdminLayout = () => {
               height={32}
             />
             <div>
-              <h1 className="text-lg font-bold text-[#054239]">Al-Shamali</h1>
+              <h1 className="text-lg font-bold text-[#054239]">{t('admin.logo')}</h1>
               <p className="text-xs text-[#b9a779]">{t('admin.dashboard')}</p>
             </div>
           </div>
