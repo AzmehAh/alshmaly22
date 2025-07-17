@@ -23,9 +23,9 @@ const ProductsPage = () => {
 
   const weights = ['1 kg', '5 kg', '10 kg', '25 kg', '50 kg'];
 
-  // Prepare categories for display
+  // Prepare categories for display 
   const displayCategories = [
-    { id: 'all', name: {t('products.filt')}, slug: 'all' }, 
+    { id: 'all', name: '{t('products.filt')}', slug: 'all' }, 
     ...categories
   ]; 
 
