@@ -25,7 +25,7 @@ const ProductsPage = () => {
 
   // Prepare categories for display
   const displayCategories = [
-    { id: 'all', name: 'All Products', slug: 'all' },
+    { id: 'all', name: 'All Products', slug: 'all' }, 
     ...categories
   ]; 
 
