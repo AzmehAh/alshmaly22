@@ -213,9 +213,7 @@ const ProductDetailsPage = () => {
                   <div className="p-6">
                     <h3 className="text-xl font-semibold text-[#054239] mb-2">{relatedProduct.name}</h3>
                     <div className="flex items-center justify-between">
-                      <span className="text-2xl font-bold text-[#b9a779]">
-                        ${relatedProduct.packages?.[0]?.price || relatedProduct.base_price}
-                      </span>
+                     
                       <span className="text-[#b9a779] font-medium">{t('common.view_details')} →</span>
                     </div>
                   </div>
