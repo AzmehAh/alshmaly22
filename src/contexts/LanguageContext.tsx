@@ -271,8 +271,7 @@ const translations = {
     'common.submit': 'إرسال',
     'common.close': 'إغلاق',
     
-    // Admin Interface
-    'admin.dashboard': 'لوحة التحكم',
+  
     
     
     // Home page
@@ -733,6 +732,7 @@ const adminTranslations = {
   'contacts.delete.delete': 'Delete',
      'admin.logout': 'Log out',
     'admin.welcome': 'Welcome',
+    'admin.last_updated': 'last updated',
   },
   ar: {
     'admin.products.management': 'إدارة المنتجات',
@@ -961,6 +961,9 @@ const adminTranslations = {
   'contacts.delete.delete': 'حذف',
      'admin.logout': 'تسجيل الخروج',
     'admin.welcome': 'مرحباً بك',
+      // Admin Interface
+    'admin.dashboard': 'لوحة التحكم',
+     'admin.last_updated': 'آخر تحديث',
   }
 };
 
