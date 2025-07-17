@@ -897,7 +897,10 @@ const ProductsPage = () => {
                               onClick={() => handleAddRelation(showRelationsModal!, product.id, 'related')}
                               className="bg-[#b9a779] hover:bg-[#054239] text-white px-3 py-1 rounded text-sm transition-colors duration-200"
                             >
-                            </button>
+                              
+    {t('admin.add')}
+  </button>
+                           
                       ))}
                     {availableProducts
                       .filter(product => !relations.some(rel => rel.related_product_id === product.id))
@@ -907,7 +910,7 @@ const ProductsPage = () => {
                   </div>
                             
                 </div>
-          
+              </div>
         
         
       )}
