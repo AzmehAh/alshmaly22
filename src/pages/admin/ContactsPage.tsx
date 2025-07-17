@@ -89,13 +89,13 @@ const ContactsPage = () => {
     );
   }
 
-  return (
+   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold text-[#054239]">Contact Messages</h1>
+        <h1 className="text-3xl font-bold text-[#054239]">{t('contacts.title')}</h1>
         <div className="flex items-center space-x-2 text-sm text-gray-500">
           <Mail size={16} />
-          <span>{contacts.length} total messages</span>
+          <span>{t('contacts.totalMessages', { count: contacts.length })}</span>
         </div>
       </div>
 
@@ -106,7 +106,7 @@ const ContactsPage = () => {
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
             <input
               type="text"
-              placeholder="Search messages..."
+              placeholder={t('contacts.search.placeholder')}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-10 w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
@@ -117,10 +117,10 @@ const ContactsPage = () => {
             onChange={(e) => setSelectedStatus(e.target.value)}
             className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
           >
-            <option value="all">All Status</option>
-            <option value="unread">Unread</option>
-            <option value="read">Read</option>
-            <option value="responded">Responded</option>
+            <option value="all">{t('contacts.filter.allStatus')}</option>
+            <option value="unread">{t('contacts.filter.unread')}</option>
+            <option value="read">{t('contacts.filter.read')}</option>
+            <option value="responded">{t('contacts.filter.responded')}</option>
           </select>
         </div>
       </div>
@@ -132,22 +132,22 @@ const ContactsPage = () => {
             <thead className="bg-gray-50">
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Contact
+                  {t('contacts.table.contact')}
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Subject
+                  {t('contacts.table.subject')}
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Status
+                  {t('contacts.table.status')}
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Date
+                  {t('contacts.table.date')}
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Language
+                  {t('contacts.table.language')}
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Actions
+                  {t('contacts.table.actions')}
                 </th>
               </tr>
             </thead>
@@ -179,9 +179,9 @@ const ContactsPage = () => {
                       onChange={(e) => updateContactStatus(contact.id, e.target.value)}
                       className={`text-xs font-semibold rounded-full px-2 py-1 border-0 ${getStatusColor(contact.status)}`}
                     >
-                      <option value="unread">Unread</option>
-                      <option value="read">Read</option>
-                      <option value="responded">Responded</option>
+                      <option value="unread">{t('contacts.status.unread')}</option>
+                      <option value="read">{t('contacts.status.read')}</option>
+                      <option value="responded">{t('contacts.status.responded')}</option>
                     </select>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
@@ -194,7 +194,7 @@ const ContactsPage = () => {
                     <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
                       contact.language === 'ar' ? 'bg-blue-100 text-blue-800' : 'bg-green-100 text-green-800'
                     }`}>
-                      {contact.language === 'ar' ? 'العربية' : 'English'}
+                      {contact.language === 'ar' ? t('contacts.language.ar') : t('contacts.language.en')}
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
@@ -207,14 +207,14 @@ const ContactsPage = () => {
                           }
                         }}
                         className="text-[#b9a779] hover:text-[#054239] p-1 rounded"
-                        title="View Details"
+                        title={t('contacts.action.viewDetails')}
                       >
                         <Eye size={16} />
                       </button>
                       <button
                         onClick={() => setDeleteConfirm(contact.id)}
                         className="text-red-600 hover:text-red-900 p-1 rounded"
-                        title="Delete Message"
+                        title={t('contacts.action.deleteMessage')}
                       >
                         <Trash2 size={16} />
                       </button>
@@ -233,7 +233,7 @@ const ContactsPage = () => {
           <div className="relative top-20 mx-auto p-5 border w-11/12 md:w-2/3 lg:w-1/2 shadow-lg rounded-md bg-white">
             <div className="mt-3">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-medium text-[#054239]">Contact Message Details</h3>
+                <h3 className="text-lg font-medium text-[#054239]">{t('contacts.details.title')}</h3>
                 <button
                   onClick={() => setSelectedContact(null)}
                   className="text-gray-400 hover:text-gray-600"
@@ -245,29 +245,29 @@ const ContactsPage = () => {
               <div className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700">Name</label>
+                    <label className="block text-sm font-medium text-gray-700">{t('contacts.details.name')}</label>
                     <p className="mt-1 text-sm text-gray-900">{selectedContact.name}</p>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700">Email</label>
+                    <label className="block text-sm font-medium text-gray-700">{t('contacts.details.email')}</label>
                     <p className="mt-1 text-sm text-gray-900">{selectedContact.email}</p>
                   </div>
                 </div>
 
                 {selectedContact.phone && (
                   <div>
-                    <label className="block text-sm font-medium text-gray-700">Phone</label>
+                    <label className="block text-sm font-medium text-gray-700">{t('contacts.details.phone')}</label>
                     <p className="mt-1 text-sm text-gray-900">{selectedContact.phone}</p>
                   </div>
                 )}
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">Subject</label>
+                  <label className="block text-sm font-medium text-gray-700">{t('contacts.details.subject')}</label>
                   <p className="mt-1 text-sm text-gray-900">{selectedContact.subject}</p>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">Message</label>
+                  <label className="block text-sm font-medium text-gray-700">{t('contacts.details.message')}</label>
                   <p className="mt-1 text-sm text-gray-900 bg-gray-50 p-3 rounded-lg whitespace-pre-wrap">
                     {selectedContact.message}
                   </p>
@@ -275,15 +275,15 @@ const ContactsPage = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700">Status</label>
+                    <label className="block text-sm font-medium text-gray-700">{t('contacts.details.status')}</label>
                     <p className="mt-1">
                       <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(selectedContact.status)}`}>
-                        {selectedContact.status}
+                        {t(`contacts.status.${selectedContact.status}`)}
                       </span>
                     </p>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700">Date Received</label>
+                    <label className="block text-sm font-medium text-gray-700">{t('contacts.details.dateReceived')}</label>
                     <p className="mt-1 text-sm text-gray-900">
                       {new Date(selectedContact.created_at).toLocaleString()}
                     </p>
@@ -296,13 +296,13 @@ const ContactsPage = () => {
                   onClick={() => setSelectedContact(null)}
                   className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors duration-200"
                 >
-                  Close
+                  {t('contacts.details.close')}
                 </button>
-                <a
+                 <a
                   href={`mailto:${selectedContact.email}?subject=Re: ${selectedContact.subject}`}
                   className="px-4 py-2 bg-[#b9a779] text-white rounded-lg hover:bg-[#054239] transition-colors duration-200"
                 >
-                  Reply via Email
+                  {t('contacts.details.reply')}
                 </a>
               </div>
             </div>
@@ -315,10 +315,10 @@ const ContactsPage = () => {
         <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
           <div className="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
             <div className="mt-3 text-center">
-              <h3 className="text-lg font-medium text-gray-900">Delete Contact Message</h3>
+              <h3 className="text-lg font-medium text-gray-900">{t('contacts.delete.title')}</h3>
               <div className="mt-2 px-7 py-3">
                 <p className="text-sm text-gray-500">
-                  Are you sure you want to delete this contact message? This action cannot be undone.
+                  {t('contacts.delete.confirmation')}
                 </p>
               </div>
               <div className="flex justify-center space-x-3 pt-4">
@@ -326,14 +326,14 @@ const ContactsPage = () => {
                   onClick={() => setDeleteConfirm(null)}
                   className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors duration-200"
                 >
-                  Cancel
+                  {t('contacts.delete.cancel')}
                 </button>
                 <button
                   onClick={() => handleDelete(deleteConfirm)}
                   disabled={!deleteConfirm}
                   className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors duration-200"
                 >
-                  Delete
+                  {t('contacts.delete.delete')}
                 </button>
               </div>
             </div>
@@ -343,5 +343,6 @@ const ContactsPage = () => {
     </div>
   );
 };
+
 
 export default ContactsPage;
