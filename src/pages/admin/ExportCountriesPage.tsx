@@ -4,6 +4,7 @@ import { ExportCountriesAPI } from '../../lib/api/export-countries';
 import type { ExportCountry } from '../../lib/supabase';
 
 const ExportCountriesPage = () => {
+  const { t } = useTranslation();
   const [countries, setCountries] = useState<ExportCountry[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
