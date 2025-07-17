@@ -167,7 +167,7 @@ const AdminLayout = () => {
               <Menu size={20} />
             </button>
 
-            <div className="flex items-center stock-4" dir="ltr">
+            <div className="flex items-center gap-4" dir="ltr">
               <AdminLanguageSwitcher />
               <div className="border-l border-gray-200 pl-4">
                 <span className="text-sm text-gray-500">
