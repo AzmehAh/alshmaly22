@@ -670,13 +670,7 @@ return (
                   {relations.map(rel => (
                     <li key={rel.id} className="flex justify-between items-center bg-gray-50 px-3 py-2 rounded">
                       <span>{rel.title}</span>
-                      <button
-                        onClick={() => handleRemoveRelation(rel.id)}
-                        className="text-red-600 hover:text-red-800"
-                        title={t('blog.modal.delete')}
-                      >
-                        <Trash2 size={16} />
-                      </button>
+                     
                       <button
                         onClick={() => handleRemoveRelation(rel.id, showRelationsModal)}
                         className="text-red-600 hover:text-red-800"
