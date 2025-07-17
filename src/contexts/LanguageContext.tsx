@@ -733,6 +733,7 @@ const adminTranslations = {
      'admin.logout': 'Log out',
     'admin.welcome': 'Welcome',
     'admin.last_updated': 'last updated',
+       'admin.logo': 'Al-Shamaly',
   },
   ar: {
     'admin.products.management': 'إدارة المنتجات',
@@ -959,11 +960,11 @@ const adminTranslations = {
   'contacts.delete.confirmation': 'هل أنت متأكد من حذف هذه الرسالة؟ هذا الإجراء لا يمكن التراجع عنه.',
   'contacts.delete.cancel': 'إلغاء',
   'contacts.delete.delete': 'حذف',
-     'admin.logout': 'تسجيل الخروج',
-    'admin.welcome': 'مرحباً بك',
-      // Admin Interface
-    'admin.dashboard': 'لوحة التحكم',
-     'admin.last_updated': 'آخر تحديث',
+   'admin.logout': 'تسجيل الخروج',
+   'admin.welcome': 'مرحباً بك',
+   'admin.dashboard': 'لوحة التحكم',
+    'admin.last_updated': 'آخر تحديث',
+    'admin.logo': 'الشمالي',
   }
 };
 
