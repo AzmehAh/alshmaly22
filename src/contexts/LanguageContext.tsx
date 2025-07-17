@@ -246,6 +246,8 @@ const translations = {
     'products.related_products': 'Related Products',
     'products.discover': 'Discover our premium Syrian agricultural products, carefully selected and processed to bring you the authentic taste of Syria.',
     'back': 'Back to Products',
+    'products.filters.result': 'Showing {{count}} products',
+
   },
   ar: {
     // Navigation
@@ -304,6 +306,7 @@ const translations = {
   'products.filters.search.label': 'ابحث في المنتجات',
   'products.filters.search.placeholder': 'ابحث عن المنتجات...',
   'products.filters.categories.label': 'التصنيفات',
+    'products.filters.result': 'عرض {{count}} منتجًا',
     
     // About
     'about.title': 'عن الشمالي',
