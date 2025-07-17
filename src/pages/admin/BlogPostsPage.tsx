@@ -555,8 +555,8 @@ return (
                     <label className="block text-sm font-medium text-gray-700 mb-1">{t('blog.fields.event_date_en')}</label>
                     <input
                       type="date"
-                      value={formData.event_date}
-                      onChange={(e) => setFormData({ ...formData, event_date: e.target.value })}
+                     value={formData.event_date_en}
+                     onChange={(e) => setFormData({ ...formData, event_date_en: e.target.value })}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
                     />
                   </div>
