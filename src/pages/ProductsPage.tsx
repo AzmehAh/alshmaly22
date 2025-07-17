@@ -25,7 +25,7 @@ const ProductsPage = () => {
 
   // Prepare categories for display
   const displayCategories = [
-    { id: 'all', name: 'All Products', slug: 'all' }, 
+    { id: 'all', name: 'hhkkj', slug: 'all' }, 
     ...categories
   ]; 
 
@@ -147,7 +147,10 @@ const ProductsPage = () => {
             {/* View Toggle and Results Count */}
             <div className="flex justify-between items-center mb-6">
               <p className="text-gray-600">
-                {loading ? 'Loading...' : `{t('products.show')} ${filteredProducts.length} {t('products.show2')}`}
+               {loading
+  ? t('common.loading')
+  : `${t('products.show')} ${filteredProducts.length} ${t('products.show2')}`}
+
               </p>
               <div className="flex items-center space-x-2">
                 <button
