@@ -146,11 +146,7 @@ const ProductsPage = () => {
           <div className="lg:w-3/4 w-full">
             {/* View Toggle and Results Count */}
             <div className="flex justify-between items-center mb-6">
-               <p className="text-sm text-gray-600">
-      {loading
-        ? t('common.loading')
-        : t('products.filters.result', { count: filteredProducts.length })}
-    </p> 
+               {loading ? 'Loading...' : ` {t('products.show')} ${filteredProducts.length} {t('products.show2')}`}
               <div className="flex items-center space-x-2">
                 <button
                   onClick={() => setViewMode('grid')}
