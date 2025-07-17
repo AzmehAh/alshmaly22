@@ -144,7 +144,7 @@ const HomepageManagementPage = () => {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center  gap-3">
           <Home size={24} className="text-[#b9a779]" />
           <h1 className="text-3xl font-bold text-[#054239]">{t('admin.homepage.management')}</h1>
         </div>
@@ -159,7 +159,7 @@ const HomepageManagementPage = () => {
 
       {/* Tabs */}
       <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
-        <div className="flex space-x-4 mb-6">
+        <div className="flex  gap-4 mb-6">
           <button
             onClick={() => setActiveTab('products')}
             className={`px-6 py-3 rounded-lg font-medium transition-colors duration-200 ${
@@ -186,21 +186,22 @@ const HomepageManagementPage = () => {
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
-              <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  {t('order')}
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  {activeTab === 'products' ? t('product') : t('blog.post')}
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  {t('status')}
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  {t('actions')}
-                </th>
-              </tr>
-            </thead>
+  <tr>
+    <th className={`px-6 py-3 ${direction === 'rtl' ? 'text-right' : 'text-left'} text-xs font-medium text-gray-500 uppercase tracking-wider`}>
+      {t('order')}
+    </th>
+    <th className={`px-6 py-3 ${direction === 'rtl' ? 'text-right' : 'text-left'} text-xs font-medium text-gray-500 uppercase tracking-wider`}>
+      {activeTab === 'products' ? t('product') : t('blog.post')}
+    </th>
+    <th className={`px-6 py-3 ${direction === 'rtl' ? 'text-right' : 'text-left'} text-xs font-medium text-gray-500 uppercase tracking-wider`}>
+      {t('status')}
+    </th>
+    <th className={`px-6 py-3 ${direction === 'rtl' ? 'text-right' : 'text-left'} text-xs font-medium text-gray-500 uppercase tracking-wider`}>
+      {t('actions')}
+    </th>
+  </tr>
+</thead>
+
 
             <tbody className="bg-white divide-y divide-gray-200">
               {(activeTab === 'products' ? homepageProducts : homepageBlogPosts).map((item, index) => {
@@ -211,7 +212,7 @@ const HomepageManagementPage = () => {
                 return (
                   <tr key={item.id} className="hover:bg-gray-50">
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="flex items-center space-x-2">
+                      <div className="flex items-center  gap-2">
                         <span className="text-sm font-medium text-gray-900">#{index + 1}</span>
                         <div className="flex flex-col space-y-1">
                           <button
@@ -268,7 +269,7 @@ const HomepageManagementPage = () => {
                     </td>
 
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                      <div className="flex items-center space-x-2">
+                      <div className="flex items-center  gap-2">
                         <button
                           onClick={() => window.open(
                             activeTab === 'products'
