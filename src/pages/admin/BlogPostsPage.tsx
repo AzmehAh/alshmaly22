@@ -224,7 +224,7 @@ const BlogPostsPage = () => {
     );
   }
 
-  return (
+   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold text-[#054239]">Blog Posts Management</h1>
@@ -258,7 +258,7 @@ const BlogPostsPage = () => {
             <option value="all">All Categories</option>
             {categories.map(category => (
               <option key={category.id} value={category.id}>
-                {category.name}{category.name_ar ? ` / ${category.name_ar}` : ''}
+                {category.name}{category.name_ar ?  / ${category.name_ar} : ''}
               </option>
             ))}
           </select>
@@ -318,10 +318,10 @@ const BlogPostsPage = () => {
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span className="text-sm text-gray-900">{post.author}</span>
                   </td>
-                   <td className="px-6 py-4 whitespace-nowrap">
-                    <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <span className={inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
                       post.published ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
-                    }`}>
+                    }}>
                       {post.published ? 'Published' : 'Draft'}
                     </span>
                   </td>
@@ -334,7 +334,7 @@ const BlogPostsPage = () => {
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                     <div className="flex items-center space-x-2">
                       <button
-                        onClick={() => window.open(`/blog/${post.id}`, '_blank')}
+                        onClick={() => window.open(/blog/${post.id}, '_blank')}
                         className="text-blue-600 hover:text-blue-900 p-1 rounded"
                         title="View Post"
                       >
@@ -489,7 +489,7 @@ const BlogPostsPage = () => {
                       <option value="">Select Category</option>
                       {categories.map(category => (
                         <option key={category.id} value={category.id}>
-                          {category.name}{category.name_ar ? ` / ${category.name_ar}` : ''}
+                          {category.name}{category.name_ar ?  / ${category.name_ar} : ''}
                         </option>
                       ))}
                     </select>
@@ -662,7 +662,7 @@ const BlogPostsPage = () => {
                     )}
                   </div>
                 </div>
- 
+
                 {/* Add Relations */}
                 <div>
                   <h4 className="text-lg font-semibold text-[#054239] mb-4">Add Related Posts</h4>
