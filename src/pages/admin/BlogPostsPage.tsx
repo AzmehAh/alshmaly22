@@ -4,8 +4,10 @@ import { supabase } from '../../lib/supabase';
 import { RelationsAPI } from '../../lib/api/relations';
 import type { BlogPost, BlogCategory } from '../../lib/supabase';
 import type { BlogPostRelation } from '../../lib/api/relations';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const BlogPostsPage = () => {
+     const { t, direction } = useLanguage()
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [categories, setCategories] = useState<BlogCategory[]>([]);
   const [loading, setLoading] = useState(true);
