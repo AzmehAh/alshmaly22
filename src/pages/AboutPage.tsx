@@ -81,7 +81,7 @@ return (
     {/* Hero Section */}
     <section className="relative py-32 text-white">
   
-      <div className="absolute inset-0 z-0 overflow-hidden">
+      {/* <div className="absolute inset-0 z-0 overflow-hidden">
         <img 
           src="https://i.postimg.cc/RZSbVwFP/4aa54b09-2e71-484f-b501-e95043211167.jpg" 
           alt="Al-Shamali Team"
@@ -89,7 +89,7 @@ return (
         />
         <div className="absolute inset-0 bg-black/60"></div>
       </div>
-      
+      */}
     
       <div className="relative z-10 container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
