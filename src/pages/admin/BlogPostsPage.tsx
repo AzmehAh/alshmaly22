@@ -224,16 +224,17 @@ const BlogPostsPage = () => {
     );
   }
 
-    return (
+return (
     <div className="space-y-6">
+      {/* Header */}
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold text-[#054239]">Blog Posts Management</h1>
+        <h1 className="text-3xl font-bold text-[#054239]">{t('blog.title')}</h1>
         <button
           onClick={() => setShowForm(true)}
           className="bg-[#b9a779] hover:bg-[#054239] text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200 flex items-center"
         >
           <Plus size={20} className="mr-2" />
-          Add Post
+          {t('blog.add_post')}
         </button>
       </div>
 
@@ -244,7 +245,7 @@ const BlogPostsPage = () => {
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
             <input
               type="text"
-              placeholder="Search posts..."
+              placeholder={t('blog.search.placeholder')}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-10 w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
@@ -255,7 +256,7 @@ const BlogPostsPage = () => {
             onChange={(e) => setSelectedCategory(e.target.value)}
             className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
           >
-            <option value="all">All Categories</option>
+            <option value="all">{t('blog.all_categories')}</option>
             {categories.map(category => (
               <option key={category.id} value={category.id}>
                 {category.name}{category.name_ar ? ` / ${category.name_ar}` : ''}
@@ -272,22 +273,22 @@ const BlogPostsPage = () => {
             <thead className="bg-gray-50">
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Post
+                  {t('blog.table.post')}
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Category
+                  {t('blog.table.category')}
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Author
+                  {t('blog.table.author')}
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Status
+                  {t('blog.table.status')}
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Date
+                  {t('blog.table.date')}
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Actions
+                  {t('blog.table.actions')}
                 </th>
               </tr>
             </thead>
@@ -309,7 +310,7 @@ const BlogPostsPage = () => {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm text-gray-900">
-                      {post.category?.name || 'Uncategorized'}
+                      {post.category?.name || t('blog.uncategorized')}
                       {post.category?.name_ar && (
                         <div className="text-xs text-gray-500 mt-1">{post.category.name_ar}</div>
                       )}
@@ -322,7 +323,7 @@ const BlogPostsPage = () => {
                     <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
                       post.published ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
                     }`}>
-                      {post.published ? 'Published' : 'Draft'}
+                      {post.published ? t('blog.status.published') : t('blog.status.draft')}
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
@@ -336,14 +337,14 @@ const BlogPostsPage = () => {
                       <button
                         onClick={() => window.open(`/blog/${post.id}`, '_blank')}
                         className="text-blue-600 hover:text-blue-900 p-1 rounded"
-                        title="View Post"
+                        title={t('blog.modal.view_post')}
                       >
                         <Eye size={16} />
                       </button>
                       <button
                         onClick={() => handleEdit(post)}
                         className="text-[#b9a779] hover:text-[#054239] p-1 rounded"
-                        title="Edit Post"
+                        title={t('blog.modal.edit_post_btn')}
                       >
                         <Edit size={16} />
                       </button>
@@ -353,14 +354,14 @@ const BlogPostsPage = () => {
                           fetchRelations(post.id);
                         }}
                         className="text-[#b9a779] hover:text-[#054239] p-1 rounded"
-                        title="Manage Related Posts"
+                        title={t('blog.modal.manage_related_posts')}
                       >
                         <LinkIcon size={16} />
                       </button>
                       <button
                         onClick={() => setDeleteConfirm(post.id)}
                         className="text-red-600 hover:text-red-900 p-1 rounded"
-                        title="Delete Post"
+                        title={t('blog.modal.delete')}
                       >
                         <Trash2 size={16} />
                       </button>
@@ -379,13 +380,13 @@ const BlogPostsPage = () => {
           <div className="relative top-10 mx-auto p-5 border w-11/12 md:w-4/5 lg:w-3/4 shadow-lg rounded-md bg-white">
             <div className="mt-3">
               <h3 className="text-lg font-medium text-[#054239] mb-4">
-                {editingPost ? 'Edit Post' : 'Add New Post'}
+                {editingPost ? t('blog.modal.edit_post') : t('blog.modal.add_new_post')}
               </h3>
               <form onSubmit={handleSubmit} className="space-y-4">
                 {/* Title - Bilingual */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Title (EN)</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">{t('blog.fields.title_en')}</label>
                     <input
                       type="text"
                       required
@@ -401,7 +402,7 @@ const BlogPostsPage = () => {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Title (AR)</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">{t('blog.fields.title_ar')}</label>
                     <input
                       type="text"
                       value={formData.title_ar}
@@ -415,7 +416,7 @@ const BlogPostsPage = () => {
 
                 {/* Slug */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Slug</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">{t('blog.fields.slug')}</label>
                   <input
                     type="text"
                     required
@@ -429,7 +430,7 @@ const BlogPostsPage = () => {
                 {/* Excerpt - Bilingual */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Excerpt (EN)</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">{t('blog.fields.excerpt_en')}</label>
                     <textarea
                       required
                       rows={3}
@@ -440,153 +441,152 @@ const BlogPostsPage = () => {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Excerpt (AR)</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">{t('blog.fields.excerpt_ar')}</label>
                     <textarea
                       rows={3}
                       value={formData.excerpt_ar}
                       onChange={(e) => setFormData({ ...formData, excerpt_ar: e.target.value })}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                      placeholder="وصف مختصر بالعربية..."
+                      placeholder="الوصف المختصر بالعربية..."
                       dir="rtl"
                     />
                   </div>
                 </div>
 
-                {/* Content - Bilingual */}
+                {/* Content - Bilingual (can use ReactQuill or textarea) */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Content (EN)</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">{t('blog.fields.content_en')}</label>
                     <textarea
-                      required
-                      rows={8}
+                      rows={6}
                       value={formData.content}
                       onChange={(e) => setFormData({ ...formData, content: e.target.value })}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                      placeholder="Write your post content in English..."
+                      placeholder="Full content in English..."
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Content (AR)</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">{t('blog.fields.content_ar')}</label>
                     <textarea
-                      rows={8}
+                      rows={6}
                       value={formData.content_ar}
                       onChange={(e) => setFormData({ ...formData, content_ar: e.target.value })}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                      placeholder="اكتب محتوى المقال بالعربية..."
+                      placeholder="المحتوى الكامل بالعربية..."
                       dir="rtl"
                     />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                {/* Category */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">{t('blog.fields.category')}</label>
+                  <select
+                    value={formData.category_id || ''}
+                    onChange={(e) => setFormData({ ...formData, category_id: e.target.value })}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+                    required
+                  >
+                    <option value="">{t('blog.all_categories')}</option>
+                    {categories.map(cat => (
+                      <option key={cat.id} value={cat.id}>
+                        {cat.name}{cat.name_ar ? ` / ${cat.name_ar}` : ''}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Author */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
-                    <select
-                      value={formData.category_id}
-                      onChange={(e) => setFormData({ ...formData, category_id: e.target.value })}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                    >
-                      <option value="">Select Category</option>
-                      {categories.map(category => (
-                        <option key={category.id} value={category.id}>
-                          {category.name}{category.name_ar ? ` / ${category.name_ar}` : ''}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Author (EN)</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">{t('blog.fields.author_en')}</label>
                     <input
                       type="text"
-                      required
                       value={formData.author}
                       onChange={(e) => setFormData({ ...formData, author: e.target.value })}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                      placeholder="Author name in English"
+                      placeholder="Author in English"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Read Time (EN)</label>
-                    <input
-                      type="text"
-                      required
-                      value={formData.read_time}
-                      onChange={(e) => setFormData({ ...formData, read_time: e.target.value })}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                      placeholder="5 min read"
-                    />
-                  </div>
-                </div>
-
-                {/* Arabic Author and Read Time */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Author (AR)</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">{t('blog.fields.author_ar')}</label>
                     <input
                       type="text"
                       value={formData.author_ar}
                       onChange={(e) => setFormData({ ...formData, author_ar: e.target.value })}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                      placeholder="اسم الكاتب بالعربية"
+                      placeholder="المؤلف بالعربية"
                       dir="rtl"
                     />
                   </div>
+                </div>
+
+                {/* Read Time */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Read Time (AR)</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">{t('blog.fields.read_time_en')}</label>
+                    <input
+                      type="text"
+                      value={formData.read_time}
+                      onChange={(e) => setFormData({ ...formData, read_time: e.target.value })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+                      placeholder="Read time in English"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">{t('blog.fields.read_time_ar')}</label>
                     <input
                       type="text"
                       value={formData.read_time_ar}
                       onChange={(e) => setFormData({ ...formData, read_time_ar: e.target.value })}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                      placeholder="5 دقائق قراءة"
+                      placeholder="مدة القراءة بالعربية"
                       dir="rtl"
                     />
                   </div>
                 </div>
 
-                {/* Event Dates - Bilingual */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* Event Date */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Event Date (EN)</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">{t('blog.fields.event_date_en')}</label>
                     <input
-                      type="text"
-                      value={formData.event_date_en}
-                      onChange={(e) => setFormData({ ...formData, event_date_en: e.target.value })}
+                      type="date"
+                      value={formData.event_date}
+                      onChange={(e) => setFormData({ ...formData, event_date: e.target.value })}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                      placeholder="August 1, 2025"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Event Date (AR)</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">{t('blog.fields.event_date_ar')}</label>
                     <input
-                      type="text"
+                      type="date"
                       value={formData.event_date_ar}
                       onChange={(e) => setFormData({ ...formData, event_date_ar: e.target.value })}
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                      placeholder="١ أغسطس ٢٠٢٥"
-                      dir="rtl"
                     />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
-                    <select
-                      value={formData.published.toString()}
-                      onChange={(e) => setFormData({ ...formData, published: e.target.value === 'true' })}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                    >
-                      <option value="true">Published</option>
-                      <option value="false">Draft</option>
-                    </select>
-                  </div>
-                </div>
-
+                {/* Status */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Featured Image URL</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">{t('blog.fields.status')}</label>
+                  <select
+                    value={formData.published ? 'published' : 'draft'}
+                    onChange={(e) =>
+                      setFormData({ ...formData, published: e.target.value === 'published' })
+                    }
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+                    required
+                  >
+                    <option value="published">{t('blog.status.published')}</option>
+                    <option value="draft">{t('blog.status.draft')}</option>
+                  </select>
+                </div> {/* Featured Image URL */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">{t('blog.fields.featured_image_url')}</label>
                   <input
-                    type="url"
+                    type="text"
                     value={formData.featured_image}
                     onChange={(e) => setFormData({ ...formData, featured_image: e.target.value })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
@@ -594,20 +594,24 @@ const BlogPostsPage = () => {
                   />
                 </div>
 
-                <div className="flex justify-end space-x-3 pt-4">
+                {/* Buttons */}
+                <div className="flex justify-end space-x-4 pt-4">
                   <button
                     type="button"
-                    onClick={resetForm}
-                    className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors duration-200"
+                    onClick={() => {
+                      resetForm();
+                      setShowForm(false);
+                    }}
+                    className="px-4 py-2 bg-gray-300 rounded-md hover:bg-gray-400 transition-colors"
                   >
-                    Cancel
+                    {t('blog.modal.cancel')}
                   </button>
                   <button
                     type="submit"
                     disabled={loading}
-                    className="px-4 py-2 bg-[#b9a779] text-white rounded-lg hover:bg-[#054239] transition-colors duration-200 disabled:opacity-50"
+                    className="px-4 py-2 bg-[#b9a779] text-white rounded-md hover:bg-[#054239] transition-colors disabled:opacity-50"
                   >
-                    {loading ? 'Saving...' : editingPost ? 'Update' : 'Create'}
+                    {loading ? t('blog.modal.saving') : (editingPost ? t('blog.modal.edit_post_btn') : t('blog.modal.add_post'))}
                   </button>
                 </div>
               </form>
@@ -616,132 +620,87 @@ const BlogPostsPage = () => {
         </div>
       )}
 
-      {/* Related Posts Modal */}
-      {showRelationsModal && (
-        <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
-          <div className="relative top-10 mx-auto p-5 border w-11/12 md:w-4/5 lg:w-3/4 shadow-lg rounded-md bg-white">
-            <div className="mt-3">
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="text-2xl font-bold text-[#054239]">Manage Related Blog Posts</h3>
-                <button
-                  onClick={() => setShowRelationsModal(null)}
-                  className="text-gray-400 hover:text-gray-600"
-                >
-                  <X size={24} />
-                </button>
-              </div>
-
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {/* Current Relations */}
-                <div>
-                  <h4 className="text-lg font-semibold text-[#054239] mb-4">Current Related Posts</h4>
-                  <div className="space-y-3 max-h-96 overflow-y-auto">
-                    {relations.map((relation) => (
-                      <div key={relation.id} className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
-                        <div className="flex items-center">
-                          <img
-                            src={relation.related_blog_post?.featured_image || 'https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=100&h=100'}
-                            alt={relation.related_blog_post?.title}
-                            className="h-10 w-10 rounded-lg object-cover mr-3"
-                          />
-                          <div>
-                            <div className="font-medium text-[#054239]">{relation.related_blog_post?.title}</div>
-                            <div className="text-sm text-gray-500 capitalize">{relation.relation_type}</div>
-                          </div>
-                        </div>
-                        <button
-                          onClick={() => handleRemoveRelation(relation.id, showRelationsModal!)}
-                          className="text-red-600 hover:text-red-800 p-1"
-                        >
-                          <Trash2 size={16} />
-                        </button>
-                      </div>
-                    ))}
-                    {relations.length === 0 && (
-                      <p className="text-gray-500 text-center py-4">No related posts added yet.</p>
-                    )}
-                  </div>
-                </div>
-
-                {/* Add Relations */}
-                <div>
-                  <h4 className="text-lg font-semibold text-[#054239] mb-4">Add Related Posts</h4>
-                  <div className="space-y-3 max-h-96 overflow-y-auto">
-                    {availablePosts
-                      .filter(post => !relations.some(rel => rel.related_blog_post_id === post.id))
-                      .map((post) => (
-                        <div key={post.id} className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
-                          <div className="flex items-center">
-                            <img
-                              src={post.featured_image || 'https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=100&h=100'}
-                              alt={post.title}
-                              className="h-10 w-10 rounded-lg object-cover mr-3"
-                            />
-                            <div>
-                              <div className="font-medium text-[#054239]">{post.title}</div>
-                              <div className="text-sm text-gray-500">{post.category?.name}</div>
-                            </div>
-                          </div>
-                          <div className="flex space-x-2">
-                            <button
-                              onClick={() => handleAddRelation(showRelationsModal!, post.id, 'related')}
-                              className="bg-[#b9a779] hover:bg-[#054239] text-white px-3 py-1 rounded text-sm transition-colors duration-200"
-                            >
-                              Related
-                            </button>
-                            <button
-                              onClick={() => handleAddRelation(showRelationsModal!, post.id, 'similar')}
-                              className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm transition-colors duration-200"
-                            >
-                              Similar
-                            </button>
-                            <button
-                              onClick={() => handleAddRelation(showRelationsModal!, post.id, 'follow_up')}
-                              className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded text-sm transition-colors duration-200"
-                            >
-                              Follow-up
-                            </button>
-                          </div>
-                        </div>
-                      ))}
-                    {availablePosts
-                      .filter(post => !relations.some(rel => rel.related_blog_post_id === post.id))
-                      .length === 0 && (
-                      <p className="text-gray-500 text-center py-4">All available posts are already related.</p>
-                    )}
-                  </div>
-                </div>
-              </div>
+      {/* Delete Confirmation Modal */}
+      {deleteConfirm && (
+        <div className="fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center z-50">
+          <div className="bg-white rounded-md p-6 max-w-md mx-auto shadow-lg">
+            <h2 className="text-xl font-semibold text-[#054239] mb-4">{t('blog.modal.delete_title')}</h2>
+            <p className="mb-6">{t('blog.modal.delete_confirmation')}</p>
+            <div className="flex justify-end space-x-4">
+              <button
+                onClick={() => setDeleteConfirm(null)}
+                className="px-4 py-2 bg-gray-300 rounded-md hover:bg-gray-400 transition-colors"
+              >
+                {t('blog.modal.cancel')}
+              </button>
+              <button
+                onClick={handleDelete}
+                className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
+              >
+                {t('blog.modal.delete')}
+              </button>
             </div>
           </div>
         </div>
       )}
 
-      {/* Delete Confirmation Modal */}
-      {deleteConfirm && (
-        <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
-          <div className="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
-            <div className="mt-3 text-center">
-              <h3 className="text-lg font-medium text-gray-900">Delete Post</h3>
-              <div className="mt-2 px-7 py-3">
-                <p className="text-sm text-gray-500">
-                  Are you sure you want to delete this blog post? This action cannot be undone.
-                </p>
-              </div>
-              <div className="flex justify-center space-x-3 pt-4">
-                <button
-                  onClick={() => setDeleteConfirm(null)}
-                  className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors duration-200"
-                >
-                  Cancel
-                </button>
-                <button
-                  onClick={() => handleDelete(deleteConfirm)}
-                  className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors duration-200"
-                >
-                  Delete
-                </button>
-              </div>
+      {/* Related Posts Modal */}
+      {showRelationsModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center z-50 overflow-auto p-4">
+          <div className="bg-white rounded-md p-6 max-w-4xl w-full shadow-lg relative">
+            <button
+              onClick={() => setShowRelationsModal(null)}
+              className="absolute top-4 right-4 text-gray-600 hover:text-gray-900"
+              title="Close"
+            >
+              <X size={24} />
+            </button>
+            <h2 className="text-xl font-semibold text-[#054239] mb-4">{t('blog.modal.manage_related_posts')}</h2>
+
+            {/* Current related posts */}
+            <div className="mb-6">
+              <h3 className="font-medium mb-2">{t('blog.modal.related_posts')}</h3>
+              {relations.length === 0 ? (
+                <p className="text-gray-500">{t('blog.modal.no_related_posts')}</p>
+              ) : (
+                <ul className="space-y-2 max-h-40 overflow-auto border p-3 rounded-md">
+                  {relations.map(rel => (
+                    <li key={rel.id} className="flex justify-between items-center bg-gray-50 px-3 py-2 rounded">
+                      <span>{rel.title}</span>
+                      <button
+                        onClick={() => handleRemoveRelation(rel.id)}
+                        className="text-red-600 hover:text-red-800"
+                        title={t('blog.modal.delete')}
+                      >
+                        <Trash2 size={16} />
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+
+            {/* Add related posts */}
+            <div>
+              <h3 className="font-medium mb-2">{t('blog.modal.add_related_posts')}</h3>
+              {availablePosts.length === 0 ? (
+                <p className="text-gray-500">{t('blog.modal.all_related')}</p>
+              ) : (
+                <ul className="space-y-2 max-h-40 overflow-auto border p-3 rounded-md">
+                  {availablePosts.map(post => (
+                    <li key={post.id} className="flex justify-between items-center bg-gray-50 px-3 py-2 rounded">
+                      <span>{post.title}</span>
+                      <button
+                        onClick={() => handleAddRelation(post.id)}
+                        className="text-green-600 hover:text-green-800"
+                        title={t('blog.modal.add_related_posts')}
+                      >
+                        <Plus size={16} />
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           </div>
         </div>
