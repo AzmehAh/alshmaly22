@@ -27,15 +27,14 @@ const ProductsPage = () => {
     description: '',
     description_ar: '',
     category_id: '',
-    base_price: 0,
-    
+   
    
     specifications_en: [] as string[],
     specifications_ar: [] as string[]
   });
 
   const [images, setImages] = useState<Array<{ image_url: string; alt_text: string; sort_order: number }>>([]);
-  const [packages, setPackages] = useState<Array<{ weight: string; price: number; is_default: boolean }>>([]);
+  const [packages, setPackages] = useState<Array<{ weight: string; is_default: boolean }>>([]);
   const [newFeature, setNewFeature] = useState('');
   const [newSpecificationEn, setNewSpecificationEn] = useState('');
   const [newSpecificationAr, setNewSpecificationAr] = useState('');
@@ -169,7 +168,7 @@ const ProductsPage = () => {
       description: product.description,
       description_ar: product.description_ar || '',
       category_id: product.category_id || '',
-      base_price: product.base_price,
+     
       availability: product.availability,
      
       specifications_en: product.specifications_en || [],
@@ -184,7 +183,7 @@ const ProductsPage = () => {
     
     setPackages(product.packages?.map(pkg => ({
       weight: pkg.weight,
-      price: pkg.price,
+    
       is_default: pkg.is_default
     })) || []);
     
@@ -249,7 +248,7 @@ const ProductsPage = () => {
       description: '',
       description_ar: '',
       category_id: '',
-      base_price: 0,
+    
      
      
       specifications_en: [],
@@ -318,9 +317,7 @@ const ProductsPage = () => {
     setImages(prev => prev.filter((_, i) => i !== index));
   };
 
-  const addPackage = () => {
-    setPackages(prev => [...prev, { weight: '', price: 0, is_default: false }]);
-  };
+  
 
   const updatePackage = (index: number, field: string, value: string | number | boolean) => {
     setPackages(prev => prev.map((pkg, i) => 
@@ -400,9 +397,7 @@ const ProductsPage = () => {
     <th className={`px-6 py-3 ${direction === 'rtl' ? 'text-right' : 'text-left'} text-xs font-medium text-gray-500 uppercase tracking-wider`}>
       {t('admin.category')}
     </th>
-    <th className={`px-6 py-3 ${direction === 'rtl' ? 'text-right' : 'text-left'} text-xs font-medium text-gray-500 uppercase tracking-wider`}>
-      {t('admin.price')}
-    </th>
+    
     <th className={`px-6 py-3 ${direction === 'rtl' ? 'text-right' : 'text-left'} text-xs font-medium text-gray-500 uppercase tracking-wider`}>
       {t('admin.availability')}
     </th>
@@ -436,9 +431,7 @@ const ProductsPage = () => {
                       )}
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <span className="text-sm font-medium text-[#b9a779]">${product.base_price}</span>
-                  </td>
+                  
                   <td className="px-6 py-4 whitespace-nowrap">
                    
                   </td>
@@ -784,17 +777,7 @@ const ProductsPage = () => {
                             placeholder="1kg, 5kg, etc."
                           />
                         </div>
-                        <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-1">{t('admin.price')}</label>
-                          <input
-                            type="number"
-                            step="0.01"
-                            value={pkg.price}
-                            onChange={(e) => updatePackage(index, 'price', parseFloat(e.target.value))}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                            placeholder="0.00"
-                          />
-                        </div>
+                       
                         <div className="flex items-center">
                           <label className="flex items-center">
                             <input
@@ -914,22 +897,7 @@ const ProductsPage = () => {
                               onClick={() => handleAddRelation(showRelationsModal!, product.id, 'related')}
                               className="bg-[#b9a779] hover:bg-[#054239] text-white px-3 py-1 rounded text-sm transition-colors duration-200"
                             >
-                              {t('admin.related')}
-                            </button>
-                            <button
-                              onClick={() => handleAddRelation(showRelationsModal!, product.id, 'similar')}
-                              className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm transition-colors duration-200"
-                            >
-                              {t('admin.similar')}
-                            </button>
-                            <button
-                              onClick={() => handleAddRelation(showRelationsModal!, product.id, 'complementary')}
-                              className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded text-sm transition-colors duration-200"
-                            >
-                              {t('admin.complementary')}
-                            </button>
-                          </div>
-                        </div>
+                           
                       ))}
                     {availableProducts
                       .filter(product => !relations.some(rel => rel.related_product_id === product.id))
@@ -939,9 +907,8 @@ const ProductsPage = () => {
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
+        
+        
       )}
 
       {/* Delete Confirmation Modal */}
