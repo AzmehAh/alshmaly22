@@ -24,7 +24,7 @@ const Header = () => {
               className="h-16 w-15 object-contain"
             />
             <div className="flex flex-col">
-              <h1 className="text-xl font-bold text-[#054239]">Al-Shamaly</h1>
+              <h1 className="text-xl font-bold text-[#054239]">{t('admin.logo')}</h1>
             </div>
           </Link>
 
