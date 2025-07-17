@@ -122,7 +122,9 @@ const AdminLayout = () => {
                 onClick={() => setSidebarOpen(false)}
               >
                 <item.icon
-                  className={`mr-5 h-5 w-5 flex-shrink-0 ${
+                  className={`${
+          direction === 'rtl' ? 'ml-3' : 'mr-3'
+        } h-5 w-5 flex-shrink-0 ${
                     isActive(item.href) ? 'text-white' : 'text-gray-400 group-hover:text-[#b9a779]'
                   }`}
                 />
