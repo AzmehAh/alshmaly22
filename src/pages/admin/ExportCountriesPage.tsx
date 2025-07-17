@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Plus, Search, Edit, Trash2, Globe, ArrowUp, ArrowDown, Eye, EyeOff } from 'lucide-react';
 import { ExportCountriesAPI } from '../../lib/api/export-countries';
 import type { ExportCountry } from '../../lib/supabase';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const ExportCountriesPage = () => {
-  const { t } = useTranslation();
+    const { t, direction } = useLanguage()
   const [countries, setCountries] = useState<ExportCountry[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
