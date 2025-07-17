@@ -709,7 +709,7 @@ return (
                 >
                   <Plus size={16} />
                 </button>
-              </li>
+              </li> 
             ))}
           </ul>
         )}
