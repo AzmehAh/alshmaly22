@@ -448,7 +448,7 @@ const ProductsPage = () => {
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                    <div className="flex items-center space-x-2">
+                    <div className="flex items-center  gap-2">
                       <button
                         onClick={() => window.open(`/product/${product.id}`, '_blank')}
                         className="text-blue-600 hover:text-blue-900 p-1 rounded"
@@ -615,7 +615,7 @@ const ProductsPage = () => {
                       <h5 className="text-md font-medium text-[#054239] mb-3">{t('admin.specifications')} ({t('admin.english')})</h5>
                       <div className="space-y-3">
                         {formData.specifications_en.map((spec, index) => (
-                          <div key={index} className="flex items-center space-x-2">
+                          <div key={index} className="flex items-center gap-2">
                             <input
                               type="text"
                               value={spec}
@@ -635,7 +635,7 @@ const ProductsPage = () => {
                             </button>
                           </div>
                         ))}
-                        <div className="flex items-center space-x-2">
+                        <div className="flex items-center  gap-2">
                           <input
                             type="text"
                             value={newSpecificationEn}
@@ -660,7 +660,7 @@ const ProductsPage = () => {
                       <h5 className="text-md font-medium text-[#054239] mb-3">{t('admin.specifications')} ({t('admin.arabic')})</h5>
                       <div className="space-y-3">
                         {formData.specifications_ar.map((spec, index) => (
-                          <div key={index} className="flex items-center space-x-2">
+                          <div key={index} className="flex items-center  gap-2">
                             <input
                               type="text"
                               value={spec}
@@ -682,7 +682,7 @@ const ProductsPage = () => {
                             </button>
                           </div>
                         ))}
-                        <div className="flex items-center space-x-2">
+                        <div className="flex items-center  gap-2">
                           <input
                             type="text"
                             value={newSpecificationAr}
@@ -740,7 +740,7 @@ const ProductsPage = () => {
                             placeholder={t('admin.description')}
                           />
                         </div>
-                        <div className="flex items-end space-x-2">
+                        <div className="flex items-end  gap-2">
                           <div className="flex-1">
                             <label className="block text-sm font-medium text-gray-700 mb-1">{t('admin.order')}</label>
                             <input
@@ -826,7 +826,7 @@ const ProductsPage = () => {
                 </div>
 
                 {/* Form Actions */}
-                <div className="flex justify-end space-x-4 pt-6 border-t border-gray-200">
+                <div className="flex justify-end  gap-4 pt-6 border-t border-gray-200">
                   <button
                     type="button"
                     onClick={resetForm}
@@ -914,7 +914,7 @@ const ProductsPage = () => {
                               <div className="text-sm text-gray-500">{product.category?.name}</div>
                             </div>
                           </div>
-                          <div className="flex space-x-2">
+                          <div className="flex  gap-2">
                             <button
                               onClick={() => handleAddRelation(showRelationsModal!, product.id, 'related')}
                               className="bg-[#b9a779] hover:bg-[#054239] text-white px-3 py-1 rounded text-sm transition-colors duration-200"
@@ -960,7 +960,7 @@ const ProductsPage = () => {
                   {t('admin.confirm_delete')} {t('admin.delete_warning')}
                 </p>
               </div>
-              <div className="flex justify-center space-x-3 pt-4">
+              <div className="flex justify-center  gap-3 pt-4">
                 <button
                   onClick={() => setDeleteConfirm(null)}
                   className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors duration-200"
