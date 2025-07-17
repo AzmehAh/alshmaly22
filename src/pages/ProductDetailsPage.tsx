@@ -126,18 +126,9 @@ const ProductDetailsPage = () => {
     <h3 className="text-xl font-semibold text-[#054239] mb-4">{t('products.packaging_options')}</h3>
     <div className="flex space-x-4">
       {product.packages.map((pkg) => (
-        <button
-          key={pkg.weight}
-          
-          className={`flex flex-col items-center p-3 rounded-xl border-2 transition-all duration-300 min-w-[80px] ${
-            selectedPackage === pkg.weight
-              ? 'bg-[#b9a779]/20'
-              : 'bg-[#f7f7f7] border-gray-200 '
-          }`}
-        >
-         
+       
           <span className="font-semibold text-[#054239]">{pkg.weight}</span>
-        </button>
+      
       ))}
     </div>
   </div>
