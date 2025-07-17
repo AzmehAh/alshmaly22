@@ -300,6 +300,10 @@ const translations = {
     'products.sort.name': 'الاسم',
     'products.sort.price_low': 'السعر: من الأقل إلى الأعلى',
     'products.sort.price_high': 'السعر: من الأعلى إلى الأقل',
+    'products.filters.title': 'الفلاتر',
+  'products.filters.search.label': 'ابحث في المنتجات',
+  'products.filters.search.placeholder': 'ابحث عن المنتجات...',
+  'products.filters.categories.label': 'التصنيفات',
     
     // About
     'about.title': 'عن الشمالي',
