@@ -150,7 +150,7 @@ const ProductsPage = () => {
       {loading
         ? t('common.loading')
         : t('products.filters.result', { count: filteredProducts.length })}
-    </p>
+    </p> 
               <div className="flex items-center space-x-2">
                 <button
                   onClick={() => setViewMode('grid')}
