@@ -17,52 +17,56 @@ const BlogPage = () => {
     ...categories
   ];
 
-  return (
-    <div className="min-h-screen bg-[#F7F7F7] pt-20">
-      {/* Hero Section */}
-      <section className="py-20 bg-[#054239] text-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-5xl font-bold mb-6">{t('blog.title')}</h1>
-            <p className="text-xl text-gray-200 leading-relaxed">
-              {t('blog.subtitle')}
-            </p>
-          </div>
-        </div> 
-      </section>
+return (
+  <div className="min-h-screen bg-[#F7F7F7] pt-20">
+    {/* Hero Section */}
+    <section className="py-20 bg-[#054239] text-white">
+      <div className="container mx-auto px-4">
+        <div className="max-w-4xl mx-auto text-center">
+          <h1 className="text-5xl font-bold mb-6">{t('blog.title')}</h1>
+          <p className="text-xl text-gray-200 leading-relaxed">
+            {t('blog.subtitle')}
+          </p>
+        </div>
+      </div> 
+    </section>
 
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          {/* Category Filter */}
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
-            {displayCategories.map(category => (
-              <button
-                key={category.name || category}
-                onClick={() => setSelectedCategory(typeof category === 'string' ? category : category.name)}
-                className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
-                  selectedCategory === (typeof category === 'string' ? category : category.name)
-                    ? 'bg-[#b9a779] text-white shadow-lg'
-                    : 'bg-[#f7f7f7] text-[#054239] hover:bg-[#054239] hover:text-white shadow-md'
-                }`}
+    <section className="py-20">
+      <div className="container mx-auto px-4">
+        {/* Category Filter */}
+        <div className="flex flex-wrap justify-center gap-4 mb-12">
+          {displayCategories.map(category => (
+            <button
+              key={category.name || category}
+              onClick={() => setSelectedCategory(typeof category === 'string' ? category : category.name)}
+              className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
+                selectedCategory === (typeof category === 'string' ? category : category.name)
+                  ? 'bg-[#b9a779] text-white shadow-lg'
+                  : 'bg-[#f7f7f7] text-[#054239] hover:bg-[#054239] hover:text-white shadow-md'
+              }`}
+            >
+              {typeof category === 'string' ? category : getLocalizedField(category, 'name')}
+            </button>
+          ))}
+        </div>
+
+        {/* Blog Posts Grid */}
+        {loading ? (
+          <div className="flex justify-center items-center py-12">
+            <Loader2 className="animate-spin text-[#b9a779]" size={48} />
+          </div>
+        ) : error ? (
+          <div className="text-center py-12">
+            <p className="text-red-600 text-lg">Error loading blog posts: {error}</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {blogPosts.map(post => (
+              <Link 
+                key={post.id} 
+                to={`/blog/${post.id}`}
+                className="bg-[#f7f7f7] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group flex flex-col"
               >
-                {typeof category === 'string' ? category : getLocalizedField(category, 'name')}
-              </button>
-            ))}
-          </div>
-
-          {/* Blog Posts Grid */}
-          {loading ? (
-            <div className="flex justify-center items-center py-12">
-              <Loader2 className="animate-spin text-[#b9a779]" size={48} />
-            </div>
-          ) : error ? (
-            <div className="text-center py-12">
-              <p className="text-red-600 text-lg">Error loading blog posts: {error}</p>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {blogPosts.map(post => (
-              <article key={post.id} className="bg-[#f7f7f7] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group">
                 <div className="relative overflow-hidden">
                   <img 
                     src={post.featured_image || 'https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=600&h=400'} 
@@ -75,24 +79,23 @@ const BlogPage = () => {
                     </span>
                   </div>
                 </div>
-                
-                <div className="p-6">
+
+                <div className="p-6 flex flex-col flex-1">
                   <div className="flex items-center text-gray-500 text-sm mb-3 space-x-4">
                     <div className="flex items-center">
                       <Calendar size={16} className="mr-2" />
                       {(() => {
-                        // Use event date if available, otherwise fall back to published date
                         const eventDate = getLocalizedField(post, 'event_date');
                         if (eventDate) {
                           return eventDate;
                         }
-                        // Fallback to published date if no event date
                         return new Date(post.published_at).toLocaleDateString(
                           language === 'ar' ? 'ar-SA' : 'en-US', { 
-                          year: 'numeric', 
-                          month: 'long', 
-                          day: 'numeric' 
-                        });
+                            year: 'numeric', 
+                            month: 'long', 
+                            day: 'numeric' 
+                          }
+                        );
                       })()}
                     </div>
                     <div className="flex items-center">
@@ -100,46 +103,44 @@ const BlogPage = () => {
                       {getLocalizedField(post, 'read_time')}
                     </div>
                   </div>
-                  
-                  <h3 className="text-xl font-semibold text-[#054239] mb-3 group-hover:text-[#b9a779] transition-colors duration-300 line-clamp-2"> 
+
+                  <h3 className="text-xl font-semibold text-[#054239] mb-3 group-hover:text-[#b9a779] transition-colors duration-300 line-clamp-2">
                     {getLocalizedField(post, 'title')}
                   </h3>
-                  
-                  <p className="text-gray-600 mb-4 line-clamp-3">
+
+                  <p className="text-gray-600 mb-6 line-clamp-3 flex-1">
                     {getLocalizedField(post, 'excerpt')}
                   </p>
-                  
-                  <Link
-                    to={`/blog/${post.id}`}
-                    className="inline-flex items-center text-[#b9a779] hover:text-[#054239] font-medium transition-colors duration-300 group"
-                  >
+
+                  <span className="inline-flex items-center text-[#b9a779] font-medium transition-colors duration-300 group-hover:text-[#054239] mt-auto">
                     {t('common.read_more')}
                     <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-                  </Link>
+                  </span>
                 </div>
-              </article>
+              </Link>
             ))}
-            </div>
-          )}
+          </div>
+        )}
 
-          {!loading && !error && blogPosts.length === 0 && (
-            <div className="text-center py-12">
-              <p className="text-gray-500 text-lg">{t('blog.no_posts')}</p>
-            </div>
-          )}
+        {!loading && !error && blogPosts.length === 0 && (
+          <div className="text-center py-12">
+            <p className="text-gray-500 text-lg">{t('blog.no_posts')}</p>
+          </div>
+        )}
 
-          {/* Load More Button */}
-          {!loading && !error && blogPosts.length > 0 && (
-            <div className="text-center mt-12">
-              <button className="bg-[#b9a779] hover:bg-[#054239] text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:shadow-lg"> 
-                {t('blog.load_more')}
-              </button>
-            </div>
-          )}
-        </div>
-      </section>
-    </div>
-  );
+        {/* Load More Button */}
+        {!loading && !error && blogPosts.length > 0 && (
+          <div className="text-center mt-12">
+            <button className="bg-[#b9a779] hover:bg-[#054239] text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:shadow-lg"> 
+              {t('blog.load_more')}
+            </button>
+          </div>
+        )}
+      </div>
+    </section>
+  </div>
+);
+
 };
 
 export default BlogPage;
