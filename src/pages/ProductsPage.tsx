@@ -70,7 +70,7 @@ const ProductsPage = () => {
                     type="text"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    placeholder="{t('products.filters.search.placeholder')}"
+                    placeholder={t('products.filters.search.placeholder')}
                     className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
                   />
                 </div>
