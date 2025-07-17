@@ -335,7 +335,7 @@ return (
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                    <div className="flex items-center space-x-2">
+                    <div className="flex items-center  gap-2">
                       <button
                         onClick={() => window.open(`/blog/${post.id}`, '_blank')}
                         className="text-blue-600 hover:text-blue-900 p-1 rounded"
@@ -597,7 +597,7 @@ return (
                 </div>
 
                 {/* Buttons */}
-                <div className="flex justify-end space-x-4 pt-4">
+                <div className="flex justify-end  gap-4 pt-4">
                   <button
                     type="button"
                     onClick={() => {
@@ -628,7 +628,7 @@ return (
           <div className="bg-white rounded-md p-6 max-w-md mx-auto shadow-lg">
             <h2 className="text-xl font-semibold text-[#054239] mb-4">{t('blog.modal.delete_title')}</h2>
             <p className="mb-6">{t('blog.modal.delete_confirmation')}</p>
-            <div className="flex justify-end space-x-4">
+            <div className="flex justify-end gap-4">
               <button
                 onClick={() => setDeleteConfirm(null)}
                 className="px-4 py-2 bg-gray-300 rounded-md hover:bg-gray-400 transition-colors"
