@@ -19,7 +19,7 @@ const Footer = () => {
               className="h-16 w-15 object-contain"
             />
               <div>
-                <h3 className="text-xl font-bold">Al-Shamaly</h3>
+                <h3 className="text-xl font-bold">{t('admin.logo')}</h3>
               
               </div>
             </div>
