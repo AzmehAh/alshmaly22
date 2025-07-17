@@ -86,7 +86,7 @@ const AdminLayout = () => {
       >
         {/* Logo Section */}
         <div className="flex items-center justify-between h-16 px-6 border-b border-gray-200 flex-shrink-0">
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center gap-3">
             <img
               src="https://i.postimg.cc/0Q8pxwTM/logo.png"
               alt="Al-Shamali Logo"
@@ -134,7 +134,7 @@ const AdminLayout = () => {
 
         {/* User info and logout */}
         <div className="flex-shrink-0 p-4 border-t border-gray-200">
-          <div className="flex items-center space-x-3 mb-3">
+          <div className="flex items-center gap-3 mb-3">
             <div className="w-8 h-8 bg-[#b9a779] rounded-full flex items-center justify-center flex-shrink-0">
               <User size={16} className="text-white" />
             </div>
@@ -167,7 +167,7 @@ const AdminLayout = () => {
               <Menu size={20} />
             </button>
 
-            <div className="flex items-center space-x-4" dir="ltr">
+            <div className="flex items-center stock-4" dir="ltr">
               <AdminLanguageSwitcher />
               <div className="border-l border-gray-200 pl-4">
                 <span className="text-sm text-gray-500">
