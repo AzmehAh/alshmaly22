@@ -677,6 +677,13 @@ return (
                       >
                         <Trash2 size={16} />
                       </button>
+                      <button
+                        onClick={() => handleRemoveRelation(rel.id, showRelationsModal)}
+                        className="text-red-600 hover:text-red-800"
+                        title={t('blog.modal.delete')}
+                      >
+                        <Trash2 size={16} />
+                      </button>
                     </li>
                   ))}
                 </ul>
@@ -695,6 +702,13 @@ return (
                       <span>{post.title}</span>
                       <button
                         onClick={() => handleAddRelation(post.id)}
+                        className="text-green-600 hover:text-green-800"
+                        title={t('blog.modal.add_related_posts')}
+                      >
+                        <Plus size={16} />
+                      </button>
+                      <button
+                        onClick={() => handleAddRelation(showRelationsModal, post.id, 'related')}
                         className="text-green-600 hover:text-green-800"
                         title={t('blog.modal.add_related_posts')}
                       >
