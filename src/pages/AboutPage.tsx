@@ -75,9 +75,9 @@ const AboutPage = () => {
       icon: CheckCircle,
     }
   ];
-
+ 
 return (
-  <div className="min-h-screen bg-[#054239] pt-20">
+  <div className="min-h-screen bg-[#F7F7F7] pt-20">
     {/* Hero Section */}
     <section className="relative py-32 text-white">
   
