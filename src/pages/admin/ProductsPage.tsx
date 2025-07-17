@@ -28,7 +28,7 @@ const ProductsPage = () => {
     description_ar: '',
     category_id: '',
     base_price: 0,
-    availability: 'in-stock' as 'in-stock' | 'out-of-stock' | 'limited',
+    
    
     specifications_en: [] as string[],
     specifications_ar: [] as string[]
@@ -250,7 +250,7 @@ const ProductsPage = () => {
       description_ar: '',
       category_id: '',
       base_price: 0,
-      availability: 'in-stock',
+     
      
       specifications_en: [],
       specifications_ar: []
@@ -440,13 +440,7 @@ const ProductsPage = () => {
                     <span className="text-sm font-medium text-[#b9a779]">${product.base_price}</span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                      product.availability === 'in-stock' ? 'bg-green-100 text-green-800' :
-                      product.availability === 'limited' ? 'bg-yellow-100 text-yellow-800' :
-                      'bg-red-100 text-red-800'
-                    }`}>
-                      {product.availability}
-                    </span>
+                   
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                     <div className="flex items-center  gap-2">
