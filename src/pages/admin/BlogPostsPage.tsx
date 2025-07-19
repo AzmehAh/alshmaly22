@@ -128,6 +128,30 @@ const BlogPostsPage = () => {
     }
   };
 
+  const resetForm = () => {
+    setFormData({
+      title: '',
+      title_ar: '',
+      slug: '',
+      excerpt: '',
+      excerpt_ar: '',
+      content: '',
+      content_ar: '',
+      category_id: '',
+      author: 'Al-Shamali Team',
+      author_ar: 'فريق الشمالي',
+      read_time: '5 min read',
+      read_time_ar: '5 دقائق قراءة',
+      event_date_en: '',
+      event_date_ar: '',
+      featured_image: '',
+      published: true
+    });
+    setEditingPost(null);
+    setImages([]);
+    setShowForm(false);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
