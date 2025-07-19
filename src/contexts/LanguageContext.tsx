@@ -51,7 +51,7 @@ const translations = {
     'home.about.1': 'Trusted by',
     'home.about.2': '5000+ Clients',
     'home.about.title': 'We bring authenticity into your world',
-    'home.about.description': 'For over 25 years Al-Shamaly has been the trusted name in exporting high-quality Syrian agricultural products. Our commitment to quality and authenticity has made us the preferred partner for traders around the world, offering the finest legumes, spices, oils, and herbs from Syrian soil to tables across the globe.',
+    'home.about.description': 'For over 27 years Al-Shamaly has been the trusted name in exporting high-quality Syrian agricultural products. Our commitment to quality and authenticity has made us the preferred partner for traders around the world, offering the finest legumes, spices, oils, and herbs from Syrian soil to tables across the globe.',
     'home.products.title': 'Featured Products',
     'home.services.title': 'Our Services',
     'home.blog.title': 'Latest News & Updates',
@@ -73,7 +73,7 @@ const translations = {
     'products.filt': 'All Products',
     // About
     'about.title': 'About Al-Shamali',
-    'about.hero.subtitle': 'For over 25 years, we have been the bridge between Syrian agricultural heritage and global markets, bringing authentic, premium-quality products to tables worldwide.',
+    'about.hero.subtitle': 'For over 27 years, we have been the bridge between Syrian agricultural heritage and global markets, bringing authentic, premium-quality products to tables worldwide.',
     'about.vision.title': 'Our Vision & Values',
     'about.vision.description.1': 'At Al-Shamali, we believe that quality speaks for itself. Our mission is to preserve and share the rich agricultural heritage of Syria while building sustainable partnerships that benefit farmers, traders, and consumers worldwide.',
 'about.vision.description.2': 'We are committed to maintaining the highest standards of quality, authenticity, and customer service in everything we do. Our products carry the essence of Syrian soil and the dedication of generations of farmers.',
@@ -111,7 +111,7 @@ const translations = {
     'footer.rights': 'All rights reserved.',
     
     // About page
-    'about.hero.subtitle': 'For over 25 years, we have been the bridge between Syrian agricultural heritage and global markets, bringing authentic, premium-quality products to tables worldwide.',
+    'about.hero.subtitle': 'For over 27 years, we have been the bridge between Syrian agricultural heritage and global markets, bringing authentic, premium-quality products to tables worldwide.',
     'about.vision.title': 'Our Vision & Values',
     'about.vision.content': 'We maintain the highest standards in every product we export, ensuring authenticity and premium quality.',
     'about.journey.title': 'Our Journey',
@@ -174,7 +174,7 @@ const translations = {
     // Marquee section
     'marquee.natural': '100% Natural',
     'marquee.quality_standards': 'Global Quality Standards',
-    'marquee.years_expertise': '25+ Years of Expertise',
+    'marquee.years_expertise': '27+ Years of Expertise',
     'marquee.customer_satisfaction': 'Customer Satisfaction First',
     'marquee.trader_support': 'Ongoing Trader Support',
     
@@ -291,7 +291,7 @@ const translations = {
     'home.about.title': 'نحن نجلب الأصالة إلى عالمك',
     'home.about.1': 'موثوق من قبل',
     'home.about.2': 'أكثر من 5000 عميل',
-   'home.about.description': 'لأكثر من 25 عامًا كانت الشمالي الاسم الموثوق في تصدير المنتجات الزراعية السورية عالية الجودة. لقد جعلنا التزامنا بالجودة والأصالة الشريك المفضل للتجار حول العالم، حيث نُقدِّم أفضل أنواع البقوليات، والتوابل، والزيوت، والأعشاب من الأرض السورية إلى موائد العالم.',
+   'home.about.description': 'لأكثر من 27 عامًا كانت الشمالي الاسم الموثوق في تصدير المنتجات الزراعية السورية عالية الجودة. لقد جعلنا التزامنا بالجودة والأصالة الشريك المفضل للتجار حول العالم، حيث نُقدِّم أفضل أنواع البقوليات، والتوابل، والزيوت، والأعشاب من الأرض السورية إلى موائد العالم.',
     'home.products.title': 'المنتجات المميزة',
     'home.services.title': 'خدماتنا',
     'home.blog.title': 'آخر الأخبار والتحديثات',
@@ -317,7 +317,7 @@ const translations = {
     
     // About
     'about.title': 'عن الشمالي',
-    'about.hero.subtitle': 'لأكثر من 25 عامًا، كنا الجسر بين التراث الزراعي السوري والأسواق العالمية، نجلب منتجات أصلية عالية الجودة إلى موائد العالم.',
+    'about.hero.subtitle': 'لأكثر من 27 عامًا، كنا الجسر بين التراث الزراعي السوري والأسواق العالمية، نجلب منتجات أصلية عالية الجودة إلى موائد العالم.',
     'about.vision.title': 'رؤيتنا وقيمنا',
  'about.vision.description.1': 'في الشمالي، نؤمن بأن الجودة تتحدث عن نفسها. تتمثل مهمتنا في الحفاظ على التراث الزراعي الغني في سوريا ومشاركته، مع بناء شراكات مستدامة تعود بالفائدة على المزارعين والتجار والمستهلكين حول العالم.',
 'about.vision.description.2': 'نحن ملتزمون بالحفاظ على أعلى معايير الجودة والأصالة وخدمة العملاء في كل ما نقوم به. منتجاتنا تحمل جوهر الأرض السورية وتفاني أجيال من المزارعين.',
@@ -353,7 +353,7 @@ const translations = {
     'footer.rights': 'جميع الحقوق محفوظة.',
     
     // About page
-    'about.hero.subtitle': 'لأكثر من 25 عامًا، كنا الجسر بين التراث الزراعي السوري والأسواق العالمية، نجلب منتجات أصلية عالية الجودة إلى موائد العالم.',
+    'about.hero.subtitle': 'لأكثر من 27 عامًا، كنا الجسر بين التراث الزراعي السوري والأسواق العالمية، نجلب منتجات أصلية عالية الجودة إلى موائد العالم.',
     'about.vision.title': 'رؤيتنا وقيمنا',
     'about.vision.content': 'نحافظ على أعلى المعايير في كل منتج نصدره، مما يضمن الأصالة والجودة المتميزة.',
     'about.journey.title': 'رحلتنا',
@@ -416,7 +416,7 @@ const translations = {
     // Marquee section
     'marquee.natural': '100% طبيعي',
     'marquee.quality_standards': 'معايير الجودة العالمية',
-    'marquee.years_expertise': '25+ سنة من الخبرة',
+    'marquee.years_expertise': '27+ سنة من الخبرة',
     'marquee.customer_satisfaction': 'رضا العملاء أولاً',
     'marquee.trader_support': 'دعم مستمر للتجار',
     
