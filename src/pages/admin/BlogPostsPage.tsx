@@ -786,72 +786,93 @@ return (
         </div>
       )}
 
-      {/* Related Posts Modal */}
-      {showRelationsModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center z-50 overflow-auto p-4">
-          <div className="bg-white rounded-md p-6 max-w-4xl w-full shadow-lg relative">
-            <button
-              onClick={() => setShowRelationsModal(null)}
-              className="absolute top-4 right-4 text-gray-600 hover:text-gray-900"
-              title="Close"
-            >
-              <X size={24} /> 
-            </button>
-            <h2 className="text-xl font-semibold text-[#054239] mb-4">{t('blog.modal.manage_related_posts')}</h2>
+ {/* Related Posts Modal */}
+{showRelationsModal && (
+  <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
+    <div className="relative top-10 mx-auto p-5 border w-11/12 md:w-4/5 lg:w-3/4 shadow-lg rounded-md bg-white">
+      <div className="mt-3">
+        {/* Header */}
+        <div className="flex items-center justify-between mb-6">
+          <h3 className="text-2xl font-bold text-[#054239]">{t('admin.manage')} {t('admin.related')}</h3>
+          <button
+            onClick={() => setShowRelationsModal(null)}
+            className="text-gray-400 hover:text-gray-600"
+          >
+            <X size={24} />
+          </button>
+        </div>
 
-            {/* Current related posts */}
-            <div className="mb-6">
-              <h3 className="font-medium mb-2">{t('blog.modal.related_posts')}</h3>
-              {relations.length === 0 ? (
-                <p className="text-gray-500">{t('blog.modal.no_related_posts')}</p>
-              ) : (
-                <ul className="space-y-2 max-h-40 overflow-auto border p-3 rounded-md">
-                  {relations.map(rel => (
-                    <li key={rel.id} className="flex justify-between items-center bg-gray-50 px-3 py-2 rounded">
-                      <span>{rel.title}</span>
-                     
-                      <button
-                        onClick={() => handleRemoveRelation(rel.id, showRelationsModal)}
-                        className="text-red-600 hover:text-red-800"
-                        title={t('blog.modal.delete')}
-                      >
-                        <Trash2 size={16} />
-                      </button>
-                    </li>
-                  ))}
-                </ul>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Current Relations */}
+          <div>
+            <h4 className="text-lg font-semibold text-[#054239] mb-4">{t('admin.current')} {t('admin.related')}</h4>
+            <div className="space-y-3 max-h-96 overflow-y-auto">
+              {relations.map((relation) => (
+                <div key={relation.id} className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+                  <div className="flex items-center">
+                    <img
+                      src={relation.related_post?.thumbnail || 'https://via.placeholder.com/100x100?text=Post'}
+                      alt={relation.related_post?.title}
+                      className="h-10 w-10 rounded-lg object-cover mr-3"
+                    />
+                    <div>
+                      <div className="font-medium text-[#054239]">{relation.related_post?.title}</div>
+                      <div className="text-sm text-gray-500">{relation.related_post?.category?.name}</div>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => handleRemoveRelation(relation.id, showRelationsModal)}
+                    className="text-red-600 hover:text-red-800 p-1"
+                    title={t('admin.delete')}
+                  >
+                    <Trash2 size={16} />
+                  </button>
+                </div>
+              ))}
+              {relations.length === 0 && (
+                <p className="text-gray-500 text-center py-4">{t('admin.no_data')}</p>
               )}
             </div>
-            
+          </div>
 
-            {/* Add related posts */}
-            <div>
-              <h3 className="font-medium mb-2">{t('blog.modal.add_related_posts')}</h3>
-              {availablePosts.length === 0 ? (
-                <p className="text-gray-500">{t('blog.modal.all_related')}</p>
-              ) : (
-                <ul className="space-y-2 max-h-40 overflow-auto border p-3 rounded-md">
-                  {availablePosts.map(post => (
-                    <li key={post.id} className="flex justify-between items-center bg-gray-50 px-3 py-2 rounded">
-                      <span>{post.title}</span>
-                     
-                      <button
-                        onClick={() => handleAddRelation(showRelationsModal, post.id, 'related')}
-                        className="text-green-600 hover:text-green-800"
-                        title={t('blog.modal.add_related_posts')}
-                      >
-                        <Plus size={16} />
-                      </button>
-                    </li>
-                  ))}
-                </ul>
+          {/* Add Relations */}
+          <div>
+            <h4 className="text-lg font-semibold text-[#054239] mb-4">{t('admin.add')} {t('admin.related')}</h4>
+            <div className="space-y-3 max-h-96 overflow-y-auto">
+              {availablePosts
+                .filter(post => !relations.some(rel => rel.related_post_id === post.id))
+                .map((post) => (
+                  <div key={post.id} className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+                    <div className="flex items-center">
+                      <img
+                        src={post.thumbnail || 'https://via.placeholder.com/100x100?text=Post'}
+                        alt={post.title}
+                        className="h-10 w-10 rounded-lg object-cover mr-3"
+                      />
+                      <div>
+                        <div className="font-medium text-[#054239]">{post.title}</div>
+                        <div className="text-sm text-gray-500">{post.category?.name}</div>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => handleAddRelation(showRelationsModal, post.id, 'related')}
+                      className="bg-[#b9a779] hover:bg-[#054239] text-white px-3 py-1 rounded text-sm transition-colors duration-200"
+                    >
+                      {t('admin.add')}
+                    </button>
+                  </div>
+                ))}
+
+              {availablePosts.filter(post => !relations.some(rel => rel.related_post_id === post.id)).length === 0 && (
+                <p className="text-gray-500 text-center py-4">{t('admin.no_data')}</p>
               )}
             </div>
           </div>
         </div>
-      )}
+      </div>
     </div>
-  );
-};
+  </div>
+)}
+
 
 export default BlogPostsPage;
