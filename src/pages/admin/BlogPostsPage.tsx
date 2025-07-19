@@ -895,9 +895,7 @@ return (
                       <img
                         src={post.thumbnail || 'https://via.placeholder.com/100x100?text=Post'}
                         alt={post.title}
-                        className="h-10 w-10 rounded-lg object-cover `${
-          direction === 'rtl' ? 'ml-3' : 'mr-3'
-        }"
+                        className="h-10 w-10 rounded-lg object-cover"
                       />
                       <div>
                         <div className="font-medium text-[#054239]">{post.title}</div>
