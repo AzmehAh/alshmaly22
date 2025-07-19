@@ -336,6 +336,8 @@ const translations = {
     'contact.phone.2': 'تركيا : \u200E+90 538 687 6411\u200E',
     'contact.email': 'البريد الإلكتروني',
     'contact.business_hours': 'ساعات العمل',
+     'Note':'Note:',
+    'note.all':'Note: For international clients, we provide comprehensive shipping and logistics support. Our team will coordinate with you to ensure smooth delivery to your location.',
     
     // Blog
     'blog.title': 'مدونة الشمالي',
@@ -456,8 +458,8 @@ const translations = {
     // Contact location
     'contact.location.industrial_zone': 'المنطقة الصناعية',
     'contact.location.full_address': 'إدلب، سرمدا، سوريا',
-    'Note':'Note:',
-    'note.all':'Note: For international clients, we provide comprehensive shipping and logistics support. Our team will coordinate with you to ensure smooth delivery to your location.',
+    'Note':'ملاحظة:',
+    'note.all':'ملاحظة: للعملاء الدوليين، نوفر دعمًا شاملاً في الشحن والخدمات اللوجستية. سيقوم فريقنا بالتنسيق معكم لضمان توصيل سلس إلى موقعكم.',
     
     // Footer sections
     'footer.company_description': 'نصدر أفضل ما في الطبيعة السورية إلى العالم، ونجلب الأصالة والجودة إلى مائدتك.',
