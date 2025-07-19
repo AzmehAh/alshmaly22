@@ -37,9 +37,9 @@ const HeroSection = () => {
           muted  
           loop 
           className="w-full h-full object-cover min-w-full min-h-full"
-          poster="https://files.catbox.moe/lby5ao.mp4"
+          poster="https://files.catbox.moe/jnps5k.mp4"
         >
-          <source src="https://files.catbox.moe/lby5ao.mp4" type="video/mp4" />
+          <source src="https://files.catbox.moe/jnps5k.mp4" type="video/mp4" />
         </video>
         <div className={`absolute inset-0 w-full h-full transition-all duration-1000 ${
           isPlaying ? 'bg-black/50' : 'bg-black/80 backdrop-blur-sm'
