@@ -839,7 +839,7 @@ return (
       <div className="mt-3">
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
-          <h3 className="text-2xl font-bold text-[#054239]">{t('admin.manage')} {t('admin.related2')}</h3>
+          <h3 className="text-2xl font-bold text-[#054239]"> {t('admin.related2')}{t('admin.manage')}</h3>
           <button
             onClick={() => setShowRelationsModal(null)}
             className="text-gray-400 hover:text-gray-600"
