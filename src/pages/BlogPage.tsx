@@ -115,7 +115,12 @@ return (
 
                   <span className="inline-flex items-center text-[#b9a779] font-medium transition-colors duration-300 group-hover:text-[#054239] mt-auto">
                     {t('common.read_more')}
-                    <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                   {language === 'ar' ? (
+  <ArrowLeft size={16} className="mr-2 group-hover:-translate-x-1 transition-transform duration-300" />
+) : (
+  <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+)}
+/>
                   </span>
                 </div>
               </Link>
