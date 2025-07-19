@@ -111,10 +111,13 @@ const BlogPostsPage = () => {
 
       // إضافة الصور الجديدة إذا كانت موجودة
       if (images.length > 0) {
-        const imagesToInsert = images.map(img => ({
-          ...img,
-          blog_post_id: postId
-        }));
+        const imagesToInsert = images.map(img => {
+          const { id, ...imgWithoutId } = img;
+          return {
+            ...imgWithoutId,
+            blog_post_id: postId
+          };
+        });
 
         const { error } = await supabase
           .from('blog_images')
