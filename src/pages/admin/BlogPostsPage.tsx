@@ -103,13 +103,13 @@ const BlogPostsPage = () => {
 
   const saveImages = async (postId: string) => {
     try {
-      // حذف الصور القديمة أولاً
+  
       await supabase
         .from('blog_images')
         .delete()
         .eq('blog_post_id', postId);
 
-      // إضافة الصور الجديدة إذا كانت موجودة
+     
       if (images.length > 0) {
         const imagesToInsert = images.map(img => {
           const { id, ...imgWithoutId } = img;
