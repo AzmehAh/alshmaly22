@@ -79,7 +79,7 @@ const LoginPage = () => {
               </div>
             </div>
 
-         <div>
+  <div>
   <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
     Password
   </label>
@@ -104,7 +104,8 @@ const LoginPage = () => {
       {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
     </button>
   </div>
- </div> </div>
+</div>
+            </div>
 
 
           <button
