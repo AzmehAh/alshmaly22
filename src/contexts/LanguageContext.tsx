@@ -218,6 +218,7 @@ const translations = {
     'footer.company_description': 'We export the best of Syrian nature to the world, bringing authenticity and quality to your table.',
     'footer.made_by': 'Create by',
     'footer.all_rights': 'All rights reserved.',
+    'footer.rights':'© 2025 Al-Shamaly Agricultural Products.',
     
     // Form validation
     'validation.required': 'This field is required',
@@ -460,6 +461,7 @@ const translations = {
     'footer.company_description': 'نصدر أفضل ما في الطبيعة السورية إلى العالم، ونجلب الأصالة والجودة إلى مائدتك.',
     'footer.made_by': 'تم التطوير بواسطة',
     'footer.all_rights': 'جميع الحقوق محفوظة.',
+    'footer.rights':'© 2025 المنتجات الزراعية الشمالي',
     
     // Form validation
     'validation.required': 'هذا الحقل مطلوب',
