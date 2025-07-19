@@ -184,50 +184,58 @@ const ProductsPage = () => {
                 {filteredProducts.map(product => {
                   const defaultPackage = product.packages?.find(pkg => pkg.is_default) || product.packages?.[0];
                   return (
-                <div key={product.id} className={`bg-[#f7f7f7] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group w-full ${
-                  viewMode === 'list' ? 'flex items-center p-4' : ''
-                }`}>
-                  <div className={`relative overflow-hidden ${viewMode === 'list' ? 'w-24 h-24 rounded-lg flex-shrink-0' : 'w-full h-48'}`}>
-                    <img 
-                      src={product.images?.[0]?.image_url || 'https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=400&h=300'} 
-                      alt={product.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    {product.availability === 'out-of-stock' && (
-                      <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                        <span className="text-white font-semibold text-sm">Out of Stock</span>
-                      </div>
-                    )}
-                  </div>
-                  <div className={`${viewMode === 'list' ? 'ml-4 flex-1' : 'p-6'}`}>
-                    <h3 className="text-xl font-semibold text-[#054239] mb-2">
-                      {getLocalizedField(product, 'name')}
-                    </h3>
-                   <p className="text-gray-600 mb-2">
-  {(() => {
-    const description = getLocalizedField(product, 'description');
-    return description.length > 100 ? description.slice(0, 50) + "..." : description;
-  })()
-  }
-</p>
+               <div
+  key={product.id}
+  className={`bg-[#f7f7f7] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group w-full
+    ${viewMode === 'list' ? 'flex items-center p-4' : 'flex flex-col'} 
+  `}
+  style={{ minHeight: viewMode === 'grid' ? '420px' : 'auto' }} // تحدد ارتفاع ثابت بالكارد الشبكي
+>
+  <div
+    className={`relative overflow-hidden
+      ${viewMode === 'list' ? 'w-24 h-24 rounded-lg flex-shrink-0' : 'w-full h-48'}
+    `}
+  >
+    <img
+      src={product.images?.[0]?.image_url || 'https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=400&h=300'}
+      alt={product.name}
+      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+    />
+    {product.availability === 'out-of-stock' && (
+      <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+        <span className="text-white font-semibold text-sm">Out of Stock</span>
+      </div>
+    )}
+  </div>
 
-                    <div className="flex items-center justify-end mb-4">
-                      {/* <span className="text-2xl font-bold text-[#b9a779]">
-                        ${defaultPackage?.price || product.base_price}
-                      </span>*/}
-                      <span className="text-sm text-gray-500">
-                        {defaultPackage?.weight || 'Various sizes'}
-                      </span>
-                    </div>
-                    <Link
-                      to={`/product/${product.id}`}
-                      className="w-full bg-[#b9a779] hover:bg-[#054239] text-white py-3 px-4 rounded-full font-medium transition-all duration-300 text-center block"
-                    >
-                      {t('common.view_details')}
-                    </Link>
-                  </div>
-                </div>
-                  );
+  {/* المحتوى النصي مع مرونة النمو */}
+  <div className={`${viewMode === 'list' ? 'ml-4 flex-1 flex flex-col' : 'p-6 flex flex-col flex-1'}`}>
+    <h3 className="text-xl font-semibold text-[#054239] mb-2">
+      {getLocalizedField(product, 'name')}
+    </h3>
+    <p className="text-gray-600 mb-2 flex-grow">
+      {(() => {
+        const description = getLocalizedField(product, 'description');
+        return description.length > 100 ? description.slice(0, 50) + "..." : description;
+      })()}
+    </p>
+
+    <div className="flex items-center justify-end mb-4">
+      <span className="text-sm text-gray-500">
+        {defaultPackage?.weight || 'Various sizes'}
+      </span>
+    </div>
+
+    {/* زر العرض يلتصق أسفل الكارد */}
+    <Link
+      to={`/product/${product.id}`}
+      className="mt-auto w-full bg-[#b9a779] hover:bg-[#054239] text-white py-3 px-4 rounded-full font-medium transition-all duration-300 text-center block"
+    >
+      {t('common.view_details')}
+    </Link>
+  </div>
+</div>
+    );
                 })}
               </div>
             )}
