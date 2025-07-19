@@ -12,9 +12,10 @@
   }
   
   /* Arabic font support */
-  html.font-arabic {
-    font-family: 'Noto Sans Arabic', 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  }
+html.font-arabic {
+  font-family: 'Aljazeera', 'Noto Sans Arabic', 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
   
   /* RTL support */
   [dir="rtl"] {
