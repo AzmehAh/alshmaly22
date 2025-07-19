@@ -59,7 +59,7 @@ const BlogPostsPage = () => {
         .select(`
           *,
           category:blog_categories(*),
-          images:blog_post_images(*)
+          images:blog_images(*)
         `)
         .order('created_at', { ascending: false });
 
@@ -89,9 +89,9 @@ const BlogPostsPage = () => {
   const fetchImages = async (postId: string) => {
     try {
       const { data, error } = await supabase
-        .from('blog_post_images')
+        .from('blog_images')
         .select('*')
-        .eq('post_id', postId)
+        .eq('blog_post_id', postId)
         .order('sort_order', { ascending: true });
 
       if (error) throw error;
@@ -105,19 +105,19 @@ const BlogPostsPage = () => {
     try {
       // حذف الصور القديمة أولاً
       await supabase
-        .from('blog_post_images')
+        .from('blog_images')
         .delete()
-        .eq('post_id', postId);
+        .eq('blog_post_id', postId);
 
       // إضافة الصور الجديدة إذا كانت موجودة
       if (images.length > 0) {
         const imagesToInsert = images.map(img => ({
           ...img,
-          post_id: postId
+          blog_post_id: postId
         }));
 
         const { error } = await supabase
-          .from('blog_post_images')
+          .from('blog_images')
           .insert(imagesToInsert);
 
         if (error) throw error;
