@@ -97,7 +97,6 @@ const ProductsPage = () => {
     </button>
   ))}
 </div>
-
               </div>
 
               {/* Weight Filter */}
