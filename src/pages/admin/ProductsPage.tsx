@@ -34,7 +34,7 @@ const ProductsPage = () => {
   });
 
   const [images, setImages] = useState<Array<{ image_url: string; alt_text: string; sort_order: number }>>([]);
-  const [packages, setPackages] = useState<Array<{ weight: string; is_default: boolean }>>([]);
+  const [packages, setPackages] = useState<Array<{ weight: string; price: string; is_default: boolean }>>([]);
   const [newFeature, setNewFeature] = useState('');
   const [newSpecificationEn, setNewSpecificationEn] = useState('');
   const [newSpecificationAr, setNewSpecificationAr] = useState('');
@@ -141,7 +141,9 @@ const ProductsPage = () => {
       if (packages.length > 0) {
         const packageData = packages.map(pkg => ({
           product_id: productId,
-          ...pkg
+          weight: pkg.weight,
+          price: parseFloat(pkg.price) || 0,
+          is_default: pkg.is_default
         }));
         
         await supabase
@@ -183,7 +185,7 @@ const ProductsPage = () => {
     
     setPackages(product.packages?.map(pkg => ({
       weight: pkg.weight,
-    
+      price: pkg.price?.toString() || '',
       is_default: pkg.is_default
     })) || []);
     
@@ -318,7 +320,7 @@ const ProductsPage = () => {
   };
 
   const addPackage = () => {
-    setPackages(prev => [...prev, { weight: '', is_default: false }]);
+    setPackages(prev => [...prev, { weight: '', price: '', is_default: false }]);
   };
 
   const updatePackage = (index: number, field: string, value: string | number | boolean) => {
@@ -779,7 +781,17 @@ const ProductsPage = () => {
                             placeholder="1kg, 5kg, etc."
                           />
                         </div>
-                       
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">{t('admin.price')}</label>
+                          <input
+                            type="number"
+                            step="0.01"
+                            value={pkg.price}
+                            onChange={(e) => updatePackage(index, 'price', e.target.value)}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+                            placeholder="0.00"
+                          />
+                        </div>
                         <div className="flex items-center">
                           <label className="flex items-center">
                             <input
