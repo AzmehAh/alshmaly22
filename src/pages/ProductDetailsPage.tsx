@@ -213,13 +213,20 @@ const ProductDetailsPage = () => {
                   <div className="p-6">
                     <h3 className="text-xl font-semibold text-[#054239] mb-2">{relatedProduct.name}</h3>
                     <div className="flex items-center justify-between">
-                     
-                      <span className="text-[#b9a779] font-medium">{t('common.view_details')} →
-                       {language === 'ar' ? (
-  <ArrowLeft size={16} className="mr-2 group-hover:-translate-x-1 transition-transform duration-300" />
-) : (
-  <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-)}</span>
+                    <span className="inline-flex items-center text-[#b9a779] font-medium transition-colors duration-300 group-hover:text-[#054239] mt-auto">
+  {language === 'ar' ? (
+    <>
+      <ArrowLeft size={16} className="mr-2 group-hover:-translate-x-1 transition-transform duration-300" />
+      {t('common.view_details')}
+    </>
+  ) : (
+    <>
+      {t('common.view_details')}
+      <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+    </>
+  )}
+</span>
+
                     </div>
                   </div>
                 </Link>
