@@ -40,18 +40,15 @@ return (
               key={category.name || category}
               onClick={() => setSelectedCategory(typeof category === 'string' ? category : category.name)}
               className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
-                 selectedCategory === (typeof category === 'string' ? category : category.name)
+                selectedCategory === (typeof category === 'string' ? category : category.name)
                   ? 'bg-[#b9a779] text-white shadow-lg'
                   : 'bg-[#f7f7f7] text-[#054239] hover:bg-[#054239] hover:text-white shadow-md'
               }`}
             >
-             {typeof category === 'string'
-  ? (language === 'ar' ? 'الكل' : 'All')
-  : (language === 'ar' ? category.name_ar : category.name)}
-
+              {typeof category === 'string' ? category : getLocalizedField(category, 'name')}
             </button>
           ))}
-        </div>
+        </div> 
 
         {/* Blog Posts Grid */}
         {loading ? (
@@ -78,7 +75,8 @@ return (
                   />
                   <div className="absolute top-4 left-4">
                     <span className="bg-[#b9a779] text-white px-3 py-1 rounded-full text-sm font-medium">
-                      {post.category?.name || 'Blog'}
+                      {post.category ? (language === 'ar' ? post.category.name_ar : post.category.name) : (language === 'ar' ? 'مدونة' : 'Blog')}
+
                     </span>
                   </div>
                 </div>
