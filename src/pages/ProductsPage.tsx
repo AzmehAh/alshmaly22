@@ -157,11 +157,7 @@ const ProductsPage = () => {
 
               </p>
               <div className="flex items-center space-x-2">
-                <button
-                  onClick={() => setViewMode('grid')}
-                  
-                 
-                </button>
+              
                 <button
                   onClick={() => setViewMode('list')}
                   className={`p-2 rounded-lg ${viewMode === 'list' ? 'bg-[#b9a779] text-white' : 'bg-[#f7f7f7] text-gray-600'}`}
