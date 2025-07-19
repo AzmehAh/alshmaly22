@@ -120,8 +120,8 @@ return (
 ) : (
   <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
 )}
-/>
-                  </span>
+/> 
+              
                 </div>
               </Link>
             ))}
