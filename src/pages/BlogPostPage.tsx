@@ -157,7 +157,7 @@ const BlogPostPage = () => {
                 <img
                   src={post.images[selectedImageIndex]?.image_url || ''}
                   alt={`Gallery image ${selectedImageIndex + 1}`}
-                  className="w-full h-96 object-cover rounded-xl shadow-md"
+                  className="w-full h-96 object-contain rounded-xl shadow-md"
                 />
               </div>
 
