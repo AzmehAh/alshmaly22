@@ -656,7 +656,7 @@ return (
                   {images.length === 0 ? (
                     <div className="text-center py-6 bg-white rounded border border-dashed border-gray-300">
                       <ImageIcon size={48} className="mx-auto text-gray-400 mb-2" />
-                      <p className="text-gray-500">{t('blog.images.no_images')}</p>
+                      <p className="text-gray-500">{t('admin.image')}</p>
                     </div>
                   ) : (
                     <div className="space-y-4">
