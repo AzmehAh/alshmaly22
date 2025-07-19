@@ -42,6 +42,7 @@ const translations = {
     'common.add': 'Add',
     'common.submit': 'Submit',
     'common.close': 'Close',
+    'common.product' :'No products found matching your criteria.',
     
     // Home page
     'home.hero.title': 'Al-Shamali – Quality Speaks',
@@ -279,7 +280,7 @@ const translations = {
     'common.add': 'إضافة',
     'common.submit': 'إرسال',
     'common.close': 'إغلاق',
-    
+    'common.product':'لا يوجد منتجات مطابقة ',
   
     
     
