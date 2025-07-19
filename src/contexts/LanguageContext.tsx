@@ -336,8 +336,7 @@ const translations = {
     'contact.phone.2': 'تركيا : \u200E+90 538 687 6411\u200E',
     'contact.email': 'البريد الإلكتروني',
     'contact.business_hours': 'ساعات العمل',
-     'Note':'Note:',
-     'note.all':'Note: For international clients, we provide comprehensive shipping and logistics support. Our team will coordinate with you to ensure smooth delivery to your location.',
+
     
     // Blog
     'blog.title': 'مدونة الشمالي',
