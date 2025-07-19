@@ -75,7 +75,11 @@ const ProductDetailsPage = () => {
           to="/products"
           className="inline-flex items-center text-[#b9a779] hover:text-[#054239] font-medium mb-8 transition-colors duration-300"
         >
-          <ArrowLeft size={20} className="mr-2" />
+          {language === 'ar' ? (
+  <ArrowLeft size={16} className="mr-2 group-hover:-translate-x-1 transition-transform duration-300" />
+) : (
+  <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+)}
            {t('back')}
         </Link>
 
