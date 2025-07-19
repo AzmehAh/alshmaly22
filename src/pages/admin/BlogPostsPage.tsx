@@ -683,7 +683,7 @@ return (
                           
                           <div className="md:col-span-5">
                             <label className="block text-sm font-medium text-gray-700 mb-1">
-                              {t('blog.images.url')}
+                              {t('admin.image')} URL')}
                             </label>
                             <input
                               type="url"
