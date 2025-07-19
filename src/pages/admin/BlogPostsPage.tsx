@@ -859,7 +859,9 @@ return (
                     <img
                       src={relation.related_post?.thumbnail || 'https://via.placeholder.com/100x100?text=Post'}
                       alt={relation.related_post?.title}
-                      className="h-10 w-10 rounded-lg object-cover mr-3"
+                      className=`${
+          direction === 'rtl' ? 'ml-3' : 'mr-3'
+        } h-10 w-10 rounded-lg object-cover mr-3
                     />
                     <div>
                       <div className="font-medium text-[#054239]">{relation.related_post?.title}</div>
@@ -876,7 +878,9 @@ return (
                 </div>
               ))}
               {relations.length === 0 && (
-                <p className="text-gray-500 text-center py-4">{t('admin.no_data')}</p>
+                <p className=`${
+          direction === 'rtl' ? 'ml-3' : 'mr-3'
+        }text-gray-500 text-center py-4  >{t('admin.no_data')}</p>
               )}
             </div>
           </div>
@@ -893,7 +897,7 @@ return (
                       <img
                         src={post.thumbnail || 'https://via.placeholder.com/100x100?text=Post'}
                         alt={post.title}
-                        className="h-10 w-10 rounded-lg object-cover  className={`${
+                        className="h-10 w-10 rounded-lg object-cover `${
           direction === 'rtl' ? 'ml-3' : 'mr-3'
         }"
                       />
