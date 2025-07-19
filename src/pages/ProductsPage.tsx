@@ -5,7 +5,7 @@ import { useProducts } from '../hooks/useProducts';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const ProductsPage = () => {
-  const { t, getLocalizedField } = useLanguage();
+  const { t, getLocalizedField,language } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [sortBy, setSortBy] = useState('name');
   const [selectedWeight, setSelectedWeight] = useState('all');
