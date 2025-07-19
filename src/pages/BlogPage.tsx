@@ -45,7 +45,10 @@ return (
                   : 'bg-[#f7f7f7] text-[#054239] hover:bg-[#054239] hover:text-white shadow-md'
               }`}
             >
-              {typeof category === 'string' ? category : getLocalizedField(category, 'name')}
+             {typeof category === 'string'
+  ? (language === 'ar' ? 'الكل' : 'All')
+  : (language === 'ar' ? category.name_ar : category.name)}
+
             </button>
           ))}
         </div>
