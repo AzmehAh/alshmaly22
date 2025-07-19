@@ -17,7 +17,7 @@ const ProductsPage = () => {
   const { products, categories, loading, error } = useProducts({
     category: selectedCategory === 'all' ? undefined : selectedCategory,
     availability: selectedAvailability,
-    search: searchTerm,
+  
     sortBy: sortBy
   });
 
@@ -41,7 +41,18 @@ const ProductsPage = () => {
     }
     
     return filtered;
-  }, [products, selectedWeight]);
+  }, [products, selectedWeight]); 
+const filteredProducts = useMemo(() => {
+  if (!searchTerm.trim()) return products;
+
+  const term = searchTerm.trim().toLowerCase();
+
+  return products.filter(product => {
+    const nameEn = product.name?.en?.toLowerCase() || '';
+    const nameAr = product.name?.ar?.toLowerCase() || '';
+    return nameEn.includes(term) || nameAr.includes(term);
+  });
+}, [products, searchTerm]);
 
   return (
     <div className="min-h-screen bg-[#F7F7F7]  pt-20 overflow-x-hidden w-full">
