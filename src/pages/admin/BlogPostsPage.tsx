@@ -876,9 +876,7 @@ return (
                 </div>
               ))}
               {relations.length === 0 && (
-                <p className=`${
-          direction === 'rtl' ? 'ml-3' : 'mr-3'
-        }text-gray-500 text-center py-4  >{t('admin.no_data')}</p>
+                <p className="text-gray-500 text-center py-4"  >{t('admin.no_data')}</p>
               )}
             </div>
           </div>
