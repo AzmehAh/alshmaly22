@@ -94,7 +94,7 @@ return (
       <div className="relative z-10 container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-5xl font-bold mb-6 drop-shadow-lg">{t('about.title')}</h1>
-          <p className="font-arabic text-xl text-gray-100 leading-relaxed drop-shadow-md">
+          <p className="text-xl text-gray-100 leading-relaxed drop-shadow-md">
             {t('about.hero.subtitle')}
           </p>
         </div>
