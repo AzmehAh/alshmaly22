@@ -28,6 +28,52 @@ const BlogPostsPage = () => {
   const [availablePosts, setAvailablePosts] = useState<BlogPost[]>([]);
   const [images, setImages] = useState<BlogPostImage[]>([]);
 
+  const fetchRelations = async (postId: string) => {
+    try {
+      const data = await RelationsAPI.getBlogPostRelations(postId);
+      setRelations(data);
+    } catch (error) {
+      console.error('Error fetching relations:', error);
+    }
+  };
+
+  const fetchAvailablePosts = async (currentPostId: string) => {
+    try {
+      const { data, error } = await supabase
+        .from('blog_posts')
+        .select(`
+          *,
+          category:blog_categories(*)
+        `)
+        .neq('id', currentPostId)
+        .eq('published', true)
+        .order('title');
+
+      if (error) throw error;
+      setAvailablePosts(data || []);
+    } catch (error) {
+      console.error('Error fetching available posts:', error);
+    }
+  };
+
+  const handleAddRelation = async (blogPostId: string, relatedPostId: string, relationType: string) => {
+    try {
+      await RelationsAPI.addBlogPostRelation(blogPostId, relatedPostId, relationType);
+      await fetchRelations(blogPostId);
+    } catch (error) {
+      console.error('Error adding relation:', error);
+    }
+  };
+
+  const handleRemoveRelation = async (relationId: string, blogPostId: string) => {
+    try {
+      await RelationsAPI.removeBlogPostRelation(relationId);
+      await fetchRelations(blogPostId);
+    } catch (error) {
+      console.error('Error removing relation:', error);
+    }
+  };
+
   const [formData, setFormData] = useState({
     title: '',
     title_ar: '',
@@ -397,6 +443,7 @@ return (
                         onClick={() => {
                           setShowRelationsModal(post.id);
                           fetchRelations(post.id);
+                          fetchAvailablePosts(post.id);
                         }}
                         className="text-[#b9a779] hover:text-[#054239] p-1 rounded"
                         title={t('blog.modal.manage_related_posts')}
