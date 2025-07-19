@@ -19,6 +19,7 @@ const BlogPostsPage = () => {
   const [showRelationsModal, setShowRelationsModal] = useState<string | null>(null);
   const [relations, setRelations] = useState<BlogPostRelation[]>([]);
   const [availablePosts, setAvailablePosts] = useState<BlogPost[]>([]);
+  const [images, setImages] = useState<Array<{image_url: string, alt_text: string, sort_order: number}>>([]);
 
   const [formData, setFormData] = useState({
     title: '',
