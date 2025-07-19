@@ -40,19 +40,18 @@ const ProductsPage = () => {
       );
     }
     
+    // Filter by search term
+    if (searchTerm.trim()) {
+      const term = searchTerm.trim().toLowerCase();
+      filtered = filtered.filter(product => {
+        const nameEn = product.name?.en?.toLowerCase() || '';
+        const nameAr = product.name?.ar?.toLowerCase() || '';
+        return nameEn.includes(term) || nameAr.includes(term);
+      });
+    }
+    
     return filtered;
-  }, [products, selectedWeight]); 
-const filteredProducts = useMemo(() => {
-  if (!searchTerm.trim()) return products;
-
-  const term = searchTerm.trim().toLowerCase();
-
-  return products.filter(product => {
-    const nameEn = product.name?.en?.toLowerCase() || '';
-    const nameAr = product.name?.ar?.toLowerCase() || '';
-    return nameEn.includes(term) || nameAr.includes(term);
-  });
-}, [products, searchTerm]);
+  }, [products, selectedWeight, searchTerm]);
 
   return (
     <div className="min-h-screen bg-[#F7F7F7]  pt-20 overflow-x-hidden w-full">
