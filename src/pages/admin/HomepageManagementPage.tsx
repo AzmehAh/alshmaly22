@@ -237,7 +237,7 @@ const HomepageManagementPage = () => {
                       <div className="flex items-center">
                         {activeTab === 'products' && (
                           <img
-                            src={(content as Product)?.images?.[0]?.image_url || 'https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=100&h=100'}
+                            src={(content as Product)?.images?.[0]?.image_url 
                             alt={content?.name || content?.title}
                             className="h-12 w-12 rounded-lg object-cover mr-4"
                           />
