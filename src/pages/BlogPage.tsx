@@ -40,7 +40,7 @@ return (
               key={category.name || category}
               onClick={() => setSelectedCategory(typeof category === 'string' ? category : category.name)}
               className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
-                selectedCategory === (typeof category === 'string' ? category : category.name)
+                 selectedCategory === (typeof category === 'string' ? category : category.name)
                   ? 'bg-[#b9a779] text-white shadow-lg'
                   : 'bg-[#f7f7f7] text-[#054239] hover:bg-[#054239] hover:text-white shadow-md'
               }`}
