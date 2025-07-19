@@ -697,20 +697,20 @@ return (
                           
                           <div className="md:col-span-3">
                             <label className="block text-sm font-medium text-gray-700 mb-1">
-                              {t('blog.images.alt_text')}
+                              {t('admin.alt_text')}
                             </label>
                             <input
                               type="text"
                               value={image.alt_text}
                               onChange={(e) => updateImage(index, 'alt_text', e.target.value)}
                               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                              placeholder={t('blog.images.alt_placeholder')}
+                              placeholder={t('admin.description')}
                             />
                           </div>
                           
                           <div className="md:col-span-1">
                             <label className="block text-sm font-medium text-gray-700 mb-1">
-                              {t('blog.images.order')}
+                              {t('badmin.order')}
                             </label>
                             <input
                               type="number"
