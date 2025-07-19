@@ -79,7 +79,7 @@ const ProductsPage = () => {
               {/* Categories */}
               <div className="mb-6">
                 <label className="block text-sm font-medium text-gray-700 mb-3">{t('products.filters.categories.label')}</label>
-               <div
+                <div
   className="space-y-2"
   style={{ direction: language === 'ar' ? 'rtl' : 'ltr' }}
 >
@@ -98,6 +98,7 @@ const ProductsPage = () => {
   ))}
 </div>
 
+              </div>
 
               {/* Weight Filter */}
               <div className="mb-6">
