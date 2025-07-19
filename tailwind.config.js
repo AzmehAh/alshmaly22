@@ -12,10 +12,8 @@ export default {
           '100%': { transform: 'translateX(-100%)' },
         },
       },
-      fontFamily: {
-        aljazeera: ['Aljazeera', 'Noto Sans Arabic', 'sans-serif'],
-      },
     },
   },
   plugins: [],
 };
+ 
