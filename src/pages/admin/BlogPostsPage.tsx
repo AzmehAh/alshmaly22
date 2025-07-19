@@ -127,6 +127,7 @@ const BlogPostsPage = () => {
       featured_image: post.featured_image || '',
       published: post.published
     });
+      setImages([]);
     setShowForm(true);
   };
 
@@ -206,6 +207,19 @@ const BlogPostsPage = () => {
     setEditingPost(null);
     setShowForm(false);
   };
+  const addImage = () => {
+  setImages([...images, { image_url: '', alt_text: '', sort_order: images.length + 1 }]);
+};
+
+const updateImage = (index: number, field: string, value: string | number) => {
+  const newImages = [...images];
+  newImages[index][field] = value;
+  setImages(newImages);
+};
+
+const removeImage = (index: number) => {
+  setImages(images.filter((_, i) => i !== index));
+};
 
   const generateSlug = (title: string) => {
     return title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
@@ -596,6 +610,64 @@ return (
                     placeholder="https://example.com/image.jpg"
                   />
                 </div>
+                {/* Images */}
+<div className="bg-gray-50 p-6 rounded-lg">
+  <div className="flex items-center justify-between mb-4">
+    <h4 className="text-lg font-semibold text-[#054239]">{t('admin.image')}</h4>
+    <button
+      type="button"
+      onClick={addImage}
+      className="bg-[#b9a779] text-white px-4 py-2 rounded-lg hover:bg-[#054239] transition-colors flex items-center"
+    >
+      <Plus size={16} className="mr-2" />
+      {t('admin.add')} {t('admin.image')}
+    </button>
+  </div>
+  <div className="space-y-4">
+    {images.map((image, index) => (
+      <div key={index} className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 border border-gray-200 rounded-lg">
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">{t('admin.image')} URL</label>
+          <input
+            type="url"
+            value={image.image_url}
+            onChange={(e) => updateImage(index, 'image_url', e.target.value)}
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+            placeholder="https://example.com/image.jpg"
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">{t('admin.alt_text')}</label>
+          <input
+            type="text"
+            value={image.alt_text}
+            onChange={(e) => updateImage(index, 'alt_text', e.target.value)}
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+            placeholder={t('admin.description')}
+          />
+        </div>
+        <div className="flex items-end gap-2">
+          <div className="flex-1">
+            <label className="block text-sm font-medium text-gray-700 mb-1">{t('admin.order')}</label>
+            <input
+              type="number"
+              value={image.sort_order}
+              onChange={(e) => updateImage(index, 'sort_order', parseInt(e.target.value))}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+            />
+          </div>
+          <button
+            type="button"
+            onClick={() => removeImage(index)}
+            className="text-red-600 hover:text-red-800 p-2"
+          >
+            <X size={20} />
+          </button>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
 
                 {/* Buttons */}
                 <div className="flex justify-end  gap-4 pt-4">
@@ -683,6 +755,7 @@ return (
                 </ul>
               )}
             </div>
+            
 
             {/* Add related posts */}
             <div>
