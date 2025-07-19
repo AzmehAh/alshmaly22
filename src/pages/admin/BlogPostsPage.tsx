@@ -883,7 +883,7 @@ return (
 
           {/* Add Relations */}
           <div>
-            <h4 className="text-lg font-semibold text-[#054239] mb-4">{t('admin.add')} {t('admin.related')}</h4>
+            <h4 className="text-lg font-semibold text-[#054239] mb-4">{t('admin.add')} {t('admin.related2')}</h4>
             <div className="space-y-3 max-h-96 overflow-y-auto">
               {availablePosts
                 .filter(post => !relations.some(rel => rel.related_post_id === post.id))
