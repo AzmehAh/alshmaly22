@@ -79,7 +79,7 @@ const LoginPage = () => {
               </div>
             </div>
 
-  <div>
+         <div>
   <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
     Password
   </label>
@@ -90,7 +90,7 @@ const LoginPage = () => {
       name="password"
       type={showPassword ? 'text' : 'password'}
       autoComplete="current-password"
-      required
+      required 
       value={password}
       onChange={(e) => setPassword(e.target.value)}
       className="pl-10 pr-10 w-full py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent transition-all duration-300"
@@ -104,8 +104,7 @@ const LoginPage = () => {
       {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
     </button>
   </div>
-</div>
-            </div>
+ </div> </div>
 
 
           <button
