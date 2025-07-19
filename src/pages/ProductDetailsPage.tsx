@@ -216,8 +216,9 @@ const ProductDetailsPage = () => {
                     <span className="inline-flex items-center text-[#b9a779] font-medium transition-colors duration-300 group-hover:text-[#054239] mt-auto">
   {language === 'ar' ? (
     <>
-      <ArrowLeft size={16} className="mr-2 group-hover:-translate-x-1 transition-transform duration-300" />
+      
       {t('common.view_details')}
+      <ArrowLeft size={16} className="mr-2 group-hover:-translate-x-1 transition-transform duration-300" />
     </>
   ) : (
     <>
