@@ -715,7 +715,7 @@ return (
                                 <img
                                   src={image.image_url}
                                   alt={image.alt_text || 'معاينة الصورة'}
-                                  className="h-20 w-full object-cover rounded"
+                                  className="h-20 w-full object-contain rounded"
                                   onError={(e) => {
                                     e.currentTarget.src = 'https://via.placeholder.com/150?text=Invalid+Image';
                                   }}
