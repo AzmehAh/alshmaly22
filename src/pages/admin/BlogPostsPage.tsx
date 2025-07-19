@@ -861,7 +861,7 @@ return (
                       alt={relation.related_post?.title}
                       className=`${
           direction === 'rtl' ? 'ml-3' : 'mr-3'
-        } h-10 w-10 rounded-lg object-cover mr-3
+        } "h-10 w-10 rounded-lg object-cover mr-3"
                     />
                     <div>
                       <div className="font-medium text-[#054239]">{relation.related_post?.title}</div>
