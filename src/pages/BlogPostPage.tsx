@@ -153,7 +153,7 @@ const BlogPostPage = () => {
               <h3 className="text-2xl font-semibold text-[#054239] mb-6">Photo Gallery</h3>
 
               {/* Main Gallery Image */}
-              <div className="mb-6">
+              <div className="mb-6 bg-[#1E2229]">
                 <img
                   src={post.images[selectedImageIndex]?.image_url || ''}
                   alt={`Gallery image ${selectedImageIndex + 1}`}
