@@ -161,7 +161,7 @@ const ProductsPage = () => {
                   onClick={() => setViewMode('grid')}
                   className={`p-2 rounded-lg ${viewMode === 'grid' ? 'bg-[#b9a779] text-white' : 'bg-[#f7f7f7]  text-gray-600'}`}
                 >
-                  <Grid size={20} />
+                 
                 </button>
                 <button
                   onClick={() => setViewMode('list')}
