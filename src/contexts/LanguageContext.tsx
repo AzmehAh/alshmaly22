@@ -213,6 +213,8 @@ const translations = {
     // Contact location
     'contact.location.industrial_zone': 'Industrial Zone',
     'contact.location.full_address': 'Idlib, Sarmada, Syria',
+         'Note':'Note:',
+     'note.all':'Note: For international clients, we provide comprehensive shipping and logistics support. Our team will coordinate with you to ensure smooth delivery to your location.',
     
     // Footer sections
     'footer.company_description': 'We export the best of Syrian nature to the world, bringing authenticity and quality to your table.',
