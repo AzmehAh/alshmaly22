@@ -839,7 +839,7 @@ return (
       <div className="mt-3">
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
-          <h3 className="text-2xl font-bold text-[#054239]"> {t('admin.related2')}{t('admin.manage')}</h3>
+          <h3 className="text-2xl font-bold text-[#054239]">{t('admin.manage')} {t('admin.related2')}</h3>
           <button
             onClick={() => setShowRelationsModal(null)}
             className="text-gray-400 hover:text-gray-600"
@@ -851,7 +851,7 @@ return (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Current Relations */}
           <div>
-            <h4 className="text-lg font-semibold text-[#054239] mb-4">{t('admin.current')} {t('admin.related2')}</h4>
+            <h4 className="text-lg font-semibold text-[#054239] mb-4"> {t('admin.related2')} {t('admin.current')}</h4>
             <div className="space-y-3 max-h-96 overflow-y-auto">
               {relations.map((relation) => (
                 <div key={relation.id} className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
