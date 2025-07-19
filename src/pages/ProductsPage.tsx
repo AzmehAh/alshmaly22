@@ -76,25 +76,25 @@ const ProductsPage = () => {
                 </div>
               </div>
 
-              {/* Categories */}
-              <div className="mb-6">
-                <label className="block text-sm font-medium text-gray-700 mb-3">{t('products.filters.categories.label')}</label>
-                <div className="space-y-2">
-                  {displayCategories.map(category => (
-                    <button
-                      key={category.slug}
-                      onClick={() => setSelectedCategory(category.slug)}
-                      className={`w-full text-left px-3 py-2 rounded-lg transition-colors duration-200 ${
-                        selectedCategory === category.slug
-                          ? 'bg-[#b9a779] text-white'
-                          : 'hover:bg-gray-100 text-gray-700'
-                      }`}
-                    >
-                      {getLocalizedField(category, 'name')}
-                    </button>
-                  ))}
-                </div> 
-              </div>
+             <div
+  className="space-y-2"
+  style={{ direction: language === 'ar' ? 'rtl' : 'ltr' }}
+>
+  {displayCategories.map(category => (
+    <button
+      key={category.slug}
+      onClick={() => setSelectedCategory(category.slug)}
+      className={`w-full text-left px-3 py-2 rounded-lg transition-colors duration-200 ${
+        selectedCategory === category.slug
+          ? 'bg-[#b9a779] text-white'
+          : 'hover:bg-gray-100 text-gray-700'
+      }`}
+    >
+      {getLocalizedField(category, 'name')}
+    </button>
+  ))}
+</div>
+
 
               {/* Weight Filter */}
               <div className="mb-6">
