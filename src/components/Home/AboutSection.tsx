@@ -12,7 +12,7 @@ const AboutSection = () => {
   const animateCounters = () => {
     const clientsTarget = 5000;
     const countriesTarget = 30;
-    const yearsTarget = 26;
+    const yearsTarget = 27;
     const duration = 2000;
     const steps = 60;
     const stepDuration = duration / steps;
