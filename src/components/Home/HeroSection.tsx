@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { ArrowRight, Play, Pause, Volume2, VolumeX } from 'lucide-react';
+import { ArrowRight, Play, Pause, Volume2, VolumeX,ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
 
@@ -99,7 +99,11 @@ const HeroSection = () => {
                 className="bg-[#b9a779] hover:bg-[#054239] text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 flex items-center justify-center group"
               >
                 {t('home.hero.explore_products')}
-                <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                {language === 'ar' ? (
+  <ArrowLeft size={16} className="mr-2 group-hover:-translate-x-1 transition-transform duration-300" />
+) : (
+  <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+)}
               </Link>
               <Link 
                 to="/contact"
