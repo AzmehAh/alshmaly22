@@ -217,10 +217,10 @@ return (
               </h3>
             </div>
             <p className="text-gray-600 text-sm mb-2">
-              Annual Exports: {getLocalizedField(country, 'annual_exports')}
+             {getLocalizedField(country, 'annual_exports')}
             </p>
             <p className="text-gray-500 text-sm">
-              Main Products: {getLocalizedField(country, 'main_products')}
+              {getLocalizedField(country, 'main_products')}
             </p>
           </div>
         ))}
