@@ -649,7 +649,7 @@ return (
                       className="bg-[#b9a779] text-white px-4 py-2 rounded-lg hover:bg-[#054239] transition-colors flex items-center"
                     >
                       <Plus size={16} className="mr-2" />
-                      {t('blog.images.add_image')}
+                      {t('admin.image')}
                     </button>
                   </div>
 
