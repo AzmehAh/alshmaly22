@@ -641,7 +641,7 @@ return (
                 <div className="bg-gray-50 p-6 rounded-lg">
                   <div className="flex items-center justify-between mb-4">
                     <h4 className="text-lg font-semibold text-[#054239]">
-                      {t('blog.images.title')}
+                      {t('admin.image')}
                     </h4>
                     <button
                       type="button"
