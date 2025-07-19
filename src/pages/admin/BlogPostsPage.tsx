@@ -1,13 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { Plus, Search, Edit, Trash2, Eye, Calendar, Link as LinkIcon, X } from 'lucide-react';
+import { Plus, Search, Edit, Trash2, Eye, Calendar, Link as LinkIcon, X, Image as ImageIcon } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import { RelationsAPI } from '../../lib/api/relations';
 import type { BlogPost, BlogCategory } from '../../lib/supabase';
 import type { BlogPostRelation } from '../../lib/api/relations';
 import { useLanguage } from '../../contexts/LanguageContext';
 
+interface BlogPostImage {
+  id?: string;
+  image_url: string;
+  alt_text: string;
+  sort_order: number;
+}
+
 const BlogPostsPage = () => {
-     const { t, direction } = useLanguage()
+  const { t, direction } = useLanguage();
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [categories, setCategories] = useState<BlogCategory[]>([]);
   const [loading, setLoading] = useState(true);
@@ -19,7 +26,7 @@ const BlogPostsPage = () => {
   const [showRelationsModal, setShowRelationsModal] = useState<string | null>(null);
   const [relations, setRelations] = useState<BlogPostRelation[]>([]);
   const [availablePosts, setAvailablePosts] = useState<BlogPost[]>([]);
-  const [images, setImages] = useState<Array<{image_url: string, alt_text: string, sort_order: number}>>([]);
+  const [images, setImages] = useState<BlogPostImage[]>([]);
 
   const [formData, setFormData] = useState({
     title: '',
@@ -51,7 +58,8 @@ const BlogPostsPage = () => {
         .from('blog_posts')
         .select(`
           *,
-          category:blog_categories(*)
+          category:blog_categories(*),
+          images:blog_post_images(*)
         `)
         .order('created_at', { ascending: false });
 
@@ -78,11 +86,55 @@ const BlogPostsPage = () => {
     }
   };
 
+  const fetchImages = async (postId: string) => {
+    try {
+      const { data, error } = await supabase
+        .from('blog_post_images')
+        .select('*')
+        .eq('post_id', postId)
+        .order('sort_order', { ascending: true });
+
+      if (error) throw error;
+      setImages(data || []);
+    } catch (error) {
+      console.error('Error fetching images:', error);
+    }
+  };
+
+  const saveImages = async (postId: string) => {
+    try {
+      // حذف الصور القديمة أولاً
+      await supabase
+        .from('blog_post_images')
+        .delete()
+        .eq('post_id', postId);
+
+      // إضافة الصور الجديدة إذا كانت موجودة
+      if (images.length > 0) {
+        const imagesToInsert = images.map(img => ({
+          ...img,
+          post_id: postId
+        }));
+
+        const { error } = await supabase
+          .from('blog_post_images')
+          .insert(imagesToInsert);
+
+        if (error) throw error;
+      }
+    } catch (error) {
+      console.error('Error saving images:', error);
+      throw error;
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
     try {
+      let postId;
+      
       if (editingPost) {
         const { error } = await supabase
           .from('blog_posts')
@@ -90,19 +142,24 @@ const BlogPostsPage = () => {
           .eq('id', editingPost.id);
 
         if (error) throw error;
+        postId = editingPost.id;
       } else {
-        const { error } = await supabase
+        const { data, error } = await supabase
           .from('blog_posts')
-          .insert(formData);
+          .insert(formData)
+          .select()
+          .single();
 
         if (error) throw error;
+        postId = data.id;
       }
 
+      await saveImages(postId);
       await fetchPosts();
       resetForm();
     } catch (error) {
       console.error('Error saving post:', error);
-      alert('Error saving post. Please try again.');
+      alert(t('blog.error.save_post'));
     } finally {
       setLoading(false);
     }
@@ -128,7 +185,7 @@ const BlogPostsPage = () => {
       featured_image: post.featured_image || '',
       published: post.published
     });
-      setImages([]);
+    fetchImages(post.id);
     setShowForm(true);
   };
 
@@ -144,84 +201,27 @@ const BlogPostsPage = () => {
       setDeleteConfirm(null);
     } catch (error) {
       console.error('Error deleting post:', error);
-      alert('Error deleting post. Please try again.');
+      alert(t('blog.error.delete_post'));
     }
   };
 
-  const fetchRelations = async (postId: string) => {
-    try {
-      const [relationsData, allPosts] = await Promise.all([
-        RelationsAPI.getBlogPostRelations(postId),
-        supabase.from('blog_posts').select('*').neq('id', postId)
-      ]);
-      
-      setRelations(relationsData);
-      setAvailablePosts(allPosts.data || []);
-    } catch (error) {
-      console.error('Error fetching relations:', error);
-    }
-  };
-
-  const handleAddRelation = async (postId: string, relatedPostId: string, relationType: string) => {
-    try {
-      await RelationsAPI.addBlogPostRelation(postId, relatedPostId, relationType as any);
-      await fetchRelations(postId);
-    } catch (error) {
-      console.error('Error adding relation:', error);
-      if (error.code === '23505') {
-        alert('This relation already exists.');
-      } else {
-        alert('Error adding relation. Please try again.');
-      }
-    }
-  };
-
-  const handleRemoveRelation = async (relationId: string, postId: string) => {
-    try {
-      await RelationsAPI.removeBlogPostRelation(relationId);
-      await fetchRelations(postId);
-    } catch (error) {
-      console.error('Error removing relation:', error);
-      alert('Error removing relation. Please try again.');
-    }
-  };
-
-  const resetForm = () => {
-    setFormData({
-      title: '',
-      title_ar: '',
-      slug: '',
-      excerpt: '',
-      excerpt_ar: '',
-      content: '',
-      content_ar: '',
-      category_id: '',
-      author: 'Al-Shamali Team',
-      author_ar: 'فريق الشمالي',
-      read_time: '5 min read',
-      read_time_ar: '5 دقائق قراءة',
-      event_date_en: '',
-      event_date_ar: '',
-      featured_image: '',
-      published: true
-    });
-    setEditingPost(null);
-    setShowForm(false);
-  };
   const addImage = () => {
-  setImages([...images, { image_url: '', alt_text: '', sort_order: images.length + 1 }]);
-};
+    setImages([...images, { 
+      image_url: '', 
+      alt_text: '', 
+      sort_order: images.length > 0 ? Math.max(...images.map(i => i.sort_order)) + 1 : 1 
+    }]);
+  };
 
-const updateImage = (index: number, field: string, value: string | number) => {
-  const newImages = [...images];
-  newImages[index][field] = value;
-  setImages(newImages);
-};
+  const updateImage = (index: number, field: keyof BlogPostImage, value: string | number) => {
+    const newImages = [...images];
+    newImages[index] = { ...newImages[index], [field]: value };
+    setImages(newImages);
+  };
 
-const removeImage = (index: number) => {
-  setImages(images.filter((_, i) => i !== index));
-};
-
+  const removeImage = (index: number) => {
+    setImages(images.filter((_, i) => i !== index));
+  }; 
   const generateSlug = (title: string) => {
     return title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
   };
@@ -611,65 +611,104 @@ return (
                     placeholder="https://example.com/image.jpg"
                   />
                 </div>
-                {/* Images */}
-<div className="bg-gray-50 p-6 rounded-lg">
-  <div className="flex items-center justify-between mb-4">
-    <h4 className="text-lg font-semibold text-[#054239]">{t('admin.image')}</h4>
-    <button
-      type="button"
-      onClick={addImage}
-      className="bg-[#b9a779] text-white px-4 py-2 rounded-lg hover:bg-[#054239] transition-colors flex items-center"
-    >
-      <Plus size={16} className="mr-2" />
-      {t('admin.add')} {t('admin.image')}
-    </button>
-  </div>
-  <div className="space-y-4">
-    {images.map((image, index) => (
-      <div key={index} className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 border border-gray-200 rounded-lg">
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">{t('admin.image')} URL</label>
-          <input
-            type="url"
-            value={image.image_url}
-            onChange={(e) => updateImage(index, 'image_url', e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-            placeholder="https://example.com/image.jpg"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">{t('admin.alt_text')}</label>
-          <input
-            type="text"
-            value={image.alt_text}
-            onChange={(e) => updateImage(index, 'alt_text', e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-            placeholder={t('admin.description')}
-          />
-        </div>
-        <div className="flex items-end gap-2">
-          <div className="flex-1">
-            <label className="block text-sm font-medium text-gray-700 mb-1">{t('admin.order')}</label>
-            <input
-              type="number"
-              value={image.sort_order}
-              onChange={(e) => updateImage(index, 'sort_order', parseInt(e.target.value))}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-            />
-          </div>
-          <button
-            type="button"
-            onClick={() => removeImage(index)}
-            className="text-red-600 hover:text-red-800 p-2"
-          >
-            <X size={20} />
-          </button>
-        </div>
-      </div>
-    ))}
-  </div>
-</div>
+                <div className="bg-gray-50 p-6 rounded-lg">
+                  <div className="flex items-center justify-between mb-4">
+                    <h4 className="text-lg font-semibold text-[#054239]">
+                      {t('blog.images.title')}
+                    </h4>
+                    <button
+                      type="button"
+                      onClick={addImage}
+                      className="bg-[#b9a779] text-white px-4 py-2 rounded-lg hover:bg-[#054239] transition-colors flex items-center"
+                    >
+                      <Plus size={16} className="mr-2" />
+                      {t('blog.images.add_image')}
+                    </button>
+                  </div>
 
+                  {images.length === 0 ? (
+                    <div className="text-center py-6 bg-white rounded border border-dashed border-gray-300">
+                      <ImageIcon size={48} className="mx-auto text-gray-400 mb-2" />
+                      <p className="text-gray-500">{t('blog.images.no_images')}</p>
+                    </div>
+                  ) : (
+                    <div className="space-y-4">
+                      {images.map((image, index) => (
+                        <div key={index} className="grid grid-cols-1 md:grid-cols-12 gap-4 p-4 bg-white border border-gray-200 rounded-lg">
+                          <div className="md:col-span-2">
+                            {image.image_url ? (
+                              <div className="relative group">
+                                <img
+                                  src={image.image_url}
+                                  alt={image.alt_text || 'معاينة الصورة'}
+                                  className="h-20 w-full object-cover rounded"
+                                  onError={(e) => {
+                                    e.currentTarget.src = 'https://via.placeholder.com/150?text=Invalid+Image';
+                                  }}
+                                />
+                              </div>
+                            ) : (
+                              <div className="h-20 w-full bg-gray-100 rounded flex items-center justify-center">
+                                <ImageIcon size={24} className="text-gray-400" />
+                              </div>
+                            )}
+                          </div>
+                          
+                          <div className="md:col-span-5">
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                              {t('blog.images.url')}
+                            </label>
+                            <input
+                              type="url"
+                              value={image.image_url}
+                              onChange={(e) => updateImage(index, 'image_url', e.target.value)}
+                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+                              placeholder="https://example.com/image.jpg"
+                              required
+                            />
+                          </div>
+                          
+                          <div className="md:col-span-3">
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                              {t('blog.images.alt_text')}
+                            </label>
+                            <input
+                              type="text"
+                              value={image.alt_text}
+                              onChange={(e) => updateImage(index, 'alt_text', e.target.value)}
+                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+                              placeholder={t('blog.images.alt_placeholder')}
+                            />
+                          </div>
+                          
+                          <div className="md:col-span-1">
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                              {t('blog.images.order')}
+                            </label>
+                            <input
+                              type="number"
+                              value={image.sort_order}
+                              onChange={(e) => updateImage(index, 'sort_order', parseInt(e.target.value) || 0)}
+                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+                              min="0"
+                            />
+                          </div>
+                          
+                          <div className="md:col-span-1 flex items-end justify-end">
+                            <button
+                              type="button"
+                              onClick={() => removeImage(index)}
+                              className="text-red-600 hover:text-red-800 p-2"
+                              title={t('blog.images.remove')}
+                            >
+                              <Trash2 size={20} />
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
                 {/* Buttons */}
                 <div className="flex justify-end  gap-4 pt-4">
                   <button
