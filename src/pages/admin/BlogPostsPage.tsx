@@ -851,8 +851,8 @@ return (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Current Relations */}
           <div>
-            <h4 className="text-lg font-semibold text-[#054239] mb-4"> {t('admin.related2')} {t('admin.current')}</h4>
-            <div className="space-y-3 max-h-96 overflow-y-auto">
+            <h4 className="text-lg font-semibold text-[#054239] mb-4">{t('admin.current')} {t('admin.related2')}</h4>
+            <div className="space-y-3 max-h-96 overflow-y-auto"> 
               {relations.map((relation) => (
                 <div key={relation.id} className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
                   <div className="flex items-center">
