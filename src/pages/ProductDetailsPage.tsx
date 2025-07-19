@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Package, Shield, Award, Truck, Loader2 } from 'lucide-react';
+import { ArrowLeft, Package, Shield, Award, Truck, Loader2,ArrowRight } from 'lucide-react';
 import { useProduct } from '../hooks/useProducts';
 import { useLanguage } from '../contexts/LanguageContext';
 
