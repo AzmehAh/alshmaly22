@@ -12,7 +12,7 @@
   }
    
   /* Arabic font support */
-html.font-arabic {
+[dir="rtl"] body{
   font-family: 'Aljazeera', 'Noto Sans Arabic', 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 @font-face {
@@ -49,7 +49,7 @@ select option:checked {
   color: white;
 }
   
-  body {
+ body {
     font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     line-height: 1.6;
     overflow-x: hidden;
