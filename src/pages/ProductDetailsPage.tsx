@@ -5,7 +5,7 @@ import { useProduct } from '../hooks/useProducts';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const ProductDetailsPage = () => {
-  const { t, getLocalizedField } = useLanguage();
+  const { t, getLocalizedField, language } = useLanguage();
   const { id } = useParams();
   const { product, relatedProducts, loading, error } = useProduct(id || '');
   const [selectedPackage, setSelectedPackage] = useState<string>('');
