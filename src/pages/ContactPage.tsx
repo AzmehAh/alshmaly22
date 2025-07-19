@@ -324,8 +324,7 @@ const ContactPage = () => {
                 
                 <div className="mt-6 p-4 bg-gray-50 rounded-xl">
                   <p className="text-gray-600 text-sm">
-                    <strong>Note:</strong> For international clients, we provide comprehensive shipping and logistics support. 
-                    Our team will coordinate with you to ensure smooth delivery to your location.
+                    <strong> {t('Note')}</strong>  {t('note.all')}
                   </p>
                 </div>
               </div>
