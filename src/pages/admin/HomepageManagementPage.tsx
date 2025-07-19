@@ -236,12 +236,14 @@ const HomepageManagementPage = () => {
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
                         {activeTab === 'products' && (
-                          <img
-                            src={(content as Product)?.images?.[0]?.image_url 
-                            alt={content?.name || content?.title}
-                            className="h-12 w-12 rounded-lg object-cover mr-4"
-                          />
-                        )}
+                     {(content as Product)?.images?.[0]?.image_url && (
+  <img
+    src={(content as Product)?.images?.[0]?.image_url}
+    alt={content?.name || content?.title}
+    className="h-12 w-12 rounded-lg object-cover mr-4"
+  />
+)}
+                      
                         <div>
                           <div className="text-sm font-medium text-[#054239]">
                             {content?.name || content?.title}
