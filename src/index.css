@@ -10,10 +10,27 @@
     scroll-behavior: smooth; 
     overflow-x: hidden;
   }
-  
+   
   /* Arabic font support */
 html.font-arabic {
   font-family: 'Aljazeera', 'Noto Sans Arabic', 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+@font-face {
+  font-family: 'Aljazeera';
+  src: url('/fonts/Aljazeera-Regular.ttf') format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Aljazeera';
+  src: url('/fonts/Aljazeera-Bold.ttf') format('truetype');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Aljazeera';
+  src: url('/fonts/Aljazeera-Light.ttf') format('truetype');
+  font-weight: 300;
 }
 
   
