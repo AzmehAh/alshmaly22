@@ -456,6 +456,8 @@ const translations = {
     // Contact location
     'contact.location.industrial_zone': 'المنطقة الصناعية',
     'contact.location.full_address': 'إدلب، سرمدا، سوريا',
+    'Note':'Note:',
+    'note.all':'Note: For international clients, we provide comprehensive shipping and logistics support. Our team will coordinate with you to ensure smooth delivery to your location.',
     
     // Footer sections
     'footer.company_description': 'نصدر أفضل ما في الطبيعة السورية إلى العالم، ونجلب الأصالة والجودة إلى مائدتك.',
