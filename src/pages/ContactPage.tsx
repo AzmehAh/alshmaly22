@@ -36,7 +36,6 @@ const ContactPage = () => {
         language
       });
       
-      
       // Reset form
       setFormData({
         name: '',
@@ -54,17 +53,6 @@ const ContactPage = () => {
       setIsSubmitting(false);
     }
   };
-const [phoneDirection, setPhoneDirection] = useState<'rtl' | 'ltr'>('ltr');
-
-const handlePhoneChange = (e) => {
-  const value = e.target.value;
-  setFormData({ ...formData, phone: value });
-
-  // إذا بدأ بحرف عربي → RTL، غير ذلك → LTR
-  const firstChar = value.trim().charAt(0);
-  const isArabic = /[\u0600-\u06FF]/.test(firstChar);
-  setPhoneDirection(isArabic ? 'rtl' : 'ltr');
-};
 
   const toggleFAQ = (index: number) => {
     setOpenFAQ(openFAQ === index ? null : index);
@@ -75,7 +63,7 @@ const handlePhoneChange = (e) => {
       question: t('faq.minimum_order.question'),
       answer: t('faq.minimum_order.answer')
     },
-    {
+    { 
       question: t('faq.certificates.question'),
       answer: t('faq.certificates.answer')
     },
@@ -255,8 +243,6 @@ const handlePhoneChange = (e) => {
                         onChange={handleInputChange}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent transition-all duration-300"
                         placeholder={t('contact.form.placeholder.phone')}
-                         dir={phoneDirection}
-  style={{ textAlign: phoneDirection === 'rtl' ? 'right' : 'left' }}
                       />
                     </div>
                     <div>
@@ -313,9 +299,7 @@ const handlePhoneChange = (e) => {
               <div className="bg-[#f7f7f7]  rounded-2xl p-8 shadow-lg">
                 <h2 className="text-2xl font-bold text-[#054239] mb-6">{t('contact.location')}</h2>
                 <div className="relative bg-gray-100 rounded-xl h-96 overflow-hidden">
-                  {/* Map Placeholder */}
-                  
-                  
+                
                   {/* In a real implementation, you would integrate with Google Maps, Mapbox, or similar */}
                 <iframe
   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3220.021842769755!2d36.769716739654555!3d36.19035061456288!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15257b2abd015b51%3A0x8c7ccf0d0af4520a!2z2YXYpNiz2LPYqSDYp9mE2LTZhdin2YTZiiDYp9mE2KrYrNin2LHZitipIEFMU0hNQUxZIEFHUk8!5e0!3m2!1sen!2snl!4v1752479443663!5m2!1sen!2snl"
