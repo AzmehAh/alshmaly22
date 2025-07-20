@@ -36,6 +36,7 @@ const ContactPage = () => {
         language
       });
       
+      
       // Reset form
       setFormData({
         name: '',
@@ -53,7 +54,10 @@ const ContactPage = () => {
       setIsSubmitting(false);
     }
   };
-
+ const firstChar = value.trim().charAt(0);
+  const isArabic = /[\u0600-\u06FF]/.test(firstChar);
+  setPhoneDirection(isArabic ? 'rtl' : 'ltr');
+};
   const toggleFAQ = (index: number) => {
     setOpenFAQ(openFAQ === index ? null : index);
   };
@@ -243,6 +247,8 @@ const ContactPage = () => {
                         onChange={handleInputChange}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent transition-all duration-300"
                         placeholder={t('contact.form.placeholder.phone')}
+                         dir={phoneDirection}
+  style={{ textAlign: phoneDirection === 'rtl' ? 'right' : 'left' }}
                       />
                     </div>
                     <div>
