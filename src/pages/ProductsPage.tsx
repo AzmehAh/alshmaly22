@@ -136,7 +136,7 @@ const ProductsPage = () => {
               </div>
             ) : error ? (
               <div className="text-center py-12">
-                <p className="text-red-600 text-lg">Error loading products: {error}</p>
+                <p className="text-red-600 text-lg">{t('erorr')} {error}</p>
               </div>
             ) : (
               <>
