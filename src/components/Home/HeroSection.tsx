@@ -40,7 +40,7 @@ const HeroSection = () => {
 
   return (
     <section id="home" className="relative flex items-center overflow-hidden w-full"
-      style={{ height: "calc(100dvh - 2rem)" }}
+      style={{ height: "calc(100dvh - 1rem)" }}
       >
       {/* Background Video */}
       <div className="absolute inset-0 z-0 w-full h-full">
