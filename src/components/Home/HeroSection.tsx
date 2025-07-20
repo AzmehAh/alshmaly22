@@ -9,6 +9,7 @@ const HeroSection = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
+  const [isLandscape, setIsLandscape] = useState(false);
 
   const togglePlayPause = () => {
     if (videoRef.current) {
@@ -27,7 +28,10 @@ const HeroSection = () => {
       setIsMuted(!isMuted);
     } 
   };
-const [isLandscape, setIsLandscape] = useState(false);
+const sectionStyle = isLandscape
+  ? { minHeight: 'calc(var(--vh, 1vh) * 100)' }
+  : { height: 'calc(var(--vh, 1vh) * 100)' };
+
 
 useEffect(() => {
   const checkOrientation = () => {
@@ -38,9 +42,6 @@ useEffect(() => {
   return () => window.removeEventListener('resize', checkOrientation);
 }, []);
 
-const sectionStyle = isLandscape
-  ? { minHeight: 'calc(var(--vh, 1vh) * 100)' }
-  : { height: 'calc(var(--vh, 1vh) * 100)' };
 
   
  
