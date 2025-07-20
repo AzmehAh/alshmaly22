@@ -29,7 +29,7 @@ const HeroSection = () => {
   };
 
   
- useEffect(() => {
+  useEffect(() => {
   const setVh = () => {
     const vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
@@ -42,16 +42,18 @@ const HeroSection = () => {
 }, []);
 
 
+
   
   return (
     <section
   id="home"
   className="relative flex items-center overflow-hidden w-full"
- style={{
+  style={{
   height: '100vh',
   height: 'calc(var(--vh, 1vh) * 100)'  // this will override 100vh if --vh is defined
 }}
 
+>
 
     
       
