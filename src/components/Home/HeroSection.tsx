@@ -23,8 +23,8 @@ const HeroSection = () => {
 
   const toggleMute = () => {
     if (videoRef.current) {
-      videoRef.current.muted = !isMuted;
-      setIsMuted(!isMuted);
+      videoRef.current.!isMuted = muted;
+      setIsMuted(muted);
     }
   };
   return (
