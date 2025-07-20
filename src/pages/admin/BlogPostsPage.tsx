@@ -894,7 +894,7 @@ return (
                       <img
                         src={post.thumbnail || 'https://via.placeholder.com/100x100?text=Post'}
                         alt={post.title}
-                        className={`${direction === 'rtl' ? 'mr-3' : 'ml-3'} h-10 w-10 rounded-lg object-cover`}
+                        className="h-10 w-10 rounded-lg object-cover"
                       />
                       <div>
                         <div className="font-medium text-[#054239]">{post.title}</div>
@@ -904,7 +904,7 @@ return (
                     <button
                       onClick={() => handleAddRelation(showRelationsModal, post.id, 'related')}
                       className="bg-[#b9a779] hover:bg-[#054239] text-white px-3 py-1 rounded text-sm transition-colors duration-200"
-                    >
+                    > 
                       {t('admin.add')}
                     </button>
                   </div>
