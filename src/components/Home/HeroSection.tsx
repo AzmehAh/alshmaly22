@@ -17,14 +17,14 @@ const HeroSection = () => {
       } else {
         videoRef.current.play();
       }
-      setIsPlaying(!isPlaying);
+      setIsPlaying(!isPlaying); 
     }
   };
 
   const toggleMute = () => {
     if (videoRef.current) {
-      videoRef.current.!isMuted = muted;
-      setIsMuted(muted);
+      videoRef.current.muted = !isMuted;
+      setIsMuted(!isMuted);
     }
   };
   return (
