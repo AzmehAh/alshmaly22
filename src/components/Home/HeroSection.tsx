@@ -40,7 +40,7 @@ const HeroSection = () => {
 
   return (
     <section id="home" className="relative flex items-center overflow-hidden w-full"
-      style={{ height: "calc(100dvh - 0rem)" }}
+    style={{ minHeight: "calc(var(--vh, 1vh) * 100)" }}
       >
       {/* Background Video */}
       <div className="absolute inset-0 z-0 w-full h-full">
@@ -49,6 +49,7 @@ const HeroSection = () => {
           autoPlay 
           muted  
           loop 
+          playsInline
           className="w-full h-full object-cover "
           poster=""
         > 
