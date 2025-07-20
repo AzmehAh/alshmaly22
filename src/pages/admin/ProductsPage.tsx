@@ -711,7 +711,7 @@ const ProductsPage = () => {
                   </div>
                   <div className="space-y-4">
                     {images.map((image, index) => (
-                      <div key={index} className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 border border-gray-200 rounded-lg">  {/* عرض المعاينة */}
+                      <div key={index} className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 border border-gray-200 rounded-lg">  
     {image.image_url ? (
       <img
         src={image.image_url}
@@ -722,9 +722,7 @@ const ProductsPage = () => {
         }}
       />
     ) : (
-      <div className="h-20 w-full bg-gray-100 rounded flex items-center justify-center">
-        {/* أيقونة بديلة */}
-      </div>
+     
     )}
                         <div>
                           <label className="block text-sm font-medium text-gray-700 mb-1">{t('admin.image')} URL</label>
