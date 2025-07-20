@@ -218,7 +218,7 @@ const translations = {
     
     // Footer sections
     'footer.company_description': 'We export the best of Syrian nature to the world, bringing authenticity and quality to your table.',
-    'footer.made_by': 'Create by',
+    'footer.made_by': 'Designed by',
     'footer.all_rights': 'All rights reserved.',
     'footer.rights':'© 2025 Al-Shmaly  Agricultural Products.',
     
