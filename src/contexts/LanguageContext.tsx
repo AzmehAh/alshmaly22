@@ -45,13 +45,13 @@ const translations = {
     'common.product' :'No products found matching your criteria.',
     
     // Home page
-    'home.hero.title': 'Al-Shamali – Quality Speaks',
+    'home.hero.title': 'Al-Shmaly – Quality Speaks',
     'home.hero.subtitle': 'We export the best of Syrian nature to the world, bringing authenticity and premium quality to your table.',
     'home.hero.explore_products': 'Explore Our Products',
     'home.about.1': 'Trusted by',
     'home.about.2': '5000+ Clients',
     'home.about.title': 'We bring authenticity into your world',
-    'home.about.description': 'For over 27 years Al-Shamaly has been the trusted name in exporting high-quality Syrian agricultural products. Our commitment to quality and authenticity has made us the preferred partner for traders around the world, offering the finest legumes, spices, oils, and herbs from Syrian soil to tables across the globe.',
+    'home.about.description': 'For over 27 years Al-Shmaly  has been the trusted name in exporting high-quality Syrian agricultural products. Our commitment to quality and authenticity has made us the preferred partner for traders around the world, offering the finest legumes, spices, oils, and herbs from Syrian soil to tables across the globe.',
     'home.products.title': 'Featured Products',
     'home.services.title': 'Our Services',
     'home.blog.title': 'Latest News & Updates',
@@ -72,10 +72,10 @@ const translations = {
   'products.filters.categories.label': 'Categories',
     'products.filt': 'All Products',
     // About
-    'about.title': 'About Al-Shamali',
+    'about.title': 'About Al-Shmaly ',
     'about.hero.subtitle': 'For over 27 years, we have been the bridge between Syrian agricultural heritage and global markets, bringing authentic, premium-quality products to tables worldwide.',
     'about.vision.title': 'Our Vision & Values',
-    'about.vision.description.1': 'At Al-Shamali, we believe that quality speaks for itself. Our mission is to preserve and share the rich agricultural heritage of Syria while building sustainable partnerships that benefit farmers, traders, and consumers worldwide.',
+    'about.vision.description.1': 'At Al-Shmaly , we believe that quality speaks for itself. Our mission is to preserve and share the rich agricultural heritage of Syria while building sustainable partnerships that benefit farmers, traders, and consumers worldwide.',
 'about.vision.description.2': 'We are committed to maintaining the highest standards of quality, authenticity, and customer service in everything we do. Our products carry the essence of Syrian soil and the dedication of generations of farmers.',
 
     'about.journey.title': 'Our Journey',
@@ -94,7 +94,7 @@ const translations = {
     'contact.business_hours': 'Business Hours',
     
     // Blog
-    'blog.title': 'Al-Shamali Blog',
+    'blog.title': 'Al-Shmaly  Blog',
     'blog.subtitle': 'Stay updated with our latest news, insights, and stories from the world of Syrian agriculture',
     'blog.all_categories': 'All',
     'blog.no_posts': 'No blog posts found in this category.',
@@ -185,7 +185,7 @@ const translations = {
     
     // Timeline
     'timeline.foundation.title': 'Company Foundation',
-    'timeline.foundation.description': 'Al-Shamali was established in Idlib, Syria, with a vision to export premium Syrian agricultural products.',
+    'timeline.foundation.description': 'Al-Shmaly  was established in Idlib, Syria, with a vision to export premium Syrian agricultural products.',
     'timeline.first_export.title': 'First International Export',
     'timeline.first_export.description': 'Successfully exported our first shipment of freekeh and legumes to European markets.',
     'timeline.certifications.title': 'Quality Certifications',
@@ -220,7 +220,7 @@ const translations = {
     'footer.company_description': 'We export the best of Syrian nature to the world, bringing authenticity and quality to your table.',
     'footer.made_by': 'Create by',
     'footer.all_rights': 'All rights reserved.',
-    'footer.rights':'© 2025 Al-Shamaly Agricultural Products.',
+    'footer.rights':'© 2025 Al-Shmaly  Agricultural Products.',
     
     // Form validation
     'validation.required': 'This field is required',
@@ -761,7 +761,7 @@ const adminTranslations = {
      'admin.logout': 'Log out',
     'admin.welcome': 'Welcome',
     'admin.last_updated': 'last updated',
-       'admin.logo': 'Al-Shamaly',
+       'admin.logo': 'Al-Shmaly ',
   },
   ar: {
     'admin.products.management': 'إدارة المنتجات',
@@ -1008,7 +1008,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
   useEffect(() => {
     // Load language from localStorage
-    const savedLanguage = localStorage.getItem('al-shamali-language') as Language;
+    const savedLanguage = localStorage.getItem('Al-Shmaly -language') as Language;
     if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'ar')) {
       setLanguageState(savedLanguage);
       setDirection(savedLanguage === 'ar' ? 'rtl' : 'ltr');
@@ -1031,7 +1031,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
     setDirection(lang === 'ar' ? 'rtl' : 'ltr');
-    localStorage.setItem('al-shamali-language', lang);
+    localStorage.setItem('Al-Shmaly -language', lang);
   };
 
   const t = (key: string): string => {
