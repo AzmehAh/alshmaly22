@@ -711,7 +711,7 @@ const ProductsPage = () => {
                   </div>
                   <div className="space-y-4">
                     {images.map((image, index) => (
-                      <div key={index} className="grid grid-cols-1 md:grid-cols-4 gap-5 p-4 border border-gray-200 rounded-lg">  
+                      <div key={index} className="grid grid-cols-1 md:grid-cols-4 gap-4 p-4 border border-gray-200 rounded-lg">  
                          {/* عرض المعاينة */}
     {image.image_url ? (
       <img
