@@ -6,15 +6,16 @@ import { useLanguage } from '../contexts/LanguageContext';
 
  
 
+
+
 const ProductsPage = () => {
   const { t, getLocalizedField, language } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
-  const [viewMode, setViewMode] = useState('grid');
   const [page, setPage] = useState(1);
-  const limit = 12;
+  const limit = 8;
 
-  const { products, categories, loading, error, hasMore } = useProducts({
+  const { products, categories, loading, error, totalCount } = useProducts({
     category: selectedCategory === 'all' ? undefined : selectedCategory,
     search: searchTerm,
     page,
@@ -23,11 +24,15 @@ const ProductsPage = () => {
 
   const displayCategories = [
     { id: 'all', name: t('products.filt'), slug: 'all' },
-    ...categories
+    ...categories,
   ];
 
-  const handleLoadMore = () => {
-    setPage(prev => prev + 1);
+  const totalPages = Math.ceil(totalCount / limit);
+
+  const handlePageChange = (newPage) => {
+    if (newPage >= 1 && newPage <= totalPages) {
+      setPage(newPage);
+    }
   };
 
   return (
@@ -73,10 +78,7 @@ const ProductsPage = () => {
                 <label className="block text-sm font-medium text-gray-700 mb-3">
                   {t('products.filters.categories.label')}
                 </label>
-                <div
-                  className="space-y-2"
-                  style={{ direction: language === 'ar' ? 'rtl' : 'ltr' }}
-                >
+                <div className="space-y-2" style={{ direction: language === 'ar' ? 'rtl' : 'ltr' }}>
                   {displayCategories.map((category) => (
                     <button
                       key={category.slug}
@@ -116,11 +118,9 @@ const ProductsPage = () => {
               </div>
             ) : (
               <>
-                <div
-                  className={`w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6`}
-                >
+                <div className="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                   {products.map((product) => {
-                    const defaultPackage = product.packages?.find(pkg => pkg.is_default) || product.packages?.[0];
+                    const defaultPackage = product.packages?.find((pkg) => pkg.is_default) || product.packages?.[0];
 
                     return (
                       <div
@@ -147,11 +147,13 @@ const ProductsPage = () => {
                           <p className="text-gray-600 mb-2 flex-grow">
                             {(() => {
                               const description = getLocalizedField(product, 'description');
-                              return description.length > 100 ? description.slice(0, 50) + "..." : description;
+                              return description.length > 100 ? description.slice(0, 50) + '...' : description;
                             })()}
                           </p>
                           <div className="flex items-center justify-end mb-4">
-                            <span className="text-sm text-gray-500">{defaultPackage?.weight || 'Various sizes'}</span>
+                            <span className="text-sm text-gray-500">
+                              {defaultPackage?.weight || 'Various sizes'}
+                            </span>
                           </div>
                           <Link
                             to={`/product/${product.id}`}
@@ -165,14 +167,35 @@ const ProductsPage = () => {
                   })}
                 </div>
 
-                {/* Load More */}
-                {hasMore && (
-                  <div className="flex justify-center mt-8">
+                {/* Pagination */}
+                {totalPages > 1 && (
+                  <div className="flex justify-center items-center gap-2 mt-8">
                     <button
-                      onClick={handleLoadMore}
-                      className="bg-[#054239] hover:bg-[#b9a779] text-white font-semibold px-6 py-3 rounded-full transition-all duration-300"
+                      onClick={() => handlePageChange(page - 1)}
+                      disabled={page === 1}
+                      className="px-4 py-2 bg-[#054239] text-white rounded disabled:opacity-50"
                     >
-                      {t('common.load_more')}
+                      {t('common.prev')}
+                    </button>
+                    {Array.from({ length: totalPages }, (_, index) => (
+                      <button
+                        key={index + 1}
+                        onClick={() => handlePageChange(index + 1)}
+                        className={`px-4 py-2 rounded ${
+                          page === index + 1
+                            ? 'bg-[#b9a779] text-white'
+                            : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
+                        }`}
+                      >
+                        {index + 1}
+                      </button>
+                    ))}
+                    <button
+                      onClick={() => handlePageChange(page + 1)}
+                      disabled={page === totalPages}
+                      className="px-4 py-2 bg-[#054239] text-white rounded disabled:opacity-50"
+                    >
+                      {t('common.next')}
                     </button>
                   </div>
                 )}
@@ -183,7 +206,7 @@ const ProductsPage = () => {
               <div className="text-center py-12">
                 <p className="text-gray-500 text-lg">{t('common.product')}.</p>
               </div>
-            )} 
+            )}
           </div>
         </div>
       </div>
