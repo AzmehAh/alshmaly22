@@ -42,11 +42,6 @@ useEffect(() => {
   return () => window.removeEventListener('resize', checkOrientation);
 }, []);
 
-
-  
- 
-
-
   
   return (
     <section
