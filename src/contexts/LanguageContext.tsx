@@ -138,7 +138,7 @@ const translations = {
     'contact.form.sending': 'Sending...',
     'contact.form.placeholder.name': 'Your full name',
     'contact.form.placeholder.email': 'your.email@example.com',
-    'contact.form.placeholder.phone': '+1 (555) 123-4567',
+    'contact.form.placeholder.phone': '+963 ',
     'contact.form.placeholder.message': 'Tell us about your requirements, questions, or how we can help you...',
     'contact.form.success': 'Thank you for your message! We will get back to you soon.',
     'contact.form.error': 'Failed to send message. Please try again.',
