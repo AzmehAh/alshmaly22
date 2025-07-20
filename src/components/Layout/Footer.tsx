@@ -78,7 +78,7 @@ const Footer = () => {
 
     {/* Instagram */}
     <a
-  href="#"
+  href="https://www.instagram.com/shmaly.sy?igsh=bjJ1dTJtbGpseW5q"
   target="_blank"
   rel="noopener noreferrer"
   className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 text-white bg-[#b9a779] hover:text-white hover:bg-gradient-to-tr hover:from-pink-500 hover:via-red-500 hover:to-yellow-500"
