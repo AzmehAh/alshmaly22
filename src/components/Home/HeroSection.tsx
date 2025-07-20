@@ -28,7 +28,7 @@ const HeroSection = () => {
     }
   };
   return (
-    <section id="home" className="relative min-h-[100dvh] flex items-center overflow-hidden w-full">
+    <section id="home" className="relative min-h-[100vh] flex items-center overflow-hidden w-full">
       {/* Background Video */}
       <div className="absolute inset-0 z-0 w-full h-full">
         <video 
@@ -36,8 +36,8 @@ const HeroSection = () => {
           autoPlay 
           muted  
           loop 
-          className="w-full h-full object-cover min-w-full min-h-full"
-          poster="https://files.catbox.moe/jnps5k.mp4"
+          className="w-full h-full object-cover "
+          poster=""
         >
           <source src="https://files.catbox.moe/jnps5k.mp4" type="video/mp4" />
         </video>
