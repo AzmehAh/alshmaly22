@@ -764,7 +764,7 @@ return (
                               type="number"
                               value={image.sort_order}
                               onChange={(e) => updateImage(index, 'sort_order', parseInt(e.target.value) || 0)}
-                              className="w-full px-5 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+                              className="w-full px-2 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
                               min="0"
                             />
                           </div>
