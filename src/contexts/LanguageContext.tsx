@@ -322,6 +322,8 @@ const translations = {
 'products.show2': 'منتجاً',
     'common.loading': 'جارٍ التحميل...',
     'products.filt': 'كل المنتجات',
+     'pagination.previous':'الصفحة السابقة',
+    'pagination.next':'الصفحة التالية',
     
     // About
     'about.title': 'عن الشمالي',
