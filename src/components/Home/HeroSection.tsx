@@ -3,32 +3,7 @@ import { ArrowRight, Play, Pause, Volume2, VolumeX,ArrowLeft } from 'lucide-reac
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
 
-const HeroSection = () => {
-  const { t, language } = useLanguage(); 
-  const isArabic = language === 'ar';
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [isMuted, setIsMuted] = useState(true);
-  const [isLandscape, setIsLandscape] = useState(false);
-
-  const togglePlayPause = () => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause();
-      } else {
-        videoRef.current.play();
-      }
-      setIsPlaying(!isPlaying); 
-    }
-  };
-
-  const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !isMuted;
-      setIsMuted(!isMuted);
-    } 
-  };
-function useVhHeight() {
+const useVhHeight = () => {
   const [style, setStyle] = useState<{ height?: string; minHeight?: string }>({});
 
   useEffect(() => {
@@ -58,29 +33,53 @@ function useVhHeight() {
   }, []);
 
   return style;
-}
-  
+};
+
+const HeroSection = () => {
+  const { t, language } = useLanguage();
+  const isArabic = language === "ar";
+
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isMuted, setIsMuted] = useState(true);
+
+  const sectionStyle = useVhHeight(); // ✅ hook used here
+
+  const togglePlayPause = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted;
+      setIsMuted(!isMuted);
+    }
+  };
+
   return (
     <section
-  id="home"
-  className="relative flex items-center overflow-hidden w-full"
-  style={sectionStyle}
-
->
-
-    
-      
+      id="home"
+      className="relative flex items-center overflow-hidden w-full"
+      style={sectionStyle}
+    >
       {/* Background Video */}
       <div className="absolute inset-0 z-0 w-full h-full">
-        <video 
-          ref={videoRef} 
-          autoPlay 
-          muted  
-          loop 
-          playsInline 
-          className="w-full h-full object-cover "
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="w-full h-full object-cover"
           poster=""
-        > 
+        >
           <source src="https://files.catbox.moe/jnps5k.mp4" type="video/mp4" />
         </video>
         <div className={`absolute inset-0 w-full h-full transition-all duration-1000 ${
