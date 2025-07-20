@@ -674,7 +674,8 @@ return (
                     <option value="published">{t('blog.status.published')}</option>
                     <option value="draft">{t('blog.status.draft')}</option>
                   </select>
-                </div> {/* Featured Image URL */}
+                </div>
+                {/* Featured Image URL */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">{t('blog.fields.featured_image_url')}</label>
                   <input
