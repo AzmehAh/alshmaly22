@@ -150,7 +150,7 @@ const BlogPostPage = () => {
           {/* Image Gallery */}
           {post.images && post.images.length > 1 && (
             <div className="bg-[#f7f7f7] rounded-2xl p-8 shadow-lg mb-8">
-              <h3 className="text-2xl font-semibold text-[#054239] mb-6">Photo Gallery</h3>
+              <h3 className="text-2xl font-semibold text-[#054239] mb-6">{t('Photo.Gallery')}</h3>
 
               {/* Main Gallery Image */}
               <div className="mb-6 bg-[#1E2229]">
@@ -189,7 +189,7 @@ const BlogPostPage = () => {
 
           {/* Related Articles */}
           <div className="bg-[#f7f7f7] rounded-2xl p-8 shadow-lg">
-            <h3 className="text-2xl font-semibold text-[#054239] mb-6">Related Articles</h3>
+            <h3 className="text-2xl font-semibold text-[#054239] mb-6">{t('Related.Articles')}</h3>
             {relatedPosts.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {relatedPosts.slice(0, 2).map((relatedPost) => (
@@ -221,7 +221,7 @@ const BlogPostPage = () => {
                 ))}
               </div>
             ) : (
-              <p className="text-gray-500">No related articles found.</p>
+              <p className="text-gray-500">{t('No.related')}</p>
             )}
           </div>
         </article>
