@@ -17,8 +17,6 @@ const CategoriesPage = () => {
     name: '',
     name_ar: '',
     slug: '',
-    description: '',
-    description_ar: ''
   });
 
   useEffect(() => {
@@ -77,8 +75,7 @@ const CategoriesPage = () => {
       name: category.name,
       name_ar: category.name_ar || '',
       slug: category.slug,
-      description: category.description || '',
-      description_ar: category.description_ar || ''
+      
     });
     setShowForm(true);
   };
@@ -103,9 +100,8 @@ const CategoriesPage = () => {
     setFormData({
       name: '',
       name_ar: '',
-      slug: '',
-      description: '',
-      description_ar: ''
+      slug: ''
+     
     });
     setEditingCategory(null);
     setShowForm(false);
@@ -116,8 +112,7 @@ const CategoriesPage = () => {
   };
 
   const filteredCategories = categories.filter(category =>
-    category.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    (category.description && category.description.toLowerCase().includes(searchTerm.toLowerCase()))
+    category.name.toLowerCase().includes(searchTerm.toLowerCase()))
   );
 
   if (loading && categories.length === 0) {
@@ -170,9 +165,7 @@ const CategoriesPage = () => {
     <th className={`px-6 py-3 ${direction === 'rtl' ? 'text-right' : 'text-left'} text-xs font-medium text-gray-500 uppercase tracking-wider`}>
       {t("categories.table.slug")}
     </th>
-    <th className={`px-6 py-3 ${direction === 'rtl' ? 'text-right' : 'text-left'} text-xs font-medium text-gray-500 uppercase tracking-wider`}>
-      {t("categories.table.description")}
-    </th>
+   
     <th className={`px-6 py-3 ${direction === 'rtl' ? 'text-right' : 'text-left'} text-xs font-medium text-gray-500 uppercase tracking-wider`}>
       {t("categories.table.created")}
     </th>
@@ -203,11 +196,7 @@ const CategoriesPage = () => {
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-500">{category.slug}</div>
                     </td>
-                    <td className="px-6 py-4">
-                      <div className="text-sm text-gray-900 max-w-xs truncate">
-                        {direction === "ar" ? category.description_ar || category.description || t("categories.table.description") : category.description || t("categories.table.description")}
-                      </div>
-                    </td>
+                   
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm text-gray-500">
                         {new Date(category.created_at).toLocaleDateString()}
@@ -307,39 +296,7 @@ const CategoriesPage = () => {
                   />
                 </div>
 
-                {/* Description - Bilingual */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      {t("categories.form.description_en")}
-                    </label>
-                    <textarea
-                      rows={3}
-                      value={formData.description}
-                      onChange={(e) =>
-                        setFormData({ ...formData, description: e.target.value })
-                      }
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                      placeholder={t("categories.form.description_en")}
-                      dir="ltr"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      {t("categories.form.description_ar")}
-                    </label>
-                    <textarea
-                      rows={3}
-                      value={formData.description_ar}
-                      onChange={(e) =>
-                        setFormData({ ...formData, description_ar: e.target.value })
-                      }
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                      placeholder={t("categories.form.description_ar")}
-                      dir="rtl"
-                    />
-                  </div>
-                </div>
+           
 
                 <div className="flex justify-end gap-3 pt-4">
                   <button
