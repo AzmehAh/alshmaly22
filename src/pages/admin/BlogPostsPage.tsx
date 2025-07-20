@@ -860,7 +860,7 @@ return (
                     <img
                       src={relation.related_post?.thumbnail || 'https://via.placeholder.com/100x100?text=Post'}
                       alt={relation.related_post?.title}
-                      className="h-10 w-10 rounded-lg object-cover mr-3"
+                      className={`${direction === 'rtl' ? 'mr-3' : 'ml-3'} h-10 w-10 rounded-lg object-cover`}
                     />
                     <div> 
                       <div className="font-medium text-[#054239]">{relation.related_post?.title}</div>
