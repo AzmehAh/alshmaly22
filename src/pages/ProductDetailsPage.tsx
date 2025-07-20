@@ -11,10 +11,6 @@ const ProductDetailsPage = () => {
   const [selectedPackage, setSelectedPackage] = useState<string>('');
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [quoteLoading, setQuoteLoading] = useState(false);
-  const specifications =
-  language === 'en'
-    ? product.specifications_en
-    : product.specifications_ar;
 
 
   // Set default package when product loads
@@ -71,6 +67,11 @@ const ProductDetailsPage = () => {
       </div>
     );
   }
+
+  const specifications =
+    language === 'en'
+      ? product.specifications_en
+      : product.specifications_ar;
 
   return (
     <div className="min-h-screen bg-[#F7F7F7] pt-20">
