@@ -4,16 +4,15 @@ import { Link } from 'react-router-dom';
 import { useProducts } from '../hooks/useProducts';
 import { useLanguage } from '../contexts/LanguageContext';
 
-
-
 const ProductsPage = () => {
   const { t, getLocalizedField, language } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
   const [viewMode, setViewMode] = useState('grid');
   const [page, setPage] = useState(1);
-  const limit = 12;
+  const limit = 8; // Changed from 12 to 8
 
+  // Fetch products based on filters and pagination
   const { products, categories, loading, error, hasMore } = useProducts({
     category: selectedCategory === 'all' ? undefined : selectedCategory,
     search: searchTerm,
@@ -21,13 +20,15 @@ const ProductsPage = () => {
     limit,
   });
 
+  // Display categories including "All"
   const displayCategories = [
     { id: 'all', name: t('products.filt'), slug: 'all' },
-    ...categories
+    ...categories,
   ];
 
+  // Handle load more
   const handleLoadMore = () => {
-    setPage(prev => prev + 1);
+    setPage((prev) => prev + 1);
   };
 
   return (
@@ -40,9 +41,12 @@ const ProductsPage = () => {
         </div>
 
         <div className="flex flex-col lg:flex-row gap-8">
-          {/* Filters */}
+          {/* Filters (Sticky Section) */}
           <div className="lg:w-1/4 w-full">
-            <div className="bg-[#f7f7f7] rounded-2xl p-6 shadow-lg sticky top-24">
+            <div
+              className="bg-[#f7f7f7] rounded-2xl p-6 shadow-lg sticky top-24 z-10"
+              style={{ direction: language === 'ar' ? 'rtl' : 'ltr' }}
+            >
               <h3 className="text-xl font-semibold text-[#054239] mb-6 flex items-center">
                 <Filter size={20} className="mr-2" />
                 {t('products.filters.title')}
@@ -60,7 +64,7 @@ const ProductsPage = () => {
                     value={searchTerm}
                     onChange={(e) => {
                       setSearchTerm(e.target.value);
-                      setPage(1); // reset pagination
+                      setPage(1); // Reset pagination on search change
                     }}
                     placeholder={t('products.filters.search.placeholder')}
                     className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
@@ -73,16 +77,13 @@ const ProductsPage = () => {
                 <label className="block text-sm font-medium text-gray-700 mb-3">
                   {t('products.filters.categories.label')}
                 </label>
-                <div
-                  className="space-y-2"
-                  style={{ direction: language === 'ar' ? 'rtl' : 'ltr' }}
-                >
+                <div className="space-y-2">
                   {displayCategories.map((category) => (
                     <button
                       key={category.slug}
                       onClick={() => {
                         setSelectedCategory(category.slug);
-                        setPage(1);
+                        setPage(1); // Reset pagination on category change
                       }}
                       className={`w-full text-start px-3 py-2 rounded-lg transition-colors duration-200 ${
                         selectedCategory === category.slug
@@ -102,7 +103,9 @@ const ProductsPage = () => {
           <div className="lg:w-3/4 w-full">
             <div className="flex justify-between items-center mb-6">
               <p className="text-gray-600">
-                {loading ? t('common.loading') : `${t('products.show')} ${products.length} ${t('products.show2')}`}
+                {loading
+                  ? t('common.loading')
+                  : `${t('products.show')} ${products.length} ${t('products.show2')}`}
               </p>
             </div>
 
@@ -117,10 +120,12 @@ const ProductsPage = () => {
             ) : (
               <>
                 <div
-                  className={`w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6`}
+                  className={`w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6`}
                 >
                   {products.map((product) => {
-                    const defaultPackage = product.packages?.find(pkg => pkg.is_default) || product.packages?.[0];
+                    const defaultPackage = product.packages?.find(
+                      (pkg) => pkg.is_default
+                    ) || product.packages?.[0];
 
                     return (
                       <div
@@ -130,13 +135,18 @@ const ProductsPage = () => {
                       >
                         <div className="relative overflow-hidden w-full h-48">
                           <img
-                            src={product.images?.[0]?.image_url || 'https://via.placeholder.com/400x300'}
+                            src={
+                              product.images?.[0]?.image_url ||
+                              'https://via.placeholder.com/400x300 '
+                            }
                             alt={product.name}
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                           />
                           {product.availability === 'out-of-stock' && (
                             <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                              <span className="text-white font-semibold text-sm">Out of Stock</span>
+                              <span className="text-white font-semibold text-sm">
+                                Out of Stock
+                              </span>
                             </div>
                           )}
                         </div>
@@ -146,12 +156,19 @@ const ProductsPage = () => {
                           </h3>
                           <p className="text-gray-600 mb-2 flex-grow">
                             {(() => {
-                              const description = getLocalizedField(product, 'description');
-                              return description.length > 100 ? description.slice(0, 50) + "..." : description;
+                              const description = getLocalizedField(
+                                product,
+                                'description'
+                              );
+                              return description.length > 100
+                                ? description.slice(0, 50) + '...'
+                                : description;
                             })()}
                           </p>
                           <div className="flex items-center justify-end mb-4">
-                            <span className="text-sm text-gray-500">{defaultPackage?.weight || 'Various sizes'}</span>
+                            <span className="text-sm text-gray-500">
+                              {defaultPackage?.weight || 'Various sizes'}
+                            </span>
                           </div>
                           <Link
                             to={`/product/${product.id}`}
@@ -165,7 +182,7 @@ const ProductsPage = () => {
                   })}
                 </div>
 
-                {/* Load More */}
+                {/* Pagination */}
                 {hasMore && (
                   <div className="flex justify-center mt-8">
                     <button
@@ -181,9 +198,9 @@ const ProductsPage = () => {
 
             {products.length === 0 && !loading && (
               <div className="text-center py-12">
-                <p className="text-gray-500 text-lg">{t('common.product')}.</p>
+                <p className="text-gray-500 text-lg">{t('common.product')}</p>
               </div>
-            )} 
+            )}
           </div>
         </div>
       </div>
