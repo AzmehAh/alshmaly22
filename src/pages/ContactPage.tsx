@@ -300,13 +300,7 @@ const ContactPage = () => {
                 <h2 className="text-2xl font-bold text-[#054239] mb-6">{t('contact.location')}</h2>
                 <div className="relative bg-gray-100 rounded-xl h-96 overflow-hidden">
                   {/* Map Placeholder */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center">
-                      <MapPin size={64} className="text-[#b9a779] mx-auto mb-4" />
-                      <p className="text-gray-600 text-lg font-medium">Interactive Map</p>
-                      <p className="text-gray-500">Al-Shamali Location in Idlib, Syria</p>
-                    </div>
-                  </div>
+                  
                   
                   {/* In a real implementation, you would integrate with Google Maps, Mapbox, or similar */}
                 <iframe
