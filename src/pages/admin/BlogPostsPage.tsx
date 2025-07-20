@@ -773,7 +773,7 @@ return (
                             <button
                               type="button"
                               onClick={() => removeImage(index)}
-                              className="text-red-600 hover:text-red-800 p-2"
+                              className="text-red-600 hover:text-red-800 p-5"
                               title={t('blog.images.remove')}
                             >
                               <Trash2 size={20} />
