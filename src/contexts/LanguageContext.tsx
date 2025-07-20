@@ -88,8 +88,8 @@ const translations = {
     'contact.send_message': 'Send us a Message',
     'contact.address': 'Address',
     'contact.phone': 'Phone',
-    'contact.phone.1': 'syria: +963 956 556 410',
-    'contact.phone.2': 'turkey : +90 538 687 6411',
+    'contact.phone.1': 'Syria: +963 956 556 410',
+    'contact.phone.2': 'Turkey : +90 538 687 6411',
     'contact.email': 'Email',
     'contact.business_hours': 'Business Hours',
     
