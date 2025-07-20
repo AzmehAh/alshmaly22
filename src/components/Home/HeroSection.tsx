@@ -105,22 +105,22 @@ const HeroSection = () => {
 
       {/* Content */}
       <div className="relative z-10 w-full">
-        <div className="container mx-auto px-4">
-          <div className="max-w-2xl">
+        <div className="container mx-auto px-4 h-full flex items-center">
+          <div className="max-w-2xl w-full">
             <h1
-              className={`text-4xl md:text-6xl font-bold text-white mb-6 leading-tight ${
+              className={`text-3xl md:text-6xl lg:text-6xl font-bold text-white mb-4 md:mb-6 leading-tight ${
                 isArabic ? 'text-right' : 'text-left'
               }`}
             >
               {t('home.hero.title')}
             </h1>
-            <p className={`text-xl text-gray-200 mb-8 leading-relaxed ${isArabic ? 'text-right' : 'text-left'}`}>
+            <p className={`text-lg md:text-xl text-gray-200 mb-6 md:mb-8 leading-relaxed ${isArabic ? 'text-right' : 'text-left'}`}>
               {t('home.hero.subtitle')}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
               <Link 
                 to="/products"
-                className="bg-[#b9a779] hover:bg-[#054239] text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 flex items-center justify-center group"
+                className="bg-[#b9a779] hover:bg-[#054239] text-white px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold transition-all duration-300 flex items-center justify-center group text-sm md:text-base"
               >
                 {t('home.hero.explore_products')}
                 {language === 'ar' ? (
@@ -131,7 +131,7 @@ const HeroSection = () => {
               </Link>
               <Link 
                 to="/contact"
-                className="border-2 border-white text-white hover:bg-white hover:text-[#054239] px-8 py-4 rounded-full font-semibold transition-all duration-300 text-center"
+                className="border-2 border-white text-white hover:bg-white hover:text-[#054239] px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold transition-all duration-300 text-center text-sm md:text-base"
               >
                 {t('common.contact_us')}
               </Link>
