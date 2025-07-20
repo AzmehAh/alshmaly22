@@ -26,6 +26,16 @@ const HeroSection = () => {
       videoRef.current.muted = !isMuted;
       setIsMuted(!isMuted);
     }
+    useEffect(() => {
+  function setVh() {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  }
+  setVh();
+  window.addEventListener('resize', setVh);
+  return () => window.removeEventListener('resize', setVh);
+}, []);
+
   };
   return (
     <section id="home" className="relative flex items-center overflow-hidden w-full"
