@@ -103,7 +103,7 @@ const translations = {
     'back.blog': 'Back to Blog',
     'No.related': 'No related articles found.',
     'Related.Articles': 'Related Articles',
-    'Photo.Gallery'': 'Photo Gallery',
+    'Photo.Gallery': 'Photo Gallery',
     
     // Footer
     'footer.description': 'We export the best of Syrian nature to the world, bringing authenticity and quality to your table.',
