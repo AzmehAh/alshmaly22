@@ -191,7 +191,7 @@ const ProductsPage = () => {
 
                 {/* Pagination */}
                 {totalPages > 1 && (
-                  <div className="flex justify-center items-center mt-12 space-x-2">
+                  <div className="flex justify-center items-center mt-12 gap-x-2">
                     {/* Previous Button */}
                     <button
                       onClick={() => handlePageChange(currentPage - 1)}
