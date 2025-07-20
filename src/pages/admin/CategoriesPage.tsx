@@ -137,21 +137,21 @@ const CategoriesPage = () => {
       </div>
 
       {/* Search */}
-              <div className="mb-6">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {t('products.filters.search.label')}
-                </label>
-                <div className="relative">
-                  <Search size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                  <input
-                    type="text"
-                    value={searchTerm}
-                    onChange={(e) => handleSearchChange(e.target.value)}
-                    placeholder={t('products.filters.search.placeholder')}
-                    className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                  />
-                </div>
-              </div>
+      <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
+        <div className="relative max-w-md">
+          <Search
+            className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+            size={20}
+          /> 
+          <input
+            type="text"
+            placeholder={t("categories.search_placeholder")}
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="pl-10 w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+          />
+        </div>
+      </div>
       
 
       {/* Categories Table */}
