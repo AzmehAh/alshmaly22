@@ -281,6 +281,8 @@ const ContactPage = () => {
                       rows={6}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent transition-all duration-300 resize-none"
                       placeholder={t('contact.form.placeholder.message')}
+                      dir={language === 'ar' ? 'rtl' : 'ltr'}
+  style={{ textAlign: language === 'ar' ? 'right' : 'left' }}
                     ></textarea>
                   </div>
 
