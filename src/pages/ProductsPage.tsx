@@ -69,8 +69,8 @@ const ProductsPage = () => {
           <p className="text-gray-600 text-lg">{t('products.discover')}</p>
         </div>
 
-        <div className="grid grid-col lg:flex-row gap-8">
-          {/* Filters */}
+        <div className="flex flex-col lg:flex-row gap-8">
+          {/* Filters */} 
           <div className="lg:w-1/4 w-full">
             <div className="bg-[#f7f7f7] rounded-2xl p-6 shadow-lg sticky top-24 z-10">
               <h3 className="text-xl font-semibold text-[#054239] mb-6 flex items-center">
