@@ -54,10 +54,18 @@ const ContactPage = () => {
       setIsSubmitting(false);
     }
   };
- const firstChar = value.trim().charAt(0);
+const [phoneDirection, setPhoneDirection] = useState<'rtl' | 'ltr'>('ltr');
+
+const handlePhoneChange = (e) => {
+  const value = e.target.value;
+  setFormData({ ...formData, phone: value });
+
+  // إذا بدأ بحرف عربي → RTL، غير ذلك → LTR
+  const firstChar = value.trim().charAt(0);
   const isArabic = /[\u0600-\u06FF]/.test(firstChar);
   setPhoneDirection(isArabic ? 'rtl' : 'ltr');
 };
+
   const toggleFAQ = (index: number) => {
     setOpenFAQ(openFAQ === index ? null : index);
   };
