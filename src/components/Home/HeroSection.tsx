@@ -65,7 +65,7 @@ const HeroSection = () => {
           muted  
           loop 
           playsInline 
-          className="w-full h-[90vh] object-cover "
+          className="w-full h-full object-cover "
           poster=""
         > 
           <source src="https://files.catbox.moe/jnps5k.mp4" type="video/mp4" />
