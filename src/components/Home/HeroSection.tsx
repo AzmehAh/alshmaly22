@@ -39,8 +39,8 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section id="home" className="relative flex items-center overflow-hidden w-full"
-    style={{ minHeight: "calc(var(--vh, 1vh) * 100)" }}
+    <section id="home" className="relative  min-h-[100vh] flex items-center overflow-hidden w-full"
+    
       >
       {/* Background Video */}
       <div className="absolute inset-0 z-0 w-full h-full">
