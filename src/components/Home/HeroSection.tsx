@@ -28,20 +28,37 @@ const HeroSection = () => {
       setIsMuted(!isMuted);
     } 
   };
-const sectionStyle = isLandscape
-  ? { minHeight: 'calc(var(--vh, 1vh) * 100)' }
-  : { height: 'calc(var(--vh, 1vh) * 100)' };
+function useVhHeight() {
+  const [style, setStyle] = useState<{ height?: string; minHeight?: string }>({});
 
+  useEffect(() => {
+    const updateHeight = () => {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty("--vh", `${vh}px`);
 
-useEffect(() => {
-  const checkOrientation = () => {
-    setIsLandscape(window.innerWidth > window.innerHeight);
-  };
-  checkOrientation();
-  window.addEventListener('resize', checkOrientation);
-  return () => window.removeEventListener('resize', checkOrientation);
-}, []);
+      const isLandscape = window.innerWidth > window.innerHeight;
+      setStyle(
+        isLandscape
+          ? { minHeight: "calc(var(--vh, 1vh) * 100)" }
+          : { height: "calc(var(--vh, 1vh) * 100)" }
+      );
+    };
 
+    updateHeight();
+
+    window.addEventListener("resize", updateHeight);
+    window.addEventListener("orientationchange", () => {
+      setTimeout(updateHeight, 300);
+    });
+
+    return () => {
+      window.removeEventListener("resize", updateHeight);
+      window.removeEventListener("orientationchange", updateHeight);
+    };
+  }, []);
+
+  return style;
+}
   
   return (
     <section
