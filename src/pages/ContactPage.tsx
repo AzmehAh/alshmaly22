@@ -243,7 +243,7 @@ const ContactPage = () => {
                         onChange={handleInputChange}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent transition-all duration-300"
                         placeholder={t('contact.form.placeholder.phone')}
-                          dir="rtl"
+                    dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}
                       />
                     </div>
                     <div>
