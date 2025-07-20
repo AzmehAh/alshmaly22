@@ -696,79 +696,101 @@ const ProductsPage = () => {
                     </div>
                   </div>
                 </div>
-                {/* Images */}
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <div className="flex items-center justify-between mb-4">
-                    <h4 className="text-lg font-semibold text-[#054239]">{t('admin.image')}</h4>
-                    <button
-                      type="button"
-                      onClick={addImage}
-                      className="bg-[#b9a779] text-white px-4 py-2 rounded-lg hover:bg-[#054239] transition-colors flex items-center"
-                    >
-                      <ImageIcon size={16} className="mr-2" />
-                      {t('admin.add')} {t('admin.image')}
-                    </button>
-                  </div>
-                  <div className="space-y-4">
-                    {images.map((image, index) => (
-                      <div key={index} className="grid grid-cols-1 md:grid-cols-4 gap-4 p-4 border border-gray-200 rounded-lg">  
-                         {/* عرض المعاينة */}
-    {image.image_url ? (
-      <img
-        src={image.image_url}
-        alt={image.alt_text || 'معاينة الصورة'}
-        className="h-20 w-full object-cover rounded"
-        onError={(e) => {
-          e.currentTarget.src = 'https://via.placeholder.com/150?text=Invalid+Image';
-        }}
-      />
-    ) : (
-      <div className="h-20 w-full bg-gray-100 rounded flex items-center justify-center">
-        {/* أيقونة بديلة */}
+           {/* Images */}
+<div className="bg-gray-50 p-6 rounded-lg">
+  <div className="flex items-center justify-between mb-6">
+    <h4 className="text-lg font-semibold text-[#054239]">{t('admin.image')}</h4>
+    <button
+      type="button"
+      onClick={addImage}
+      className="bg-[#b9a779] text-white px-4 py-2 rounded-lg hover:bg-[#054239] transition-colors flex items-center"
+    >
+      <ImageIcon size={16} className="mr-2" />
+      {t('admin.add')} {t('admin.image')}
+    </button>
+  </div>
+
+  <div className="space-y-5">
+    {images.map((image, index) => (
+      <div
+        key={index}
+        className="grid grid-cols-1 md:grid-cols-8 gap-4 p-4 bg-white border border-gray-200 rounded-lg shadow-sm"
+      >
+        {/* معاينة الصورة */}
+        <div className="md:col-span-2">
+          {image.image_url ? (
+            <img
+              src={image.image_url}
+              alt={image.alt_text || 'معاينة الصورة'}
+              className="h-24 w-full object-cover rounded"
+              onError={(e) => {
+                e.currentTarget.src = 'https://via.placeholder.com/150?text=Invalid+Image';
+              }}
+            />
+          ) : (
+            <div className="h-24 w-full bg-gray-100 rounded flex items-center justify-center">
+              <ImageIcon size={28} className="text-gray-400" />
+            </div>
+          )}
+        </div>
+
+        {/* رابط الصورة */}
+        <div className="md:col-span-3">
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            {t('admin.image')} URL
+          </label>
+          <input
+            type="url"
+            value={image.image_url}
+            onChange={(e) => updateImage(index, 'image_url', e.target.value)}
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+            placeholder="https://example.com/image.jpg"
+            required
+          />
+        </div>
+
+        {/* النص البديل */}
+        <div className="md:col-span-2">
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            {t('admin.alt_text')}
+          </label>
+          <input
+            type="text"
+            value={image.alt_text}
+            onChange={(e) => updateImage(index, 'alt_text', e.target.value)}
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+            placeholder={t('admin.description')}
+          />
+        </div>
+
+        {/* الترتيب وزر الحذف */}
+        <div className="md:col-span-1 flex flex-col items-end justify-between">
+          <div className="w-full mb-3">
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              {t('admin.order')}
+            </label>
+            <input
+              type="number"
+              value={image.sort_order}
+              onChange={(e) => updateImage(index, 'sort_order', parseInt(e.target.value) || 0)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+              min={0}
+            />
+          </div>
+          <button
+            type="button"
+            onClick={() => removeImage(index)}
+            className="text-red-600 hover:text-red-800 p-2"
+            title={t('admin.remove')}
+          >
+            <X size={24} />
+          </button>
+        </div>
       </div>
-    )}
-                        <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-1">{t('admin.image')} URL</label>
-                          <input
-                            type="url"
-                            value={image.image_url}
-                            onChange={(e) => updateImage(index, 'image_url', e.target.value)}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                            placeholder="https://example.com/image.jpg"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-1">{t('admin.alt_text')}</label>
-                          <input
-                            type="text"
-                            value={image.alt_text}
-                            onChange={(e) => updateImage(index, 'alt_text', e.target.value)}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                            placeholder={t('admin.description')}
-                          />
-                        </div>
-                        <div className="flex items-end  gap-2">
-                          <div className="flex-1">
-                            <label className="block text-sm font-medium text-gray-700 mb-1">{t('admin.order')}</label>
-                            <input
-                              type="number"
-                              value={image.sort_order}
-                              onChange={(e) => updateImage(index, 'sort_order', parseInt(e.target.value))}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                            />
-                          </div>
-                          <button
-                            type="button"
-                            onClick={() => removeImage(index)}
-                            className="text-red-600 hover:text-red-800 p-2"
-                          >
-                            <X size={20} />
-                          </button>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+    ))}
+  </div>
+</div>
+
 
                 {/* Packages */}
                 <div className="bg-gray-50 p-6 rounded-lg">
