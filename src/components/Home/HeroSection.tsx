@@ -30,7 +30,7 @@ const HeroSection = () => {
 
  
    
-  }, []);
+  );
 
   return (
     <section id="home" className="relative  min-h-[100vh] flex items-center overflow-hidden w-full"
