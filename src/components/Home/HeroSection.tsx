@@ -27,13 +27,23 @@ const HeroSection = () => {
       setIsMuted(!isMuted);
     } 
   };
+const [isLandscape, setIsLandscape] = useState(false);
 
-  
- useEffect(() => {
-  const vh = window.innerHeight * 0.01;
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
+useEffect(() => {
+  const checkOrientation = () => {
+    setIsLandscape(window.innerWidth > window.innerHeight);
+  };
+  checkOrientation();
+  window.addEventListener('resize', checkOrientation);
+  return () => window.removeEventListener('resize', checkOrientation);
 }, []);
 
+const sectionStyle = isLandscape
+  ? { minHeight: 'calc(var(--vh, 1vh) * 100)' }
+  : { height: 'calc(var(--vh, 1vh) * 100)' };
+
+  
+ 
 
 
   
@@ -41,11 +51,7 @@ const HeroSection = () => {
     <section
   id="home"
   className="relative flex items-center overflow-hidden w-full"
- style={{
-      minHeight: '100vh',
-      height: 'calc(var(--vh, 1vh) * 100 -[4rem])' // اطرح ارتفاع الهيدر هنا
-    }}
-
+  style={sectionStyle}
 
 >
 
@@ -53,21 +59,17 @@ const HeroSection = () => {
       
       {/* Background Video */}
       <div className="absolute inset-0 z-0 w-full h-full">
-          <video 
-        ref={videoRef} 
-        autoPlay 
-        muted  
-        loop 
-        playsInline 
-        className="w-full h-full object-cover"
-        style={{
-          objectPosition: 'center',
-          height: 'calc(100vh - [4rem])' // أو استخدم نفس الحساب أعلاه
-        }}
-        poster=""
-      > 
-        <source src="your-video-source.mp4" type="video/mp4" />
-      </video>
+        <video 
+          ref={videoRef} 
+          autoPlay 
+          muted  
+          loop 
+          playsInline 
+          className="w-full h-full object-cover "
+          poster=""
+        > 
+          <source src="https://files.catbox.moe/jnps5k.mp4" type="video/mp4" />
+        </video>
         <div className={`absolute inset-0 w-full h-full transition-all duration-1000 ${
           isPlaying ? 'bg-black/50' : 'bg-black/80 backdrop-blur-sm'
         }`}></div>
