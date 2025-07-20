@@ -6,15 +6,16 @@ import { useLanguage } from '../contexts/LanguageContext';
 
 
 
+
 const ProductsPage = () => {
   const { t, getLocalizedField, language } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
   const [viewMode, setViewMode] = useState('grid');
   const [page, setPage] = useState(1);
-  const limit = 12;
+  const limit = 8; // تغيير إلى 8 منتجات لكل صفحة
 
-  const { products, categories, loading, error, hasMore } = useProducts({
+  const { products, categories, loading, error, totalCount } = useProducts({
     category: selectedCategory === 'all' ? undefined : selectedCategory,
     search: searchTerm,
     page,
@@ -26,8 +27,12 @@ const ProductsPage = () => {
     ...categories
   ];
 
-  const handleLoadMore = () => {
-    setPage(prev => prev + 1);
+  // حساب عدد الصفحات الإجمالي
+  const totalPages = Math.ceil(totalCount / limit);
+
+  const handlePageChange = (newPage) => {
+    setPage(newPage);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -42,7 +47,7 @@ const ProductsPage = () => {
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Filters */}
           <div className="lg:w-1/4 w-full">
-            <div className="bg-[#f7f7f7] rounded-2xl p-6 shadow-lg sticky top-24">
+            <div className="bg-[#f7f7f7] rounded-2xl p-6 shadow-lg sticky top-24 h-[calc(100vh-120px)] overflow-y-auto">
               <h3 className="text-xl font-semibold text-[#054239] mb-6 flex items-center">
                 <Filter size={20} className="mr-2" />
                 {t('products.filters.title')}
@@ -165,15 +170,70 @@ const ProductsPage = () => {
                   })}
                 </div>
 
-                {/* Load More */}
-                {hasMore && (
+                {/* Pagination */}
+                {totalPages > 1 && (
                   <div className="flex justify-center mt-8">
-                    <button
-                      onClick={handleLoadMore}
-                      className="bg-[#054239] hover:bg-[#b9a779] text-white font-semibold px-6 py-3 rounded-full transition-all duration-300"
-                    >
-                      {t('common.load_more')}
-                    </button>
+                    <nav className="flex items-center gap-1">
+                      <button
+                        onClick={() => handlePageChange(Math.max(1, page - 1))}
+                        disabled={page === 1}
+                        className="px-3 py-1 rounded-full disabled:opacity-50"
+                      >
+                        &lt;
+                      </button>
+                      
+                      {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                        let pageNum;
+                        if (totalPages <= 5) {
+                          pageNum = i + 1;
+                        } else if (page <= 3) {
+                          pageNum = i + 1;
+                        } else if (page >= totalPages - 2) {
+                          pageNum = totalPages - 4 + i;
+                        } else {
+                          pageNum = page - 2 + i;
+                        }
+                        
+                        return (
+                          <button
+                            key={pageNum}
+                            onClick={() => handlePageChange(pageNum)}
+                            className={`w-10 h-10 rounded-full ${
+                              page === pageNum 
+                                ? 'bg-[#b9a779] text-white' 
+                                : 'hover:bg-gray-200'
+                            }`}
+                          >
+                            {pageNum}
+                          </button>
+                        );
+                      })}
+                      
+                      {totalPages > 5 && page < totalPages - 2 && (
+                        <span className="px-2">...</span>
+                      )}
+                      
+                      {totalPages > 5 && page < totalPages - 2 && (
+                        <button
+                          onClick={() => handlePageChange(totalPages)}
+                          className={`w-10 h-10 rounded-full ${
+                            page === totalPages 
+                              ? 'bg-[#b9a779] text-white' 
+                              : 'hover:bg-gray-200'
+                          }`}
+                        >
+                          {totalPages}
+                        </button>
+                      )}
+                      
+                      <button
+                        onClick={() => handlePageChange(Math.min(totalPages, page + 1))}
+                        disabled={page === totalPages}
+                        className="px-3 py-1 rounded-full disabled:opacity-50"
+                      >
+                        &gt;
+                      </button>
+                    </nav>
                   </div>
                 )}
               </>
