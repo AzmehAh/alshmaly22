@@ -134,14 +134,7 @@ return (
           </div>
         )}
 
-        {/* Load More Button */}
-        {!loading && !error && blogPosts.length > 0 && (
-          <div className="text-center mt-12">
-            <button className="bg-[#b9a779] hover:bg-[#054239] text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:shadow-lg"> 
-              {t('blog.load_more')}
-            </button>
-          </div>
-        )}
+      
       </div>
     </section>
   </div>
