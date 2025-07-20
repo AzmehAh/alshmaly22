@@ -11,6 +11,53 @@
     overflow-x: hidden;
   }
    
+  /* Hero section responsive height handling */
+  .hero-section {
+    /* Default: Full viewport height for desktop */
+    height: 100vh;
+    min-height: 100vh;
+    
+    /* Use CSS custom property for mobile browsers */
+    height: calc(var(--vh, 1vh) * 100);
+    min-height: calc(var(--vh, 1vh) * 100);
+  }
+
+  /* Mobile portrait: Allow full height */
+  @media screen and (max-width: 768px) and (orientation: portrait) {
+    .hero-section {
+      height: calc(var(--vh, 1vh) * 100);
+      min-height: calc(var(--vh, 1vh) * 100);
+      max-height: none;
+    }
+  }
+
+  /* Mobile landscape: Limit height to prevent excessive tall sections */
+  @media screen and (max-width: 1024px) and (orientation: landscape) and (max-height: 600px) {
+    .hero-section {
+      height: 100vh;
+      min-height: 500px;
+      max-height: 100vh;
+    }
+  }
+
+  /* Very small landscape screens */
+  @media screen and (max-width: 1024px) and (orientation: landscape) and (max-height: 450px) {
+    .hero-section {
+      height: 100vh;
+      min-height: 400px;
+      max-height: 100vh;
+    }
+  }
+
+  /* Desktop: Use standard viewport height */
+  @media screen and (min-width: 1025px) {
+    .hero-section {
+      height: 100vh;
+      min-height: 100vh;
+      max-height: none;
+    }
+  }
+
   /* Arabic font support */
 [dir="rtl"] body{
   font-family: 'Aljazeera', 'Noto Sans Arabic', 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
