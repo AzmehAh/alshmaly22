@@ -41,11 +41,12 @@ const HeroSection = () => {
     <section
   id="home"
   className="relative flex items-center overflow-hidden w-full"
-  style={{
-  height: '100vh',
-  height: 'calc(var(--vh, 1vh) * 100)' , // this will override 100vh if --vh is defined
-  min-height: '100vh'
+ style={{
+  height: 'calc(var(--vh, 1vh) * 100)',
+  minHeight: '100vh' // fallback for older browsers
 }}
+
+
 
 >
 
