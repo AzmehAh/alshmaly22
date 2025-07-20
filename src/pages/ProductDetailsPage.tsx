@@ -153,7 +153,8 @@ const ProductDetailsPage = () => {
 </div>
 
 
-      {/* Product Specifications */}
+         
+          {/* Product Specifications */}
 {(
   (product.specifications_ar && product.specifications_ar.length > 0) ||
   (product.specifications_en && product.specifications_en.length > 0)
@@ -174,6 +175,8 @@ const ProductDetailsPage = () => {
   </div>
 )}
 
+          </div>
+        </div>
 
         {/* Related Products */}
         {relatedProducts.length > 0 && (
