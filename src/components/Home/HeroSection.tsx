@@ -50,7 +50,8 @@ const HeroSection = () => {
   className="relative flex items-center overflow-hidden w-full"
   style={{
   height: '100vh',
-  height: 'calc(var(--vh, 1vh) * 100-20px)'  // this will override 100vh if --vh is defined
+ style={{ height: 'calc(var(--vh, 1vh) * 100 - 4rem)' }}
+ // this will override 100vh if --vh is defined
 }}
 
 >
