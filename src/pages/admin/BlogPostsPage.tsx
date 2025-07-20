@@ -857,11 +857,7 @@ return (
               {relations.map((relation) => (
                 <div key={relation.id} className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
                   <div className="flex items-center">
-                    <img
-                      src={relation.related_post?.thumbnail || 'https://via.placeholder.com/100x100?text=Post'}
-                      alt={relation.related_post?.title}
-                      className={`${direction === 'rtl' ? 'mr-3' : 'ml-3'} h-10 w-10 rounded-lg object-cover`}
-                    />
+                  
                     <div> 
                       <div className="font-medium text-[#054239]">{relation.related_post?.title}</div>
                       <div className="text-sm text-gray-500">{relation.related_post?.category?.name}</div>
