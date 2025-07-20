@@ -1,39 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ArrowRight, Play, Pause, Volume2, VolumeX,ArrowLeft } from 'lucide-react';
+import { ArrowRight, Play, Pause, Volume2, VolumeX, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../contexts/LanguageContext';
-
-const useVhHeight = () => {
-  const [style, setStyle] = useState<{ height?: string; minHeight?: string }>({});
-
-  useEffect(() => {
-    const updateHeight = () => {
-      const vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty("--vh", `${vh}px`);
-
-      const isLandscape = window.innerWidth > window.innerHeight;
-      setStyle(
-        isLandscape
-          ? { minHeight: "calc(var(--vh, 1vh) * 100)" }
-          : { height: "calc(var(--vh, 1vh) * 100)" }
-      );
-    };
-
-    updateHeight();
-
-    window.addEventListener("resize", updateHeight);
-    window.addEventListener("orientationchange", () => {
-      setTimeout(updateHeight, 300);
-    });
-
-    return () => {
-      window.removeEventListener("resize", updateHeight);
-      window.removeEventListener("orientationchange", updateHeight);
-    };
-  }, []);
-
-  return style;
-};
 
 const HeroSection = () => {
   const { t, language } = useLanguage();
@@ -43,7 +11,24 @@ const HeroSection = () => {
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
 
-  const sectionStyle = useVhHeight(); // ✅ hook used here
+  useEffect(() => {
+    // Set CSS custom property for viewport height
+    const setVH = () => {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    };
+
+    setVH();
+    window.addEventListener('resize', setVH);
+    window.addEventListener('orientationchange', () => {
+      setTimeout(setVH, 100);
+    });
+
+    return () => {
+      window.removeEventListener('resize', setVH);
+      window.removeEventListener('orientationchange', setVH);
+    };
+  }, []);
 
   const togglePlayPause = () => {
     if (videoRef.current) {
@@ -66,8 +51,7 @@ const HeroSection = () => {
   return (
     <section
       id="home"
-      className="relative flex items-center overflow-hidden w-full"
-      style={sectionStyle}
+      className="hero-section relative flex items-center overflow-hidden w-full"
     >
       {/* Background Video */}
       <div className="absolute inset-0 z-0 w-full h-full">
@@ -92,34 +76,33 @@ const HeroSection = () => {
         )}
       </div>
 
-    {/* Video Controls */}
-<div className=  "absolute  bottom-6 left-6 z-20 flex flex-row gap-4" dir="ltr">
-  <button
-    onClick={togglePlayPause}
-    className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
-      isPlaying 
-        ? 'bg-white/20 hover:bg-white/30 text-white' 
-        : 'bg-red-500/80 hover:bg-red-600/80 text-white shadow-lg'
-    }`}
-    title={isPlaying ? 'Pause Video' : 'Play Video'}
-  >
-    {isPlaying ? <Pause size={20} /> : <Play size={20} />}
-  </button>
-  
-  <button 
-    onClick={toggleMute}
-    className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
-      isMuted 
-        ? 'bg-white/20 hover:bg-white/30 text-white' 
-        : 'bg-blue-500/80 hover:bg-blue-600/80 text-white shadow-lg'
-    }`}
-    title={isMuted ? 'Unmute Video' : 'Mute Video'}
-  >
-    {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
-  </button>
-
-
+      {/* Video Controls */}
+      <div className="absolute bottom-6 left-6 z-20 flex flex-row gap-4" dir="ltr">
+        <button
+          onClick={togglePlayPause}
+          className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
+            isPlaying 
+              ? 'bg-white/20 hover:bg-white/30 text-white' 
+              : 'bg-red-500/80 hover:bg-red-600/80 text-white shadow-lg'
+          }`}
+          title={isPlaying ? 'Pause Video' : 'Play Video'}
+        >
+          {isPlaying ? <Pause size={20} /> : <Play size={20} />}
+        </button>
+        
+        <button 
+          onClick={toggleMute}
+          className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
+            isMuted 
+              ? 'bg-white/20 hover:bg-white/30 text-white' 
+              : 'bg-blue-500/80 hover:bg-blue-600/80 text-white shadow-lg'
+          }`}
+          title={isMuted ? 'Unmute Video' : 'Mute Video'}
+        >
+          {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
+        </button>
       </div>
+
       {/* Content */}
       <div className="relative z-10 w-full">
         <div className="container mx-auto px-4">
@@ -141,10 +124,10 @@ const HeroSection = () => {
               >
                 {t('home.hero.explore_products')}
                 {language === 'ar' ? (
-  <ArrowLeft size={16} className="mr-2 group-hover:-translate-x-1 transition-transform duration-300" />
-) : (
-  <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-)}
+                  <ArrowLeft size={16} className="mr-2 group-hover:-translate-x-1 transition-transform duration-300" />
+                ) : (
+                  <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                )}
               </Link>
               <Link 
                 to="/contact"
