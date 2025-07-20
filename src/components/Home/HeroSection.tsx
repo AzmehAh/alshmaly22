@@ -49,7 +49,7 @@ const HeroSection = () => {
 >
 
     
-      >
+      
       {/* Background Video */}
       <div className="absolute inset-0 z-0 w-full h-full">
         <video 
