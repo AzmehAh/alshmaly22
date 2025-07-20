@@ -184,7 +184,7 @@ const ProductsPage = () => {
 
                 {/* Pagination */}
                 {hasMore && (
-                  <div className="flex justify-center mt-8">
+                  <div className="flex justify-center mt-8"> 
                     <button
                       onClick={handleLoadMore}
                       className="bg-[#054239] hover:bg-[#b9a779] text-white font-semibold px-6 py-3 rounded-full transition-all duration-300"
