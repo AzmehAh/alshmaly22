@@ -26,20 +26,10 @@ const HeroSection = () => {
       videoRef.current.muted = !isMuted;
       setIsMuted(!isMuted);
     }
-    useEffect(() => {
-  function setVh() {
-    const vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-  }
-  setVh();
-  window.addEventListener('resize', setVh);
-  return () => window.removeEventListener('resize', setVh);
-}, []);
-
   };
   return (
     <section id="home" className="relative flex items-center overflow-hidden w-full"
-      style={{ minHeight: "calc(var(--vh, 1vh) * 100)" }}>
+      >
       {/* Background Video */}
       <div className="absolute inset-0 z-0 w-full h-full">
         <video 
@@ -49,7 +39,7 @@ const HeroSection = () => {
           loop 
           className="w-full h-full object-cover "
           poster=""
-        >
+        > 
           <source src="https://files.catbox.moe/jnps5k.mp4" type="video/mp4" />
         </video>
         <div className={`absolute inset-0 w-full h-full transition-all duration-1000 ${
