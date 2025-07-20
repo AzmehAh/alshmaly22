@@ -25,12 +25,14 @@ const HeroSection = () => {
     if (videoRef.current) {
       videoRef.current.muted = !isMuted;
       setIsMuted(!isMuted);
-    }
+    } 
   };
 
  
-   
-  );
+    setVh();
+    window.addEventListener('resize', setVh);
+    return () => window.removeEventListener('resize', setVh);
+  }, []);
 
   return (
     <section id="home" className="relative  min-h-[100vh] flex items-center overflow-hidden w-full"
