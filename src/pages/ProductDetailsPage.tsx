@@ -11,6 +11,11 @@ const ProductDetailsPage = () => {
   const [selectedPackage, setSelectedPackage] = useState<string>('');
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [quoteLoading, setQuoteLoading] = useState(false);
+  const specifications =
+  language === 'en'
+    ? product.specifications_en
+    : product.specifications_ar;
+
 
   // Set default package when product loads
   React.useEffect(() => {
@@ -153,19 +158,14 @@ const ProductDetailsPage = () => {
 </div>
 
 
-         
-          {/* Product Specifications */}
-{(
-  (product.specifications_ar && product.specifications_ar.length > 0) ||
-  (product.specifications_en && product.specifications_en.length > 0)
-) && (
+         {specifications && specifications.length > 0 && (
   <div className="bg-[#f7f7f7] rounded-2xl p-6 shadow-lg mt-6">
     <h3 className="text-xl font-semibold text-[#054239] mb-4 flex items-center">
       <Shield size={24} className="mr-2 text-[#b9a779]" />
       {t('products.specifications')}
     </h3>
     <ul className="space-y-3">
-      {(getLocalizedField(product, 'specifications') || []).map((spec, index) => (
+      {specifications.map((spec, index) => (
         <li key={index} className="flex items-start">
           <Shield size={16} className="text-[#b9a779] mr-3 mt-1 flex-shrink-0" />
           <span className="text-gray-700">{spec}</span>
