@@ -71,6 +71,8 @@ const translations = {
   'products.filters.search.placeholder': 'Search products...',
   'products.filters.categories.label': 'Categories',
     'products.filt': 'All Products',
+     'erorr':'Error loading products:',
+    
     // About
     'about.title': 'About Al-Shmaly ',
     'about.hero.subtitle': 'For over 27 years, we have been the bridge between Syrian agricultural heritage and global markets, bringing authentic, premium-quality products to tables worldwide.',
@@ -324,6 +326,7 @@ const translations = {
     'products.filt': 'كل المنتجات',
      'pagination.previous':'الصفحة السابقة',
     'pagination.next':'الصفحة التالية',
+     'erorr':'لا يمكن الوصول للمنتجات ',
     
     // About
     'about.title': 'عن الشمالي',
