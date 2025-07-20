@@ -7,7 +7,6 @@ export interface BlogFilters {
   search?: string;
   limit?: number;
   offset?: number;
-  language?: 'en' | 'ar';
 }
 
 export class BlogAPI {
@@ -32,13 +31,6 @@ export class BlogAPI {
         images:blog_images(*)
       `);
 
-    // Filter by language - only show posts with content in the selected language
-    if (filters.language === 'ar') {
-      query = query.not('title_ar', 'is', null);
-    } else {
-      query = query.not('title', 'is', null);
-    }
-
     // Apply filters
     if (filters.category && filters.category !== 'All') {
       // First get the category ID by name or slug
@@ -61,8 +53,7 @@ export class BlogAPI {
     }
 
     if (filters.search) {
-      // Search in both language fields regardless of input language
-      query = query.or(`title.ilike.%${filters.search}%,title_ar.ilike.%${filters.search}%,excerpt.ilike.%${filters.search}%,excerpt_ar.ilike.%${filters.search}%,content.ilike.%${filters.search}%,content_ar.ilike.%${filters.search}%`);
+      query = query.or(`title.ilike.%${filters.search}%,excerpt.ilike.%${filters.search}%`);
     }
 
     // Apply pagination

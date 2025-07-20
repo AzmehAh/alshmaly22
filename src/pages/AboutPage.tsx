@@ -13,7 +13,7 @@ const AboutPage = () => {
   React.useEffect(() => {
     const fetchExportCountries = async () => {
       try {
-        const countries = await ExportCountriesAPI.getActiveExportCountries({ language });
+        const countries = await ExportCountriesAPI.getActiveExportCountries();
         setExportCountries(countries);
       } catch (error) {
         console.error('Error fetching export countries:', error);
@@ -23,7 +23,7 @@ const AboutPage = () => {
     };
 
     fetchExportCountries();
-  }, [language]);
+  }, []);
  
   const timeline = [
   { 
