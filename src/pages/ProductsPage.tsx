@@ -126,7 +126,7 @@ const ProductsPage = () => {
           <div className="lg:w-3/4 w-full">
             <div className="flex justify-between items-center mb-6">
               <p className="text-gray-600">
-                {loading ? t('common.loading') : `${t('products.show')} ${products.length} ${t('products.show2')} (${total} ${t('products.total')})`}
+                {loading ? t('common.loading') : `${t('products.show')} ${products.length} ${t('products.show2')} (${total} })`}
               </p>
             </div>
 
