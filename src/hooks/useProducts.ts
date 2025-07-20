@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { ProductsAPI, type ProductFilters } from '../lib/api/products';
 import type { Product, Category } from '../lib/supabase';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export const useProducts = (filters: ProductFilters = {}) => {
+  const { language } = useLanguage();
   const [products, setProducts] = useState<Product[]>([]);
   const [total, setTotal] = useState(0);
   const [categories, setCategories] = useState<Category[]>([]);
@@ -16,7 +18,7 @@ export const useProducts = (filters: ProductFilters = {}) => {
         setError(null);
         
         const [productsData, categoriesData] = await Promise.all([
-          ProductsAPI.getProducts(filters),
+          ProductsAPI.getProducts({ ...filters, language }),
           ProductsAPI.getCategories()
         ]);
         
@@ -32,7 +34,7 @@ export const useProducts = (filters: ProductFilters = {}) => {
     };
 
     fetchData();
-  }, [JSON.stringify(filters)]);
+  }, [JSON.stringify(filters), language]);
 
   const totalPages = Math.ceil(total / (filters.limit || 10));
   

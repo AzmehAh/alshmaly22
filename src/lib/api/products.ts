@@ -9,6 +9,7 @@ export interface ProductFilters {
   sortBy?: 'name' | 'price-low' | 'price-high';
   page?: number;
   limit?: number;
+  language?: 'en' | 'ar';
 }
 
 export class ProductsAPI {
@@ -34,6 +35,13 @@ export class ProductsAPI {
         packages:product_packages(*)
       `, { count: 'exact' });
 
+    // Filter by language - only show products with content in the selected language
+    if (filters.language === 'ar') {
+      query = query.not('name_ar', 'is', null);
+    } else {
+      query = query.not('name', 'is', null);
+    }
+
     // Apply filters
     if (filters.category && filters.category !== 'all') {
       // First get the category ID by slug
@@ -53,6 +61,7 @@ export class ProductsAPI {
     }
 
     if (filters.search) {
+      // Search in both language fields regardless of input language
       query = query.or(`name.ilike.%${filters.search}%,name_ar.ilike.%${filters.search}%,description.ilike.%${filters.search}%,description_ar.ilike.%${filters.search}%`);
     }
 

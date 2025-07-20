@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { BlogAPI, type BlogFilters } from '../lib/api/blog';
 import type { BlogPost, BlogCategory } from '../lib/supabase';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export const useBlogPosts = (filters: BlogFilters = {}) => {
+  const { language } = useLanguage();
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [categories, setCategories] = useState<BlogCategory[]>([]);
   const [loading, setLoading] = useState(true);
@@ -15,7 +17,7 @@ export const useBlogPosts = (filters: BlogFilters = {}) => {
         setError(null);
         
         const [postsData, categoriesData] = await Promise.all([
-          BlogAPI.getPosts(filters),
+          BlogAPI.getPosts({ ...filters, language }),
           BlogAPI.getCategories()
         ]);
         
@@ -30,7 +32,7 @@ export const useBlogPosts = (filters: BlogFilters = {}) => {
     };
 
     fetchData();
-  }, [JSON.stringify(filters)]);
+  }, [JSON.stringify(filters), language]);
 
   return { posts, categories, loading, error };
 };
