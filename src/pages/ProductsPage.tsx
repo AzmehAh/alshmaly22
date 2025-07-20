@@ -10,14 +10,13 @@ const ProductsPage = () => {
   const { t, getLocalizedField, language } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
-  const [viewMode, setViewMode] = useState('grid');
-  const [page, setPage] = useState(1);
-  const limit = 12;
+  const [currentPage, setCurrentPage] = useState(1);
+  const limit = 10;
 
-  const { products, categories, loading, error, hasMore } = useProducts({
+  const { products, categories, loading, error, total, totalPages } = useProducts({
     category: selectedCategory === 'all' ? undefined : selectedCategory,
     search: searchTerm,
-    page,
+    page: currentPage,
     limit,
   });
 
@@ -26,8 +25,39 @@ const ProductsPage = () => {
     ...categories
   ];
 
-  const handleLoadMore = () => {
-    setPage(prev => prev + 1);
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category);
+    setCurrentPage(1); // Reset to first page when filters change
+  };
+
+  const handleSearchChange = (search: string) => {
+    setSearchTerm(search);
+    setCurrentPage(1); // Reset to first page when filters change
+  };
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Generate pagination buttons
+  const getPaginationButtons = () => {
+    const buttons = [];
+    const maxVisibleButtons = 5;
+    
+    let startPage = Math.max(1, currentPage - Math.floor(maxVisibleButtons / 2));
+    let endPage = Math.min(totalPages, startPage + maxVisibleButtons - 1);
+    
+    // Adjust start page if we're near the end
+    if (endPage - startPage + 1 < maxVisibleButtons) {
+      startPage = Math.max(1, endPage - maxVisibleButtons + 1);
+    }
+    
+    for (let i = startPage; i <= endPage; i++) {
+      buttons.push(i);
+    }
+    
+    return buttons;
   };
 
   return (
@@ -42,7 +72,7 @@ const ProductsPage = () => {
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Filters */}
           <div className="lg:w-1/4 w-full">
-            <div className="bg-[#f7f7f7] rounded-2xl p-6 shadow-lg sticky top-24">
+            <div className="bg-[#f7f7f7] rounded-2xl p-6 shadow-lg sticky top-24 z-10">
               <h3 className="text-xl font-semibold text-[#054239] mb-6 flex items-center">
                 <Filter size={20} className="mr-2" />
                 {t('products.filters.title')}
@@ -58,10 +88,7 @@ const ProductsPage = () => {
                   <input
                     type="text"
                     value={searchTerm}
-                    onChange={(e) => {
-                      setSearchTerm(e.target.value);
-                      setPage(1); // reset pagination
-                    }}
+                    onChange={(e) => handleSearchChange(e.target.value)}
                     placeholder={t('products.filters.search.placeholder')}
                     className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
                   />
@@ -80,10 +107,7 @@ const ProductsPage = () => {
                   {displayCategories.map((category) => (
                     <button
                       key={category.slug}
-                      onClick={() => {
-                        setSelectedCategory(category.slug);
-                        setPage(1);
-                      }}
+                      onClick={() => handleCategoryChange(category.slug)}
                       className={`w-full text-start px-3 py-2 rounded-lg transition-colors duration-200 ${
                         selectedCategory === category.slug
                           ? 'bg-[#b9a779] text-white'
@@ -102,11 +126,11 @@ const ProductsPage = () => {
           <div className="lg:w-3/4 w-full">
             <div className="flex justify-between items-center mb-6">
               <p className="text-gray-600">
-                {loading ? t('common.loading') : `${t('products.show')} ${products.length} ${t('products.show2')}`}
+                {loading ? t('common.loading') : `${t('products.show')} ${products.length} ${t('products.show2')} (${total} ${t('products.total')})`}
               </p>
             </div>
 
-            {loading && products.length === 0 ? (
+            {loading ? (
               <div className="flex justify-center items-center py-12">
                 <Loader2 className="animate-spin text-[#b9a779]" size={48} />
               </div>
@@ -165,14 +189,70 @@ const ProductsPage = () => {
                   })}
                 </div>
 
-                {/* Load More */}
-                {hasMore && (
-                  <div className="flex justify-center mt-8">
+                {/* Pagination */}
+                {totalPages > 1 && (
+                  <div className="flex justify-center items-center mt-12 space-x-2">
+                    {/* Previous Button */}
                     <button
-                      onClick={handleLoadMore}
-                      className="bg-[#054239] hover:bg-[#b9a779] text-white font-semibold px-6 py-3 rounded-full transition-all duration-300"
+                      onClick={() => handlePageChange(currentPage - 1)}
+                      disabled={currentPage === 1}
+                      className="px-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
                     >
-                      {t('common.load_more')}
+                      {t('pagination.previous')}
+                    </button>
+
+                    {/* First page */}
+                    {getPaginationButtons()[0] > 1 && (
+                      <>
+                        <button
+                          onClick={() => handlePageChange(1)}
+                          className="px-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors duration-200"
+                        >
+                          1
+                        </button>
+                        {getPaginationButtons()[0] > 2 && (
+                          <span className="px-2 text-gray-500">...</span>
+                        )}
+                      </>
+                    )}
+
+                    {/* Page buttons */}
+                    {getPaginationButtons().map((pageNum) => (
+                      <button
+                        key={pageNum}
+                        onClick={() => handlePageChange(pageNum)}
+                        className={`px-4 py-2 rounded-lg transition-colors duration-200 ${
+                          currentPage === pageNum
+                            ? 'bg-[#b9a779] text-white'
+                            : 'bg-white border border-gray-300 text-gray-700 hover:bg-gray-50'
+                        }`}
+                      >
+                        {pageNum}
+                      </button>
+                    ))}
+
+                    {/* Last page */}
+                    {getPaginationButtons()[getPaginationButtons().length - 1] < totalPages && (
+                      <>
+                        {getPaginationButtons()[getPaginationButtons().length - 1] < totalPages - 1 && (
+                          <span className="px-2 text-gray-500">...</span>
+                        )}
+                        <button
+                          onClick={() => handlePageChange(totalPages)}
+                          className="px-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors duration-200"
+                        >
+                          {totalPages}
+                        </button>
+                      </>
+                    )}
+
+                    {/* Next Button */}
+                    <button
+                      onClick={() => handlePageChange(currentPage + 1)}
+                      disabled={currentPage === totalPages}
+                      className="px-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+                    >
+                      {t('pagination.next')}
                     </button>
                   </div>
                 )}
@@ -181,7 +261,7 @@ const ProductsPage = () => {
 
             {products.length === 0 && !loading && (
               <div className="text-center py-12">
-                <p className="text-gray-500 text-lg">{t('common.product')}.</p>
+                <p className="text-gray-500 text-lg">{t('products.no_products')}</p>
               </div>
             )} 
           </div>

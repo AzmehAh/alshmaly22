@@ -4,6 +4,7 @@ import type { Product, Category } from '../lib/supabase';
 
 export const useProducts = (filters: ProductFilters = {}) => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [total, setTotal] = useState(0);
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -19,7 +20,8 @@ export const useProducts = (filters: ProductFilters = {}) => {
           ProductsAPI.getCategories()
         ]);
         
-        setProducts(productsData);
+        setProducts(productsData.products);
+        setTotal(productsData.total);
         setCategories(categoriesData);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to fetch products');
@@ -32,7 +34,9 @@ export const useProducts = (filters: ProductFilters = {}) => {
     fetchData();
   }, [JSON.stringify(filters)]);
 
-  return { products, categories, loading, error };
+  const totalPages = Math.ceil(total / (filters.limit || 10));
+  
+  return { products, categories, loading, error, total, totalPages };
 };
 
 export const useProduct = (id: string) => {

@@ -7,6 +7,8 @@ export interface ProductFilters {
   weight?: string;
   search?: string;
   sortBy?: 'name' | 'price-low' | 'price-high';
+  page?: number;
+  limit?: number;
 }
 
 export class ProductsAPI {
@@ -22,7 +24,7 @@ export class ProductsAPI {
   }
 
   // Get all products with filters
-  static async getProducts(filters: ProductFilters = {}): Promise<Product[]> {
+  static async getProducts(filters: ProductFilters = {}): Promise<{ products: Product[]; total: number }> {
     let query = supabase
       .from('products')
       .select(`
@@ -30,7 +32,7 @@ export class ProductsAPI {
         category:categories(*),
         images:product_images(*),
         packages:product_packages(*)
-      `);
+      `, { count: 'exact' });
 
     // Apply filters
     if (filters.category && filters.category !== 'all') {
@@ -51,8 +53,16 @@ export class ProductsAPI {
     }
 
     if (filters.search) {
-      query = query.or(`name.ilike.%${filters.search}%,description.ilike.%${filters.search}%`);
+      query = query.or(`name.ilike.%${filters.search}%,name_ar.ilike.%${filters.search}%,description.ilike.%${filters.search}%,description_ar.ilike.%${filters.search}%`);
     }
+
+    // Apply pagination
+    const page = filters.page || 1;
+    const limit = filters.limit || 10;
+    const from = (page - 1) * limit;
+    const to = from + limit - 1;
+
+    query = query.range(from, to);
 
     // Apply sorting
     switch (filters.sortBy) {
@@ -68,16 +78,21 @@ export class ProductsAPI {
         break;
     }
 
-    const { data, error } = await query;
+    const { data, error, count } = await query;
 
     if (error) throw error;
 
     // Process the data to sort images and packages
-    return (data || []).map(product => ({
+    const products = (data || []).map(product => ({
       ...product,
       images: product.images?.sort((a, b) => a.sort_order - b.sort_order) || [],
       packages: product.packages?.sort((a, b) => (b.is_default ? 1 : 0) - (a.is_default ? 1 : 0)) || []
     }));
+
+    return {
+      products,
+      total: count || 0
+    };
   }
 
   // Get single product by ID or slug
