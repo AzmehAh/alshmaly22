@@ -721,7 +721,7 @@ const ProductsPage = () => {
           e.currentTarget.src = 'https://via.placeholder.com/150?text=Invalid+Image';
         }}
       />
-    ) 
+    
      
     )}
                         <div>
