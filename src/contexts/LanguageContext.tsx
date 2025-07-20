@@ -351,6 +351,9 @@ const translations = {
     'blog.load_more': 'تحميل المزيد من المقالات',
     'blog.share': 'مشاركة المقال',
     'back.blog': 'العودة إلى المدونة',
+     'No.related': 'لا يوجد مقالات مرتبطة ',
+    'Related.Articles': 'المقالات المرتبطة',
+    'Photo.Gallery': 'معرض الصور',
     // Footer
     'footer.description': 'نصدر أفضل ما في الطبيعة السورية إلى العالم، ونجلب الأصالة والجودة إلى مائدتك.',
     'footer.quick_links': 'روابط سريعة',
