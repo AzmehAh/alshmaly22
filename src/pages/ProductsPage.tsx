@@ -11,7 +11,7 @@ const ProductsPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const limit = 10;
+  const limit = 9;
 
   const { products, categories, loading, error, total, totalPages } = useProducts({
     category: selectedCategory === 'all' ? undefined : selectedCategory,
