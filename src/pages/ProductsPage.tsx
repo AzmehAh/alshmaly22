@@ -147,44 +147,43 @@ const ProductsPage = () => {
                     const defaultPackage = product.packages?.find(pkg => pkg.is_default) || product.packages?.[0];
 
                     return (
-                      <div
-                        key={product.id}
-                        className="bg-[#f7f7f7] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group"
-                        style={{ minHeight: '420px' }}
-                      >
-                        <div className="relative overflow-hidden w-full h-48">
-                          <img
-                            src={product.images?.[0]?.image_url || 'https://via.placeholder.com/400x300'}
-                            alt={product.name}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                          />
-                          {product.availability === 'out-of-stock' && (
-                            <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                              <span className="text-white font-semibold text-sm">Out of Stock</span>
-                            </div>
-                          )}
-                        </div>
-                        <div className="p-6 flex flex-col flex-1">
-                          <h3 className="text-xl font-semibold text-[#054239] mb-2">
-                            {getLocalizedField(product, 'name')}
-                          </h3>
-                          <p className="text-gray-600 mb-2 flex-grow">
-                            {(() => {
-                              const description = getLocalizedField(product, 'description');
-                              return description.length > 100 ? description.slice(0, 50) + "..." : description;
-                            })()}
-                          </p>
-                          <div className="flex items-center justify-end mb-4">
-                            <span className="text-sm text-gray-500">{defaultPackage?.weight || 'Various sizes'}</span>
-                          </div>
-                          <Link
-                            to={`/product/${product.id}`}
-                            className="mt-auto w-full bg-[#b9a779] hover:bg-[#054239] text-white py-3 px-4 rounded-full font-medium transition-all duration-300 text-center block"
-                          >
-                            {t('common.view_details')}
-                          </Link>
-                        </div>
-                      </div>
+                   <div
+  key={product.id}
+  className="bg-[#f7f7f7] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group flex flex-col h-full"
+>
+  <div className="relative overflow-hidden w-full h-48">
+    <img
+      src={product.images?.[0]?.image_url || 'https://via.placeholder.com/400x300'}
+      alt={product.name}
+      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+    />
+    {product.availability === 'out-of-stock' && (
+      <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+        <span className="text-white font-semibold text-sm">Out of Stock</span>
+      </div>
+    )}
+  </div>
+  <div className="p-6 flex flex-col flex-1">
+    <h3 className="text-xl font-semibold text-[#054239] mb-2">
+      {getLocalizedField(product, 'name')}
+    </h3>
+    <p className="text-gray-600 mb-2">
+      {(() => {
+        const description = getLocalizedField(product, 'description');
+        return description.length > 100 ? description.slice(0, 50) + "..." : description;
+      })()}
+    </p>
+    <div className="flex items-center justify-end mb-4">
+      <span className="text-sm text-gray-500">{defaultPackage?.weight || 'Various sizes'}</span>
+    </div>
+    <Link
+      to={`/product/${product.id}`}
+      className="mt-auto w-full bg-[#b9a779] hover:bg-[#054239] text-white py-3 px-4 rounded-full font-medium transition-all duration-300 text-center block"
+    >
+      {t('common.view_details')}
+    </Link>
+  </div>
+</div>
                     );
                   })}
                 </div>
