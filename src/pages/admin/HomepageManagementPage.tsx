@@ -251,13 +251,7 @@ const HomepageManagementPage = () => {
                           <div className="text-sm font-medium text-[#054239]">
                             {getLocalizedText(content, activeTab === 'products' ? 'name' : 'title')}
                           </div>
-                          {activeTab === 'products' && (
-                            <div className="text-sm text-gray-500">
-                              {direction === 'rtl'
-                                ? content?.category?.name_ar || content?.category?.name || t('uncategorized')
-                                : content?.category?.name || t('uncategorized')}
-                            </div>
-                          )}
+                         
                         </div>
                       </div>
                     </td>
