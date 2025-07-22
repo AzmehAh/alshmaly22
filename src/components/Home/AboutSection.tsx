@@ -75,9 +75,9 @@ const AboutSection = () => {
           {/* Image */}
           <div className="relative">
             <img 
-              src="https://i.postimg.cc/kMkcnpMC/2025-07-22-10-36-47-181b5e6c11-1.png" 
-              alt="Al-Shamali Team"
-              className="rounded-2xl  w-full h-96 object-contain"
+              src="https://images.pexels.com/photos/1595104/pexels-photo-1595104.jpeg?auto=compress&cs=tinysrgb&w=800&h=600" 
+              alt="Al-Shmaly Team"
+              className="rounded-2xl shadow-2xl   w-full h-96 object-cover"
             />
             <div className="absolute -bottom-6 -right-6 bg-[#b9a779] text-white p-6 rounded-2xl">
               <p className="text-sm font-semibold"> {t('home.about.1')}</p>
