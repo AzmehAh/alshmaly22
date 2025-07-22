@@ -276,7 +276,14 @@ const BlogPostsPage = () => {
       console.error('Error deleting post:', error);
       alert(t('blog.error.delete_post'));
     }
-  };
+  }; 
+const getLocalizedText = (item: any, fieldBase: string) => {
+  if (language === 'ar' && item[`${fieldBase}_ar`]) {
+    return item[`${fieldBase}_ar`];
+  }
+  // fallback to English or default field
+  return item[fieldBase] || '';
+};
 
   const addImage = () => {
     setImages([...images, { 
@@ -299,12 +306,22 @@ const BlogPostsPage = () => {
     return title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
   };
 
-  const filteredPosts = posts.filter(post => {
-    const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         post.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === 'all' || post.category_id === selectedCategory;
-    return matchesSearch && matchesCategory;
-  });
+  const search = searchTerm.toLowerCase();
+
+const filteredPosts = posts.filter(post => {
+  const titleEn = post.title?.toLowerCase() || '';
+  const titleAr = post.title_ar?.toLowerCase() || '';
+  const excerptEn = post.excerpt?.toLowerCase() || '';
+  const excerptAr = post.excerpt_ar?.toLowerCase() || '';
+
+  const matchesSearch = 
+    titleEn.includes(search) || titleAr.includes(search) ||
+    excerptEn.includes(search) || excerptAr.includes(search);
+
+  const matchesCategory = selectedCategory === 'all' || post.category_id === selectedCategory;
+
+  return matchesSearch && matchesCategory;
+});
 
   if (loading && posts.length === 0) {
     return (
@@ -394,7 +411,10 @@ return (
                         className="h-12 w-12 rounded-lg object-cover mr-4"
                       />
                       <div>
-                        <div className="text-sm font-medium text-[#054239]">{post.title}</div>
+                      <div className="text-sm font-medium text-[#054239]">
+  {getLocalizedText(post, 'title')}
+</div>
+
                         
                       </div>
                     </div>
