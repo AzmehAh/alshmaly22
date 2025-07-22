@@ -26,7 +26,7 @@ const ProductDetailsPage = () => {
 
     try {
       setQuoteLoading(true);
-      await QuotesAPI.submitQuoteRequest({
+      await QuotesAPI.submitQuoteRequest({ 
         product_id: product.id,
         customer_name: 'Sample Customer',
         customer_email: 'customer@example.com',
@@ -40,10 +40,7 @@ const ProductDetailsPage = () => {
     } finally {
       setQuoteLoading(false);
     }
-  }; const getLocalizedField = (obj: any, field: string) => {
-  return language === 'ar' ? obj[`${field}_ar`] : obj[`${field}_en`];
-};
-
+  }; 
 
   if (loading) {
     return (
