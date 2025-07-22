@@ -61,7 +61,7 @@ const ProductsPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F7F7F7] pt-20 w-full">
+    <div className="min-h-screen bg-[#F7F7F7] pt-20 overflow-x-hidden w-full">
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="mb-8">
@@ -70,9 +70,9 @@ const ProductsPage = () => {
         </div>
 
         <div className="flex flex-col lg:flex-row gap-8">
-          {/* Filters */} 
+          {/* Filters */}  
           <div className="lg:w-1/4 w-full ">
-            <div className=" sticky top-32 bg-[#f7f7f7] rounded-2xl p-6 shadow-lg  z-10">
+            <div className="bg-[#f7f7f7] rounded-2xl p-6 shadow-lg sticky top-24 z-10">
               <h3 className="text-xl font-semibold text-[#054239] mb-6 flex items-center">
                 <Filter size={20} className="mr-2" />
                 {t('products.filters.title')}
