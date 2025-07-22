@@ -437,7 +437,7 @@ const ProductsPage = () => {
 </div>
 
                        <div className="text-sm text-gray-500">
-  {getText(product, 'slug')}
+  {getText(product, 'Slug')}
 </div>
 
                       </div>
