@@ -305,6 +305,9 @@ const BlogPostsPage = () => {
     const matchesCategory = selectedCategory === 'all' || post.category_id === selectedCategory;
     return matchesSearch && matchesCategory;
   });
+const getPostTitle = (post: BlogPost) => {
+  return language === 'ar' ? post.title_ar : post.title;
+};
 
   if (loading && posts.length === 0) {
     return (
