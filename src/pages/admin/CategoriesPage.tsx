@@ -111,9 +111,16 @@ const CategoriesPage = () => {
     return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
   };
 
-  const filteredCategories = categories.filter(category =>
-    category.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredCategories = categories.filter((category) => {
+  const search = searchTerm.toLowerCase();
+
+  const nameMatches =
+    (category.name && category.name.toLowerCase().includes(search)) ||
+    (category.name_ar && category.name_ar.toLowerCase().includes(search));
+
+  return nameMatches;
+});
+
 
   if (loading && categories.length === 0) {
     return (
