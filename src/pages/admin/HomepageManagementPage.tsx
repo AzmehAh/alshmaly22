@@ -261,7 +261,7 @@ const HomepageManagementPage = () => {
                           <div className="text-sm font-medium text-[#054239]">
                             {getLocalizedText(content, activeTab === 'products' ? 'name' : 'title')}
                           </div>
-                         
+                           
                         </div>
                       </div>
                     </td>
