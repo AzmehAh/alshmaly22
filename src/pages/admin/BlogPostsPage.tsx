@@ -397,7 +397,10 @@ return (
                         className="h-12 w-12 rounded-lg object-cover mr-4"
                       />
                       <div>
-                        <div className="text-sm font-medium text-[#054239]">{post.title}</div>
+                   <div className="text-sm font-medium text-[#054239]">
+  {getPostTitle(post)}
+</div>
+
           
                       </div>
                     </div>
