@@ -338,7 +338,16 @@ const ProductsPage = () => {
                          product.description.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = selectedCategory === 'all' || product.category_id === selectedCategory;
     return matchesSearch && matchesCategory;
-  });
+  }); 
+  const getText = (product: Product, field: 'name' | 'description') => {
+  if (direction === 'rtl') {
+    const ar = product[`${field}_ar` as keyof Product] as string | undefined;
+    return ar && ar.trim() !== '' ? ar : (product[field] as string);
+  } else {
+    return product[field] as string;
+  }
+};
+
 
   if (loading && products.length === 0) {
     return (
