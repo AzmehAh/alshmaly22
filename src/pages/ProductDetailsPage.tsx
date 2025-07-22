@@ -181,7 +181,7 @@ const ProductDetailsPage = () => {
         </div>
 
         {/* Related Products */}
-       {filteredRelated.length > 0 && (
+        {filteredRelated.length > 0 && (
         <div className="mt-20">
           <h2 className="text-3xl font-bold text-[#054239] mb-8">
             {t('products.related_products')}
@@ -218,15 +218,17 @@ const ProductDetailsPage = () => {
                         </>
                       )}
                     </span>
+                
+                    </div>
                   </div>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              ))}
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
-      
+
 export default ProductDetailsPage;
