@@ -435,11 +435,8 @@ const ProductsPage = () => {
                         <div className="text-sm font-medium text-[#054239]">
   {getText(product, 'name')}
 </div>
-
-                       <div className="text-sm text-gray-500">
-  {getText(product, 'Slug')}
-</div>
-
+ 
+                        <div className="text-sm text-gray-500">{product.slug}</div>
                       </div>
                     </div>
                   </td>
