@@ -313,9 +313,6 @@ const BlogPostsPage = () => {
       </div>
     );
   }
-function getPostTitle(post, language) {
-  return language === 'ar' && post.title_ar ? post.title_ar : post.title_en || post.title;
-}
 
 return (
     <div className="space-y-6">
@@ -397,10 +394,7 @@ return (
                         className="h-12 w-12 rounded-lg object-cover mr-4"
                       />
                       <div>
-                       <div className="text-sm font-medium text-[#054239]">
-  {getPostTitle(post, language)}
-</div>
-
+                        <div className="text-sm font-medium text-[#054239]">{post.title}</div>
                         
                       </div>
                     </div>
@@ -468,7 +462,7 @@ return (
                 </tr>
               ))}
             </tbody>
-          </table>
+          </table> 
         </div>
       </div>
 
