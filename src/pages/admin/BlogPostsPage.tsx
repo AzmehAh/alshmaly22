@@ -414,7 +414,7 @@ return (
                       <div className="text-sm font-medium text-[#054239]">
   {getLocalizedText(post, 'title')}
 </div>
-
+ 
                         
                       </div>
                     </div>
