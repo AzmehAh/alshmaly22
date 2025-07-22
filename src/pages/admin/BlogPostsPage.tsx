@@ -277,13 +277,7 @@ const BlogPostsPage = () => {
       alert(t('blog.error.delete_post'));
     }
   }; 
-const getLocalizedText = (item: any, fieldBase: string) => {
-  if (language === 'ar' && item[`${fieldBase}_ar`]) {
-    return item[`${fieldBase}_ar`];
-  }
-  // fallback to English or default field
-  return item[fieldBase] || '';
-};
+
 
   const addImage = () => {
     setImages([...images, { 
