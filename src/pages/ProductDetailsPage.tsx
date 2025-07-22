@@ -181,51 +181,52 @@ const ProductDetailsPage = () => {
         </div>
 
         {/* Related Products */}
-        {relatedProducts.length > 0 && (
-          <div>
-            <h2 className="text-3xl font-bold text-[#054239] mb-8">{t('products.related_products')}</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {relatedProducts.map(relatedProduct => (
-                <Link
-                  key={relatedProduct.id}
-                  to={`/product/${relatedProduct.id}`}
-                  className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group"
-                >
-                  <div className="relative overflow-hidden">
-                    <img
-                      src={relatedProduct.images?.[0]?.image_url || 'https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=400&h=300'}
-                      alt={relatedProduct.name}
-                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold text-[#054239] mb-2">{relatedProduct.name}</h3>
-                    <div className="flex items-center justify-between">
+       {filteredRelated.length > 0 && (
+        <div className="mt-20">
+          <h2 className="text-3xl font-bold text-[#054239] mb-8">
+            {t('products.related_products')}
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {filteredRelated.map(relatedProduct => (
+              <Link
+                key={relatedProduct.id}
+                to={`/product/${relatedProduct.id}`}
+                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group"
+              >
+                <div className="relative overflow-hidden">
+                  <img
+                    src={relatedProduct.images[0].image_url}
+                    alt={getLocalizedField(relatedProduct, 'name')}
+                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold text-[#054239] mb-2">
+                    {getLocalizedField(relatedProduct, 'name')}
+                  </h3>
+                  <div className="flex items-center justify-between">
                     <span className="inline-flex items-center text-[#b9a779] font-medium transition-colors duration-300 group-hover:text-[#054239] mt-auto">
-  {language === 'ar' ? (
-    <>
-      
-      {t('common.view_details')}
-      <ArrowLeft size={16} className="mr-2 group-hover:-translate-x-1 transition-transform duration-300" />
-    </>
-  ) : (
-    <>
-      {t('common.view_details')}
-      <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-    </>
-  )}
-</span>
-
-                    </div>
+                      {language === 'ar' ? (
+                        <>
+                          {t('common.view_details')}
+                          <ArrowLeft size={16} className="mr-2 group-hover:-translate-x-1 transition-transform duration-300" />
+                        </>
+                      ) : (
+                        <>
+                          {t('common.view_details')}
+                          <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                        </>
+                      )}
+                    </span>
                   </div>
-                </Link>
-              ))}
-            </div>
+                </div>
+              </Link>
+            ))}
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };
-
+      
 export default ProductDetailsPage;
