@@ -8,7 +8,7 @@ import type { Product, BlogPost } from '../../lib/supabase';
 import { useLanguage } from '../../contexts/LanguageContext';
 
 const HomepageManagementPage = () => {
-   const { t, direction } = useLanguage();
+  const { t, direction } = useLanguage();
   const [activeTab, setActiveTab] = useState<'products' | 'blog'>('products');
   const [homepageProducts, setHomepageProducts] = useState<HomepageProduct[]>([]);
   const [homepageBlogPosts, setHomepageBlogPosts] = useState<HomepageBlogPost[]>([]);
@@ -52,6 +52,7 @@ const HomepageManagementPage = () => {
       }
       await fetchData();
       setShowAddModal(false);
+      setSearchTerm(''); // reset search after adding
     } catch (error) {
       console.error('Error adding to homepage:', error);
       alert('Error adding item to homepage. Please try again.');
@@ -91,7 +92,7 @@ const HomepageManagementPage = () => {
       const items = activeTab === 'products' ? homepageProducts : homepageBlogPosts;
       const currentIndex = items.findIndex(item => item.id === id);
       const newIndex = direction === 'up' ? currentIndex - 1 : currentIndex + 1;
-      
+
       if (newIndex < 0 || newIndex >= items.length) return;
 
       const currentItem = items[currentIndex];
@@ -116,18 +117,34 @@ const HomepageManagementPage = () => {
     }
   };
 
+  // دالة لاختيار النص حسب اللغة
+  const getLocalizedText = (item: any, field: string) => {
+    if (direction === 'rtl') {
+      return item[`${field}_ar`] || item[field] || '';
+    }
+    return item[field] || '';
+  };
+
+  // تعديل البحث ليشمل العربي والإنجليزي
   const getAvailableItems = () => {
+    const term = searchTerm.toLowerCase();
     if (activeTab === 'products') {
       const homepageProductIds = homepageProducts.map(hp => hp.product_id);
-      return allProducts.filter(product => 
+      return allProducts.filter(product =>
         !homepageProductIds.includes(product.id) &&
-        product.name.toLowerCase().includes(searchTerm.toLowerCase())
+        (
+          (product.name && product.name.toLowerCase().includes(term)) ||
+          (product.name_ar && product.name_ar.toLowerCase().includes(term))
+        )
       );
     } else {
       const homepageBlogPostIds = homepageBlogPosts.map(hb => hb.blog_post_id);
-      return allBlogPosts.filter(post => 
+      return allBlogPosts.filter(post =>
         !homepageBlogPostIds.includes(post.id) &&
-        post.title.toLowerCase().includes(searchTerm.toLowerCase())
+        (
+          (post.title && post.title.toLowerCase().includes(term)) ||
+          (post.title_ar && post.title_ar.toLowerCase().includes(term))
+        )
       );
     }
   };
@@ -140,11 +157,10 @@ const HomepageManagementPage = () => {
     );
   }
 
-
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <div className="flex items-center  gap-3">
+        <div className="flex items-center gap-3">
           <Home size={24} className="text-[#b9a779]" />
           <h1 className="text-3xl font-bold text-[#054239]">{t('admin.homepage.management')}</h1>
         </div>
@@ -159,9 +175,9 @@ const HomepageManagementPage = () => {
 
       {/* Tabs */}
       <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
-        <div className="flex  gap-4 mb-6">
+        <div className="flex gap-4 mb-6">
           <button
-            onClick={() => setActiveTab('products')}
+            onClick={() => { setActiveTab('products'); setSearchTerm(''); }}
             className={`px-6 py-3 rounded-lg font-medium transition-colors duration-200 ${
               activeTab === 'products'
                 ? 'bg-[#b9a779] text-white'
@@ -171,7 +187,7 @@ const HomepageManagementPage = () => {
             {t('homepage.products')} ({homepageProducts.length})
           </button>
           <button
-            onClick={() => setActiveTab('blog')}
+            onClick={() => { setActiveTab('blog'); setSearchTerm(''); }}
             className={`px-6 py-3 rounded-lg font-medium transition-colors duration-200 ${
               activeTab === 'blog'
                 ? 'bg-[#b9a779] text-white'
@@ -186,22 +202,21 @@ const HomepageManagementPage = () => {
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
-  <tr>
-    <th className={`px-6 py-3 ${direction === 'rtl' ? 'text-right' : 'text-left'} text-xs font-medium text-gray-500 uppercase tracking-wider`}>
-      {t('order')}
-    </th>
-    <th className={`px-6 py-3 ${direction === 'rtl' ? 'text-right' : 'text-left'} text-xs font-medium text-gray-500 uppercase tracking-wider`}>
-      {activeTab === 'products' ? t('product') : t('blog.post')}
-    </th>
-    <th className={`px-6 py-3 ${direction === 'rtl' ? 'text-right' : 'text-left'} text-xs font-medium text-gray-500 uppercase tracking-wider`}>
-      {t('status')}
-    </th>
-    <th className={`px-6 py-3 ${direction === 'rtl' ? 'text-right' : 'text-left'} text-xs font-medium text-gray-500 uppercase tracking-wider`}>
-      {t('actions')}
-    </th>
-  </tr>
-</thead>
-
+              <tr>
+                <th className={`px-6 py-3 ${direction === 'rtl' ? 'text-right' : 'text-left'} text-xs font-medium text-gray-500 uppercase tracking-wider`}>
+                  {t('order')}
+                </th>
+                <th className={`px-6 py-3 ${direction === 'rtl' ? 'text-right' : 'text-left'} text-xs font-medium text-gray-500 uppercase tracking-wider`}>
+                  {activeTab === 'products' ? t('product') : t('blog.post')}
+                </th>
+                <th className={`px-6 py-3 ${direction === 'rtl' ? 'text-right' : 'text-left'} text-xs font-medium text-gray-500 uppercase tracking-wider`}>
+                  {t('status')}
+                </th>
+                <th className={`px-6 py-3 ${direction === 'rtl' ? 'text-right' : 'text-left'} text-xs font-medium text-gray-500 uppercase tracking-wider`}>
+                  {t('actions')}
+                </th>
+              </tr>
+            </thead>
 
             <tbody className="bg-white divide-y divide-gray-200">
               {(activeTab === 'products' ? homepageProducts : homepageBlogPosts).map((item, index) => {
@@ -212,7 +227,7 @@ const HomepageManagementPage = () => {
                 return (
                   <tr key={item.id} className="hover:bg-gray-50">
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="flex items-center  gap-2">
+                      <div className="flex items-center gap-2">
                         <span className="text-sm font-medium text-gray-900">#{index + 1}</span>
                         <div className="flex flex-col space-y-1">
                           <button
@@ -236,25 +251,24 @@ const HomepageManagementPage = () => {
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
                         {activeTab === 'products' && (
-                      
                           <img
-                            src={(item as Product).images?.[0]?.image_url || 'https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=100&h=100'}
-                            alt={item.name || (item as BlogPost).title}
-                           className={`${direction === 'rtl' ? 'ml-3' : 'mr-3'}  h-10 w-10 rounded-lg object-cover`}
-                          /> 
-                         )} 
+                            src={content?.images?.[0]?.image_url || 'https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=100&h=100'}
+                            alt={getLocalizedText(content, activeTab === 'products' ? 'name' : 'title')}
+                            className={`${direction === 'rtl' ? 'ml-3' : 'mr-3'} h-10 w-10 rounded-lg object-cover`}
+                          />
+                        )}
                         <div>
                           <div className="text-sm font-medium text-[#054239]">
-                            {content?.name || content?.title}
+                            {getLocalizedText(content, activeTab === 'products' ? 'name' : 'title')}
                           </div>
                           {activeTab === 'products' && (
                             <div className="text-sm text-gray-500">
-                              {(content as Product)?.category?.name || t('uncategorized')}
+                              {content?.category?.name || t('uncategorized')}
                             </div>
                           )}
                         </div>
                       </div>
-                    </td> 
+                    </td>
 
                     <td className="px-6 py-4 whitespace-nowrap">
                       <button
@@ -270,25 +284,29 @@ const HomepageManagementPage = () => {
                     </td>
 
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                      <div className="flex items-center  gap-2">
+                      <div className="flex items-center gap-2">
                         <button
-                          onClick={() => window.open(
-                            activeTab === 'products'
-                              ? `/product/${(item as HomepageProduct).product_id}`
-                              : `/blog/${(item as HomepageBlogPost).blog_post_id}`,
-                            '_blank'
-                          )}
+                          onClick={() =>
+                            window.open(
+                              activeTab === 'products'
+                                ? `/product/${(item as HomepageProduct).product_id}`
+                                : `/blog/${(item as HomepageBlogPost).blog_post_id}`,
+                              '_blank'
+                            )
+                          }
                           className="text-blue-600 hover:text-blue-900 p-1 rounded"
                           title={t('view.item')}
                         >
                           <Eye size={16} />
                         </button>
                         <button
-                          onClick={() => handleRemoveFromHomepage(
-                            activeTab === 'products'
-                              ? (item as HomepageProduct).product_id
-                              : (item as HomepageBlogPost).blog_post_id
-                          )}
+                          onClick={() =>
+                            handleRemoveFromHomepage(
+                              activeTab === 'products'
+                                ? (item as HomepageProduct).product_id
+                                : (item as HomepageBlogPost).blog_post_id
+                            )
+                          }
                           className="text-red-600 hover:text-red-900 p-1 rounded"
                           title={t('remove.from.homepage')}
                         >
@@ -326,7 +344,10 @@ const HomepageManagementPage = () => {
               {/* Search */}
               <div className="mb-4">
                 <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+                  <Search
+                    className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                    size={20}
+                  />
                   <input
                     type="text"
                     placeholder={t(activeTab === 'products' ? 'search.products' : 'search.blog')}
@@ -345,17 +366,20 @@ const HomepageManagementPage = () => {
                       key={item.id}
                       className="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:bg-gray-50"
                     >
-                      <div className="flex items-center"> 
+                      <div className="flex items-center">
                         {activeTab === 'products' && (
                           <img
-                            src={(item as Product).images?.[0]?.image_url || 'https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=100&h=100'}
-                            alt={item.name || (item as BlogPost).title}
-                           className={`${direction === 'rtl' ? 'ml-3' : 'mr-3'}  h-10 w-10 rounded-lg object-cover`}
+                            src={
+                              (item as Product).images?.[0]?.image_url ||
+                              'https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=100&h=100'
+                            }
+                            alt={getLocalizedText(item, activeTab === 'products' ? 'name' : 'title')}
+                            className={`${direction === 'rtl' ? 'ml-3' : 'mr-3'} h-10 w-10 rounded-lg object-cover`}
                           />
                         )}
                         <div>
                           <div className="font-medium text-[#054239]">
-                            {item.name || (item as BlogPost).title}
+                            {getLocalizedText(item, activeTab === 'products' ? 'name' : 'title')}
                           </div>
                           {activeTab === 'products' && (
                             <div className="text-sm text-gray-500">
@@ -389,3 +413,4 @@ const HomepageManagementPage = () => {
 };
 
 export default HomepageManagementPage;
+
