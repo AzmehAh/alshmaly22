@@ -118,7 +118,7 @@ const HomepageManagementPage = () => {
     }
   };
 
-  // دالة ترجع النص المناسب حسب اللغة (عربي أو إنجليزي)
+
   const getLocalizedText = (item: any, field: string) => {
     if (direction === 'rtl') {
       return item[`${field}_ar`] || item[field] || '';
@@ -126,7 +126,7 @@ const HomepageManagementPage = () => {
     return item[field] || '';
   };
 
-  // فلترة ودعم بحث ثنائي اللغة للمنتجات والمدونات
+ 
   const getAvailableItems = () => {
     const term = searchTerm.toLowerCase();
     if (activeTab === 'products') {
@@ -175,7 +175,7 @@ const HomepageManagementPage = () => {
         </button>
       </div>
 
-      {/* التبويبات */}
+
       <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
         <div className="flex gap-4 mb-6">
           <button
@@ -196,7 +196,7 @@ const HomepageManagementPage = () => {
           </button>
         </div>
 
-        {/* جدول المحتوى */}
+    
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
@@ -320,7 +320,7 @@ const HomepageManagementPage = () => {
         </div>
       </div>
 
-      {/* Modal لإضافة عناصر جديدة */}
+
       {showAddModal && (
         <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
           <div className="relative top-20 mx-auto p-5 border w-11/12 md:w-2/3 lg:w-1/2 shadow-lg rounded-md bg-white">
@@ -346,7 +346,7 @@ const HomepageManagementPage = () => {
                 </div>
               </div>
 
-              {/* قائمة العناصر المتاحة للإضافة */}
+   
               <div className="max-h-96 overflow-y-auto">
                 <div className="space-y-2">
                   {getAvailableItems().map((item) => (
