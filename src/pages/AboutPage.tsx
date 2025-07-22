@@ -123,7 +123,7 @@ return (
               <img 
                 src="https://i.postimg.cc/kMkcnpMC/2025-07-22-10-36-47-181b5e6c11-1.png" 
                 alt="Al-Shmaly Team"
-                className="rounded-2xl  w-full h-96 object-cover"
+                className="rounded-2xl  w-full h-96 object-contain"
               />
               <div className="absolute -bottom-6 -right-6  bg-[#054239]   text-white p-6 rounded-2xl">
                 
