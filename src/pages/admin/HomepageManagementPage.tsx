@@ -160,7 +160,7 @@ const HomepageManagementPage = () => {
 
   return (
     <div className="space-y-6">
-      {/* العنوان والأزرار */}
+
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <Home size={24} className="text-[#b9a779]" />
@@ -246,13 +246,7 @@ const HomepageManagementPage = () => {
 
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
-                        {activeTab === 'products' && (
-                          <img
-                            src={content?.images?.[0]?.image_url || 'https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=100&h=100'}
-                            alt={getLocalizedText(content, 'name')}
-                            className={`${direction === 'rtl' ? 'ml-3' : 'mr-3'} h-10 w-10 rounded-lg object-cover`}
-                          />
-                        )}
+                        
                         <div>
                           <div className="text-sm font-medium text-[#054239]">
                             {getLocalizedText(content, activeTab === 'products' ? 'name' : 'title')}
@@ -332,7 +326,7 @@ const HomepageManagementPage = () => {
                 <button onClick={() => setShowAddModal(false)} className="text-gray-400 hover:text-gray-600">×</button>
               </div>
 
-              {/* بحث */}
+             
               <div className="mb-4">
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
