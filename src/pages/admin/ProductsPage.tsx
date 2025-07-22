@@ -342,11 +342,10 @@ const ProductsPage = () => {
 
  const getProductName = (product: Product) => {
   if (direction === 'rtl') {
-    return product.name_ar?.trim() || product.name_en || product.name;
+    return product.name_ar?.trim() !== '' ? product.name_ar : product.name;
   }
-  return product.name_en?.trim() || product.name_ar || product.name;
-};
-
+  return product.name;
+}; 
 
 
   if (loading && products.length === 0) {
@@ -913,7 +912,7 @@ const ProductsPage = () => {
                             <div className="font-medium text-[#054239]">{relation.related_product?.name}</div>
                             <div className="text-sm text-gray-500 capitalize">{relation.relation_type}</div>
                           </div>
-                        </div> 
+                        </div>
                         <button
                           onClick={() => handleRemoveRelation(relation.id, showRelationsModal!)}
                           className="text-red-600 hover:text-red-800 p-1"
