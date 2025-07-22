@@ -956,9 +956,8 @@ const ProductsPage = () => {
             />
             <div>
 <div className="font-medium text-[#054239]">
-  {getProductName(relation.related_product)}
-</div>
-
+      {getProductName(product)}
+    </div>
               <div className="text-sm text-gray-500">{product.category?.name}</div>
             </div>
           </div>
