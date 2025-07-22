@@ -338,7 +338,7 @@ const translations = {
     'about.global_reach.title': 'الوصول العالمي',
     'about.global_reach.subtitle': 'نفخر بالتصدير إلى أكثر من 30 دولة حول العالم، نجلب التميز الزراعي السوري إلى الأسواق العالمية',
     
-    // Contact
+    // Contact 
     'contact.title': 'اتصل بنا',
     'contact.get_in_touch': 'تواصل معنا',
     'contact.send_message': 'أرسل لنا رسالة',
@@ -376,10 +376,10 @@ const translations = {
     'about.journey.title': 'رحلتنا',
     'about.journey.subtitle': 'اكتشف المعالم التي شكلت التزامنا بالجودة والتميز',
     'about.values.quality.title': 'التميز في الجودة',
-    'about.values.quality.description': 'نحافظ على أعلى المعايير في كل منتج نصدره، مما يضمن الأصالة والجودة المتميز
+    'about.values.quality.description': 'نحافظ على أعلى المعايير في كل منتج نصدره، مما يضمن الأصالة والجودة المتميزة.',
     'about.values.customer.title': 'التركيز على العملاء',
     'about.values.customer.description': 'عملاؤنا في قلب كل ما نفعله. نبني شراكات دائمة قائمة على الثقة والموثوقية.',
-    'about.values.global.title': 'الوصول العالمي', 
+    'about.values.global.title': 'الوصول العالمي',
     'about.values.global.description': 'نربط التراث الزراعي السوري بالأسواق العالمية، ونقدم النكهات الأصلية في جميع أنحاء العالم.',
     'about.values.sustainability.title': 'الاستدامة',
     'about.values.sustainability.description': 'نحن ملتزمون بممارسات الزراعة المستدامة التي تدعم المجتمعات المحلية والبيئة.',
