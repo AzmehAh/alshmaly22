@@ -340,13 +340,11 @@ const ProductsPage = () => {
   return nameEn.includes(term) || nameAr.includes(term);
 });
 
-  const getText = (product: Product, field: 'name' | 'description') => {
+ const getProductName = (product: Product) => {
   if (direction === 'rtl') {
-    const ar = product[`${field}_ar` as keyof Product] as string | undefined;
-    return ar && ar.trim() !== '' ? ar : (product[field] as string);
-  } else {
-    return product[field] as string;
+    return product.name_ar?.trim() !== '' ? product.name_ar : product.name;
   }
+  return product.name;
 };
 
 
@@ -432,9 +430,11 @@ const ProductsPage = () => {
                         className="h-12 w-12 rounded-lg object-cover mr-4"
                       />
                       <div>
-                        <div className="text-sm font-medium text-[#054239]">
-  {getText(product, 'name')}
+                      <div className="text-sm font-medium text-[#054239]">
+  {getProductName(product)}
 </div>
+
+
  
                       
                       </div>
