@@ -284,9 +284,7 @@ const BlogPostsPage = () => {
       alt_text: '', 
       sort_order: images.length > 0 ? Math.max(...images.map(i => i.sort_order)) + 1 : 1 
     }]);
-  }; const getPostTitle = (post: BlogPost) => {
-  return language === 'ar' ? post.title_ar : post.title;
-};
+  };
 
   const updateImage = (index: number, field: keyof BlogPostImage, value: string | number) => {
     const newImages = [...images];
@@ -307,7 +305,6 @@ const BlogPostsPage = () => {
     const matchesCategory = selectedCategory === 'all' || post.category_id === selectedCategory;
     return matchesSearch && matchesCategory;
   });
-
 
   if (loading && posts.length === 0) {
     return (
@@ -397,11 +394,8 @@ return (
                         className="h-12 w-12 rounded-lg object-cover mr-4"
                       />
                       <div>
-                   <div className="text-sm font-medium text-[#054239]">
-  {getPostTitle(post)}
-</div>
-
-          
+                        <div className="text-sm font-medium text-[#054239]">{post.title}</div>
+                        
                       </div>
                     </div>
                   </td>
