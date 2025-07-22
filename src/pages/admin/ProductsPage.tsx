@@ -333,12 +333,13 @@ const ProductsPage = () => {
     setPackages(prev => prev.filter((_, i) => i !== index));
   };
 
-  const filteredProducts = products.filter(product => {
-    const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         product.description.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === 'all' || product.category_id === selectedCategory;
-    return matchesSearch && matchesCategory;
-  }); 
+ const filteredProducts = products.filter(product => {
+  const term = searchTerm.toLowerCase();
+  const nameEn = product.name.toLowerCase();
+  const nameAr = product.name_ar?.toLowerCase() || '';
+  return nameEn.includes(term) || nameAr.includes(term);
+});
+
   const getText = (product: Product, field: 'name' | 'description') => {
   if (direction === 'rtl') {
     const ar = product[`${field}_ar` as keyof Product] as string | undefined;
@@ -431,7 +432,10 @@ const ProductsPage = () => {
                         className="h-12 w-12 rounded-lg object-cover mr-4"
                       />
                       <div>
-                        <div className="text-sm font-medium text-[#054239]">{product.name}</div>
+                        <div className="text-sm font-medium text-[#054239]">
+  {getText(product, 'name')}
+</div>
+
                         <div className="text-sm text-gray-500">{product.slug}</div>
                       </div>
                     </div>
