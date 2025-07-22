@@ -122,7 +122,7 @@ const translations = {
     'about.journey.title': 'Our Journey',
     'about.journey.subtitle': 'Discover the milestones that have shaped our commitment to quality and excellence',
     'about.values.quality.title': 'Quality Excellence',
-    'about.values.quality.description': 'We maintain the highest standards in every product we export, ensuring authenticity and premium quality.',
+    'about.values.quality.description': 'The company’s founder and general manager, Hassan Al-Mohammad (Al-Shmaly)',
     'about.values.customer.title': 'Customer Focus',
     'about.values.customer.description': 'Our customers are at the heart of everything we do. We build lasting partnerships based on trust and reliability.',
     'about.values.global.title': 'Global Reach',
@@ -329,7 +329,7 @@ const translations = {
      'erorr':'لا يمكن الوصول للمنتجات ',
     
     // About
-    'about.title': 'عن الشمالي',
+    'about.title': 'عن  مؤسسة الشمالي',
     'about.hero.subtitle': 'لأكثر من 27 عامًا، كنا الجسر بين التراث الزراعي السوري والأسواق العالمية، نجلب منتجات أصلية عالية الجودة إلى موائد العالم.',
     'about.vision.title': 'رؤيتنا وقيمنا',
  'about.vision.description.1': 'في الشمالي، نؤمن بأن الجودة تتحدث عن نفسها. تتمثل مهمتنا في الحفاظ على التراث الزراعي الغني في سوريا ومشاركته، مع بناء شراكات مستدامة تعود بالفائدة على المزارعين والتجار والمستهلكين حول العالم.',
@@ -376,7 +376,7 @@ const translations = {
     'about.journey.title': 'رحلتنا',
     'about.journey.subtitle': 'اكتشف المعالم التي شكلت التزامنا بالجودة والتميز',
     'about.values.quality.title': 'التميز في الجودة',
-    'about.values.quality.description': 'نحافظ على أعلى المعايير في كل منتج نصدره، مما يضمن الأصالة والجودة المتميزة.',
+    'about.values.quality.description': 'مؤسس الشركة و المدير العام حسن المحمد (الشمالي)',
     'about.values.customer.title': 'التركيز على العملاء',
     'about.values.customer.description': 'عملاؤنا في قلب كل ما نفعله. نبني شراكات دائمة قائمة على الثقة والموثوقية.',
     'about.values.global.title': 'الوصول العالمي',
