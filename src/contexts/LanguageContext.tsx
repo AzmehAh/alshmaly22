@@ -260,8 +260,8 @@ const translations = {
      'products.show2': 'products ',
     'common.loading': 'Loading...',
    'categories.all': 'All categories',
-   'pagination.previous':'pag previous',
-    'pagination.next':'pag next',
+   'pagination.previous':'previous',
+    'pagination.next':' next',
 
   },
   ar: {
