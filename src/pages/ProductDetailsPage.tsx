@@ -20,10 +20,7 @@ const ProductDetailsPage = () => {
       setSelectedPackage(defaultPkg.weight);
     }
   }, [product, selectedPackage]);
- const getLocalizedField = (obj: any, field: string) => {
-  return language === 'ar' ? obj[`${field}_ar`] : obj[`${field}_en`];
-};
-
+ 
   const handleQuoteRequest = async () => {
     if (!product || !selectedPackage) return;
 
@@ -71,10 +68,11 @@ const ProductDetailsPage = () => {
     );
   }
 
-  const specifications =
-    language === 'en'
-      ? product.specifications_en
-      : product.specifications_ar;
+ const specifications = language === 'en' ? product.specifications_en : product.specifications_ar;
+
+  // Filter only valid related products
+  const filteredRelated = relatedProducts.filter(p => getLocalizedField(p, 'name') && p.images?.[0]?.image_url);
+
  
   return (
     <div className="min-h-screen bg-[#F7F7F7] pt-20">
