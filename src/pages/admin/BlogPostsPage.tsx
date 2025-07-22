@@ -14,7 +14,7 @@ interface BlogPostImage {
 }
 
 const BlogPostsPage = () => {
-  const { t, direction } = useLanguage();
+  const { t, direction, language } = useLanguage();
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [categories, setCategories] = useState<BlogCategory[]>([]);
   const [loading, setLoading] = useState(true);
