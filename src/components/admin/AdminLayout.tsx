@@ -85,7 +85,7 @@ const AdminLayout = () => {
         } transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 flex flex-col`}
       >
         {/* Logo Section */}
-        <div className="flex items-center justify-between h-16 px-6 border-b border-gray-200 flex-shrink-0">
+        <div className="flex items-center justify-between h-20 px-6 border-b border-gray-200 flex-shrink-0">
           <div className="flex items-center gap-3">
             <img
               src="https://i.postimg.cc/0Q8pxwTM/logo.png"
