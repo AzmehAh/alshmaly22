@@ -284,7 +284,9 @@ const BlogPostsPage = () => {
       alt_text: '', 
       sort_order: images.length > 0 ? Math.max(...images.map(i => i.sort_order)) + 1 : 1 
     }]);
-  };
+  }; const getPostTitle = (post: BlogPost) => {
+  return language === 'ar' ? post.title_ar : post.title;
+};
 
   const updateImage = (index: number, field: keyof BlogPostImage, value: string | number) => {
     const newImages = [...images];
@@ -305,9 +307,7 @@ const BlogPostsPage = () => {
     const matchesCategory = selectedCategory === 'all' || post.category_id === selectedCategory;
     return matchesSearch && matchesCategory;
   });
-const getPostTitle = (post: BlogPost) => {
-  return language === 'ar' ? post.title_ar : post.title;
-};
+
 
   if (loading && posts.length === 0) {
     return (
