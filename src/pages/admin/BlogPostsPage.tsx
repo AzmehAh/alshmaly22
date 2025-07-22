@@ -395,7 +395,7 @@ return (
                       />
                       <div>
                         <div className="text-sm font-medium text-[#054239]">{post.title}</div>
-                        <div className="text-sm text-gray-500">{post.slug}</div>
+          
                       </div>
                     </div>
                   </td>
