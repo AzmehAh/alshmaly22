@@ -136,7 +136,7 @@ const ExportCountriesPage = () => {
     setShowForm(false);
   };
 const getLocalized = (item: ExportCountry, field: 'name' | 'main_products' | 'annual_exports') => {
-  if (direction === 'rtl') { // أو أي شرط تعتمد عليه لتحديد العربية
+  if (direction === 'rtl') {
     return item[`${field}_ar`] || item[field] || '';
   }
   return item[field] || '';
@@ -224,7 +224,7 @@ const getLocalized = (item: ExportCountry, field: 'name' | 'main_products' | 'an
                 <tr key={country.id} className="hover:bg-gray-50">
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center  gap-2">
-                      <span className="text-sm font-medium text-gray-900">#{country.display_order}</span>
+                      
                       <div className="flex flex-col space-y-1">
                         <button
                           onClick={() => handleMoveCountry(country.id, 'up')}
