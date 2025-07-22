@@ -910,13 +910,10 @@ const ProductsPage = () => {
                             className="h-10 w-10 rounded-lg object-cover mr-3"
                           />
                           <div>
-                           <div className="font-medium text-[#054239]">
-  {getProductName(relation.related_product)}
-</div>
-
+                            <div className="font-medium text-[#054239]">{relation.related_product?.name}</div>
                             <div className="text-sm text-gray-500 capitalize">{relation.relation_type}</div>
                           </div>
-                        </div>
+                        </div> 
                         <button
                           onClick={() => handleRemoveRelation(relation.id, showRelationsModal!)}
                           className="text-red-600 hover:text-red-800 p-1"
@@ -946,11 +943,16 @@ const ProductsPage = () => {
           className="flex items-center justify-between p-3 border border-gray-200 rounded-lg"
         >
           <div className="flex items-center">
-           
+            <img
+              src={
+                product.images?.[0]?.image_url ||
+                'https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=100&h=100'
+              }
+              alt={product.name}
+              className="h-10 w-10 rounded-lg object-cover mr-3"
+            />
             <div>
-<div className="font-medium text-[#054239]">
-      {getProductName(product)}
-    </div>
+              <div className="font-medium text-[#054239]">{product.name}</div>
               <div className="text-sm text-gray-500">{product.category?.name}</div>
             </div>
           </div>
