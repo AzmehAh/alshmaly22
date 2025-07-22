@@ -7,6 +7,8 @@ import type { HomepageProduct, HomepageBlogPost } from '../../lib/api/homepage';
 import type { Product, BlogPost } from '../../lib/supabase';
 import { useLanguage } from '../../contexts/LanguageContext';
 
+
+
 const HomepageManagementPage = () => {
   const { t, direction } = useLanguage();
   const [activeTab, setActiveTab] = useState<'products' | 'blog'>('products');
@@ -52,7 +54,7 @@ const HomepageManagementPage = () => {
       }
       await fetchData();
       setShowAddModal(false);
-      setSearchTerm(''); // reset search after adding
+      setSearchTerm('');
     } catch (error) {
       console.error('Error adding to homepage:', error);
       alert('Error adding item to homepage. Please try again.');
@@ -92,7 +94,6 @@ const HomepageManagementPage = () => {
       const items = activeTab === 'products' ? homepageProducts : homepageBlogPosts;
       const currentIndex = items.findIndex(item => item.id === id);
       const newIndex = direction === 'up' ? currentIndex - 1 : currentIndex + 1;
-
       if (newIndex < 0 || newIndex >= items.length) return;
 
       const currentItem = items[currentIndex];
@@ -117,7 +118,7 @@ const HomepageManagementPage = () => {
     }
   };
 
-  // دالة لاختيار النص حسب اللغة
+  // دالة ترجع النص المناسب حسب اللغة (عربي أو إنجليزي)
   const getLocalizedText = (item: any, field: string) => {
     if (direction === 'rtl') {
       return item[`${field}_ar`] || item[field] || '';
@@ -125,7 +126,7 @@ const HomepageManagementPage = () => {
     return item[field] || '';
   };
 
-  // تعديل البحث ليشمل العربي والإنجليزي
+  // فلترة ودعم بحث ثنائي اللغة للمنتجات والمدونات
   const getAvailableItems = () => {
     const term = searchTerm.toLowerCase();
     if (activeTab === 'products') {
@@ -159,6 +160,7 @@ const HomepageManagementPage = () => {
 
   return (
     <div className="space-y-6">
+      {/* العنوان والأزرار */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <Home size={24} className="text-[#b9a779]" />
@@ -173,15 +175,13 @@ const HomepageManagementPage = () => {
         </button>
       </div>
 
-      {/* Tabs */}
+      {/* التبويبات */}
       <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
         <div className="flex gap-4 mb-6">
           <button
             onClick={() => { setActiveTab('products'); setSearchTerm(''); }}
             className={`px-6 py-3 rounded-lg font-medium transition-colors duration-200 ${
-              activeTab === 'products'
-                ? 'bg-[#b9a779] text-white'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              activeTab === 'products' ? 'bg-[#b9a779] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
             }`}
           >
             {t('homepage.products')} ({homepageProducts.length})
@@ -189,16 +189,14 @@ const HomepageManagementPage = () => {
           <button
             onClick={() => { setActiveTab('blog'); setSearchTerm(''); }}
             className={`px-6 py-3 rounded-lg font-medium transition-colors duration-200 ${
-              activeTab === 'blog'
-                ? 'bg-[#b9a779] text-white'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              activeTab === 'blog' ? 'bg-[#b9a779] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
             }`}
           >
             {t('homepage.blog.posts')} ({homepageBlogPosts.length})
           </button>
         </div>
 
-        {/* Table headers */}
+        {/* جدول المحتوى */}
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
@@ -220,9 +218,7 @@ const HomepageManagementPage = () => {
 
             <tbody className="bg-white divide-y divide-gray-200">
               {(activeTab === 'products' ? homepageProducts : homepageBlogPosts).map((item, index) => {
-                const content = activeTab === 'products'
-                  ? (item as HomepageProduct).product
-                  : (item as HomepageBlogPost).blog_post;
+                const content = activeTab === 'products' ? (item as HomepageProduct).product : (item as HomepageBlogPost).blog_post;
 
                 return (
                   <tr key={item.id} className="hover:bg-gray-50">
@@ -239,7 +235,7 @@ const HomepageManagementPage = () => {
                           </button>
                           <button
                             onClick={() => handleMoveItem(item.id, 'down')}
-                            disabled={index === (activeTab === 'products' ? homepageProducts.length - 1 : homepageBlogPosts.length - 1)}
+                            disabled={index === ((activeTab === 'products' ? homepageProducts.length : homepageBlogPosts.length) - 1)}
                             className="text-gray-400 hover:text-[#b9a779] disabled:opacity-30 disabled:cursor-not-allowed"
                           >
                             <ArrowDown size={14} />
@@ -253,7 +249,7 @@ const HomepageManagementPage = () => {
                         {activeTab === 'products' && (
                           <img
                             src={content?.images?.[0]?.image_url || 'https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=100&h=100'}
-                            alt={getLocalizedText(content, activeTab === 'products' ? 'name' : 'title')}
+                            alt={getLocalizedText(content, 'name')}
                             className={`${direction === 'rtl' ? 'ml-3' : 'mr-3'} h-10 w-10 rounded-lg object-cover`}
                           />
                         )}
@@ -261,7 +257,13 @@ const HomepageManagementPage = () => {
                           <div className="text-sm font-medium text-[#054239]">
                             {getLocalizedText(content, activeTab === 'products' ? 'name' : 'title')}
                           </div>
-                           
+                          {activeTab === 'products' && (
+                            <div className="text-sm text-gray-500">
+                              {direction === 'rtl'
+                                ? content?.category?.name_ar || content?.category?.name || t('uncategorized')
+                                : content?.category?.name || t('uncategorized')}
+                            </div>
+                          )}
                         </div>
                       </div>
                     </td>
@@ -318,32 +320,22 @@ const HomepageManagementPage = () => {
         </div>
       </div>
 
-      {/* Modal */}
+      {/* Modal لإضافة عناصر جديدة */}
       {showAddModal && (
         <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
           <div className="relative top-20 mx-auto p-5 border w-11/12 md:w-2/3 lg:w-1/2 shadow-lg rounded-md bg-white">
             <div className="mt-3">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-lg font-medium text-[#054239]">
-                  {t('add.item.to.homepage', {
-                    type: t(activeTab === 'products' ? 'product' : 'blog.post'),
-                  })}
+                  {t('add.item.to.homepage', { type: t(activeTab === 'products' ? 'product' : 'blog.post') })}
                 </h3>
-                <button
-                  onClick={() => setShowAddModal(false)}
-                  className="text-gray-400 hover:text-gray-600"
-                >
-                  ×
-                </button>
+                <button onClick={() => setShowAddModal(false)} className="text-gray-400 hover:text-gray-600">×</button>
               </div>
 
-              {/* Search */}
+              {/* بحث */}
               <div className="mb-4">
                 <div className="relative">
-                  <Search
-                    className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
-                    size={20}
-                  />
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
                   <input
                     type="text"
                     placeholder={t(activeTab === 'products' ? 'search.products' : 'search.blog')}
@@ -354,7 +346,7 @@ const HomepageManagementPage = () => {
                 </div>
               </div>
 
-              {/* List */}
+              {/* قائمة العناصر المتاحة للإضافة */}
               <div className="max-h-96 overflow-y-auto">
                 <div className="space-y-2">
                   {getAvailableItems().map((item) => (
@@ -365,10 +357,7 @@ const HomepageManagementPage = () => {
                       <div className="flex items-center">
                         {activeTab === 'products' && (
                           <img
-                            src={
-                              (item as Product).images?.[0]?.image_url ||
-                              'https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=100&h=100'
-                            }
+                            src={item.images?.[0]?.image_url || 'https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=100&h=100'}
                             alt={getLocalizedText(item, activeTab === 'products' ? 'name' : 'title')}
                             className={`${direction === 'rtl' ? 'ml-3' : 'mr-3'} h-10 w-10 rounded-lg object-cover`}
                           />
@@ -379,7 +368,9 @@ const HomepageManagementPage = () => {
                           </div>
                           {activeTab === 'products' && (
                             <div className="text-sm text-gray-500">
-                              {(item as Product).category?.name || t('uncategorized')}
+                              {direction === 'rtl'
+                                ? item.category?.name_ar || item.category?.name || t('uncategorized')
+                                : item.category?.name || t('uncategorized')}
                             </div>
                           )}
                         </div>
@@ -409,4 +400,3 @@ const HomepageManagementPage = () => {
 };
 
 export default HomepageManagementPage;
-
