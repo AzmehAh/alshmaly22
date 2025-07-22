@@ -108,7 +108,7 @@ const AdminLayout = () => {
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 px-3 py-6 overflow-y-auto">
+        <nav className="flex-1 px-3 py-8 overflow-y-auto">
           <div className="space-y-2">
             {navigation.map((item) => (
               <Link
