@@ -1006,7 +1006,7 @@ const adminTranslations = {
    'admin.welcome': 'مرحباً بك',
    'admin.dashboard': 'لوحة التحكم',
     'admin.last_updated': 'آخر تحديث',
-    'admin.logo': 'الشمالي',
+    'admin.logo': 'مؤسسة الشمالي التجارية',
   }
 };
 
