@@ -34,8 +34,8 @@ const HomepageManagementPage = () => {
 
       setHomepageProducts(homepageProds);
       setHomepageBlogPosts(homepagePosts);
-      setAllProducts(products);
-      setAllBlogPosts(blogPosts);
+      setAllProducts(products.products || []);
+      setAllBlogPosts(blogPosts.posts || []);
     } catch (error) {
       console.error('Error fetching homepage data:', error);
     } finally {
