@@ -61,7 +61,7 @@ const ProductsPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F7F7F7] pt-20 overflow-x-hidden w-full">
+    <div className="min-h-screen bg-[#F7F7F7] pt-20 w-full">
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="mb-8">
