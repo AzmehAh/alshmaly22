@@ -75,7 +75,7 @@ const AboutSection = () => {
           {/* Image */}
           <div className="relative">
             <img 
-              src="https://images.pexels.com/photos/1595104/pexels-photo-1595104.jpeg?auto=compress&cs=tinysrgb&w=800&h=600" 
+              src="https://i.postimg.cc/nVwzyykF/Whats-App-Image-2025-07-10-at-7-16-59-PM.jpg" 
               alt="Al-Shamali Team"
               className="rounded-2xl shadow-2xl w-full h-96 object-cover"
             />
