@@ -774,7 +774,7 @@ const adminTranslations = {
      'admin.logout': 'Log out',
     'admin.welcome': 'Welcome',
     'admin.last_updated': 'last updated',
-       'admin.logo': 'Al-Shmaly ',
+       'admin.logo': 'Al-Shmaly Agro ',
   },
   ar: {
     'admin.products.management': 'إدارة المنتجات',
