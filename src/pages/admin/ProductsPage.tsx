@@ -342,10 +342,11 @@ const ProductsPage = () => {
 
  const getProductName = (product: Product) => {
   if (direction === 'rtl') {
-    return product.name_ar?.trim() !== '' ? product.name_ar : product.name;
+    return product.name_ar?.trim() || product.name_en || product.name;
   }
-  return product.name;
+  return product.name_en?.trim() || product.name_ar || product.name;
 };
+
 
 
   if (loading && products.length === 0) {
@@ -909,7 +910,10 @@ const ProductsPage = () => {
                             className="h-10 w-10 rounded-lg object-cover mr-3"
                           />
                           <div>
-                            <div className="font-medium text-[#054239]">{relation.related_product?.name}</div>
+                           <div className="font-medium text-[#054239]">
+  {getProductName(relation.related_product)}
+</div>
+
                             <div className="text-sm text-gray-500 capitalize">{relation.relation_type}</div>
                           </div>
                         </div>
