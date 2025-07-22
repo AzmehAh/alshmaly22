@@ -72,6 +72,9 @@ const ProductDetailsPage = () => {
     language === 'en'
       ? product.specifications_en
       : product.specifications_ar;
+ const getLocalizedField = (obj: any, field: string) => {
+  return language === 'ar' ? obj[`${field}_ar`] : obj[`${field}_en`];
+};
 
   return (
     <div className="min-h-screen bg-[#F7F7F7] pt-20">
