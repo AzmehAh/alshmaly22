@@ -12,9 +12,6 @@ const ProductDetailsPage = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [quoteLoading, setQuoteLoading] = useState(false);
 
-const getLocalizedField = (obj: any, field: string) => {
-  return language === 'ar' ? obj[`${field}_ar`] : obj[`${field}_en`];
-};
 
   // Set default package when product loads
   React.useEffect(() => {
@@ -43,7 +40,10 @@ const getLocalizedField = (obj: any, field: string) => {
     } finally {
       setQuoteLoading(false);
     }
-  };
+  }; const getLocalizedField = (obj: any, field: string) => {
+  return language === 'ar' ? obj[`${field}_ar`] : obj[`${field}_en`];
+};
+
 
   if (loading) {
     return (
