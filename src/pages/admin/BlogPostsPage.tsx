@@ -308,7 +308,7 @@ const filteredPosts = posts.filter(post => {
   const excerptEn = post.excerpt?.toLowerCase() || '';
   const excerptAr = post.excerpt_ar?.toLowerCase() || '';
 
-  const matchesSearch = 
+  const matchesSearch =
     titleEn.includes(search) || titleAr.includes(search) ||
     excerptEn.includes(search) || excerptAr.includes(search);
 
@@ -316,6 +316,13 @@ const filteredPosts = posts.filter(post => {
 
   return matchesSearch && matchesCategory;
 });
+const getLocalizedText = (item: any, field: string) => {
+  if (language === 'ar') {
+    return item[`${field}_ar`] || item[field] || '';
+  }
+  return item[field] || '';
+};
+
 
   if (loading && posts.length === 0) {
     return (
