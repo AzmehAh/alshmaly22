@@ -885,7 +885,10 @@ return (
                       className={`${direction === 'rtl' ? 'ml-3' : 'mr-3'} h-10 w-10 rounded-lg object-cover`}
                     />
                     <div> 
-                      <div className="font-medium text-[#054239]">{relation.related_post?.title}</div>
+                     <div className="text-sm font-medium text-[#054239]">
+  {getLocalizedText(post, 'title')}
+</div>
+
                       <div className="text-sm text-gray-500">{relation.related_post?.category?.name}</div>
                     </div>
                   </div>
@@ -913,11 +916,7 @@ return (
                 .map((post) => (
                   <div key={post.id} className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
                     <div className="flex items-center">
-                      <img
-                        src={post.thumbnail || 'https://via.placeholder.com/100x100?text=Post'}
-                        alt={post.title}
-                        className="h-10 w-10 rounded-lg object-cover"
-                      />
+                     
                       <div>
                         <div className="font-medium text-[#054239]">{post.title}</div>
                         <div className="text-sm text-gray-500">{post.category?.name}</div>
