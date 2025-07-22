@@ -65,12 +65,20 @@ const ContactsPage = () => {
   };
 
   const filteredContacts = contacts.filter(contact => {
-    const matchesSearch = contact.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         contact.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         contact.subject.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesStatus = selectedStatus === 'all' || contact.status === selectedStatus;
-    return matchesSearch && matchesStatus;
-  });
+  const term = searchTerm.toLowerCase();
+
+  const matchesSearch =
+    (contact.name && contact.name.toLowerCase().includes(term)) ||
+    (contact.name_ar && contact.name_ar.toLowerCase().includes(term)) ||
+    (contact.email && contact.email.toLowerCase().includes(term)) ||
+    (contact.subject && contact.subject.toLowerCase().includes(term)) ||
+    (contact.subject_ar && contact.subject_ar.toLowerCase().includes(term));
+
+  const matchesStatus = selectedStatus === 'all' || contact.status === selectedStatus;
+
+  return matchesSearch && matchesStatus;
+});
+
 
   const getStatusColor = (status: string) => {
     switch (status) {
