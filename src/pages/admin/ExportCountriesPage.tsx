@@ -72,7 +72,7 @@ const ExportCountriesPage = () => {
       annual_exports_ar: country.annual_exports_ar || '',
       main_products: country.main_products,
       main_products_ar: country.main_products_ar || '',
-      display_order: country.display_order,
+    
       is_active: country.is_active
     });
     setShowForm(true);
@@ -109,10 +109,7 @@ const ExportCountriesPage = () => {
       const currentCountry = countries[currentIndex];
       const swapCountry = countries[newIndex];
 
-      await Promise.all([
-        ExportCountriesAPI.updateDisplayOrder(currentCountry.id, swapCountry.display_order),
-        ExportCountriesAPI.updateDisplayOrder(swapCountry.id, currentCountry.display_order)
-      ]);
+    
 
       await fetchCountries();
     } catch (error) {
