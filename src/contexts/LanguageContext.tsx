@@ -45,7 +45,7 @@ const translations = {
     'common.product' :'No products found matching your criteria.',
     
     // Home page
-    'home.hero.title': 'Al-Shmaly – Quality Speaks',
+    'home.hero.title': 'Al-Shmaly Agro – Quality Speaks',
     'home.hero.subtitle': 'We export the best of Syrian nature to the world, bringing authenticity and premium quality to your table.',
     'home.hero.explore_products': 'Explore Our Products',
     'home.about.1': 'Trusted by',
@@ -295,7 +295,7 @@ const translations = {
     
     
     // Home page
-    'home.hero.title': 'الشمالي – الجودة تتحدث عن نفسها',
+    'home.hero.title': 'مؤسسة الشمالي  النجارية– الجودة تتحدث عن نفسها',
     'home.hero.subtitle': 'نصدر أفضل ما في الطبيعة السورية إلى العالم، ونقدم الأصالة والجودة المميزة لمائدتك.',
     'home.hero.explore_products': 'استكشف منتجاتنا',
     'home.about.title': 'نحن نجلب الأصالة إلى عالمك',
