@@ -75,7 +75,7 @@ const translations = {
      'erorr':'Error loading products:',
     
     // About
-    'about.title': 'About Al-Shmaly ',
+    'about.title': 'About Al-Shmaly Agro ',
     'about.hero.subtitle': 'For over 27 years, we have been the bridge between Syrian agricultural heritage and global markets, bringing authentic, premium-quality products to tables worldwide.',
     'about.vision.title': 'Our Vision & Values',
     'about.vision.description.1': 'At Al-Shmaly , we believe that quality speaks for itself. Our mission is to preserve and share the rich agricultural heritage of Syria while building sustainable partnerships that benefit farmers, traders, and consumers worldwide.',
@@ -119,7 +119,7 @@ const translations = {
     // About page
     'about.hero.subtitle': 'For over 27 years, we have been the bridge between Syrian agricultural heritage and global markets, bringing authentic, premium-quality products to tables worldwide.',
     'about.vision.title': 'Our Vision & Values',
-    'about.vision.content': 'We maintain the highest standards in every product we export, ensuring authenticity and premium quality.',
+    'about.vision.content': 'Under the leadership of the founder and general manager, Hassan Al Mohammad (Al-Shmaly), we maintain the highest standards in every product we export, ensuring authenticity and premium quality.',
     'about.journey.title': 'Our Journey',
     'about.journey.subtitle': 'Discover the milestones that have shaped our commitment to quality and excellence',
     'about.values.quality.title': 'Quality Excellence',
@@ -373,7 +373,7 @@ const translations = {
     // About page
     'about.hero.subtitle': 'لأكثر من 27 عامًا، كنا الجسر بين التراث الزراعي السوري والأسواق العالمية، نجلب منتجات أصلية عالية الجودة إلى موائد العالم.',
     'about.vision.title': 'رؤيتنا وقيمنا',
-    'about.vision.content': 'نحافظ على أعلى المعايير في كل منتج نصدره، مما يضمن الأصالة والجودة المتميزة.',
+    'about.vision.content': 'تحت قيادة المؤسس والمدير العام، حسن المحمد (الشمالي)، نلتزم بأعلى معايير الجودة في كل منتج نقوم بتصديره، بما يضمن الأصالة والجودة الفاخرة.',
     'about.journey.title': 'رحلتنا',
     'about.journey.subtitle': 'اكتشف المعالم التي شكلت التزامنا بالجودة والتميز',
     'about.values.quality.title': 'التميز في الجودة',
