@@ -135,11 +135,25 @@ const ExportCountriesPage = () => {
     setEditingCountry(null);
     setShowForm(false);
   };
+const getLocalized = (item: ExportCountry, field: 'name' | 'main_products' | 'annual_exports') => {
+  if (direction === 'rtl') { // أو أي شرط تعتمد عليه لتحديد العربية
+    return item[`${field}_ar`] || item[field] || '';
+  }
+  return item[field] || '';
+};
 
-  const filteredCountries = countries.filter(country =>
-    country.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    country.main_products.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredCountries = countries.filter(country => {
+  const name = getLocalized(country, 'name').toLowerCase();
+  const products = getLocalized(country, 'main_products').toLowerCase();
+  const exports = getLocalized(country, 'annual_exports').toLowerCase();
+  const term = searchTerm.toLowerCase();
+  return (
+    name.includes(term) ||
+    products.includes(term) ||
+    exports.includes(term)
   );
+});
+
 
   if (loading && countries.length === 0) {
     return (
@@ -229,15 +243,16 @@ const ExportCountriesPage = () => {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm font-medium text-[#054239]">{country.name}</div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-900">{country.annual_exports}</div>
-                  </td>
-                  <td className="px-6 py-4">
-                    <div className="text-sm text-gray-900 max-w-xs truncate">{country.main_products}</div>
-                  </td>
+                <td className="px-6 py-4 whitespace-nowrap">
+  <div className="text-sm font-medium text-[#054239]">{getLocalized(country, 'name')}</div>
+</td>
+<td className="px-6 py-4 whitespace-nowrap">
+  <div className="text-sm text-gray-900">{getLocalized(country, 'annual_exports')}</div>
+</td>
+<td className="px-6 py-4">
+  <div className="text-sm text-gray-900 max-w-xs truncate">{getLocalized(country, 'main_products')}</div>
+</td>
+
                   <td className="px-6 py-4 whitespace-nowrap">
                     <button
                       onClick={() => handleToggleActive(country.id, country.is_active)}
