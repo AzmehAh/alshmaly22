@@ -1017,7 +1017,7 @@ Object.keys(adminTranslations).forEach(lang => {
 });
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [language, setLanguageState] = useState<Language>('en');
+  const [language, setLanguageState] = useState<Language>('ar');
   const [direction, setDirection] = useState<Direction>('ltr');
 
   useEffect(() => {
