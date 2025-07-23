@@ -11,6 +11,7 @@ interface LanguageContextType {
   getLocalizedField: (data: any, field: string) => string;
 }
 
+
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 // Static translations for UI elements
@@ -1017,15 +1018,17 @@ Object.keys(adminTranslations).forEach(lang => {
 });
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
- const [language, setLanguageState] = useState<Language>(() => {
-  return (localStorage.getItem('Al-Shmaly -language') as Language) || 'ar';
-});
-
+  const [language, setLanguageState] = useState<Language>('ar');
   const [direction, setDirection] = useState<Direction>('ltr');
 
   useEffect(() => {
-  setDirection(language === 'ar' ? 'rtl' : 'ltr');
-}, [language]);
+    // Load language from localStorage
+    const savedLanguage = localStorage.getItem('Al-Shmaly -language') as Language;
+    if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'ar')) {
+      setLanguageState(savedLanguage);
+      setDirection(savedLanguage === 'ar' ? 'rtl' : 'ltr');
+    }
+  }, []);
 
   useEffect(() => {
     // Update document direction and font
@@ -1078,4 +1081,4 @@ export const useLanguage = () => {
     throw new Error('useLanguage must be used within a LanguageProvider');
   }
   return context;
-};
+}; 
