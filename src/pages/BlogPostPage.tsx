@@ -211,12 +211,7 @@ const BlogPostPage = () => {
                        {getLocalizedField(relatedPost, 'title')}
 
                       </h4>
-                      <p className="text-sm text-gray-500">
-                        {new Date(relatedPost.published_at).toLocaleDateString('en-US', {
-                          month: 'short',
-                          day: 'numeric',
-                        })}
-                      </p>
+                     
                     </div>
                   </Link>
                 ))}
