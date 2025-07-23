@@ -82,8 +82,8 @@ const AboutSection = () => {
     className="rounded-2xl shadow-2xl w-full h-96 object-cover"
     poster=""
   >
-    <source src="https://files.catbox.moe/jnps5k.mp4" type="video/mp4" />
-    متصفحك لا يدعم تشغيل الفيديو.
+    <source src="https://files.catbox.moe/o5dyj3.mp4" type="video/mp4" />
+  
   </video>
 
   <div className="absolute -bottom-6 -right-6 bg-[#b9a779] text-white p-6 rounded-2xl">
