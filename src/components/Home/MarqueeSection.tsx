@@ -22,7 +22,7 @@ const MarqueeSection = () => {
 
   const duplicated = [...features, ...features, ...features];
   const itemWidth = 300;
-  const gap = 48;
+  const gap = 30;
   const totalOriginalWidth = features.length * (itemWidth + gap);
   const direction = isRTL ? 1 : -1;
   const animationDuration = 15; 
