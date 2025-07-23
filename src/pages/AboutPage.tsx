@@ -125,7 +125,7 @@ return (
                 alt="Al-Shmaly Team"
                 className="rounded-2xl  w-full h-96 object-contain"
               />
-              <div className="absolute -bottom-6 -right-[20px]  bg-[#054239]   text-white p-6 rounded-2xl">
+              <div className="absolute -bottom-6 -right-[10px]  bg-[#054239]   text-white p-6 rounded-2xl">
                 
                 <p className="text-sm font-semibold">{t('about.established')}</p>
                 <p className="text-2xl font-bold">1998</p>
