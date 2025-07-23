@@ -31,7 +31,7 @@ const HomepageManagementPage = () => {
         HomepageAPI.getAllHomepageProducts(),
         HomepageAPI.getAllHomepageBlogPosts(),
         ProductsAPI.getProducts(),
-        BlogAPI.getPosts()
+        BlogAPI.getPosts({ published: undefined }) // Get all blog posts (published and draft)
       ]);
 
       setHomepageProducts(homepageProds);
