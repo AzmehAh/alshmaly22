@@ -37,7 +37,7 @@ const HomepageManagementPage = () => {
       setHomepageProducts(homepageProds);
       setHomepageBlogPosts(homepagePosts);
       setAllProducts(products.products || []);
-      setAllBlogPosts(blogPosts.posts || []);
+      setAllBlogPosts(blogPosts || []);
     } catch (error) {
       console.error('Error fetching homepage data:', error);
     } finally {
