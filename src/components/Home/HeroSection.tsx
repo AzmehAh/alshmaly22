@@ -58,14 +58,14 @@ const HeroSection = () => {
         <video
           ref={videoRef}
           autoPlay
-          muted 
+          muted
           loop
           playsInline
           className="w-full h-full object-cover"
           poster=""
         >
-          <source src="https://files.catbox.moe/o5dyj3.mp4" type="video/mp4" />
-        </video>
+          <source src="https://files.catbox.moe/jnps5k.mp4" type="video/mp4" />
+        </video> 
         <div className={`absolute inset-0 w-full h-full transition-all duration-1000 ${
           isPlaying ? 'bg-black/50' : 'bg-black/80 backdrop-blur-sm'
         }`}></div>
