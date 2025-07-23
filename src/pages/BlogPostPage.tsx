@@ -208,7 +208,8 @@ const BlogPostPage = () => {
                     />
                     <div className="flex-1">
                       <h4 className="font-semibold text-[#054239] group-hover:text-[#b9a779] transition-colors duration-300 line-clamp-2 mb-2">
-                        {relatedPost.title}
+                       {getLocalizedField(relatedPost, 'title')}
+
                       </h4>
                       <p className="text-sm text-gray-500">
                         {new Date(relatedPost.published_at).toLocaleDateString('en-US', {
