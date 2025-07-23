@@ -58,7 +58,7 @@ const HeroSection = () => {
         <video
           ref={videoRef}
           autoPlay
-          muted
+          muted 
           loop
           playsInline
           className="w-full h-full object-cover"
