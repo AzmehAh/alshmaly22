@@ -196,7 +196,7 @@ const BlogPostPage = () => {
                   <Link
                     key={relatedPost.id}
                     to={`/blog/${relatedPost.id}`}
-                    className="group flex space-x-4 p-4 rounded-xl hover:bg-gray-50 transition-colors duration-300"
+                    className="group flex gap-4 p-4 rounded-xl hover:bg-gray-50 transition-colors duration-300"
                   >
                     <img
                       src={
