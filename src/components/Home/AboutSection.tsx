@@ -74,22 +74,15 @@ const AboutSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         {/* Video */}
 <div className="relative">
-  <video
-    autoPlay
-    muted
-    loop
-    playsInline
-    className="rounded-2xl shadow-2xl w-full h-96 object-cover"
-    poster=""
-  >
-    <source src="https://files.catbox.moe/o5dyj3.mp4" type="video/mp4" />
-  
-  </video>
-
-  <div className="absolute -bottom-6 -right-6 bg-[#b9a779] text-white p-6 rounded-2xl">
-    <p className="text-sm font-semibold">{t('home.about.1')}</p>
-    <p className="text-2xl font-bold">{t('home.about.2')}</p>
-  </div>
+            <img 
+              src="https://images.pexels.com/photos/1595104/pexels-photo-1595104.jpeg?auto=compress&cs=tinysrgb&w=800&h=600" 
+              alt="Al-Shmaly Team"
+              className="rounded-2xl shadow-2xl   w-full h-96 object-cover"
+            />
+            <div className="absolute -bottom-6 -right-6 bg-[#b9a779] text-white p-6 rounded-2xl">
+              <p className="text-sm font-semibold"> {t('home.about.1')}</p>
+              <p className="text-2xl font-bold">{t('home.about.2')}</p>
+            </div>
 </div>
 
           {/* Content */}
