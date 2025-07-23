@@ -412,9 +412,9 @@ return (
                         className="h-12 w-12 rounded-lg object-cover mr-4"
                       />
                       <div>
-                     <div className="text-sm font-medium text-[#054239]">
-  {getLocalizedText(post, 'title')}
-</div>
+                        <div className="text-sm font-medium text-[#054239]">
+                          {getLocalizedText(relation.related_post, 'title')}
+                        </div>
 
  
                         
@@ -918,9 +918,9 @@ return (
                     <div className="flex items-center">
                      
                       <div>
-                       <div className="text-sm font-medium text-[#054239]">
-  {getLocalizedText(post, 'title')}
-</div>
+                        <div className="text-sm font-medium text-[#054239]">
+                          {getLocalizedText(post, 'title')}
+                        </div>
 
                         <div className="text-sm text-gray-500">{post.category?.name}</div>
                       </div>
