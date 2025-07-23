@@ -72,24 +72,25 @@ const AboutSection = () => {
     <section id="about" ref={sectionRef} className="py-20 bg-[#054239]">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Image */}
-          <div className="relative">
-             <video
-          ref={videoRef}
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="w-full h-full object-cover"
-          poster=""
-        >
-          <source src="https://files.catbox.moe/jnps5k.mp4" type="video/mp4" />
-        </video> 
-            <div className="absolute -bottom-6 -right-6 bg-[#b9a779] text-white p-6 rounded-2xl">
-              <p className="text-sm font-semibold"> {t('home.about.1')}</p>
-              <p className="text-2xl font-bold">{t('home.about.2')}</p>
-            </div>
-          </div>
+        {/* Video */}
+<div className="relative">
+  <video
+    autoPlay
+    muted
+    loop
+    playsInline
+    className="rounded-2xl shadow-2xl w-full h-96 object-cover"
+    poster=""
+  >
+    <source src="https://files.catbox.moe/jnps5k.mp4" type="video/mp4" />
+    متصفحك لا يدعم تشغيل الفيديو.
+  </video>
+
+  <div className="absolute -bottom-6 -right-6 bg-[#b9a779] text-white p-6 rounded-2xl">
+    <p className="text-sm font-semibold">{t('home.about.1')}</p>
+    <p className="text-2xl font-bold">{t('home.about.2')}</p>
+  </div>
+</div>
 
           {/* Content */}
           <div>
