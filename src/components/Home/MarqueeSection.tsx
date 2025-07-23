@@ -25,7 +25,7 @@ const MarqueeSection = () => {
   const gap = 48;
   const totalOriginalWidth = features.length * (itemWidth + gap);
   const direction = isRTL ? 1 : -1;
-  const animationDuration = 10; // ثواني
+  const animationDuration = 15; 
 
   const animate = (currentTime) => {
     if (!lastTime.current) lastTime.current = currentTime;
