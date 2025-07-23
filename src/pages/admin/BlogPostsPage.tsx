@@ -886,7 +886,7 @@ return (
                     />
                     <div> 
                      <div className="text-sm font-medium text-[#054239]">
-  {getLocalizedText(post, 'title')}
+  {getLocalizedText(relation.related_blog_post, 'title')}
 </div>
 
                       <div className="text-sm text-gray-500">{relation.related_post?.category?.name}</div>
