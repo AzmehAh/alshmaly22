@@ -47,6 +47,9 @@ export class BlogAPI {
 
     if (filters.published !== undefined) {
       query = query.eq('published', filters.published);
+    } else {
+      // Default to published posts only for public access
+      query = query.eq('published', true);
     }
 
     if (filters.search) {
