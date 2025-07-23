@@ -6,7 +6,7 @@ import { BlogAPI } from '../../lib/api/blog';
 import type { HomepageProduct, HomepageBlogPost } from '../../lib/api/homepage';
 import type { Product, BlogPost } from '../../lib/supabase';
 import { useLanguage } from '../../contexts/LanguageContext';
-
+ 
 
 
 const HomepageManagementPage = () => {
