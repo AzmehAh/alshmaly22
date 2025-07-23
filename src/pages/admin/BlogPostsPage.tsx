@@ -413,7 +413,7 @@ return (
                       />
                       <div>
                         <div className="text-sm font-medium text-[#054239]">
-                          {getLocalizedText(relation.related_post, 'title')}
+                          {getLocalizedText(post, 'title')}
                         </div>
 
  
