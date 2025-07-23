@@ -6,11 +6,8 @@ import { BlogAPI } from '../../lib/api/blog';
 import type { HomepageProduct, HomepageBlogPost } from '../../lib/api/homepage';
 import type { Product, BlogPost } from '../../lib/supabase';
 import { useLanguage } from '../../contexts/LanguageContext';
+ 
 
-interface ApiResponse<T> {
-  data: T[];
-  count: number;
-}
 
 const HomepageManagementPage = () => {
   const { t, direction } = useLanguage();
@@ -22,7 +19,7 @@ const HomepageManagementPage = () => {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [showAddModal, setShowAddModal] = useState(false);
-
+ 
   useEffect(() => {
     fetchData();
   }, []);
@@ -30,24 +27,19 @@ const HomepageManagementPage = () => {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const [homepageProds, homepagePosts, productsResponse, blogPostsResponse] = await Promise.all([
+      const [homepageProds, homepagePosts, products, blogPosts] = await Promise.all([
         HomepageAPI.getAllHomepageProducts(),
         HomepageAPI.getAllHomepageBlogPosts(),
         ProductsAPI.getProducts(),
-        BlogAPI.getPosts({ published: undefined })
+        BlogAPI.getPosts({ published: undefined }) // Get all blog posts (published and draft)
       ]);
 
-      setHomepageProducts(homepageProds?.data || []);
-      setHomepageBlogPosts(homepagePosts?.data || []);
-      setAllProducts(productsResponse?.data || []);
-      setAllBlogPosts(blogPostsResponse?.data || []);
-      
+      setHomepageProducts(homepageProds);
+      setHomepageBlogPosts(homepagePosts);
+      setAllProducts(products.products || []);
+      setAllBlogPosts(blogPosts.posts || []);
     } catch (error) {
-      console.error('Error fetching data:', error);
-      setHomepageProducts([]);
-      setHomepageBlogPosts([]);
-      setAllProducts([]);
-      setAllBlogPosts([]);
+      console.error('Error fetching homepage data:', error);
     } finally {
       setLoading(false);
     }
@@ -55,20 +47,17 @@ const HomepageManagementPage = () => {
 
   const handleAddToHomepage = async (itemId: string) => {
     try {
-      const currentItems = activeTab === 'products' ? homepageProducts : homepageBlogPosts;
-      
       if (activeTab === 'products') {
-        await HomepageAPI.addProductToHomepage(itemId, currentItems.length);
+        await HomepageAPI.addProductToHomepage(itemId, homepageProducts.length);
       } else {
-        await HomepageAPI.addBlogPostToHomepage(itemId, currentItems.length);
+        await HomepageAPI.addBlogPostToHomepage(itemId, homepageBlogPosts.length);
       }
-      
       await fetchData();
       setShowAddModal(false);
       setSearchTerm('');
     } catch (error) {
-      console.error('Error adding item:', error);
-      alert(t('add_error_message'));
+      console.error('Error adding to homepage:', error);
+      alert('Error adding item to homepage. Please try again.');
     }
   };
 
@@ -81,8 +70,8 @@ const HomepageManagementPage = () => {
       }
       await fetchData();
     } catch (error) {
-      console.error('Error removing item:', error);
-      alert(t('remove_error_message'));
+      console.error('Error removing from homepage:', error);
+      alert('Error removing item from homepage. Please try again.');
     }
   };
 
@@ -95,69 +84,67 @@ const HomepageManagementPage = () => {
       }
       await fetchData();
     } catch (error) {
-      console.error('Error toggling status:', error);
-      alert(t('status_error_message'));
+      console.error('Error updating item status:', error);
+      alert('Error updating item status. Please try again.');
     }
   };
 
   const handleMoveItem = async (id: string, direction: 'up' | 'down') => {
     try {
-      const items = activeTab === 'products' ? [...homepageProducts] : [...homepageBlogPosts];
-      const currentIndex = items.findIndex(item => item?.id === id);
-      
-      if (currentIndex === -1) return;
-      
+      const items = activeTab === 'products' ? homepageProducts : homepageBlogPosts;
+      const currentIndex = items.findIndex(item => item.id === id);
       const newIndex = direction === 'up' ? currentIndex - 1 : currentIndex + 1;
       if (newIndex < 0 || newIndex >= items.length) return;
 
-      [items[currentIndex], items[newIndex]] = [items[newIndex], items[currentIndex]];
+      const currentItem = items[currentIndex];
+      const swapItem = items[newIndex];
 
       if (activeTab === 'products') {
-        await Promise.all(items.map((item, index) => 
-          HomepageAPI.updateHomepageProduct(item.id, { display_order: index })
-        ));
+        await Promise.all([
+          HomepageAPI.updateHomepageProduct(currentItem.id, { display_order: swapItem.display_order }),
+          HomepageAPI.updateHomepageProduct(swapItem.id, { display_order: currentItem.display_order })
+        ]);
       } else {
-        await Promise.all(items.map((item, index) => 
-          HomepageAPI.updateHomepageBlogPost(item.id, { display_order: index })
-        ));
+        await Promise.all([
+          HomepageAPI.updateHomepageBlogPost(currentItem.id, { display_order: swapItem.display_order }),
+          HomepageAPI.updateHomepageBlogPost(swapItem.id, { display_order: currentItem.display_order })
+        ]);
       }
 
       await fetchData();
     } catch (error) {
       console.error('Error moving item:', error);
-      alert(t('move_error_message'));
+      alert('Error moving item. Please try again.');
     }
   };
 
+
   const getLocalizedText = (item: any, field: string) => {
-    if (!item) return '';
     if (direction === 'rtl') {
       return item[`${field}_ar`] || item[field] || '';
     }
     return item[field] || '';
   };
 
+ 
   const getAvailableItems = () => {
     const term = searchTerm.toLowerCase();
-    
     if (activeTab === 'products') {
-      const homepageProductIds = homepageProducts.map(hp => hp?.product_id).filter(Boolean);
-      return (allProducts || []).filter(product => 
-        product?.id && 
+      const homepageProductIds = homepageProducts.map(hp => hp.product_id);
+      return allProducts.filter(product =>
         !homepageProductIds.includes(product.id) &&
         (
-          (product.name?.toLowerCase().includes(term)) ||
-          (product.name_ar?.toLowerCase().includes(term))
+          (product.name && product.name.toLowerCase().includes(term)) ||
+          (product.name_ar && product.name_ar.toLowerCase().includes(term))
         )
       );
     } else {
-      const homepageBlogPostIds = homepageBlogPosts.map(hb => hb?.blog_post_id).filter(Boolean);
-      return (allBlogPosts || []).filter(post => 
-        post?.id && 
+      const homepageBlogPostIds = homepageBlogPosts.map(hb => hb.blog_post_id);
+      return allBlogPosts.filter(post =>
         !homepageBlogPostIds.includes(post.id) &&
         (
-          (post.title?.toLowerCase().includes(term)) ||
-          (post.title_ar?.toLowerCase().includes(term))
+          (post.title && post.title.toLowerCase().includes(term)) ||
+          (post.title_ar && post.title_ar.toLowerCase().includes(term))
         )
       );
     }
@@ -173,7 +160,7 @@ const HomepageManagementPage = () => {
 
   return (
     <div className="space-y-6">
-      {/* Header Section */}
+
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <Home size={24} className="text-[#b9a779]" />
@@ -188,7 +175,7 @@ const HomepageManagementPage = () => {
         </button>
       </div>
 
-      {/* Tabs Section */}
+
       <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
         <div className="flex gap-4 mb-6">
           <button
@@ -209,7 +196,7 @@ const HomepageManagementPage = () => {
           </button>
         </div>
 
-        {/* Items Table */}
+    
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
@@ -231,13 +218,7 @@ const HomepageManagementPage = () => {
 
             <tbody className="bg-white divide-y divide-gray-200">
               {(activeTab === 'products' ? homepageProducts : homepageBlogPosts).map((item, index) => {
-                if (!item) return null;
-                
-                const content = activeTab === 'products' 
-                  ? (item as HomepageProduct)?.product 
-                  : (item as HomepageBlogPost)?.blog_post;
-
-                if (!content) return null;
+                const content = activeTab === 'products' ? (item as HomepageProduct).product : (item as HomepageBlogPost).blog_post;
 
                 return (
                   <tr key={item.id} className="hover:bg-gray-50">
@@ -265,22 +246,12 @@ const HomepageManagementPage = () => {
 
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
-                        {activeTab === 'blog' && content.image && (
-                          <img
-                            src={content.image.url}
-                            alt={getLocalizedText(content, 'title')}
-                            className={`${direction === 'rtl' ? 'ml-3' : 'mr-3'} h-10 w-10 rounded-lg object-cover`}
-                          />
-                        )}
+                        
                         <div>
                           <div className="text-sm font-medium text-[#054239]">
                             {getLocalizedText(content, activeTab === 'products' ? 'name' : 'title')}
                           </div>
-                          {activeTab === 'blog' && (
-                            <div className="text-sm text-gray-500">
-                              {getLocalizedText(content, 'excerpt')?.substring(0, 50)}...
-                            </div>
-                          )}
+                         
                         </div>
                       </div>
                     </td>
@@ -337,7 +308,7 @@ const HomepageManagementPage = () => {
         </div>
       </div>
 
-      {/* Add Item Modal */}
+
       {showAddModal && (
         <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
           <div className="relative top-20 mx-auto p-5 border w-11/12 md:w-2/3 lg:w-1/2 shadow-lg rounded-md bg-white">
@@ -346,17 +317,10 @@ const HomepageManagementPage = () => {
                 <h3 className="text-lg font-medium text-[#054239]">
                   {t('add.item.to.homepage', { type: t(activeTab === 'products' ? 'product' : 'blog.post') })}
                 </h3>
-                <button 
-                  onClick={() => {
-                    setShowAddModal(false);
-                    setSearchTerm('');
-                  }} 
-                  className="text-gray-400 hover:text-gray-600"
-                >
-                  ×
-                </button>
+                <button onClick={() => setShowAddModal(false)} className="text-gray-400 hover:text-gray-600">×</button>
               </div>
 
+             
               <div className="mb-4">
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
@@ -370,6 +334,7 @@ const HomepageManagementPage = () => {
                 </div>
               </div>
 
+   
               <div className="max-h-96 overflow-y-auto">
                 <div className="space-y-2">
                   {getAvailableItems().map((item) => (
@@ -378,34 +343,22 @@ const HomepageManagementPage = () => {
                       className="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:bg-gray-50"
                     >
                       <div className="flex items-center">
-                        {activeTab === 'products' ? (
+                        {activeTab === 'products' && (
                           <img
-                            src={item.images?.[0]?.image_url || 'https://via.placeholder.com/100'}
-                            alt={getLocalizedText(item, 'name')}
+                            src={item.images?.[0]?.image_url || 'https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=100&h=100'}
+                            alt={getLocalizedText(item, activeTab === 'products' ? 'name' : 'title')}
                             className={`${direction === 'rtl' ? 'ml-3' : 'mr-3'} h-10 w-10 rounded-lg object-cover`}
                           />
-                        ) : (
-                          item.image && (
-                            <img
-                              src={item.image.url}
-                              alt={getLocalizedText(item, 'title')}
-                              className={`${direction === 'rtl' ? 'ml-3' : 'mr-3'} h-10 w-10 rounded-lg object-cover`}
-                            />
-                          )
                         )}
                         <div>
                           <div className="font-medium text-[#054239]">
                             {getLocalizedText(item, activeTab === 'products' ? 'name' : 'title')}
                           </div>
-                          {activeTab === 'products' ? (
+                          {activeTab === 'products' && (
                             <div className="text-sm text-gray-500">
                               {direction === 'rtl'
                                 ? item.category?.name_ar || item.category?.name || t('uncategorized')
                                 : item.category?.name || t('uncategorized')}
-                            </div>
-                          ) : (
-                            <div className="text-sm text-gray-500">
-                              {getLocalizedText(item, 'excerpt')?.substring(0, 50)}...
                             </div>
                           )}
                         </div>
