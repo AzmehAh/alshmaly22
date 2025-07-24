@@ -15,13 +15,9 @@ useEffect(() => {
     const vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
   };
-
   setVH();
   window.addEventListener('resize', setVH);
-  window.addEventListener('orientationchange', () => {
-    setTimeout(setVH, 100);
-  });
-
+  window.addEventListener('orientationchange', () => setTimeout(setVH, 100));
   return () => {
     window.removeEventListener('resize', setVH);
     window.removeEventListener('orientationchange', setVH);
@@ -48,11 +44,15 @@ useEffect(() => {
   };
 
   return (
-    <section
+   <section
   id="home"
-  className="hero-section relative flex items-center overflow-hidden w-full"
-  style={{ height: 'calc(var(--vh, 1vh) * 100)' }}
+  className="relative flex items-center justify-center overflow-hidden w-full"
+  style={{
+    height: 'calc(var(--vh, 1vh) * 100)',
+    minHeight: '100svh'
+  }}
 >
+
 
       {/* Background Video */}
       <div className="absolute inset-0 z-0 w-full h-full">
