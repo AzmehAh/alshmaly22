@@ -73,25 +73,23 @@ const AboutSection = () => {
   <div className="container mx-auto px-4">
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
       {/* Video */}
-    <div className="relative w-full h-96 rounded-2xl shadow-2xl overflow-hidden">
-  <iframe
-    className="w-full h-full object-cover"
-    src="https://www.youtube.com/embed/wb-Cm7t08zg?si=H08yd5Nl-x4Xa1YZ"
-    title="YouTube video player"
-    frameBorder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    allowFullScreen
-    referrerPolicy="strict-origin-when-cross-origin"
-  ></iframe>
-
-  {/* النص فوق الفيديو داخل الحدود */}
-  <div className="absolute bottom-4 right-4 bg-[#b9a779] text-white p-4 sm:p-6 rounded-2xl shadow-md max-w-[75%] sm:max-w-[60%] text-sm sm:text-base leading-snug">
-    <p className="font-semibold">{t('home.about.1')}</p>
-    <p className="text-xl sm:text-2xl font-bold">{t('home.about.2')}</p>
-  </div>
-</div>
-
-
+      <div className="relative w-full h-96 rounded-2xl shadow-2xl overflow-hidden">
+        <iframe
+          className="w-full h-full object-cover rounded-2xl"
+          src="https://www.youtube.com/embed/wb-Cm7t08zg?si=H08yd5Nl-x4Xa1YZ"
+          title="YouTube video player"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+          referrerPolicy="strict-origin-when-cross-origin"
+        ></iframe>
+        
+        <div className="absolute -bottom-6 -right-6 bg-[#b9a779] text-white p-6 rounded-2xl shadow-lg">
+          <p className="text-sm font-semibold">{t('home.about.1')}</p>
+          <p className="text-2xl font-bold">{t('home.about.2')}</p>
+        </div>
+      </div>
+ 
           {/* Content */}
           <div>
             <h2 className="text-4xl font-bold text-[#F7F7F7] mb-6">
