@@ -22,7 +22,7 @@
 }
 @media (orientation: landscape) and (max-width: 768px) {
   .hero-section .hero-content {
-    padding-top: 100px; /* أو حسب ارتفاع الهيدر الفعلي */
+    padding-top: 64px; /* أو حسب ارتفاع الهيدر الفعلي */
   }
 }
 
