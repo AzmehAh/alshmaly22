@@ -126,7 +126,7 @@ return (
                 className="rounded-2xl  w-full h-96 object-contain"
               />
              <div className="absolute 
-    bottom-4 lg:bottom-2 
+    bottom-4 lg:bottom-1 
     right-4 sm:right-8 lg:right-14  
     bg-[#054239] text-white 
     p-4 sm:p-6 
