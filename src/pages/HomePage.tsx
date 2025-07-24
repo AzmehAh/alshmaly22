@@ -5,7 +5,7 @@ import AboutSection from '../components/Home/AboutSection';
 import ServicesSection from '../components/Home/ServicesSection';
 import ProductsSection from '../components/Home/ProductsSection';
 import BlogSection from '../components/Home/BlogSection';
-import AlShmalyVideoSection from '../components/AlShmalyVideoSection';
+import AlShmalyVideoSection from '../components/Home/AlShmalyVideoSection';
 
 const HomePage = () => {
   return (
