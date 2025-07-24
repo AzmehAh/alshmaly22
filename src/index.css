@@ -21,8 +21,10 @@
   max-height: 100svh;
 }
 @media (orientation: landscape) and (max-width: 768px) {
-  .hero-section .hero-content {
-    padding-top: 64px; /* أو حسب ارتفاع الهيدر الفعلي */
+  .hero-section {
+    height: 150svh; /* أو 120svh حسب ما تراه مناسب */
+    min-height: 150svh;
+    max-height: none;
   }
 }
 
