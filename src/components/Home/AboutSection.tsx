@@ -81,7 +81,7 @@ const AboutSection = () => {
     <p className="text-2xl font-bold">{t('home.about.2')}</p>
   </div>
 </div>
-
+ 
 
           {/* Content */}
           <div>
