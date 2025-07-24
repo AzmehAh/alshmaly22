@@ -10,19 +10,6 @@ const HeroSection = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
-useEffect(() => {
-  const setVH = () => {
-    const vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-  };
-  setVH();
-  window.addEventListener('resize', setVH);
-  window.addEventListener('orientationchange', () => setTimeout(setVH, 100));
-  return () => {
-    window.removeEventListener('resize', setVH);
-    window.removeEventListener('orientationchange', setVH);
-  };
-}, []);
 
 
   const togglePlayPause = () => {
@@ -44,11 +31,11 @@ useEffect(() => {
   };
 
   return (
-<section
+<<section
   id="home"
   className="hero-section relative flex items-center justify-center overflow-hidden w-full pt-16"
   style={{
-    height: 'calc(var(--vh, 1vh) * 100)',
+    height: '100svh',
     minHeight: '100svh'
   }}
 >
