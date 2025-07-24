@@ -30,12 +30,12 @@ const HeroSection = () => {
     }
   };
 
-  return (
+  return ( 
 <section
   id="home"
-  className="relative min-h-screen sm:min-h-[100svh] sm:h-[100svh] sm:max-h-[100svh] flex items-center pt-24 pb-16 overflow-hidden"
->
+  className="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden"
 
+>
       {/* Background Video */}
       <div className="absolute inset-0 z-0 w-full h-full">
         <video 
