@@ -69,7 +69,11 @@ const AboutSection = () => {
     };
   }, []);
   return (
-    <div className="relative">
+    <section id="about" ref={sectionRef} className="py-20 bg-[#054239]">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      
+<div className="relative">
   <a
     href="https://youtu.be/wb-Cm7t08zg?si=A51qw-FXXKWTRqZx"
     target="_blank"
@@ -101,6 +105,7 @@ const AboutSection = () => {
     <p className="text-2xl font-bold">{t('home.about.2')}</p>
   </div>
 </div>
+
 
           {/* Content */}
           <div>
