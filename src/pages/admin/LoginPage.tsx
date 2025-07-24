@@ -98,15 +98,10 @@ const LoginPage = () => {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                 className="py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent transition-all duration-300"
-  style={{
-    direction,
-    paddingLeft: direction === 'rtl' ? '2.5rem' : '2.5rem',  // 10 = 2.5rem
-    paddingRight: direction === 'rtl' ? '3rem' : '2.5rem',    // اضف مساحة أكبر للجهة التي بها الأيقونة
-  }}
-  placeholder={t('login.passwordPlaceholder')}
-/>
-                  
+                  className="pl-10 pr-10 w-full py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent transition-all duration-300" 
+                  placeholder={t('login.passwordPlaceholder')}
+                  style={{ direction }}
+                />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
