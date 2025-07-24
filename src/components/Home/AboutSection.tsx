@@ -69,20 +69,37 @@ const AboutSection = () => {
     };
   }, []);
   return (
-    <section id="about" ref={sectionRef} className="py-20 bg-[#054239]">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        {/* Video */}
-<div className="relative">
-            <img 
-              src="https://images.pexels.com/photos/1595104/pexels-photo-1595104.jpeg?auto=compress&cs=tinysrgb&w=800&h=600" 
-              alt="Al-Shmaly Team"
-              className="rounded-2xl shadow-2xl   w-full h-96 object-cover"
-            />
-            <div className="absolute -bottom-6 -right-6 bg-[#b9a779] text-white p-6 rounded-2xl">
-              <p className="text-sm font-semibold"> {t('home.about.1')}</p>
-              <p className="text-2xl font-bold">{t('home.about.2')}</p>
-            </div>
+    <div className="relative">
+  <a
+    href="https://youtu.be/wb-Cm7t08zg?si=A51qw-FXXKWTRqZx"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="block w-full h-96 group"
+  >
+    <img
+      src="https://img.youtube.com/vi/wb-Cm7t08zg/hqdefault.jpg"
+      alt="Al-Shmaly Video"
+      className="rounded-2xl shadow-2xl w-full h-96 object-cover group-hover:opacity-80 transition duration-300"
+    />
+    <div className="absolute inset-0 flex items-center justify-center">
+      <div className="bg-white bg-opacity-80 rounded-full p-4 shadow-lg group-hover:scale-110 transition duration-300">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-10 w-10 text-red-600"
+          fill="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path d="M10 16.5l6-4.5-6-4.5v9z" />
+        </svg>
+      </div>
+    </div>
+  </a>
+
+  {/* بطاقة التعريف في الأسفل */}
+  <div className="absolute -bottom-6 -right-6 bg-[#b9a779] text-white p-6 rounded-2xl">
+    <p className="text-sm font-semibold">{t('home.about.1')}</p>
+    <p className="text-2xl font-bold">{t('home.about.2')}</p>
+  </div>
 </div>
 
           {/* Content */}
