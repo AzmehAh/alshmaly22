@@ -74,31 +74,7 @@ const AboutSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
       
 <div className="relative">
-  <a
-    href="https://youtu.be/wb-Cm7t08zg?si=A51qw-FXXKWTRqZx"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="block w-full h-96 group"
-  >
-    <img
-      src="https://img.youtube.com/vi/wb-Cm7t08zg/hqdefault.jpg"
-      alt="Al-Shmaly Video"
-      className="rounded-2xl shadow-2xl w-full h-96 object-cover group-hover:opacity-80 transition duration-300"
-    />
-    <div className="absolute inset-0 flex items-center justify-center">
-      <div className="bg-white bg-opacity-80 rounded-full p-4 shadow-lg group-hover:scale-110 transition duration-300">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-10 w-10 text-red-600"
-          fill="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path d="M10 16.5l6-4.5-6-4.5v9z" />
-        </svg>
-      </div>
-    </div>
-  </a>
-
+ <iframe width="560" height="315" src="https://www.youtube.com/embed/wb-Cm7t08zg?si=H08yd5Nl-x4Xa1YZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
   {/* بطاقة التعريف في الأسفل */}
   <div className="absolute -bottom-6 -right-6 bg-[#b9a779] text-white p-6 rounded-2xl">
     <p className="text-sm font-semibold">{t('home.about.1')}</p>
