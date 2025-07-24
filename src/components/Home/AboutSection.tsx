@@ -72,16 +72,23 @@ const AboutSection = () => {
     <section id="about" ref={sectionRef} className="py-20 bg-[#054239]">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-      
-<div className="relative">
- <iframe width="560" height="315" src="https://www.youtube.com/embed/wb-Cm7t08zg?si=H08yd5Nl-x4Xa1YZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-  {/* بطاقة التعريف في الأسفل */}
+        {/* Video */}
+<div className="relative w-full h-96 rounded-2xl shadow-2xl overflow-hidden">
+  <iframe
+    className="absolute top-0 left-0 w-full h-full rounded-2xl"
+    src="https://www.youtube.com/embed/wb-Cm7t08zg?si=H08yd5Nl-x4Xa1YZ"
+    title="YouTube video player"
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowFullScreen
+    referrerPolicy="strict-origin-when-cross-origin"
+  ></iframe>
   <div className="absolute -bottom-6 -right-6 bg-[#b9a779] text-white p-6 rounded-2xl">
-    <p className="text-sm font-semibold">{t('home.about.1')}</p>
+    <p className="text-sm font-semibold"> {t('home.about.1')}</p>
     <p className="text-2xl font-bold">{t('home.about.2')}</p>
   </div>
 </div>
- 
+
 
           {/* Content */}
           <div>
