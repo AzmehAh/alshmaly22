@@ -22,8 +22,8 @@
 }
 @media (orientation: landscape) and (max-width: 768px) {
   .hero-section {
-    height: 150svh; /* أو 120svh حسب ما تراه مناسب */
-    min-height: 150svh;
+    height: 400svh; /* أو 120svh حسب ما تراه مناسب */
+    min-height: 400svh;
     max-height: none;
   }
 }
