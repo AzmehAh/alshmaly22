@@ -38,7 +38,7 @@ const LoginPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8" >
+      <div className="max-w-md w-full space-y-8" dir={direction}>
         <div className="text-center">
           <img
             src="https://i.postimg.cc/0Q8pxwTM/logo.png"
@@ -98,7 +98,14 @@ const LoginPage = () => {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="pl-10 pr-10 w-full py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent transition-all duration-300"
+                 className="py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent transition-all duration-300"
+  style={{
+    direction,
+    paddingLeft: direction === 'rtl' ? '2.5rem' : '2.5rem',  // 10 = 2.5rem
+    paddingRight: direction === 'rtl' ? '3rem' : '2.5rem',    // اضف مساحة أكبر للجهة التي بها الأيقونة
+  }}
+  placeholder={t('login.passwordPlaceholder')}
+/>
                   placeholder={t('login.passwordPlaceholder')}
                   style={{ direction }}
                 />
