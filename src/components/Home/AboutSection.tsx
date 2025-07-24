@@ -70,25 +70,37 @@ const AboutSection = () => {
   }, []);
   return (
     <section id="about" ref={sectionRef} className="py-20 bg-[#054239]">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        {/* Video */}
-<div className="relative">
- <iframe
- className="w-full h-full object-cover rounded-2xl shadow-2xl"
-    src="https://www.youtube.com/embed/wb-Cm7t08zg?si=H08yd5Nl-x4Xa1YZ"
-    title="YouTube video player"
-    frameBorder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    allowFullScreen
-    referrerPolicy="strict-origin-when-cross-origin"
-  ></iframe>
-            <div className="absolute -bottom-6 -right-6 bg-[#b9a779] text-white p-6 rounded-2xl">
-              <p className="text-sm font-semibold"> {t('home.about.1')}</p>
-              <p className="text-2xl font-bold">{t('home.about.2')}</p>
-            </div>
-</div>
+  <div className="container mx-auto px-4">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      {/* Video Container */}
+      <div className="relative rounded-2xl shadow-2xl overflow-hidden aspect-video h-96">
+        {/* YouTube Video */}
+        <iframe
+          className="w-full h-full object-cover"
+          src="https://www.youtube.com/embed/wb-Cm7t08zg?si=H08yd5Nl-x4Xa1YZ"
+          title="YouTube video player"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+          referrerPolicy="strict-origin-when-cross-origin"
+        ></iframe>
+        
+        {/* Floating Info Box */}
+        <div className="absolute -bottom-6 -right-6 bg-[#b9a779] text-white p-6 rounded-2xl z-10">
+          <p className="text-sm font-semibold">{t('home.about.1')}</p>
+          <p className="text-2xl font-bold">{t('home.about.2')}</p>
+        </div>
+      </div>
 
+      {/* Text Content */}
+      <div className="text-white">
+        <h2 className="text-3xl font-bold mb-4">{t('home.about.title')}</h2>
+        <p className="mb-6">{t('home.about.description')}</p>
+        <button className="bg-[#b9a779] hover:bg-[#054239] border border-[#b9a779] text-white px-6 py-3 rounded-lg">
+          {t('home.about.cta')}
+        </button>
+      </div>
+    </div>
           {/* Content */}
           <div>
             <h2 className="text-4xl font-bold text-[#F7F7F7] mb-6">
