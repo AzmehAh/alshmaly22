@@ -33,17 +33,10 @@ const HeroSection = () => {
   return (
 <section
   id="home"
-  className="hero-section relative flex items-center justify-center w-full pt-16"
+  className="hero-section relative flex items-center justify-center overflow-hidden w-full pt-16"
   style={{
-    /* يعمل تلقائيًا مع svh في الوضع العامودي وdvh في الأفقي */
     height: '100svh',
-    minHeight: '100svh',
-    /* تحسينات للوضع الأفقي */
-    '@media (orientation: landscape)': {
-      height: '100dvh',
-      minHeight: 'auto',
-      maxHeight: '100dvh'
-    }
+    minHeight: '100svh'
   }}
 >
 
