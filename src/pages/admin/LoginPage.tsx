@@ -98,7 +98,9 @@ const LoginPage = () => {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="pl-10 pr-10 w-full py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent transition-all duration-300" 
+                   className={`w-full py-3 px-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent transition-all duration-300 ${
+    direction === 'rtl' ? 'text-right pr-10' : 'text-left pl-10'
+  }`}
                   placeholder={t('login.passwordPlaceholder')}
                   style={{ direction }}
                 />
