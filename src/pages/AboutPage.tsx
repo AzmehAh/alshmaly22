@@ -127,7 +127,7 @@ return (
               />
              <div className="absolute 
     bottom-4 lg:bottom-1 
-    right-4 sm:right-8 lg:right-10  
+    right-4 sm:right-8 lg:right-18  
     bg-[#054239] text-white 
     p-4 sm:p-6 
     rounded-2xl
