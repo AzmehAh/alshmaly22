@@ -4,10 +4,8 @@ import { Lock, Mail, Eye, EyeOff } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import { useLanguage } from '../../contexts/LanguageContext';
 
-
-
 const LoginPage = () => {
-   const { t, direction } = useLanguage();
+  const { t, direction } = useLanguage(); // direction: 'rtl' أو 'ltr'
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -40,7 +38,7 @@ const LoginPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
+      <div className="max-w-md w-full space-y-8" dir={direction}>
         <div className="text-center">
           <img
             src="https://i.postimg.cc/0Q8pxwTM/logo.png"
@@ -78,7 +76,7 @@ const LoginPage = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   className="pl-10 w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent transition-all duration-300"
                   placeholder={t('login.emailPlaceholder')}
-                  style={{ direction: i18n.language === 'ar' ? 'rtl' : 'ltr' }}
+                  style={{ direction }}
                 />
               </div>
             </div>
@@ -102,7 +100,7 @@ const LoginPage = () => {
                   onChange={(e) => setPassword(e.target.value)}
                   className="pl-10 pr-10 w-full py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent transition-all duration-300"
                   placeholder={t('login.passwordPlaceholder')}
-                  style={{ direction: i18n.language === 'ar' ? 'rtl' : 'ltr' }}
+                  style={{ direction }}
                 />
                 <button
                   type="button"
@@ -127,6 +125,11 @@ const LoginPage = () => {
             )}
           </button>
         </form>
+
+        {/* مثال زر بترجمة admin.add */}
+        <button className="mt-4 px-4 py-2 bg-blue-600 text-white rounded">
+          {t('admin.add')}
+        </button>
       </div>
     </div>
   );
