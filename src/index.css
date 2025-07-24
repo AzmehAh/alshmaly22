@@ -10,61 +10,16 @@
     overflow-x: hidden;
   }
    
-  /* Hero section responsive height handling */
   .hero-section {
-    /* Default: Full viewport height for desktop */
-    height: 100vh;
-    min-height: 100vh;
-    
-    /* Use CSS custom property for mobile browsers */
-    height: calc(var(--vh, 1vh) * 100);
-    min-height: calc(var(--vh, 1vh) * 100);
-  }
-
-  /* Mobile portrait: Allow full height */
-  @media screen and (max-width: 768px) and (orientation: portrait) {
-    .hero-section {
-      height: calc(var(--vh, 1vh) * 100);
-      min-height: calc(var(--vh, 1vh) * 100);
-      max-height: none;
-    }
-  }
-
-  /* Mobile landscape: Limit height to prevent excessive tall sections */
-  @media screen and (max-width: 1024px) and (orientation: landscape) {
-    .hero-section {
-      height: 100vh;
-      min-height: 400px;
-      max-height: 100vh;
-    }
-  }
-
-  /* Small landscape screens - more aggressive height reduction */
-  @media screen and (max-width: 1024px) and (orientation: landscape) and (max-height: 500px) {
-    .hero-section {
-      height: 90vh;
-      min-height: 350px;
-      max-height: 90vh;
-    }
-  }
-
-  /* Very small landscape screens */
-  @media screen and (max-width: 1024px) and (orientation: landscape) and (max-height: 450px) {
-    .hero-section {
-      height: 85vh;
-      min-height: 300px;
-      max-height: 85vh;
-    }
-  }
-
-  /* Desktop: Use standard viewport height */
-  @media screen and (min-width: 1025px) {
-    .hero-section {
-      height: 100vh;
-      min-height: 100vh;
-      max-height: none;
-    }
-  }
+  height: 100vh; /* نسخة احتياطية */
+  height: 100svh;
+  min-height: 100vh;
+  min-height: 100svh;
+}.hero-section {
+  height: 100svh;
+  min-height: 100svh;
+  max-height: 100svh;
+}
 
   /* Arabic font support */
 [dir="rtl"] body{
