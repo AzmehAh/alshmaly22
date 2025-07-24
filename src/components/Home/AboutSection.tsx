@@ -74,8 +74,8 @@ const AboutSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         {/* Video */}
 <div className="relative">
-             <iframe
-    className="absolute top-0 left-0 w-full h-full rounded-2xl"
+ <iframe
+    className="w-full h-full object-cover"
     src="https://www.youtube.com/embed/wb-Cm7t08zg?si=H08yd5Nl-x4Xa1YZ"
     title="YouTube video player"
     frameBorder="0"
