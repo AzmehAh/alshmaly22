@@ -31,7 +31,7 @@ const HeroSection = () => {
   };
 
   return (
-<<section
+<section
   id="home"
   className="hero-section relative flex items-center justify-center overflow-hidden w-full pt-16"
   style={{
