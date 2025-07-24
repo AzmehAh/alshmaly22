@@ -106,9 +106,7 @@ const LoginPage = () => {
   }}
   placeholder={t('login.passwordPlaceholder')}
 />
-                  placeholder={t('login.passwordPlaceholder')}
-                  style={{ direction }}
-                />
+                  
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
