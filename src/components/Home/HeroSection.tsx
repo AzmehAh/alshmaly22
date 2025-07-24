@@ -121,7 +121,7 @@ const HeroSection = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> 
 
       {/* Scroll Indicator */}
       <div className="hidden sm:absolute sm:bottom-8 sm:left-1/2 sm:transform sm:-translate-x-1/2 text-white sm:animate-bounce">
