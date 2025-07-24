@@ -13,7 +13,7 @@ const HomePage = () => {
       <HeroSection />
       <MarqueeSection />
       <AboutSection />
-      <AlShmalyVideoSection />
+      <AlShmalyVideoSection/>
       <ProductsSection />
       <ServicesSection />
       <BlogSection />
