@@ -263,6 +263,14 @@ const translations = {
    'categories.all': 'All categories',
    'pagination.previous':'previous',
     'pagination.next':' next',
+    'login.title': 'Admin Dashboard',
+  'login.subtitle': 'Sign in to manage your content',
+  'login.emailLabel': 'Email Address',
+  'login.emailPlaceholder': 'admin@al-shamali.com',
+  'login.passwordLabel': 'Password',
+  'login.passwordPlaceholder': 'Enter your password',
+  'login.signIn': 'Sign In',
+  'login.error': 'Login failed',
 
   },
   ar: {
@@ -512,6 +520,14 @@ const translations = {
     'products.discover': 'اكتشف منتجاتنا الزراعية السورية المتميزة، مختارة ومعالجة بعناية لنقدم لك الطعم الأصيل لسوريا.',
     'back': 'العودة إلى المنتجات',
      'categories.all': 'كل تصنيفات',
+    'login.title': 'لوحة تحكم الإدارة',
+  'login.subtitle': 'تسجيل الدخول لإدارة المحتوى الخاص بك',
+  'login.emailLabel': 'البريد الإلكتروني',
+  'login.emailPlaceholder': 'admin@al-shamali.com',
+  'login.passwordLabel': 'كلمة السر',
+  'login.passwordPlaceholder': 'أدخل كلمة السر',
+  'login.signIn': 'تسجيل الدخول',
+  'login.error': 'فشل تسجيل الدخول',
 
   }
 };
