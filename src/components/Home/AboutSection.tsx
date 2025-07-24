@@ -75,7 +75,7 @@ const AboutSection = () => {
         {/* Video */}
 <div className="relative">
  <iframe
- className="w-full h-full object-cover rounded-2xl"
+ className="w-full h-full object-cover rounded-2xl shadow-2xl"
     src="https://www.youtube.com/embed/wb-Cm7t08zg?si=H08yd5Nl-x4Xa1YZ"
     title="YouTube video player"
     frameBorder="0"
