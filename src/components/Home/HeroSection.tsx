@@ -46,7 +46,9 @@ useEffect(() => {
   return (
    <section
   id="home"
-  className="relative flex items-center justify-center overflow-hidden w-full"
+
+  className="hero-section relative flex items-center justify-center overflow-hidden w-full</section>
+
   style={{
     height: 'calc(var(--vh, 1vh) * 100)',
     minHeight: '100svh'
