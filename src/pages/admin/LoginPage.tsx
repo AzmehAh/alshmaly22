@@ -99,7 +99,7 @@ const LoginPage = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                    className={`w-full py-3 px-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent transition-all duration-300 ${
-    direction === 'rtl' ? 'text-right pr-10' : 'text-left pl-10'
+    direction === 'rtl' ? 'text-right pl-10' : 'text-left pr-10'
   }`}
                   placeholder={t('login.passwordPlaceholder')}
                   style={{ direction }}
