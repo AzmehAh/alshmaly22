@@ -83,8 +83,8 @@ const AboutSection = () => {
           allowFullScreen
           referrerPolicy="strict-origin-when-cross-origin"
         ></iframe>
-        
-         <div className="relative -bottom-6 -right-6 bg-[#b9a779] text-white p-6 rounded-2xl">
+         
+         <div className="absolute -bottom-6 -right-6 bg-[#b9a779] text-white p-6 rounded-2xl">
               <p className="text-sm font-semibold"> {t('home.about.1')}</p>
               <p className="text-2xl font-bold">{t('home.about.2')}</p>
             </div>
