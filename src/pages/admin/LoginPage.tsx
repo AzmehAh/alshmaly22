@@ -42,7 +42,7 @@ const LoginPage = () => {
         <div className="text-center">
           <img
             src="https://i.postimg.cc/0Q8pxwTM/logo.png"
-            alt="Al-Shamali Logo"
+            alt="Al-Shmaly Logo"
             className="h-16 w-16 mx-auto object-contain"
           />
           <h2 className="mt-6 text-3xl font-bold text-[#054239]">{t('login.title')}</h2>
