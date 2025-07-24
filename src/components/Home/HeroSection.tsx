@@ -10,25 +10,24 @@ const HeroSection = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
+useEffect(() => {
+  const setVH = () => {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  };
 
-  useEffect(() => {
-    // Set CSS custom property for viewport height
-    const setVH = () => {
-      const vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty('--vh', `${vh}px`);
-    };
+  setVH();
+  window.addEventListener('resize', setVH);
+  window.addEventListener('orientationchange', () => {
+    setTimeout(setVH, 100);
+  });
 
-    setVH();
-    window.addEventListener('resize', setVH);
-    window.addEventListener('orientationchange', () => {
-      setTimeout(setVH, 100);
-    });
+  return () => {
+    window.removeEventListener('resize', setVH);
+    window.removeEventListener('orientationchange', setVH);
+  };
+}, []);
 
-    return () => {
-      window.removeEventListener('resize', setVH);
-      window.removeEventListener('orientationchange', setVH);
-    };
-  }, []);
 
   const togglePlayPause = () => {
     if (videoRef.current) {
@@ -50,9 +49,11 @@ const HeroSection = () => {
 
   return (
     <section
-      id="home"
-      className="hero-section relative flex items-center overflow-hidden w-full"
-    >
+  id="home"
+  className="hero-section relative flex items-center overflow-hidden w-full"
+  style={{ height: 'calc(var(--vh, 1vh) * 100)' }}
+>
+
       {/* Background Video */}
       <div className="absolute inset-0 z-0 w-full h-full">
         <video
