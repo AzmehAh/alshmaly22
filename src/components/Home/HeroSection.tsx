@@ -56,7 +56,7 @@ useEffect(() => {
 
       {/* Background Video */}
       <div className="absolute inset-0 z-0 w-full h-full">
-        <video
+        <video 
           ref={videoRef}
           autoPlay
           muted
@@ -65,7 +65,7 @@ useEffect(() => {
           className="w-full h-full object-cover"
           poster=""
         >
-          <source src="" type="video/mp4" />
+          <source src="https://files.catbox.moe/jnps5k.mp4" type="video/mp4" />
         </video> 
         <div className={`absolute inset-0 w-full h-full transition-all duration-1000 ${
           isPlaying ? 'bg-black/50' : 'bg-black/80 backdrop-blur-sm'
