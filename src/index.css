@@ -20,6 +20,11 @@
   min-height: 100svh;
   max-height: 100svh;
 }
+@media (orientation: landscape) and (max-width: 768px) {
+  .hero-section .hero-content {
+    padding-top: 100px; /* أو حسب ارتفاع الهيدر الفعلي */
+  }
+}
 
   /* Arabic font support */
 [dir="rtl"] body{
