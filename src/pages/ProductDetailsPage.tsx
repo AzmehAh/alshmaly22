@@ -7,7 +7,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 const ProductDetailsPage = () => {
   const { t, getLocalizedField, language } = useLanguage();
   const {slug } = useParams();
-  const { product, relatedProducts, loading, error } = useProductBySlug(slug || '');
+  const { product, relatedProducts, loading, error } = useProduct(slug || '');
   const [selectedPackage, setSelectedPackage] = useState<string>('');
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [quoteLoading, setQuoteLoading] = useState(false);
