@@ -194,8 +194,8 @@ const BlogPostPage = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {relatedPosts.slice(0, 2).map((relatedPost) => (
                   <Link
-                    key={relatedPost.id}
-                    to={`/blog/${relatedPost.id}`}
+                    key={relatedPost.slug}
+                    to={`/blog/${relatedPost.slug}`}
                     className="group flex gap-4 p-4 rounded-xl hover:bg-gray-50 transition-colors duration-300"
                   >
                     <img
