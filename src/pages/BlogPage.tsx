@@ -64,7 +64,7 @@ return (
             {blogPosts.map(post => (
               <Link 
                 key={post.id} 
-                to={`/blog/${post.id}`}
+                to={`/blog/${post.slug }`}
                 className="bg-[#f7f7f7] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group flex flex-col"
               >
                 <div className="relative overflow-hidden">
