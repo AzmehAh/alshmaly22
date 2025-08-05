@@ -177,7 +177,7 @@ const ProductsPage = () => {
       <span className="text-sm text-gray-500">{defaultPackage?.weight || 'Various sizes'}</span>
     </div>
     <Link
-      to={`/product/${product.id}`}
+      to={`/product/${product.slug}`}
       className="mt-auto w-full bg-[#b9a779] hover:bg-[#054239] text-white py-3 px-4 rounded-full font-medium transition-all duration-300 text-center block"
     >
       {t('common.view_details')}

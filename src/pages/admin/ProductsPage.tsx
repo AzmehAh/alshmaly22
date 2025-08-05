@@ -462,6 +462,13 @@ const ProductsPage = () => {
                         <Eye size={16} />
                       </button>
                       <button
+                        onClick={() => window.open(`/product/${product.slug}`, '_blank')}
+                        className="text-blue-600 hover:text-blue-900 p-1 rounded"
+                        title={t('admin.view')}
+                      >
+                        <Eye size={16} />
+                      </button>
+                      <button
                         onClick={() => handleEdit(product)}
                         className="text-[#b9a779] hover:text-[#054239] p-1 rounded"
                         title={t('admin.edit')}

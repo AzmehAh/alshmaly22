@@ -280,6 +280,14 @@ const HomepageManagementPage = () => {
                               '_blank'
                             )
                           }
+                          onClick={() =>
+                            window.open(
+                              activeTab === 'products'
+                                ? `/product/${(item as HomepageProduct).product?.slug}`
+                                : `/blog/${(item as HomepageBlogPost).blog_post_id}`,
+                              '_blank'
+                            )
+                          }
                           className="text-blue-600 hover:text-blue-900 p-1 rounded"
                           title={t('view.item')}
                         >
