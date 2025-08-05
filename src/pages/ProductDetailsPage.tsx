@@ -6,8 +6,8 @@ import { useLanguage } from '../contexts/LanguageContext';
 
 const ProductDetailsPage = () => {
   const { t, getLocalizedField, language } = useLanguage();
-  const { id } = useParams();
-  const { product, relatedProducts, loading, error } = useProduct(id || '');
+  const {slug } = useParams();
+  const { product, relatedProducts, loading, error } = useProductBySlug(slug || '');
   const [selectedPackage, setSelectedPackage] = useState<string>('');
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [quoteLoading, setQuoteLoading] = useState(false);
@@ -190,7 +190,7 @@ const ProductDetailsPage = () => {
             {filteredRelated.map(relatedProduct => (
               <Link
                 key={relatedProduct.id}
-                to={`/product/${relatedProduct.id}`}
+                to={`/product/${relatedProduct.slug}`}
                 className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group"
               >
                 <div className="relative overflow-hidden">
