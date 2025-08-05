@@ -97,7 +97,7 @@ const BlogSection = () => {
                     </p>
 
                     <Link
-                      to={`/blog/${post.id}`}
+                      to={`/blog/${post.slug }`}
                       className="flex items-center mt-auto text-[#b9a779] hover:text-[#054239] font-medium transition-colors duration-300 group"
                     >
                       {t('common.read_more')}
