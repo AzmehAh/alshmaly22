@@ -77,7 +77,7 @@ const ProductsSection = () => {
       {getLocalizedField(product, 'description')}
     </p>
     <Link
-      to={`/product/${product.id}`}
+      to={`/product/${product.slug}`}
       className="w-full bg-[#b9a779] hover:bg-[#054239] text-white py-3 rounded-full font-medium transition-all duration-300 text-center mt-auto"
     >
       {t('common.view_details')}
