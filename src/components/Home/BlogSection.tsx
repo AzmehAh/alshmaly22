@@ -51,7 +51,7 @@ const BlogSection = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
               {blogPosts.map(post => (
                 <article
-                  key={post.id}
+                  key={post.slug}
                   className="bg-[#f7f7f7] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group flex flex-col"
                 >
                   <div className="relative overflow-hidden group">
