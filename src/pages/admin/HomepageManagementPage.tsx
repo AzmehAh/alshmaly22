@@ -284,7 +284,7 @@ const HomepageManagementPage = () => {
                             window.open(
                               activeTab === 'products'
                                 ? `/product/${(item as HomepageProduct).product?.slug}`
-                                : `/blog/${(item as HomepageBlogPost).blog_post_id}`,
+                                : `/blog/${(item as HomepageBlogPost).blog_post_slug }`,
                               '_blank'
                             )
                           }
