@@ -6,8 +6,8 @@ import { useLanguage } from '../contexts/LanguageContext';
 
 const BlogPostPage = () => {
   const { t, getLocalizedField, language } = useLanguage();
-  const { id } = useParams();
-  const { post, relatedPosts, loading, error } = useBlogPost(id || '');
+  const { slug  } = useParams();
+  const { post, relatedPosts, loading, error } = useBlogPost(slug || '');
   const [selectedImageIndex, setSelectedImageIndex] = React.useState(0);
 
   const currentUrl = window.location.href;
