@@ -276,6 +276,32 @@ const BlogPostsPage = () => {
     }
   }; 
 
+  const handleMultipleFiles = (files: File[]) => {
+    files.forEach(file => {
+      if (file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const imageUrl = e.target?.result as string;
+          const newImage = {
+            image_url: imageUrl,
+            alt_text: file.name.replace(/\.[^/.]+$/, ''),
+            sort_order: images.length + 1
+          };
+          setImages(prev => [...prev, newImage]);
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  };
+
+  const addImageFromUrl = (url: string) => {
+    const newImage = {
+      image_url: url,
+      alt_text: '',
+      sort_order: images.length + 1
+    };
+    setImages(prev => [...prev, newImage]);
+  };
 
   const addImage = () => {
     setImages([...images, { 
@@ -285,59 +311,6 @@ const BlogPostsPage = () => {
     }]);
   };
 
-  const handleMultipleFiles = (files: File[]) => {
-    const validFiles = files.filter(file => {
-      if (file.size > 10 * 1024 * 1024) {
-        alert(`File ${file.name} is too large. Maximum size is 10MB.`);
-        return false;
-      }
-      if (!file.type.startsWith('image/')) {
-        alert(`File ${file.name} is not an image.`);
-        return false;
-      }
-      return true;
-    });
-
-    validFiles.forEach((file, fileIndex) => {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        const imageUrl = event.target?.result as string;
-        const newImage = {
-          image_url: imageUrl,
-          alt_text: file.name.replace(/\.[^/.]+$/, ''),
-          sort_order: images.length + fileIndex + 1
-        };
-        
-        setImages(prev => {
-          const updated = [...prev, newImage];
-          // Set first image as featured if none selected
-          if (updated.length === 1 && !formData.featured_image) {
-            setFormData(current => ({ ...current, featured_image: imageUrl }));
-          }
-          return updated;
-        });
-      };
-      reader.readAsDataURL(file);
-    });
-  };
-
-  const addImageFromUrl = (url: string) => {
-    const newImage = {
-      image_url: url,
-      alt_text: 'Image from URL',
-      sort_order: images.length + 1
-    };
-    
-    setImages(prev => {
-      const updated = [...prev, newImage];
-      // Set as featured if it's the first image
-      if (updated.length === 1 && !formData.featured_image) {
-        setFormData(current => ({ ...current, featured_image: url }));
-      }
-      return updated;
-    });
-  };
-
   const updateImage = (index: number, field: string, value: string | number) => {
     const newImages = [...images];
     newImages[index] = { ...newImages[index], [field]: value };
@@ -345,20 +318,7 @@ const BlogPostsPage = () => {
   };
 
   const removeImage = (index: number) => {
-    const imageToRemove = images[index];
-    const updatedImages = images.filter((_, i) => i !== index);
-    
-    // Clean up blob URL if it exists
-    if (imageToRemove?.image_url && imageToRemove.image_url.startsWith('blob:')) {
-      URL.revokeObjectURL(imageToRemove.image_url);
-    }
-    
-    // If the removed image was featured, clear featured image
-    if (formData.featured_image === imageToRemove.image_url) {
-      setFormData({ ...formData, featured_image: updatedImages[0]?.image_url || '' });
-    }
-    
-    setImages(updatedImages);
+    setImages(images.filter((_, i) => i !== index));
   }; 
   const generateSlug = (title: string) => {
     return title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
@@ -771,6 +731,9 @@ return (
                     onChange={(e) => setFormData({ ...formData, featured_image: e.target.value })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
                     placeholder="https://example.com/image.jpg"
+                  />
+                </div>
+
                 {/* Images Upload Section */}
                 <div className="bg-gray-50 p-6 rounded-lg">
                   <h4 className="text-lg font-semibold text-[#054239] mb-6 flex items-center">
