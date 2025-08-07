@@ -24,7 +24,7 @@ const BlogPostsPage = () => {
     image_url: string;
     alt_text: string;
     sort_order: number;
-  }>>([]);
+  }>>([]);</parameter>
 
   const fetchRelations = async (postId: string) => {
     try {
