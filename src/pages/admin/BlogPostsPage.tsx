@@ -24,7 +24,7 @@ const BlogPostsPage = () => {
     image_url: string;
     alt_text: string;
     sort_order: number;
-  }>>([]);
+  }>>([]);</parameter>
 
   const fetchRelations = async (postId: string) => {
     try {
@@ -734,7 +734,7 @@ return (
 
         {/* رفع صورة أو إدخال رابط */}
         <div className="md:col-span-5">
-          <div className="relative">
+          <div className="relative"> 
             {image.image_url ? (
               <div className="relative group">
                 <img
@@ -816,7 +816,7 @@ return (
                   const blob = await response.blob();
                   if (!blob.type.startsWith('image/')) {
                     alert('الرابط لا يشير إلى صورة صالحة');
-                    return; 
+                    return;
                   }
 
                   const reader = new FileReader();
