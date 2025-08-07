@@ -737,13 +737,13 @@ const ProductsPage = () => {
         className="grid grid-cols-1 md:grid-cols-8 gap-4 p-4 bg-white border border-gray-200 rounded-lg shadow-sm"
       >
         {/* معاينة الصورة */}
-        <<div className="md:col-span-3">
+<div className="md:col-span-3">
   <label className="block text-sm font-medium text-gray-700 mb-1">
     {t('admin.image')} Upload
   </label>
   <input
     type="file"
-    accept="image/*" 
+    accept="image/*"
     onChange={(e) => {
       const file = e.target.files[0];
       if (file) {
@@ -755,37 +755,6 @@ const ProductsPage = () => {
   />
 </div>
 
-
-       
-
-<div className="md:col-span-3">
-  <label className="block text-sm font-medium text-gray-700 mb-1">
-    {t('admin.image')} Upload
-  </label>
-
-  {/* input مخفي */}
-  <input
-    id={`image-upload-${index}`}
-    type="file"
-    accept="image/*"
-    onChange={(e) => {
-      const file = e.target.files[0];
-      if (file) {
-        const imageUrl = URL.createObjectURL(file);
-        updateImage(index, 'image_url', imageUrl);
-      }
-    }}
-    className="hidden"
-  />
-
-  {/* الأيقونة من React */}
-  <label
-    htmlFor={`image-upload-${index}`}
-    className="inline-flex items-center justify-center w-10 h-10 border border-gray-300 rounded-full cursor-pointer hover:bg-gray-100"
-  >
-    <Upload className="w-5 h-5 text-gray-500" />
-  </label>
-</div>
 
 
         {/* النص البديل */}
