@@ -754,20 +754,24 @@ const ProductsPage = () => {
           )}
         </div>
 
-        {/* رابط الصورة */}
         <div className="md:col-span-3">
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            {t('admin.image')} URL
-          </label>
-          <input
-            type="url"
-            value={image.image_url}
-            onChange={(e) => updateImage(index, 'image_url', e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-            placeholder="https://example.com/image.jpg"
-            required
-          />
-        </div>
+  <label className="block text-sm font-medium text-gray-700 mb-1">
+    {t('admin.image')} Upload
+  </label>
+  <input
+    type="file"
+    accept="image/*"
+    onChange={(e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const imageUrl = URL.createObjectURL(file);
+        updateImage(index, 'image_url', imageUrl);
+      }
+    }}
+    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+  />
+</div>
+
 
         {/* النص البديل */}
         <div className="md:col-span-2">
