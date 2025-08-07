@@ -737,7 +737,7 @@ const ProductsPage = () => {
         className="grid grid-cols-1 md:grid-cols-8 gap-4 p-4 bg-white border border-gray-200 rounded-lg shadow-sm"
       >
         {/* معاينة الصورة */}
-        <<div className="md:col-span-3">
+        <div className="md:col-span-3">
   <label className="block text-sm font-medium text-gray-700 mb-1">
     {t('admin.image')} Upload
   </label>
