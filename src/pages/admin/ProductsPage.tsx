@@ -754,20 +754,50 @@ const ProductsPage = () => {
           )}
         </div>
 
-        {/* رابط الصورة */}
-        <div className="md:col-span-3">
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            {t('admin.image')} URL
-          </label>
-          <input 
-            type="url"
-            value={image.image_url}
-            onChange={(e) => updateImage(index, 'image_url', e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-            placeholder="https://example.com/image.jpg"
-            required
-          />
-        </div>
+       <div className="md:col-span-3">
+  <label className="block text-sm font-medium text-gray-700 mb-1">
+    {t('admin.image')} Upload
+  </label>
+
+  {/* input مخفي */}
+  <input
+    id={`image-upload-${index}`}
+    type="file"
+    accept="image/*"
+    onChange={(e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const imageUrl = URL.createObjectURL(file);
+        updateImage(index, 'image_url', imageUrl);
+      }
+    }}
+    className="hidden"
+  />
+
+  {/* أيقونة مكان الزر */}
+  <label
+    htmlFor={`image-upload-${index}`}
+    className="inline-flex items-center justify-center w-10 h-10 border border-gray-300 rounded-full cursor-pointer hover:bg-gray-100"
+    title="Upload Image"
+  >
+    {/* أيقونة تحميل صغيرة */}
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="w-5 h-5 text-gray-500"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1M12 12v8m0-8l-3 3m3-3l3 3M12 4v4"
+      />
+    </svg>
+  </label>
+</div>
+
 
         {/* النص البديل */}
         <div className="md:col-span-2">
