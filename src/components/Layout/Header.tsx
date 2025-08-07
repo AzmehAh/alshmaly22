@@ -17,7 +17,7 @@ const Header = () => {
       <div className="container mx-auto px-4 py-2">
         <div className="flex items-center justify-between">
           {/* Logo */} 
-          <Link to="/" className="flex items-center space-x-3">
+          <Link to="/" className="flex items-center gap-3">
             <img 
               src="./images/logo.png" 
               alt="Al-Shamaly Logo"  
