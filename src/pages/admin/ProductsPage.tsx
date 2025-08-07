@@ -34,7 +34,6 @@ const ProductsPage = () => {
   });
 
   const [images, setImages] = useState<Array<{ image_url: string; alt_text: string; sort_order: number }>>([]);
-  const [imageFiles, setImageFiles] = useState<Array<{ file: File | null; preview_url: string; alt_text: string; sort_order: number }>>([]);
   const [packages, setPackages] = useState<Array<{ weight: string; price: string; is_default: boolean }>>([]);
   const [newFeature, setNewFeature] = useState('');
   const [newSpecificationEn, setNewSpecificationEn] = useState('');
@@ -85,45 +84,6 @@ const ProductsPage = () => {
     setLoading(true);
 
     try {
-      // Upload images to Supabase Storage first
-      const uploadedImages = await Promise.all(
-        imageFiles.map(async (imageFile) => {
-          if (imageFile.file) {
-            // Generate unique filename
-            const fileExt = imageFile.file.name.split('.').pop();
-            const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
-            
-            // Upload to Supabase Storage
-            const { data: uploadData, error: uploadError } = await supabase.storage
-              .from('product-images')
-              .upload(fileName, imageFile.file);
-            
-            if (uploadError) {
-              console.error('Error uploading image:', uploadError);
-              throw new Error(`Failed to upload image: ${uploadError.message}`);
-            }
-            
-            // Get public URL
-            const { data: { publicUrl } } = supabase.storage
-              .from('product-images')
-              .getPublicUrl(fileName);
-            
-            return {
-              image_url: publicUrl,
-              alt_text: imageFile.alt_text,
-              sort_order: imageFile.sort_order
-            };
-          } else {
-            // This is a URL input, not a file upload
-            return {
-              image_url: imageFile.preview_url,
-              alt_text: imageFile.alt_text,
-              sort_order: imageFile.sort_order
-            };
-          }
-        })
-      );
-
       let productId: string;
 
       if (editingProduct) {
@@ -157,8 +117,8 @@ const ProductsPage = () => {
       }
 
       // Insert new images
-      if (uploadedImages.length > 0) {
-        const imageData = uploadedImages.map(img => ({
+      if (images.length > 0) {
+        const imageData = images.map(img => ({
           product_id: productId,
           ...img
         }));
@@ -195,7 +155,7 @@ const ProductsPage = () => {
       resetForm();
     } catch (error) {
       console.error('Error saving product:', error);
-      alert(`Error saving product: ${error instanceof Error ? error.message : 'Please try again.'}`);
+      alert('Error saving product. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -217,9 +177,8 @@ const ProductsPage = () => {
       specifications_ar: product.specifications_ar || []
     });
     
-    setImageFiles(product.images?.map(img => ({
-      file: null, // Existing images don't have file objects
-      preview_url: img.image_url,
+    setImages(product.images?.map(img => ({
+      image_url: img.image_url,
       alt_text: img.alt_text || '',
       sort_order: img.sort_order
     })) || []);
@@ -297,7 +256,7 @@ const ProductsPage = () => {
       specifications_en: [],
       specifications_ar: []
     });
-    setImageFiles([]);
+    setImages([]);
     setPackages([]);
     setNewFeature('');
     setNewSpecificationEn('');
@@ -347,22 +306,17 @@ const ProductsPage = () => {
     }));
   };
   const addImage = () => {
-    setImageFiles(prev => [...prev, { file: null, preview_url: '', alt_text: '', sort_order: prev.length }]);
+    setImages(prev => [...prev, { image_url: '', alt_text: '', sort_order: prev.length }]);
   };
 
-  const updateImageFile = (index: number, field: string, value: string | number) => {
-    setImageFiles(prev => prev.map((img, i) => 
+  const updateImage = (index: number, field: string, value: string | number) => {
+    setImages(prev => prev.map((img, i) => 
       i === index ? { ...img, [field]: value } : img
     ));
   };
 
   const removeImage = (index: number) => {
-    // Clean up blob URL if it exists
-    const imageFile = imageFiles[index];
-    if (imageFile?.preview_url?.startsWith('blob:')) {
-      URL.revokeObjectURL(imageFile.preview_url);
-    }
-    setImageFiles(prev => prev.filter((_, i) => i !== index));
+    setImages(prev => prev.filter((_, i) => i !== index));
   };
 
   const addPackage = () => {
@@ -777,7 +731,7 @@ const ProductsPage = () => {
   </div>
 
   <div className="space-y-5">
-    {imageFiles.map((imageFile, index) => (
+    {images.map((image, index) => (
       <div
         key={index}
         className="grid grid-cols-1 md:grid-cols-8 gap-4 p-4 bg-white border border-gray-200 rounded-lg shadow-sm"
@@ -789,14 +743,14 @@ const ProductsPage = () => {
           
           {/* Image Preview Area */}
           <div className="relative">
-            {imageFile.preview_url ? (
+            {image.image_url ? (
               <div className="relative group">
                 <img
-                  src={imageFile.preview_url}
-                  alt={imageFile.alt_text || 'Product image preview'}
+                  src={image.image_url}
+                  alt={image.alt_text || 'Product image preview'}
                   className="w-full h-32 object-cover rounded-lg border border-gray-300"
                   onError={(e) => {
-                    console.error('Image failed to load:', imageFile.preview_url);
+                    console.error('Image failed to load:', image.image_url);
                     e.currentTarget.src = 'https://via.placeholder.com/300x200?text=Invalid+Image';
                   }}
                 />
@@ -839,18 +793,9 @@ const ProductsPage = () => {
                   updateImage(index, 'image_url', imageUrl);
                   
                   // Set default alt text if empty
-                  if (!imageFile.alt_text) {
-                    updateImageFile(index, 'alt_text', file.name.replace(/\.[^/.]+$/, ''));
+                  if (!image.alt_text) {
+                    updateImage(index, 'alt_text', file.name.replace(/\.[^/.]+$/, ''));
                   }
-                  
-                  // Store both file and preview URL
-                  setImageFiles(prev => prev.map((img, i) => 
-                    i === index ? { 
-                      ...img, 
-                      file: file,
-                      preview_url: imageUrl 
-                    } : img
-                  ));
                 }
               }}
               className="hidden"
@@ -864,26 +809,11 @@ const ProductsPage = () => {
             </label>
             <input
               type="url"
-              value={imageFile.file ? '' : imageFile.preview_url}
-              onChange={(e) => {
-                // Clear file when URL is entered manually
-                setImageFiles(prev => prev.map((img, i) => 
-                  i === index ? { 
-                    ...img, 
-                    file: null,
-                    preview_url: e.target.value 
-                  } : img
-                ));
-              }}
+              value={image.image_url}
+              onChange={(e) => updateImage(index, 'image_url', e.target.value)}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent text-sm"
               placeholder="https://example.com/image.jpg"
-              disabled={!!imageFile.file}
             />
-            {imageFile.file && (
-              <p className="text-xs text-gray-500 mt-1">
-                File selected: {imageFile.file.name}
-              </p>
-            )}
           </div>
         </div>
 
@@ -896,8 +826,8 @@ const ProductsPage = () => {
           </label>
           <input
             type="text"
-            value={imageFile.alt_text}
-            onChange={(e) => updateImageFile(index, 'alt_text', e.target.value)}
+            value={image.alt_text}
+            onChange={(e) => updateImage(index, 'alt_text', e.target.value)}
             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
             placeholder={t('admin.description')}
           />
@@ -911,8 +841,8 @@ const ProductsPage = () => {
             </label>
             <input
               type="number"
-              value={imageFile.sort_order}
-              onChange={(e) => updateImageFile(index, 'sort_order', parseInt(e.target.value) || 0)}
+              value={image.sort_order}
+              onChange={(e) => updateImage(index, 'sort_order', parseInt(e.target.value) || 0)}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
               min={0}
             />
