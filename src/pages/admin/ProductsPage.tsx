@@ -243,6 +243,13 @@ const ProductsPage = () => {
   };
 
   const resetForm = () => {
+    // Clean up any blob URLs before resetting
+    images.forEach(image => {
+      if (image.image_url && image.image_url.startsWith('blob:')) {
+        URL.revokeObjectURL(image.image_url);
+      }
+    });
+    
     setFormData({
       name: '',
       name_ar: '',
@@ -316,6 +323,11 @@ const ProductsPage = () => {
   };
 
   const removeImage = (index: number) => {
+    // Clean up blob URL if it exists
+    const imageToRemove = images[index];
+    if (imageToRemove?.image_url && imageToRemove.image_url.startsWith('blob:')) {
+      URL.revokeObjectURL(imageToRemove.image_url);
+    }
     setImages(prev => prev.filter((_, i) => i !== index));
   };
 
@@ -751,7 +763,10 @@ const ProductsPage = () => {
                   className="w-full h-32 object-cover rounded-lg border border-gray-300"
                   onError={(e) => {
                     console.error('Image failed to load:', image.image_url);
-                    e.currentTarget.src = 'https://via.placeholder.com/300x200?text=Invalid+Image';
+                    // Only set placeholder for non-blob URLs to avoid infinite loops
+                    if (!image.image_url.startsWith('blob:') && !image.image_url.startsWith('data:')) {
+                      e.currentTarget.src = 'https://via.placeholder.com/300x200?text=Invalid+Image';
+                    }
                   }}
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-200 rounded-lg flex items-center justify-center">
@@ -788,15 +803,26 @@ const ProductsPage = () => {
                     return;
                   }
                   
-                  // Create preview URL
-                  const imageUrl = URL.createObjectURL(file);
-                  updateImage(index, 'image_url', imageUrl);
-                  
-                  // Set default alt text if empty
-                  if (!image.alt_text) {
-                    updateImage(index, 'alt_text', file.name.replace(/\.[^/.]+$/, ''));
+                  // Clean up previous blob URL if it exists
+                  if (image.image_url && image.image_url.startsWith('blob:')) {
+                    URL.revokeObjectURL(image.image_url);
                   }
+                  
+                  // Create new preview URL
+                  const reader = new FileReader();
+                  reader.onload = (event) => {
+                    const imageUrl = event.target?.result as string;
+                    updateImage(index, 'image_url', imageUrl);
+                    
+                    // Set default alt text if empty
+                    if (!image.alt_text) {
+                      updateImage(index, 'alt_text', file.name.replace(/\.[^/.]+$/, ''));
+                    }
+                  };
+                  reader.readAsDataURL(file);
                 }
+                // Clear the input value to allow re-selecting the same file
+                e.target.value = '';
               }}
               className="hidden"
             />
