@@ -6,13 +6,6 @@ import type { BlogPost, BlogCategory } from '../../lib/supabase';
 import type { BlogPostRelation } from '../../lib/api/relations';
 import { useLanguage } from '../../contexts/LanguageContext';
 
-interface BlogPostImage {
-  id?: string;
-  image_url: string;
-  alt_text: string;
-  sort_order: number;
-}
-
 const BlogPostsPage = () => {
   const { t, direction, language } = useLanguage();
   const [posts, setPosts] = useState<BlogPost[]>([]);
@@ -26,7 +19,12 @@ const BlogPostsPage = () => {
   const [showRelationsModal, setShowRelationsModal] = useState<string | null>(null);
   const [relations, setRelations] = useState<BlogPostRelation[]>([]);
   const [availablePosts, setAvailablePosts] = useState<BlogPost[]>([]);
-  const [images, setImages] = useState<BlogPostImage[]>([]);
+  const [images, setImages] = useState<Array<{
+    id?: string;
+    image_url: string;
+    alt_text: string;
+    sort_order: number;
+  }>>([]);</parameter>
 
   const fetchRelations = async (postId: string) => {
     try {
@@ -287,7 +285,7 @@ const BlogPostsPage = () => {
     }]);
   };
 
-  const updateImage = (index: number, field: keyof BlogPostImage, value: string | number) => {
+  const updateImage = (index: number, field: string, value: string | number) => {
     const newImages = [...images];
     newImages[index] = { ...newImages[index], [field]: value };
     setImages(newImages);
@@ -818,7 +816,7 @@ return (
                   const blob = await response.blob();
                   if (!blob.type.startsWith('image/')) {
                     alert('الرابط لا يشير إلى صورة صالحة');
-                    return;
+                    return; 
                   }
 
                   const reader = new FileReader();
