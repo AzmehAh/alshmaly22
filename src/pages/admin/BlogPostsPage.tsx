@@ -732,18 +732,7 @@ return (
                     <div className="space-y-4">
                       {images.map((image, index) => (
                         <div key={index} className="grid grid-cols-1 md:grid-cols-12 gap-4 p-4 bg-white border border-gray-200 rounded-lg">
-                          <div className="md:col-span-2">
-                            {image.image_url ? (
-                              <div className="relative group">
-                                 <img
-                                  src={image.image_url}
-                                  alt={image.alt_text || 'معاينة الصورة'}
-                                  className="h-20 w-full object-cover rounded"
-                                  onError={(e) => {
-                                    e.currentTarget.src = 'https://via.placeholder.com/150?text=Invalid+Image';
-                                  }}
-                                />
-                              </div>
+                        
                             ) : (
                               <div className="h-20 w-full bg-gray-100 rounded flex items-center justify-center">
                                 <ImageIcon size={24} className="text-gray-400" />
