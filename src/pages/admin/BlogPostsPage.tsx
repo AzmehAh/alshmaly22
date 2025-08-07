@@ -735,7 +735,6 @@ return (
         {/* رفع صورة أو إدخال رابط */}
         <div className="md:col-span-5">
           <div className="relative"> 
-            {image.image_url ? (
               <div className="relative group">
                 <img
                   src={image.image_url}
