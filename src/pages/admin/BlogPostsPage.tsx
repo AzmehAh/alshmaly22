@@ -751,38 +751,112 @@ return (
                             )}
                           </div>
                           
-                          <input
-  type="url"
-  value={image.image_url}
-  onChange={async (e) => {
-    const url = e.target.value;
-    updateImage(index, 'image_url', url); // ← لتحديث الحقل النصي
+                         <div className="md:col-span-5">
+  {/* Image Preview + Upload or URL */}
+  <div className="relative">
+    {image.image_url ? (
+      <div className="relative group">
+        <img
+          src={image.image_url}
+          alt={image.alt_text || 'Preview'}
+          className="w-full h-32 object-cover rounded-lg border border-gray-300"
+          onError={(e) => {
+            console.error('Image failed to load:', image.image_url);
+            if (!image.image_url.startsWith('blob:') && !image.image_url.startsWith('data:')) {
+              e.currentTarget.src = 'https://via.placeholder.com/300x200?text=Invalid+Image';
+            }
+          }}
+        />
+        <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-200 rounded-lg flex items-center justify-center">
+          <label
+            htmlFor={`image-upload-${index}`}
+            className="opacity-0 group-hover:opacity-100 bg-white bg-opacity-75 rounded-full p-2 cursor-pointer transition-opacity duration-200"
+          >
+            <Upload className="w-5 h-5 text-gray-700" />
+          </label>
+        </div>
+      </div>
+    ) : (
+      <label
+        htmlFor={`image-upload-${index}`}
+        className="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors duration-200"
+      >
+        <Upload className="w-8 h-8 text-gray-400 mb-2" />
+        <span className="text-sm text-gray-600">{t('admin.upload_image')}</span>
+        <span className="text-xs text-gray-400">PNG, JPG, GIF up to 10MB</span>
+      </label>
+    )}
 
-    try {
-      const response = await fetch(url);
-      const blob = await response.blob();
+    {/* Hidden file input */}
+    <input
+      id={`image-upload-${index}`}
+      type="file"
+      accept="image/*"
+      onChange={(e) => {
+        const file = e.target.files?.[0];
+        if (file) {
+          if (file.size > 10 * 1024 * 1024) {
+            alert('File size must be less than 10MB');
+            return;
+          }
 
-      // التأكد من أن نوع الملف صورة
-      if (!blob.type.startsWith('image/')) {
-        alert('الرابط لا يشير إلى صورة صالحة.');
-        return;
-      }
+          if (image.image_url?.startsWith('blob:')) {
+            URL.revokeObjectURL(image.image_url);
+          }
 
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        const base64data = reader.result as string;
-        updateImage(index, 'image_url', base64data); // ← نحفظ الصورة كـ base64
-      };
-      reader.readAsDataURL(blob);
-    } catch (error) {
-      console.error('فشل تحميل الصورة من الرابط:', error);
-      alert('تعذر تحميل الصورة من الرابط.');
-    }
-  }}
-  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-  placeholder="https://example.com/image.jpg"
-  required
-/>
+          const reader = new FileReader();
+          reader.onload = (event) => {
+            const imageUrl = event.target?.result as string;
+            updateImage(index, 'image_url', imageUrl);
+            if (!image.alt_text) {
+              updateImage(index, 'alt_text', file.name.replace(/\.[^/.]+$/, ''));
+            }
+          };
+          reader.readAsDataURL(file);
+        }
+        e.target.value = '';
+      }}
+      className="hidden"
+    />
+  </div>
+
+  {/* URL input with auto-convert to base64 */}
+  <div className="mt-3">
+    <label className="block text-sm font-medium text-gray-700 mb-1">
+      {t('admin.or_enter_url')}
+    </label>
+    <input
+      type="url"
+      value={image.image_url}
+      onChange={async (e) => {
+        const url = e.target.value;
+        updateImage(index, 'image_url', url);
+
+        try {
+          const response = await fetch(url);
+          const blob = await response.blob();
+
+          if (!blob.type.startsWith('image/')) {
+            alert('الرابط لا يشير إلى صورة صالحة');
+            return;
+          }
+
+          const reader = new FileReader();
+          reader.onloadend = () => {
+            const base64data = reader.result as string;
+            updateImage(index, 'image_url', base64data);
+          };
+          reader.readAsDataURL(blob);
+        } catch (error) {
+          console.error('فشل تحميل الصورة من الرابط:', error);
+          alert('تعذر تحميل الصورة من الرابط المحدد.');
+        }
+      }}
+      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent text-sm"
+      placeholder="https://example.com/image.jpg"
+    />
+  </div>
+</div>
 
                           
                           <div className="md:col-span-3">
