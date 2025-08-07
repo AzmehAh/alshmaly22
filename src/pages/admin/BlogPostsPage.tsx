@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Plus, Search, Edit, Trash2, Eye, Calendar, Link as LinkIcon, X, Image as ImageIcon, Upload } from 'lucide-react';
+import { Plus, Search, Edit, Trash2, Eye, Calendar, Link as LinkIcon, X, Image as ImageIcon, Upload, Award } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import { RelationsAPI } from '../../lib/api/relations';
 import type { BlogPost, BlogCategory } from '../../lib/supabase';
