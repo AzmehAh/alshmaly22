@@ -751,19 +751,39 @@ return (
                             )}
                           </div>
                           
-                          <div className="md:col-span-5">
-                            <label className="block text-sm font-medium text-gray-700 mb-1">
-                              {t('admin.image')} URL
-                            </label>
-                            <input
-                              type="url"
-                              value={image.image_url}
-                              onChange={(e) => updateImage(index, 'image_url', e.target.value)}
-                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                              placeholder="https://example.com/image.jpg"
-                              required
-                            />
-                          </div>
+                          <input
+  type="url"
+  value={image.image_url}
+  onChange={async (e) => {
+    const url = e.target.value;
+    updateImage(index, 'image_url', url); // ← لتحديث الحقل النصي
+
+    try {
+      const response = await fetch(url);
+      const blob = await response.blob();
+
+      // التأكد من أن نوع الملف صورة
+      if (!blob.type.startsWith('image/')) {
+        alert('الرابط لا يشير إلى صورة صالحة.');
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64data = reader.result as string;
+        updateImage(index, 'image_url', base64data); // ← نحفظ الصورة كـ base64
+      };
+      reader.readAsDataURL(blob);
+    } catch (error) {
+      console.error('فشل تحميل الصورة من الرابط:', error);
+      alert('تعذر تحميل الصورة من الرابط.');
+    }
+  }}
+  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+  placeholder="https://example.com/image.jpg"
+  required
+/>
+
                           
                           <div className="md:col-span-3">
                             <label className="block text-sm font-medium text-gray-700 mb-1">
