@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Plus, Search, Edit, Trash2, Eye, Package, Image as ImageIcon, X, Link as LinkIcon } from 'lucide-react';
+import { Plus, Search, Edit, Trash2, Eye, Upload, Package, Image as ImageIcon, X, Link as LinkIcon } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import { RelationsAPI } from '../../lib/api/relations';
 import type { Product, Category } from '../../lib/supabase';
@@ -754,7 +754,9 @@ const ProductsPage = () => {
           )}
         </div>
 
-       <div className="md:col-span-3">
+       
+
+<div className="md:col-span-3">
   <label className="block text-sm font-medium text-gray-700 mb-1">
     {t('admin.image')} Upload
   </label>
@@ -774,27 +776,12 @@ const ProductsPage = () => {
     className="hidden"
   />
 
-  {/* أيقونة مكان الزر */}
+  {/* الأيقونة من React */}
   <label
     htmlFor={`image-upload-${index}`}
     className="inline-flex items-center justify-center w-10 h-10 border border-gray-300 rounded-full cursor-pointer hover:bg-gray-100"
-    title="Upload Image"
   >
-    {/* أيقونة تحميل صغيرة */}
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className="w-5 h-5 text-gray-500"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1M12 12v8m0-8l-3 3m3-3l3 3M12 4v4"
-      />
-    </svg>
+    <Upload className="w-5 h-5 text-gray-500" />
   </label>
 </div>
 
