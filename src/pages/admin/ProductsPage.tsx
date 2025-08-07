@@ -737,22 +737,24 @@ const ProductsPage = () => {
         className="grid grid-cols-1 md:grid-cols-8 gap-4 p-4 bg-white border border-gray-200 rounded-lg shadow-sm"
       >
         {/* معاينة الصورة */}
-        <div className="md:col-span-2">
-          {image.image_url ? (
-            <img
-              src={image.image_url}
-              alt={image.alt_text || 'معاينة الصورة'}
-              className="h-24 w-full object-cover rounded"
-              onError={(e) => {
-                e.currentTarget.src = 'https://via.placeholder.com/150?text=Invalid+Image';
-              }}
-            />
-          ) : (
-            <div className="h-24 w-full bg-gray-100 rounded flex items-center justify-center">
-              <ImageIcon size={28} className="text-gray-400" />
-            </div>
-          )}
-        </div>
+        <<div className="md:col-span-3">
+  <label className="block text-sm font-medium text-gray-700 mb-1">
+    {t('admin.image')} Upload
+  </label>
+  <input
+    type="file"
+    accept="image/*"
+    onChange={(e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const imageUrl = URL.createObjectURL(file);
+        updateImage(index, 'image_url', imageUrl);
+      }
+    }}
+    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
+  />
+</div>
+
 
        
 
