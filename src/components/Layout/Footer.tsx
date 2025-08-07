@@ -14,8 +14,8 @@ const Footer = () => {
           <div className="space-y-4">
             <div className="flex items-center space-x-2"> 
                <img 
-              src="https://i.postimg.cc/sgdxhP1p/logo.png" 
-              alt="Al-Shamaly Logo" 
+              src="./images/logo.png" 
+              alt="Al-Shmaly Logo" 
               className="h-16 w-15 object-contain"
             />
               <div>
