@@ -285,7 +285,7 @@ const BlogPostsPage = () => {
     }]);
   };
 
-  const updateImage = (index: number, field: keyof BlogPostImage, value: string | number) => {
+  const updateImage = (index: number, field: string, value: string | number) => {
     const newImages = [...images];
     newImages[index] = { ...newImages[index], [field]: value };
     setImages(newImages);
