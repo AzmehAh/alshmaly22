@@ -695,17 +695,8 @@ return (
                     <option value="draft">{t('blog.status.draft')}</option>
                   </select>
                 </div>
-               {images.length === 0 ? (
-  <div className="text-center py-6 bg-white rounded border border-dashed border-gray-300">
-    <ImageIcon size={48} className="mx-auto text-gray-400 mb-2" />
-    <p className="text-gray-500">{t('admin.image')}</p>
-  </div>
-) : (
-  <div className="space-y-4">
-    {images.map((image, index) => (
-      <div key={index} className="grid grid-cols-1 md:grid-cols-12 gap-4 p-4 bg-white border border-gray-200 rounded-lg relative">
-        
-        {/* Featured Image URL */}
+
+                {/* Featured Image URL */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">{t('blog.fields.featured_image_url')}</label>
                   <input
