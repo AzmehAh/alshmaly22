@@ -743,7 +743,7 @@ const ProductsPage = () => {
   </label>
   <input
     type="file"
-    accept="image/*"
+    accept="image/*" 
     onChange={(e) => {
       const file = e.target.files[0];
       if (file) {
