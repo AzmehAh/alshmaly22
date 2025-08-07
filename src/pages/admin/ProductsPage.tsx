@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Plus, Search, Edit, Trash2, Eye, Package, Image as ImageIcon, X, Link as LinkIcon } from 'lucide-react';
+import { Plus, Search, Edit, Trash2, Eye,Upload , Package, Image as ImageIcon, X, Link as LinkIcon } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import { RelationsAPI } from '../../lib/api/relations';
 import type { Product, Category } from '../../lib/supabase';
@@ -736,23 +736,35 @@ const ProductsPage = () => {
         key={index}
         className="grid grid-cols-1 md:grid-cols-8 gap-4 p-4 bg-white border border-gray-200 rounded-lg shadow-sm"
       >
-        {/* معاينة الصورة */}
-        <div className="md:col-span-2">
-          {image.image_url ? (
-            <img
-              src={image.image_url}
-              alt={image.alt_text || 'معاينة الصورة'}
-              className="h-24 w-full object-cover rounded"
-              onError={(e) => {
-                e.currentTarget.src = 'https://via.placeholder.com/150?text=Invalid+Image';
-              }}
-            />
-          ) : (
-            <div className="h-24 w-full bg-gray-100 rounded flex items-center justify-center">
-              <ImageIcon size={28} className="text-gray-400" />
-            </div>
-          )}
-        </div>
+    
+<div className="md:col-span-3">
+  <label className="block text-sm font-medium text-gray-700 mb-1">
+    {t('admin.image')} Upload
+  </label>
+
+  {/* input مخفي */}
+  <input
+    id={`image-upload-${index}`}
+    type="file"
+    accept="image/*"
+    onChange={(e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const imageUrl = URL.createObjectURL(file);
+        updateImage(index, 'image_url', imageUrl);
+      }
+    }}
+    className="hidden"
+  />
+
+  {/* زر مخصص عبارة عن أيقونة فقط */}
+  <label
+    htmlFor={`image-upload-${index}`}
+    className="flex items-center justify-center w-16 h-16 border-2 border-dashed border-gray-300 rounded-full cursor-pointer hover:border-[#b9a779] transition"
+  >
+    <Upload className="w-6 h-6 text-gray-500" />
+  </label>
+</div>
 
         <div className="md:col-span-3">
   <label className="block text-sm font-medium text-gray-700 mb-1">
