@@ -24,7 +24,7 @@ const BlogPostsPage = () => {
     image_url: string;
     alt_text: string;
     sort_order: number;
-  }>>([]);
+  }>>([]);</parameter>
 
   const fetchRelations = async (postId: string) => {
     try {
@@ -711,27 +711,6 @@ return (
             {t('blog.fields.featured')}
           </div>
         )}
-{/* زر إضافة صورة جديدة */}
-<div className="mt-4 flex justify-end">
-  <button
-    type="button"
-    onClick={() =>
-      setImages([
-        ...images,
-        {
-          image_url: '',
-          alt_text: '',
-          sort_order: images.length,
-          is_featured: false,
-        },
-      ])
-    }
-    className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-[#b9a779] hover:bg-[#a39166] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#b9a779]"
-  >
-    <Plus className="w-4 h-4 mr-2" />
-    {t('admin.add_image')}
-  </button>
-</div>
 
         {/* صورة مصغّرة أو معاينة */}
         <div className="md:col-span-2">
@@ -765,7 +744,7 @@ return (
                   onError={(e) => {
                     if (!image.image_url.startsWith('blob:') && !image.image_url.startsWith('data:')) {
                       e.currentTarget.src = 'https://via.placeholder.com/300x200?text=Invalid+Image';
-                    }
+                    } 
                   }}
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-200 rounded-lg flex items-center justify-center">
@@ -837,7 +816,7 @@ return (
                   const blob = await response.blob();
                   if (!blob.type.startsWith('image/')) {
                     alert('الرابط لا يشير إلى صورة صالحة');
-                    return; 
+                    return;
                   }
 
                   const reader = new FileReader();
