@@ -28,7 +28,6 @@ const ProductsPage = () => {
     description_ar: '',
     category_id: '',
     availability: '',
-    featured_image: '',
     specifications_en: [] as string[],
     specifications_ar: [] as string[]
   });
@@ -171,7 +170,6 @@ const ProductsPage = () => {
       description_ar: product.description_ar || '',
       category_id: product.category_id || '',
       availability: product.availability,
-      featured_image: product.featured_image || '',
       specifications_en: product.specifications_en || [],
       specifications_ar: product.specifications_ar || []
     });
@@ -257,7 +255,6 @@ const ProductsPage = () => {
       description_ar: '',
       category_id: '',
       availability: '',
-      featured_image: '',
       specifications_en: [],
       specifications_ar: []
     });
@@ -289,10 +286,6 @@ const ProductsPage = () => {
         reader.readAsDataURL(file);
       }
     });
-  };
-
-  const setFeaturedImage = (imageUrl: string) => {
-    setFormData(prev => ({ ...prev, featured_image: imageUrl }));
   };
 
   const addSpecificationEn = () => {
