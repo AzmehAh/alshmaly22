@@ -823,7 +823,7 @@ return (
             <Award size={16} className="mr-2" />
             {t('blog.featured_image')}
           </h5>
-          <div className="flex items-center space-x-3 p-3 bg-white rounded-lg border border-green-200">
+          <div className="flex items-center gap-3 p-3 bg-white rounded-lg border border-green-200">
             <img
               src={formData.featured_image}
               alt="Featured"
