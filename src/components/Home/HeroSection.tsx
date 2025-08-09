@@ -36,7 +36,7 @@ const HeroSection = () => {
   className="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden"
 
 >
-      {/* Background Video */} 
+      {/* Background Video */}
       <div className="absolute inset-0 z-0 w-full h-full">
         <video 
           ref={videoRef}
@@ -46,8 +46,8 @@ const HeroSection = () => {
           playsInline
           className="w-full h-full object-cover"
           poster=""
-        >
-          <source src="./images/vid2." type="video/mp4" />
+        > 
+          <source src="https://files.catbox.moe/jnps5k.mp4" type="video/mp4" />
         </video> 
         <div className={`absolute inset-0 w-full h-full transition-all duration-1000 ${
           isPlaying ? 'bg-black/50' : 'bg-black/80 backdrop-blur-sm'
