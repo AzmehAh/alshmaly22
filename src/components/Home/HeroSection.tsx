@@ -10,16 +10,7 @@ const HeroSection = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
-  const [videoLoaded, setVideoLoaded] = useState(false);
 
-  // Lazy load video
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setVideoLoaded(true);
-    }, 1000); // Delay video loading by 1 second
-
-    return () => clearTimeout(timer);
-  }, []);
 
   const togglePlayPause = () => {
     if (videoRef.current) {
@@ -47,28 +38,17 @@ const HeroSection = () => {
 >
       {/* Background Video */} 
       <div className="absolute inset-0 z-0 w-full h-full">
-        {videoLoaded ? (
-          <video 
-            ref={videoRef}
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="w-full h-full object-cover"
-            poster=""
-          >
-            <source src="https://files.catbox.moe/jnps5k.mp4" type="video/mp4" />
-          </video>
-        ) : (
-          <div 
-            className="w-full h-full bg-gradient-to-br from-[#054239] to-[#b9a779]"
-            style={{
-              backgroundImage: 'url(https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080)',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center'
-            }}
-          />
-        )}
+        <video 
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="w-full h-full object-cover"
+          poster=""
+        >
+          <source src="https://files.catbox.moe/jnps5k.mp4" type="video/mp4" />
+        </video> 
         <div className={`absolute inset-0 w-full h-full transition-all duration-1000 ${
           isPlaying ? 'bg-black/50' : 'bg-black/80 backdrop-blur-sm'
         }`}></div>
