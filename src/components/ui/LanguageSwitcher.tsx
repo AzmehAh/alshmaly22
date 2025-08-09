@@ -12,7 +12,7 @@ const LanguageSwitcher = () => {
   return (
     <button
       onClick={toggleLanguage}
-      className="flex items-center space-x-2 px-3 py-2 rounded-full bg-[#054239] hover:bg-[#b9a779] text-white transition-all duration-200 group"
+      className="flex items-center gap-2 px-3 py-2 rounded-full bg-[#054239] hover:bg-[#b9a779] text-white transition-all duration-200 group"
       title={language === 'en' ? 'Switch to Arabic' : 'Switch to English'}
     >
       <Globe size={16} className="text-white group-hover:text-white transition-colors duration-200" />
