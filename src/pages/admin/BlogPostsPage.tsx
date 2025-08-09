@@ -762,284 +762,189 @@ return (
                   </select>
                 </div>
 
-                {/* Featured Image URL */}
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">{t('blog.fields.featured_image_url')}</label>
-                  <input
-                    type="text"
-                    value={formData.featured_image}
-                    onChange={(e) => setFormData({ ...formData, featured_image: e.target.value })}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                    placeholder="https://example.com/image.jpg"
-                  />
-                </div>
+        {/* Images Upload Section */}
+<div className="bg-gray-50 p-6 rounded-lg">
+  <h4 className="text-lg font-semibold text-[#054239] mb-6 flex items-center">
+    <ImageIcon size={20} className="mr-2" />
+    {t('admin.image')} {t('admin.management')}
+  </h4>
 
-                {/* Images Upload Section */}
-                <div className="bg-gray-50 p-6 rounded-lg">
-                  <h4 className="text-lg font-semibold text-[#054239] mb-6 flex items-center">
-                    <ImageIcon size={20} className="mr-2" />
-                    {t('admin.image')} {t('admin.management')}
-                  </h4>
+  {/* Multi-File Upload Area */}
+  <div className="mb-6">
+    <label className="block text-sm font-medium text-gray-700 mb-2">
+      {t('admin.upload')} {t('admin.image')}
+    </label>
+    <div
+      className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-[#b9a779] hover:bg-gray-50 transition-all duration-300 cursor-pointer"
+      onDragOver={(e) => {
+        e.preventDefault();
+        e.currentTarget.classList.add('border-[#b9a779]', 'bg-gray-50');
+      }}
+      onDragLeave={(e) => {
+        e.preventDefault();
+        e.currentTarget.classList.remove('border-[#b9a779]', 'bg-gray-50');
+      }}
+      onDrop={(e) => {
+        e.preventDefault();
+        e.currentTarget.classList.remove('border-[#b9a779]', 'bg-gray-50');
+        const files = Array.from(e.dataTransfer.files);
+        handleMultipleFiles(files);
+      }}
+      onClick={() => document.getElementById('multi-image-upload')?.click()}
+    >
+      <Upload size={48} className="mx-auto text-gray-400 mb-4" />
+      <h3 className="text-lg font-medium text-gray-700 mb-2">
+        {t('admin.drag_drop_images')}
+      </h3>
+      <p className="text-gray-500 mb-4">{t('admin.or_click_to_browse')}</p>
+      <p className="text-sm text-gray-400">PNG, JPG, GIF up to 10MB each</p>
 
-                  {/* Multi-File Upload Area */}
-                  <div className="mb-6">
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      {t('admin.upload')} {t('admin.image')}
-                    </label>
-                    <div
-                      className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-[#b9a779] hover:bg-gray-50 transition-all duration-300 cursor-pointer"
-                      onDragOver={(e) => {
-                        e.preventDefault();
-                        e.currentTarget.classList.add('border-[#b9a779]', 'bg-gray-50');
-                      }}
-                      onDragLeave={(e) => {
-                        e.preventDefault();
-                        e.currentTarget.classList.remove('border-[#b9a779]', 'bg-gray-50');
-                      }}
-                      onDrop={(e) => {
-                        e.preventDefault();
-                        e.currentTarget.classList.remove('border-[#b9a779]', 'bg-gray-50');
-                        const files = Array.from(e.dataTransfer.files);
-                        handleMultipleFiles(files);
-                      }}
-                      onClick={() => document.getElementById('multi-image-upload')?.click()}
-                    >
-                      <Upload size={48} className="mx-auto text-gray-400 mb-4" />
-                      <h3 className="text-lg font-medium text-gray-700 mb-2">
-                        {t('admin.drag_drop_images')}
-                      </h3>
-                      <p className="text-gray-500 mb-4">
-                        {t('admin.or_click_to_browse')}
-                      </p>
-                      <p className="text-sm text-gray-400">
-                        PNG, JPG, GIF up to 10MB each
-                      </p>
-                      
-                      <input
-                        id="multi-image-upload"
-                        type="file"
-                        accept="image/*"
-                        multiple
-                        onChange={(e) => {
-                          const files = Array.from(e.target.files || []);
-                          handleMultipleFiles(files);
-                        }}
-                        className="hidden"
-                      />
-                    </div>
+      <input
+        id="multi-image-upload"
+        type="file"
+        accept="image/*"
+        multiple
+        onChange={(e) => {
+          const files = Array.from(e.target.files || []);
+          handleMultipleFiles(files);
+        }}
+        className="hidden"
+      />
+    </div>
+  </div>
+
+  {/* Uploaded Images Grid */}
+  {images.length > 0 && (
+    <div className="space-y-6">
+      {/* Featured Image Preview */}
+      {formData.featured_image && (
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <h5 className="text-md font-semibold text-[#054239] mb-3 flex items-center">
+            <Award size={16} className="mr-2" />
+            {t('blog.featured_image')}
+          </h5>
+          <div className="flex items-center space-x-3 p-3 bg-white rounded-lg border border-green-200">
+            <img
+              src={formData.featured_image}
+              alt="Featured"
+              className="w-16 h-16 object-cover rounded-lg"
+            />
+            <div>
+              <p className="text-sm font-medium text-green-700">
+                {t('blog.featured_selected')}
+              </p>
+              <p className="text-xs text-gray-500">
+                {t('blog.will_be_shown_in_preview')}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Images Grid */}
+      <div>
+        <div className="flex items-center justify-between mb-4">
+          <h5 className="text-md font-semibold text-[#054239]">
+            {t('admin.uploaded_images')} ({images.length})
+          </h5>
+          <button
+            type="button"
+            onClick={() => {
+              images.forEach(img => {
+                if (img.image_url?.startsWith('blob:')) {
+                  URL.revokeObjectURL(img.image_url);
+                }
+              });
+              setImages([]);
+              setFormData({ ...formData, featured_image: '' });
+            }}
+            className="text-sm bg-red-100 hover:bg-red-200 text-red-700 px-3 py-1 rounded-lg transition-colors"
+          >
+            {t('admin.clear_all')}
+          </button>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {images.map((image, index) => (
+            <div
+              key={index}
+              className={`relative bg-white border-2 rounded-xl overflow-hidden transition-all duration-300 ${
+                formData.featured_image === image.image_url
+                  ? 'border-[#b9a779] ring-2 ring-[#b9a779]/20'
+                  : 'border-gray-200 hover:border-gray-300'
+              }`}
+            >
+              {/* Image Preview */}
+              <div className="relative">
+                <img
+                  src={image.image_url}
+                  alt={image.alt_text || `Image ${index + 1}`}
+                  className="w-full h-32 object-cover"
+                />
+
+                {/* Featured Badge */}
+                {formData.featured_image === image.image_url && (
+                  <div className="absolute top-2 left-2 bg-[#b9a779] text-white px-2 py-1 rounded-full text-xs font-medium flex items-center">
+                    <Award size={12} className="mr-1" />
+                    {t('blog.featured')}
                   </div>
+                )}
 
-                  {/* Uploaded Images Grid */}
-                  {images.length > 0 && (
-                    <div className="space-y-6">
-                      {/* Featured Image Selection */}
-                      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                        <h5 className="text-md font-semibold text-[#054239] mb-3 flex items-center">
-                          <Award size={16} className="mr-2" />
-                          {t('blog.featured_image')}
-                        </h5>
-                        <p className="text-sm text-gray-600 mb-4">
-                          {t('blog.select_featured_help')}
-                        </p>
-                        
-                        {/* Featured Image Preview */}
-                        {formData.featured_image && (
-                          <div className="flex items-center space-x-3 p-3 bg-white rounded-lg border border-green-200">
-                            <img
-                              src={formData.featured_image}
-                              alt="Featured Image"
-                              className="w-16 h-16 object-cover rounded-lg"
-                            />
-                            <div>
-                              <p className="text-sm font-medium text-green-700">
-                                {t('blog.featured_selected')}
-                              </p>
-                              <p className="text-xs text-gray-500">
-                                {t('blog.will_be_shown_in_preview')}
-                              </p>
-                            </div>
-                          </div>
-                        )}
-                      </div>
+                {/* Remove Button */}
+                <button
+                  type="button"
+                  onClick={() => removeImage(index)}
+                  className="absolute top-2 right-2 bg-red-500 hover:bg-red-600 text-white rounded-full p-1 transition-colors"
+                  title={t('admin.remove')}
+                >
+                  <X size={14} />
+                </button>
+              </div>
 
-                      {/* Images Management Grid */}
-                      <div>
-                        <div className="flex items-center justify-between mb-4">
-                          <h5 className="text-md font-semibold text-[#054239]">
-                            {t('admin.uploaded_images')} ({images.length})
-                          </h5>
-                          <div className="flex gap-2">
-                            <button
-                              type="button"
-                              onClick={() => {
-                                const sortedImages = [...images].sort((a, b) => a.sort_order - b.sort_order);
-                                setImages(sortedImages.map((img, index) => ({ ...img, sort_order: index + 1 })));
-                              }}
-                              className="text-sm bg-gray-200 hover:bg-gray-300 text-gray-700 px-3 py-1 rounded-lg transition-colors"
-                            >
-                              {t('admin.auto_order')}
-                            </button>
-                            <button
-                              type="button"
-                              onClick={() => {
-                                images.forEach(img => {
-                                  if (img.image_url?.startsWith('blob:')) {
-                                    URL.revokeObjectURL(img.image_url);
-                                  }
-                                });
-                                setImages([]);
-                                setFormData({ ...formData, featured_image: '' });
-                              }}
-                              className="text-sm bg-red-100 hover:bg-red-200 text-red-700 px-3 py-1 rounded-lg transition-colors"
-                            >
-                              {t('admin.clear_all')}
-                            </button>
-                          </div>
-                        </div>
+              {/* Controls */}
+              <div className="p-3 space-y-3">
+                {/* Alt Text */}
+                <input
+                  type="text"
+                  value={image.alt_text}
+                  onChange={(e) => updateImage(index, 'alt_text', e.target.value)}
+                  className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-[#b9a779]"
+                  placeholder={t('admin.alt_text')}
+                />
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                          {images.map((image, index) => (
-                            <div
-                              key={index}
-                              className={`relative bg-white border-2 rounded-xl overflow-hidden transition-all duration-300 ${
-                                formData.featured_image === image.image_url
-                                  ? 'border-[#b9a779] ring-2 ring-[#b9a779]/20'
-                                  : 'border-gray-200 hover:border-gray-300'
-                              }`}
-                            >
-                              {/* Image Preview */}
-                              <div className="relative">
-                                <img
-                                  src={image.image_url}
-                                  alt={image.alt_text || `Image ${index + 1}`}
-                                  className="w-full h-32 object-cover"
-                                  onError={(e) => {
-                                    e.currentTarget.src = 'https://via.placeholder.com/300x200?text=Invalid+Image';
-                                  }}
-                                />
-                                
-                                {/* Featured Badge */}
-                                {formData.featured_image === image.image_url && (
-                                  <div className="absolute top-2 left-2 bg-[#b9a779] text-white px-2 py-1 rounded-full text-xs font-medium flex items-center">
-                                    <Award size={12} className="mr-1" />
-                                    {t('blog.featured')}
-                                  </div>
-                                )}
+                {/* Set as Featured */}
+                <button
+                  type="button"
+                  onClick={() =>
+                    setFormData({ ...formData, featured_image: image.image_url })
+                  }
+                  className={`text-xs px-2 py-1 rounded-full font-medium transition-colors ${
+                    formData.featured_image === image.image_url
+                      ? 'bg-[#b9a779] text-white'
+                      : 'bg-gray-100 text-gray-600 hover:bg-[#b9a779] hover:text-white'
+                  }`}
+                >
+                  {formData.featured_image === image.image_url
+                    ? t('blog.featured')
+                    : t('blog.set_featured')}
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )}
 
-                                {/* Remove Button */}
-                                <button
-                                  type="button"
-                                  onClick={() => removeImage(index)}
-                                  className="absolute top-2 right-2 bg-red-500 hover:bg-red-600 text-white rounded-full p-1 transition-colors"
-                                  title={t('admin.remove')}
-                                >
-                                  <X size={14} />
-                                </button>
-                              </div>
-
-                              {/* Image Controls */}
-                              <div className="p-3 space-y-3">
-                                {/* Alt Text */}
-                                <div>
-                                  <input
-                                    type="text"
-                                    value={image.alt_text}
-                                    onChange={(e) => updateImage(index, 'alt_text', e.target.value)}
-                                    className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-[#b9a779] focus:border-transparent"
-                                    placeholder={t('admin.alt_text')}
-                                  />
-                                </div>
-
-                                {/* Order and Featured Selection */}
-                                <div className="flex items-center justify-between">
-                                  <div className="flex items-center space-x-2">
-                                    <label className="text-xs text-gray-600">{t('admin.order')}:</label>
-                                    <input
-                                      type="number"
-                                      value={image.sort_order}
-                                      onChange={(e) => updateImage(index, 'sort_order', parseInt(e.target.value) || 0)}
-                                      className="w-16 px-2 py-1 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-[#b9a779]"
-                                      min="0"
-                                    />
-                                  </div>
-                                  
-                                  {/* Set as Featured Button */}
-                                  <button
-                                    type="button"
-                                    onClick={() => {
-                                      setFormData({ ...formData, featured_image: image.image_url });
-                                    }}
-                                    className={`text-xs px-2 py-1 rounded-full font-medium transition-colors ${
-                                      formData.featured_image === image.image_url
-                                        ? 'bg-[#b9a779] text-white'
-                                        : 'bg-gray-100 text-gray-600 hover:bg-[#b9a779] hover:text-white'
-                                    }`}
-                                  >
-                                    {formData.featured_image === image.image_url 
-                                      ? t('blog.featured') 
-                                      : t('blog.set_featured')
-                                    }
-                                  </button>
-                                </div>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* URL Input Alternative */}
-                      <div className="border-t pt-4">
-                        <details className="group">
-                          <summary className="cursor-pointer text-sm font-medium text-gray-700 hover:text-[#b9a779] transition-colors">
-                            {t('admin.or_add_image_url')} ↓
-                          </summary>
-                          <div className="mt-3 p-4 bg-white rounded-lg border border-gray-200">
-                            <div className="flex gap-3">
-                              <input
-                                type="url"
-                                placeholder="https://example.com/image.jpg"
-                                className="flex-1 px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
-                                onKeyPress={(e) => {
-                                  if (e.key === 'Enter') {
-                                    e.preventDefault();
-                                    const url = e.currentTarget.value.trim();
-                                    if (url) {
-                                      addImageFromUrl(url);
-                                      e.currentTarget.value = '';
-                                    }
-                                  }
-                                }}
-                              />
-                              <button
-                                type="button"
-                                onClick={(e) => {
-                                  const input = e.currentTarget.previousElementSibling as HTMLInputElement;
-                                  const url = input.value.trim();
-                                  if (url) {
-                                    addImageFromUrl(url);
-                                    input.value = '';
-                                  }
-                                }}
-                                className="bg-[#b9a779] hover:bg-[#054239] text-white px-4 py-2 rounded-lg text-sm transition-colors"
-                              >
-                                {t('admin.add')}
-                              </button>
-                            </div>
-                          </div>
-                        </details>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Empty State */}
-                  {images.length === 0 && (
-                    <div className="text-center py-8 bg-white rounded-lg border-2 border-dashed border-gray-300">
-                      <ImageIcon size={48} className="mx-auto text-gray-400 mb-3" />
-                      <p className="text-gray-500 text-lg mb-1">{t('blog.no_images')}</p>
-                      <p className="text-gray-400 text-sm">{t('blog.upload_images_to_get_started')}</p>
-                    </div>
-                  )}
-                </div>
+  {/* Empty State */}
+  {images.length === 0 && (
+    <div className="text-center py-8 bg-white rounded-lg border-2 border-dashed border-gray-300">
+      <ImageIcon size={48} className="mx-auto text-gray-400 mb-3" />
+      <p className="text-gray-500 text-lg mb-1">{t('blog.no_images')}</p>
+      <p className="text-gray-400 text-sm">{t('blog.upload_images_to_get_started')}</p>
+    </div>
+  )}
+</div>
 
      
                 {/* Buttons */}
