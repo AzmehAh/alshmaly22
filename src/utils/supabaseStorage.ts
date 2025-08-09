@@ -53,12 +53,12 @@ export const uploadImage = async (
     if (error) throw error;
 
     // Get public URL
-    const { data: { publicUrl } } = supabase.storage
+    const { data: urlData } = supabase.storage
       .from(bucket)
-      .getPublicUrl(data.path);
+      .getPublicUrl(fullPath);
 
     return {
-      url: publicUrl,
+      url: urlData.publicUrl,
       path: data.path,
       size: fileToUpload.size
     };
