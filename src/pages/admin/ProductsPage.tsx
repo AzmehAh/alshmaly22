@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Plus, Search, Edit, Trash2, Eye, Upload, Package, Image as ImageIcon, X, Link as LinkIcon } from 'lucide-react';
+import { Plus, Search, Edit, Trash2, Eye, Upload, Package, Image as ImageIcon, X, Link as LinkIcon, Award } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import { RelationsAPI } from '../../lib/api/relations';
 import type { Product, Category } from '../../lib/supabase';
@@ -27,8 +27,8 @@ const ProductsPage = () => {
     description: '',
     description_ar: '',
     category_id: '',
-   
-   
+    availability: '',
+    featured_image: '',
     specifications_en: [] as string[],
     specifications_ar: [] as string[]
   });
@@ -170,9 +170,8 @@ const ProductsPage = () => {
       description: product.description,
       description_ar: product.description_ar || '',
       category_id: product.category_id || '',
-     
       availability: product.availability,
-     
+      featured_image: product.featured_image || '',
       specifications_en: product.specifications_en || [],
       specifications_ar: product.specifications_ar || []
     });
@@ -257,9 +256,8 @@ const ProductsPage = () => {
       description: '',
       description_ar: '',
       category_id: '',
-    
-     
-     
+      availability: '',
+      featured_image: '',
       specifications_en: [],
       specifications_ar: []
     });
@@ -276,7 +274,26 @@ const ProductsPage = () => {
     return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
   };
 
- 
+  const handleMultipleFiles = (files: File[]) => {
+    files.forEach(file => {
+      if (file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const imageUrl = e.target?.result as string;
+          setImages(prev => [...prev, {
+            image_url: imageUrl,
+            alt_text: '',
+            sort_order: prev.length
+          }]);
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  };
+
+  const setFeaturedImage = (imageUrl: string) => {
+    setFormData(prev => ({ ...prev, featured_image: imageUrl }));
+  };
 
   const addSpecificationEn = () => {
     if (newSpecificationEn.trim()) {
@@ -297,7 +314,6 @@ const ProductsPage = () => {
       setNewSpecificationAr('');
     }
   };
- 
 
   const removeSpecificationEn = (index: number) => {
     setFormData(prev => ({
@@ -312,6 +328,7 @@ const ProductsPage = () => {
       specifications_ar: prev.specifications_ar.filter((_, i) => i !== index)
     }));
   };
+
   const addImage = () => {
     setImages(prev => [...prev, { image_url: '', alt_text: '', sort_order: prev.length }]);
   };
@@ -345,20 +362,19 @@ const ProductsPage = () => {
     setPackages(prev => prev.filter((_, i) => i !== index));
   };
 
- const filteredProducts = products.filter(product => {
-  const term = searchTerm.toLowerCase();
-  const nameEn = product.name.toLowerCase();
-  const nameAr = product.name_ar?.toLowerCase() || '';
-  return nameEn.includes(term) || nameAr.includes(term);
-});
+  const filteredProducts = products.filter(product => {
+    const term = searchTerm.toLowerCase();
+    const nameEn = product.name.toLowerCase();
+    const nameAr = product.name_ar?.toLowerCase() || '';
+    return nameEn.includes(term) || nameAr.includes(term);
+  });
 
- const getProductName = (product: Product) => {
-  if (direction === 'rtl') {
-    return product.name_ar?.trim() !== '' ? product.name_ar : product.name;
-  }
-  return product.name;
-}; 
-
+  const getProductName = (product: Product) => {
+    if (direction === 'rtl') {
+      return product.name_ar?.trim() !== '' ? product.name_ar : product.name;
+    }
+    return product.name;
+  };
 
   if (loading && products.length === 0) {
     return (
@@ -414,22 +430,21 @@ const ProductsPage = () => {
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
-  <tr>
-    <th className={`px-6 py-3 ${direction === 'rtl' ? 'text-right' : 'text-left'} text-xs font-medium text-gray-500 uppercase tracking-wider`}>
-      {t('admin.products.management')}
-    </th>
-    <th className={`px-6 py-3 ${direction === 'rtl' ? 'text-right' : 'text-left'} text-xs font-medium text-gray-500 uppercase tracking-wider`}>
-      {t('admin.category')}
-    </th>
-    
-    <th className={`px-6 py-3 ${direction === 'rtl' ? 'text-right' : 'text-left'} text-xs font-medium text-gray-500 uppercase tracking-wider`}>
-      {t('admin.availability')}
-    </th>
-    <th className={`px-6 py-3 ${direction === 'rtl' ? 'text-right' : 'text-left'} text-xs font-medium text-gray-500 uppercase tracking-wider`}>
-      {t('admin.actions')}
-    </th>
-  </tr>
-</thead>
+              <tr>
+                <th className={`px-6 py-3 ${direction === 'rtl' ? 'text-right' : 'text-left'} text-xs font-medium text-gray-500 uppercase tracking-wider`}>
+                  {t('admin.products.management')}
+                </th>
+                <th className={`px-6 py-3 ${direction === 'rtl' ? 'text-right' : 'text-left'} text-xs font-medium text-gray-500 uppercase tracking-wider`}>
+                  {t('admin.category')}
+                </th>
+                <th className={`px-6 py-3 ${direction === 'rtl' ? 'text-right' : 'text-left'} text-xs font-medium text-gray-500 uppercase tracking-wider`}>
+                  {t('admin.availability')}
+                </th>
+                <th className={`px-6 py-3 ${direction === 'rtl' ? 'text-right' : 'text-left'} text-xs font-medium text-gray-500 uppercase tracking-wider`}>
+                  {t('admin.actions')}
+                </th>
+              </tr>
+            </thead>
 
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredProducts.map((product) => (
@@ -442,13 +457,9 @@ const ProductsPage = () => {
                         className="h-12 w-12 rounded-lg object-cover mr-4"
                       />
                       <div>
-                      <div className="text-sm font-medium text-[#054239]">
-  {getProductName(product)}
-</div>
-
-
- 
-                      
+                        <div className="text-sm font-medium text-[#054239]">
+                          {getProductName(product)}
+                        </div>
                       </div>
                     </div>
                   </td>
@@ -460,12 +471,10 @@ const ProductsPage = () => {
                       )}
                     </div>
                   </td>
-                  
                   <td className="px-6 py-4 whitespace-nowrap">
-                   
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                    <div className="flex items-center  gap-2">
+                    <div className="flex items-center gap-2">
                       <button
                         onClick={() => window.open(`/product/${product.id}`, '_blank')}
                         className="text-blue-600 hover:text-blue-900 p-1 rounded"
@@ -617,12 +626,9 @@ const ProductsPage = () => {
                         ))}
                       </select>
                     </div>
-                   
-                    
                   </div>
                 </div>
 
-               
                 {/* Specifications - Bilingual */}
                 <div className="bg-gray-50 p-6 rounded-lg">
                   <h4 className="text-lg font-semibold text-[#054239] mb-4">{t('admin.specifications')}</h4>
@@ -653,7 +659,7 @@ const ProductsPage = () => {
                             </button>
                           </div>
                         ))}
-                        <div className="flex items-center  gap-2">
+                        <div className="flex items-center gap-2">
                           <input
                             type="text"
                             value={newSpecificationEn}
@@ -678,7 +684,7 @@ const ProductsPage = () => {
                       <h5 className="text-md font-medium text-[#054239] mb-3">{t('admin.specifications')} ({t('admin.arabic')})</h5>
                       <div className="space-y-3">
                         {formData.specifications_ar.map((spec, index) => (
-                          <div key={index} className="flex items-center  gap-2">
+                          <div key={index} className="flex items-center gap-2">
                             <input
                               type="text"
                               value={spec}
@@ -689,7 +695,7 @@ const ProductsPage = () => {
                               }}
                               className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b9a779] focus:border-transparent"
                               dir="rtl"
-                            placeholder={`${t('admin.add')} ${t('admin.specifications')}`}
+                              placeholder={`${t('admin.add')} ${t('admin.specifications')}`}
                             />
                             <button
                               type="button"
@@ -700,7 +706,7 @@ const ProductsPage = () => {
                             </button>
                           </div>
                         ))}
-                        <div className="flex items-center  gap-2">
+                        <div className="flex items-center gap-2">
                           <input
                             type="text"
                             value={newSpecificationAr}
@@ -722,120 +728,129 @@ const ProductsPage = () => {
                     </div>
                   </div>
                 </div>
+
                 <div className="bg-gray-50 p-6 rounded-lg">
-      <h4 className="text-lg font-semibold text-[#054239] mb-6 flex items-center">
-        <ImageIcon size={20} className="mr-2" />
-        {t('admin.image')} {t('admin.management')}
-      </h4>
+                  <h4 className="text-lg font-semibold text-[#054239] mb-6 flex items-center">
+                    <ImageIcon size={20} className="mr-2" />
+                    {t('admin.image')} {t('admin.management')}
+                  </h4>
 
-      {/* منطقة السحب والإسقاط وزر الرفع */}
-      <div
-        className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-[#b9a779] hover:bg-gray-50 transition-all duration-300 cursor-pointer mb-6"
-        onDragOver={(e) => {
-          e.preventDefault();
-          e.currentTarget.classList.add('border-[#b9a779]', 'bg-gray-50');
-        }}
-        onDragLeave={(e) => {
-          e.preventDefault();
-          e.currentTarget.classList.remove('border-[#b9a779]', 'bg-gray-50');
-        }}
-        onDrop={(e) => {
-          e.preventDefault();
-          e.currentTarget.classList.remove('border-[#b9a779]', 'bg-gray-50');
-          const files = Array.from(e.dataTransfer.files);
-          handleMultipleFiles(files);
-        }}
-        onClick={() => document.getElementById('multi-image-upload')?.click()}
-      >
-        <Upload size={48} className="mx-auto text-gray-400 mb-4" />
-        <h3 className="text-lg font-medium text-gray-700 mb-2">
-          {t('admin.drag_drop_images')}
-        </h3>
-        <p className="text-gray-500 mb-4">{t('admin.or_click_to_browse')}</p>
-        <p className="text-sm text-gray-400">PNG, JPG, GIF up to 10MB each</p>
+                  {/* منطقة السحب والإسقاط وزر الرفع */}
+                  <div
+                    className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-[#b9a779] hover:bg-gray-50 transition-all duration-300 cursor-pointer mb-6"
+                    onDragOver={(e) => {
+                      e.preventDefault();
+                      e.currentTarget.classList.add('border-[#b9a779]', 'bg-gray-50');
+                    }}
+                    onDragLeave={(e) => {
+                      e.preventDefault();
+                      e.currentTarget.classList.remove('border-[#b9a779]', 'bg-gray-50');
+                    }}
+                    onDrop={(e) => {
+                      e.preventDefault();
+                      e.currentTarget.classList.remove('border-[#b9a779]', 'bg-gray-50');
+                      const files = Array.from(e.dataTransfer.files);
+                      handleMultipleFiles(files);
+                    }}
+                    onClick={() => document.getElementById('multi-image-upload')?.click()}
+                  >
+                    <Upload size={48} className="mx-auto text-gray-400 mb-4" />
+                    <h3 className="text-lg font-medium text-gray-700 mb-2">
+                      {t('admin.drag_drop_images')}
+                    </h3>
+                    <p className="text-gray-500 mb-4">{t('admin.or_click_to_browse')}</p>
+                    <p className="text-sm text-gray-400">PNG, JPG, GIF up to 10MB each</p>
 
-        <input
-          id="multi-image-upload"
-          type="file"
-          accept="image/*"
-          multiple
-          onChange={(e) => {
-            const files = Array.from(e.target.files || []);
-            handleMultipleFiles(files);
-          }}
-          className="hidden"
-        />
-      </div>
-
-      {/* حالة عدم وجود صور */}
-      {images.length === 0 && (
-        <div className="text-center py-8 bg-white rounded-lg border-2 border-dashed border-gray-300">
-          <ImageIcon size={48} className="mx-auto text-gray-400 mb-3" />
-          <p className="text-gray-500 text-lg mb-1">{t('blog.no_images')}</p>
-          <p className="text-gray-400 text-sm">{t('blog.upload_images_to_get_started')}</p>
-        </div>
-      )}
-
-      {/* شبكة الصور */}
-      {images.length > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {images.map((image, index) => (
-            <div
-              key={index}
-              className={`relative bg-white border-2 rounded-xl overflow-hidden transition-all duration-300 ${
-                formData.featured_image === image.image_url
-                  ? 'border-[#b9a779] ring-2 ring-[#b9a779]/20'
-                  : 'border-gray-200 hover:border-gray-300'
-              }`}
-            >
-              {/* صورة المعاينة */}
-                  <div className="absolute top-2 left-2 bg-[#b9a779] text-white px-2 py-1 rounded-full text-xs font-medium flex items-center">
-                    <Award size={12} className="mr-1" />
-                    {t('blog.featured')}
+                    <input
+                      id="multi-image-upload"
+                      type="file"
+                      accept="image/*"
+                      multiple
+                      onChange={(e) => {
+                        const files = Array.from(e.target.files || []);
+                        handleMultipleFiles(files);
+                      }}
+                      className="hidden"
+                    />
                   </div>
-                )}
 
-                {/* زر الحذف */}
-                <button
-                  type="button"
-                  onClick={() => removeImage(index)}
-                  className="absolute top-2 right-2 bg-red-500 hover:bg-red-600 text-white rounded-full p-1 transition-colors"
-                  title={t('admin.remove')}
-                >
-                  <X size={14} />
-                </button>
-              </div>
+                  {/* حالة عدم وجود صور */}
+                  {images.length === 0 && (
+                    <div className="text-center py-8 bg-white rounded-lg border-2 border-dashed border-gray-300">
+                      <ImageIcon size={48} className="mx-auto text-gray-400 mb-3" />
+                      <p className="text-gray-500 text-lg mb-1">{t('blog.no_images')}</p>
+                      <p className="text-gray-400 text-sm">{t('blog.upload_images_to_get_started')}</p>
+                    </div>
+                  )}
 
-              {/* حقل النص البديل وزر تعيين كمميز */}
-              <div className="p-3 space-y-3">
-                <input
-                  type="text"
-                  value={image.alt_text}
-                  onChange={(e) => updateImage(index, 'alt_text', e.target.value)}
-                  className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-[#b9a779]"
-                  placeholder={t('admin.alt_text')}
-                />
+                  {/* شبكة الصور */}
+                  {images.length > 0 && (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                      {images.map((image, index) => (
+                        <div
+                          key={index}
+                          className={`relative bg-white border-2 rounded-xl overflow-hidden transition-all duration-300 ${
+                            formData.featured_image === image.image_url
+                              ? 'border-[#b9a779] ring-2 ring-[#b9a779]/20'
+                              : 'border-gray-200 hover:border-gray-300'
+                          }`}
+                        >
+                          {/* صورة المعاينة */}
+                          <div className="aspect-video bg-gray-100 flex items-center justify-center">
+                            <img
+                              src={image.image_url}
+                              alt={image.alt_text}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
 
-                <button
-                  type="button"
-                  onClick={() => setFeaturedImage(image.image_url)}
-                  className={`text-xs px-2 py-1 rounded-full font-medium transition-colors ${
-                    formData.featured_image === image.image_url
-                      ? 'bg-[#b9a779] text-white'
-                      : 'bg-gray-100 text-gray-600 hover:bg-[#b9a779] hover:text-white'
-                  }`}
-                >
-                  {formData.featured_image === image.image_url
-                    ? t('blog.featured')
-                    : t('blog.set_featured')}
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
-  
+                          {/* شارة المميز */}
+                          {formData.featured_image === image.image_url && (
+                            <div className="absolute top-2 left-2 bg-[#b9a779] text-white px-2 py-1 rounded-full text-xs font-medium flex items-center">
+                              <Award size={12} className="mr-1" />
+                              {t('blog.featured')}
+                            </div>
+                          )}
+
+                          {/* زر الحذف */}
+                          <button
+                            type="button"
+                            onClick={() => removeImage(index)}
+                            className="absolute top-2 right-2 bg-red-500 hover:bg-red-600 text-white rounded-full p-1 transition-colors"
+                            title={t('admin.remove')}
+                          >
+                            <X size={14} />
+                          </button>
+
+                          {/* حقل النص البديل وزر تعيين كمميز */}
+                          <div className="p-3 space-y-3">
+                            <input
+                              type="text"
+                              value={image.alt_text}
+                              onChange={(e) => updateImage(index, 'alt_text', e.target.value)}
+                              className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-[#b9a779]"
+                              placeholder={t('admin.alt_text')}
+                            />
+
+                            <button
+                              type="button"
+                              onClick={() => setFeaturedImage(image.image_url)}
+                              className={`text-xs px-2 py-1 rounded-full font-medium transition-colors ${
+                                formData.featured_image === image.image_url
+                                  ? 'bg-[#b9a779] text-white'
+                                  : 'bg-gray-100 text-gray-600 hover:bg-[#b9a779] hover:text-white'
+                              }`}
+                            >
+                              {formData.featured_image === image.image_url
+                                ? t('blog.featured')
+                                : t('blog.set_featured')}
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
 
                 {/* Packages */}
                 <div className="bg-gray-50 p-6 rounded-lg">
@@ -890,7 +905,7 @@ const ProductsPage = () => {
                 </div>
 
                 {/* Form Actions */}
-                <div className="flex justify-end  gap-4 pt-6 border-t border-gray-200">
+                <div className="flex justify-end gap-4 pt-6 border-t border-gray-200">
                   <button
                     type="button"
                     onClick={resetForm}
@@ -908,6 +923,13 @@ const ProductsPage = () => {
                 </div>
               </form>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Relations Modal */}
+      {showRelationsModal && (
+        <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
           <div className="relative top-10 mx-auto p-5 border w-11/12 md:w-4/5 lg:w-3/4 shadow-lg rounded-md bg-white">
             <div className="mt-3">
               <div className="flex items-center justify-between mb-6">
@@ -920,81 +942,85 @@ const ProductsPage = () => {
                 </button>
               </div>
 
-                        {/* حقل النص البديل */}
-                    {relations.map((relation) => (
-                      <div key={relation.id} className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+              {/* Existing Relations */}
+              <div className="mb-8">
+                <h4 className="text-lg font-semibold text-[#054239] mb-4">{t('admin.existing')} {t('admin.related')}</h4>
+                <div className="space-y-3 max-h-64 overflow-y-auto">
+                  {relations.map((relation) => (
+                    <div key={relation.id} className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
+                      <div className="flex items-center">
+                        <img
+                          src={relation.related_product?.images?.[0]?.image_url || 'https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=100&h=100'}
+                          alt={relation.related_product?.name}
+                          className="h-10 w-10 rounded-lg object-cover mr-3"
+                        />
+                        <div>
+                          <div className="font-medium text-[#054239]">
+                            {getProductName(relation.related_product)}
+                          </div>
+                          <div className="text-sm text-gray-500 capitalize">{relation.relation_type}</div>
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => handleRemoveRelation(relation.id, showRelationsModal!)}
+                        className="text-red-600 hover:text-red-800 p-1"
+                      >
+                        <Trash2 size={16} />
+                      </button>
+                    </div>
+                  ))}
+                  {relations.length === 0 && (
+                    <p className="text-gray-500 text-center py-4">{t('admin.no_data')}</p>
+                  )}
+                </div>
+              </div>
+
+              {/* Add Relations */}
+              <div>
+                <h4 className="text-lg font-semibold text-[#054239] mb-4">
+                  {t('admin.add')} {t('admin.related')}
+                </h4>
+
+                <div className="space-y-3 max-h-96 overflow-y-auto">
+                  {availableProducts
+                    .filter(product => !relations.some(rel => rel.related_product_id === product.id))
+                    .map((product) => (
+                      <div
+                        key={product.id}
+                        className="flex items-center justify-between p-3 border border-gray-200 rounded-lg"
+                      >
                         <div className="flex items-center">
                           <img
-                            src={relation.related_product?.images?.[0]?.image_url || 'https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=100&h=100'}
-                            alt={relation.related_product?.name}
+                            src={product.images?.[0]?.image_url || 'https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=100&h=100'}
+                            alt={product.name}
                             className="h-10 w-10 rounded-lg object-cover mr-3"
                           />
                           <div>
-                           <div className="font-medium text-[#054239]">
-  {getProductName(relation.related_product)}
-</div>
-
-                            <div className="text-sm text-gray-500 capitalize">{relation.relation_type}</div>
+                            <div className="font-medium text-[#054239]">
+                              {getProductName(product)}
+                            </div>
+                            <div className="text-sm text-gray-500">{product.category?.name}</div>
                           </div>
                         </div>
-                        <button
-                          onClick={() => handleRemoveRelation(relation.id, showRelationsModal!)}
-                          className="text-red-600 hover:text-red-800 p-1"
-                        >
-                          <Trash2 size={16} />
-                        </button>
+                        <div className="flex gap-2">
+                          <button
+                            onClick={() =>
+                              handleAddRelation(showRelationsModal!, product.id, 'related')
+                            }
+                            className="bg-[#b9a779] hover:bg-[#054239] text-white px-3 py-1 rounded text-sm transition-colors duration-200"
+                          >
+                            {t('admin.add')}
+                          </button>
+                        </div>
                       </div>
                     ))}
-                    {relations.length === 0 && (
-                      <p className="text-gray-500 text-center py-4">{t('admin.no_data')}</p>
-                    )}
-                  </div>
+
+                  {availableProducts.filter(
+                    product => !relations.some(rel => rel.related_product_id === product.id)
+                  ).length === 0 && (
+                    <p className="text-gray-500 text-center py-4">{t('admin.no_data')}</p>
+                  )}
                 </div>
-
-             {/* Add Relations */}
-<div>
-  <h4 className="text-lg font-semibold text-[#054239] mb-4">
-    {t('admin.add')} {t('admin.related')}
-  </h4>
-
-  <div className="space-y-3 max-h-96 overflow-y-auto">
-    {availableProducts
-      .filter(product => !relations.some(rel => rel.related_product_id === product.id))
-      .map((product) => (
-        <div
-          key={product.id}
-          className="flex items-center justify-between p-3 border border-gray-200 rounded-lg"
-        >
-          <div className="flex items-center">
-           
-            <div>
-             <div className="font-medium text-[#054239]">
-  {getProductName(product)}
-</div>
-
-              <div className="text-sm text-gray-500">{product.category?.name}</div>
-            </div>
-          </div>
-          <div className="flex gap-2">
-            <button
-              onClick={() =>
-                handleAddRelation(showRelationsModal!, product.id, 'related')
-              }
-              className="bg-[#b9a779] hover:bg-[#054239] text-white px-3 py-1 rounded text-sm transition-colors duration-200"
-            >
-              {t('admin.add')}
-            </button>
-          </div>
-        </div>
-      ))}
-
-    {availableProducts.filter(
-      product => !relations.some(rel => rel.related_product_id === product.id)
-    ).length === 0 && (
-      <p className="text-gray-500 text-center py-4">{t('admin.no_data')}</p>
-    )}
-  </div>
-</div>
               </div>
             </div>
           </div>
@@ -1012,7 +1038,7 @@ const ProductsPage = () => {
                   {t('admin.confirm_delete')} {t('admin.delete_warning')}
                 </p>
               </div>
-              <div className="flex justify-center  gap-3 pt-4">
+              <div className="flex justify-center gap-3 pt-4">
                 <button
                   onClick={() => setDeleteConfirm(null)}
                   className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors duration-200"
@@ -1031,7 +1057,7 @@ const ProductsPage = () => {
         </div>
       )}
     </div>
-                </div>
+  );
 };
 
 export default ProductsPage;
