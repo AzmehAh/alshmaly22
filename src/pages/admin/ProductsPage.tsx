@@ -722,8 +722,7 @@ const ProductsPage = () => {
                     </div>
                   </div>
                 </div>
-        return (
-    <div className="bg-gray-50 p-6 rounded-lg">
+                <div className="bg-gray-50 p-6 rounded-lg">
       <h4 className="text-lg font-semibold text-[#054239] mb-6 flex items-center">
         <ImageIcon size={20} className="mr-2" />
         {t('admin.image')} {t('admin.management')}
@@ -1032,7 +1031,7 @@ const ProductsPage = () => {
         </div>
       )}
     </div>
-  );
+                </div>
 };
 
 export default ProductsPage;
