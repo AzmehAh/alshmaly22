@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Plus, Search, Edit, Trash2, Eye, Upload, Package, Image as ImageIcon, X, Link as LinkIcon, Award } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import { RelationsAPI } from '../../lib/api/relations';
+import { uploadImage, STORAGE_BUCKETS } from '../../utils/supabaseStorage';
 import type { Product, Category } from '../../lib/supabase';
 import type { ProductRelation } from '../../lib/api/relations';
 import { useLanguage } from '../../contexts/LanguageContext';
@@ -34,6 +35,7 @@ const ProductsPage = () => {
 
   const [images, setImages] = useState<Array<{ image_url: string; alt_text: string; sort_order: number }>>([]);
   const [packages, setPackages] = useState<Array<{ weight: string; price: string; is_default: boolean }>>([]);
+  const [imageFiles, setImageFiles] = useState<Array<{ file: File | null; url: string; alt_text: string; sort_order: number }>>([]);
   const [newFeature, setNewFeature] = useState('');
   const [newSpecificationEn, setNewSpecificationEn] = useState('');
   const [newSpecificationAr, setNewSpecificationAr] = useState('');
@@ -115,12 +117,33 @@ const ProductsPage = () => {
           .eq('product_id', productId);
       }
 
-      // Insert new images
-      if (images.length > 0) {
-        const imageData = images.map(img => ({
+      // Upload new files and prepare image data
+      const imageData = [];
+      
+      for (const imageItem of imageFiles) {
+        let imageUrl = imageItem.url;
+        
+        // If there's a file to upload, upload it first
+        if (imageItem.file) {
+          try {
+            const uploadResult = await uploadImage(imageItem.file, STORAGE_BUCKETS.PRODUCTS, 'products');
+            imageUrl = uploadResult.url;
+          } catch (error) {
+            console.error('Failed to upload image:', error);
+            continue; // Skip this image if upload fails
+          }
+        }
+        
+        imageData.push({
           product_id: productId,
-          ...img
-        }));
+          image_url: imageUrl,
+          alt_text: imageItem.alt_text || '',
+          sort_order: imageItem.sort_order || 0
+        });
+      }
+      
+      // Insert new images
+      if (imageData.length > 0) {
         
         await supabase
           .from('product_images')
@@ -173,6 +196,13 @@ const ProductsPage = () => {
       specifications_en: product.specifications_en || [],
       specifications_ar: product.specifications_ar || []
     });
+    
+    setImageFiles(product.images?.map(img => ({
+      file: null,
+      url: img.image_url,
+      alt_text: img.alt_text || '',
+      sort_order: img.sort_order
+    })) || []);
     
     setImages(product.images?.map(img => ({
       image_url: img.image_url,
@@ -241,9 +271,9 @@ const ProductsPage = () => {
 
   const resetForm = () => {
     // Clean up any blob URLs before resetting
-    images.forEach(image => {
-      if (image.image_url && image.image_url.startsWith('blob:')) {
-        URL.revokeObjectURL(image.image_url);
+    imageFiles.forEach(imageItem => {
+      if (imageItem.url && imageItem.url.startsWith('blob:')) {
+        URL.revokeObjectURL(imageItem.url);
       }
     });
     
@@ -259,6 +289,7 @@ const ProductsPage = () => {
       specifications_ar: []
     });
     setImages([]);
+    setImageFiles([]);
     setPackages([]);
     setNewFeature('');
     setNewSpecificationEn('');
@@ -272,38 +303,19 @@ const ProductsPage = () => {
   };
 
   const handleMultipleFiles = (files: File[]) => {
-  setImages(prev => {
-    const baseOrder = prev.length; // عدد الصور الموجودة حالياً
+  setImageFiles(prev => {
+    const baseOrder = prev.length;
     const newImages = files
       .filter(file => file.type.startsWith('image/'))
       .map((file, index) => ({
-        image_url: '',
-        alt_text: '',
-        sort_order: baseOrder + index,
         file,
+        url: URL.createObjectURL(file),
+        alt_text: '',
+        sort_order: baseOrder + index
       }));
 
-    // أضف الصور الجديدة مع image_url فارغ مؤقتًا
+    // Add new images with blob URLs for preview
     return [...prev, ...newImages];
-  });
-
-  // بعد إضافة الصور، اقرأ محتوى كل ملف وحمّل الصورة داخل الحالة
-  files.forEach((file, idx) => {
-    if (!file.type.startsWith('image/')) return;
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const imageUrl = e.target?.result as string;
-      setImages(currentImages => {
-        const updatedImages = [...currentImages];
-        // حدد موقع الصورة الجديدة حسب baseOrder + idx
-        updatedImages[updatedImages.length - files.length + idx] = {
-          ...updatedImages[updatedImages.length - files.length + idx],
-          image_url: imageUrl,
-        };
-        return updatedImages;
-      });
-    };
-    reader.readAsDataURL(file);
   });
 };
 
@@ -343,11 +355,11 @@ const ProductsPage = () => {
   };
 
   const addImage = () => {
-    setImages(prev => [...prev, { image_url: '', alt_text: '', sort_order: prev.length }]);
+    setImageFiles(prev => [...prev, { file: null, url: '', alt_text: '', sort_order: prev.length }]);
   };
 
-  const updateImage = (index, field, value) => {
-  setImages(prev => {
+  const updateImageFile = (index, field, value) => {
+  setImageFiles(prev => {
     const updated = [...prev];
     updated[index] = { ...updated[index], [field]: value };
 
@@ -361,11 +373,11 @@ const ProductsPage = () => {
 
   const removeImage = (index: number) => {
     // Clean up blob URL if it exists
-    const imageToRemove = images[index];
-    if (imageToRemove?.image_url && imageToRemove.image_url.startsWith('blob:')) {
-      URL.revokeObjectURL(imageToRemove.image_url);
+    const imageToRemove = imageFiles[index];
+    if (imageToRemove?.url && imageToRemove.url.startsWith('blob:')) {
+      URL.revokeObjectURL(imageToRemove.url);
     }
-    setImages(prev => prev.filter((_, i) => i !== index));
+    setImageFiles(prev => prev.filter((_, i) => i !== index));
   };
 
   const addPackage = () => {
@@ -795,7 +807,7 @@ const ProductsPage = () => {
                   </div>
 
                   {/* حالة عدم وجود صور */}
-                  {images.length === 0 && (
+                  {imageFiles.length === 0 && (
                     <div className="text-center py-8 bg-white rounded-lg border-2 border-dashed border-gray-300">
                       <ImageIcon size={48} className="mx-auto text-gray-400 mb-3" />
                       <p className="text-gray-500 text-lg mb-1">{t('blog.no_images')}</p>
@@ -804,36 +816,24 @@ const ProductsPage = () => {
                   )}
 
                   {/* شبكة الصور */}
-                  {images.length > 0 && (
+                  {imageFiles.length > 0 && (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {[...images]
+                    {[...imageFiles]
   .sort((a, b) => (a.sort_order || 0) - (b.sort_order || 0))
-  .map((image, index) => (
+  .map((imageItem, index) => (
 
                         <div
                           key={index}
-                          className={`relative bg-white border-2 rounded-xl overflow-hidden transition-all duration-300 ${
-                            formData.featured_image === image.image_url
-                              ? 'border-[#b9a779] ring-2 ring-[#b9a779]/20'
-                              : 'border-gray-200 hover:border-gray-300'
-                          }`}
+                          className="relative bg-white border-2 border-gray-200 hover:border-gray-300 rounded-xl overflow-hidden transition-all duration-300"
                         >
                           {/* صورة المعاينة */}
                           <div className="aspect-video bg-gray-100 flex items-center justify-center">
                             <img
-                              src={image.image_url}
-                              alt={image.alt_text}
+                              src={imageItem.url}
+                              alt={imageItem.alt_text}
                               className="w-full h-full object-cover"
                             />
                           </div>
-
-                          {/* شارة المميز */}
-                          {formData.featured_image === image.image_url && (
-                            <div className="absolute top-2 left-2 bg-[#b9a779] text-white px-2 py-1 rounded-full text-xs font-medium flex items-center">
-                              <Award size={12} className="mr-1" />
-                              {t('blog.featured')}
-                            </div>
-                          )}
 
                           {/* زر الحذف */}
                           <button
@@ -849,15 +849,15 @@ const ProductsPage = () => {
                          <div className="p-3 space-y-3">
   <input
     type="text"
-    value={image.alt_text}
-    onChange={(e) => updateImage(index, 'alt_text', e.target.value)}
+    value={imageItem.alt_text}
+    onChange={(e) => updateImageFile(index, 'alt_text', e.target.value)}
     className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-[#b9a779]"
     placeholder={t('admin.alt_text')}
   />
   <input
     type="number"
-    value={image.sort_order || 0}
-    onChange={(e) => updateImage(index, 'sort_order', parseInt(e.target.value) || 0)}
+    value={imageItem.sort_order || 0}
+    onChange={(e) => updateImageFile(index, 'sort_order', parseInt(e.target.value) || 0)}
     className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-[#b9a779]"
     placeholder={t('admin.order')}
     min={0}
