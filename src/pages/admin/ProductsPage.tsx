@@ -126,7 +126,9 @@ const ProductsPage = () => {
         // If there's a file to upload, upload it first
         if (imageItem.file) {
           try {
+            console.log('Uploading image:', imageItem.file.name);
             const uploadResult = await uploadImage(imageItem.file, STORAGE_BUCKETS.PRODUCTS, 'products');
+            console.log('Upload result:', uploadResult);
             imageUrl = uploadResult.url;
           } catch (error) {
             console.error('Failed to upload image:', error);
@@ -144,6 +146,7 @@ const ProductsPage = () => {
       
       // Insert new images
       if (imageData.length > 0) {
+        console.log('Inserting image data:', imageData);
         
         await supabase
           .from('product_images')
