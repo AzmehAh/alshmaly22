@@ -272,21 +272,41 @@ const ProductsPage = () => {
   };
 
   const handleMultipleFiles = (files: File[]) => {
-    files.forEach(file => {
-      if (file.type.startsWith('image/')) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          const imageUrl = e.target?.result as string;
-          setImages(prev => [...prev, {
-            image_url: imageUrl,
-            alt_text: '',
-            sort_order: prev.length
-          }]);
+  setImages(prev => {
+    const baseOrder = prev.length; // عدد الصور الموجودة حالياً
+    const newImages = files
+      .filter(file => file.type.startsWith('image/'))
+      .map((file, index) => ({
+        image_url: '',
+        alt_text: '',
+        sort_order: baseOrder + index,
+        file,
+      }));
+
+    // أضف الصور الجديدة مع image_url فارغ مؤقتًا
+    return [...prev, ...newImages];
+  });
+
+  // بعد إضافة الصور، اقرأ محتوى كل ملف وحمّل الصورة داخل الحالة
+  files.forEach((file, idx) => {
+    if (!file.type.startsWith('image/')) return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const imageUrl = e.target?.result as string;
+      setImages(currentImages => {
+        const updatedImages = [...currentImages];
+        // حدد موقع الصورة الجديدة حسب baseOrder + idx
+        updatedImages[updatedImages.length - files.length + idx] = {
+          ...updatedImages[updatedImages.length - files.length + idx],
+          image_url: imageUrl,
         };
-        reader.readAsDataURL(file);
-      }
-    });
-  };
+        return updatedImages;
+      });
+    };
+    reader.readAsDataURL(file);
+  });
+};
+
 
   const addSpecificationEn = () => {
     if (newSpecificationEn.trim()) {
@@ -326,11 +346,18 @@ const ProductsPage = () => {
     setImages(prev => [...prev, { image_url: '', alt_text: '', sort_order: prev.length }]);
   };
 
-  const updateImage = (index: number, field: string, value: string | number) => {
-    setImages(prev => prev.map((img, i) => 
-      i === index ? { ...img, [field]: value } : img
-    ));
-  };
+  const updateImage = (index, field, value) => {
+  setImages(prev => {
+    const updated = [...prev];
+    updated[index] = { ...updated[index], [field]: value };
+
+    if (field === 'sort_order') {
+      updated.sort((a, b) => (a.sort_order || 0) - (b.sort_order || 0));
+    }
+
+    return updated;
+  });
+};
 
   const removeImage = (index: number) => {
     // Clean up blob URL if it exists
