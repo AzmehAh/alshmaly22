@@ -271,6 +271,24 @@ const translations = {
   'login.passwordPlaceholder': 'Enter your password',
   'login.signIn': 'Sign In',
   'login.error': 'Login failed',
+    'admin.image': 'Image',
+'admin.management': 'Management',
+'admin.upload': 'Upload',
+'admin.drag_drop_images': 'Drag & drop images here',
+'admin.or_click_to_browse': 'Or click to browse files',
+'admin.uploaded_images': 'Uploaded Images',
+'admin.clear_all': 'Clear All',
+'admin.remove': 'Remove',
+'admin.alt_text': 'Alt Text',
+
+'blog.featured_image': 'Featured Image',
+'blog.featured_selected': 'Featured image selected',
+'blog.will_be_shown_in_preview': 'This image will be shown in the preview',
+'blog.featured': 'Featured',
+'blog.set_featured': 'Set as Featured',
+'blog.no_images': 'No images',
+'blog.upload_images_to_get_started': 'Upload images to get started',
+
 
   },
   ar: {
@@ -281,7 +299,24 @@ const translations = {
     'nav.blog': 'المدونة',
     'nav.contact': 'اتصل بنا',
     'nav.iso_certificate': 'شهادة الآيزو',
-    
+    'admin.image': 'صورة',
+'admin.management': 'إدارة',
+'admin.upload': 'رفع',
+'admin.drag_drop_images': 'اسحب وأفلت الصور هنا',
+'admin.or_click_to_browse': 'أو اضغط لاختيار الملفات',
+'admin.uploaded_images': 'الصور المرفوعة',
+'admin.clear_all': 'مسح الكل',
+'admin.remove': 'حذف',
+'admin.alt_text': 'النص البديل',
+
+'blog.featured_image': 'الصورة المميزة',
+'blog.featured_selected': 'تم تحديد الصورة المميزة',
+'blog.will_be_shown_in_preview': 'ستظهر هذه الصورة في المعاينة',
+'blog.featured': 'مميز',
+'blog.set_featured': 'تعيين كمميز',
+'blog.no_images': 'لا توجد صور',
+'blog.upload_images_to_get_started': 'قم برفع الصور للبدء',
+
     // Common
     'common.loading': 'جارٍ التحميل...',
     'common.search': 'البحث...',
