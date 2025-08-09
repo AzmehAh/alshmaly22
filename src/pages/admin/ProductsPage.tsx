@@ -819,15 +819,24 @@ const ProductsPage = () => {
                           </button>
 
                           {/* حقل النص البديل وزر تعيين كمميز */}
-                          <div className="p-3 space-y-3">
-                            <input
-                              type="text"
-                              value={image.alt_text}
-                              onChange={(e) => updateImage(index, 'alt_text', e.target.value)}
-                              className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-[#b9a779]"
-                              placeholder={t('admin.alt_text')}
-                            />
-                          </div>
+                         <div className="p-3 space-y-3">
+  <input
+    type="text"
+    value={image.alt_text}
+    onChange={(e) => updateImage(index, 'alt_text', e.target.value)}
+    className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-[#b9a779]"
+    placeholder={t('admin.alt_text')}
+  />
+  <input
+    type="number"
+    value={image.sort_order || 0}
+    onChange={(e) => updateImage(index, 'sort_order', parseInt(e.target.value) || 0)}
+    className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-[#b9a779]"
+    placeholder={t('admin.order')}
+    min={0}
+  />
+</div>
+
                         </div>
                       ))}
                     </div>
