@@ -850,9 +850,7 @@ const ProductsPage = () => {
         </div>
       )}
     </div>
-  );
-}
-
+  
 
                 {/* Packages */}
                 <div className="bg-gray-50 p-6 rounded-lg">
