@@ -824,20 +824,6 @@ const ProductsPage = () => {
                               className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-[#b9a779]"
                               placeholder={t('admin.alt_text')}
                             />
-
-                            <button
-                              type="button"
-                              onClick={() => setFeaturedImage(image.image_url)}
-                              className={`text-xs px-2 py-1 rounded-full font-medium transition-colors ${
-                                formData.featured_image === image.image_url
-                                  ? 'bg-[#b9a779] text-white'
-                                  : 'bg-gray-100 text-gray-600 hover:bg-[#b9a779] hover:text-white'
-                              }`}
-                            >
-                              {formData.featured_image === image.image_url
-                                ? t('blog.featured')
-                                : t('blog.set_featured')}
-                            </button>
                           </div>
                         </div>
                       ))}
