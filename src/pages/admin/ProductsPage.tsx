@@ -790,20 +790,6 @@ const ProductsPage = () => {
               }`}
             >
               {/* صورة المعاينة */}
-              <div className="relative">
-                <img
-                  src={image.image_url}
-                  alt={image.alt_text || `Image ${index + 1}`}
-                  className="w-full h-32 object-cover rounded-lg"
-                  onError={(e) => {
-                    if (!image.image_url.startsWith('blob:') && !image.image_url.startsWith('data:')) {
-                      e.currentTarget.src = 'https://via.placeholder.com/300x200?text=Invalid+Image';
-                    }
-                  }}
-                />
-
-                {/* إشارة الصورة المميزة */}
-                {formData.featured_image === image.image_url && (
                   <div className="absolute top-2 left-2 bg-[#b9a779] text-white px-2 py-1 rounded-full text-xs font-medium flex items-center">
                     <Award size={12} className="mr-1" />
                     {t('blog.featured')}
@@ -923,13 +909,6 @@ const ProductsPage = () => {
                 </div>
               </form>
             </div>
-          </div>
-        </div>
-      )}
-
-      {/* Related Products Modal */}
-      {showRelationsModal && (
-        <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
           <div className="relative top-10 mx-auto p-5 border w-11/12 md:w-4/5 lg:w-3/4 shadow-lg rounded-md bg-white">
             <div className="mt-3">
               <div className="flex items-center justify-between mb-6">
@@ -942,11 +921,7 @@ const ProductsPage = () => {
                 </button>
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {/* Current Relations */}
-                <div>
-                  <h4 className="text-lg font-semibold text-[#054239] mb-4"> {t('admin.related')}</h4>
-                  <div className="space-y-3 max-h-96 overflow-y-auto">
+                        {/* حقل النص البديل */}
                     {relations.map((relation) => (
                       <div key={relation.id} className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
                         <div className="flex items-center">
