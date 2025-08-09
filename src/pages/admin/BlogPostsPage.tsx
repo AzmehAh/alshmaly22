@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Plus, Search, Edit, Trash2, Eye, Calendar, Link as LinkIcon, X, Image as ImageIcon, Upload, Award } from 'lucide-react';
+import { Plus, Search, Edit, Trash2, Eye, Calendar, Link as LinkIcon, X } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import { RelationsAPI } from '../../lib/api/relations';
+import ImageUploadZone from '../../components/ui/ImageUploadZone';
+import FeaturedImageSelector from '../../components/ui/FeaturedImageSelector';
+import { STORAGE_BUCKETS } from '../../utils/supabaseStorage';
 import type { BlogPost, BlogCategory } from '../../lib/supabase';
 import type { BlogPostRelation } from '../../lib/api/relations';
 import { useLanguage } from '../../contexts/LanguageContext';
@@ -20,11 +23,10 @@ const BlogPostsPage = () => {
   const [relations, setRelations] = useState<BlogPostRelation[]>([]);
   const [availablePosts, setAvailablePosts] = useState<BlogPost[]>([]);
   const [images, setImages] = useState<Array<{
-    id?: string;
-    image_url: string;
-    alt_text: string;
-    sort_order: number;
+    url: string;
+    alt_text?: string;
   }>>([]);
+  const [uploadedImageUrls, setUploadedImageUrls] = useState<string[]>([]);
 
   const fetchRelations = async (postId: string) => {
     try {
