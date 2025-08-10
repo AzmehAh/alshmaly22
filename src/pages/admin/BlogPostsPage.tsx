@@ -81,7 +81,7 @@ const BlogPostsPage = () => {
     content: '',
     content_ar: '',
     category_id: '',
-    author: 'Al-Shamali Team',
+    author: 'Al-Shmaly Team',
     author_ar: 'فريق الشمالي',
     read_time: '5 min read',
     read_time_ar: '5 دقائق قراءة',
