@@ -121,7 +121,7 @@ return (
             </div> 
             <div className="relative">
               <img 
-                src="https://i.postimg.cc/kMkcnpMC/2025-07-22-10-36-47-181b5e6c11-1.png" 
+                src="./images/shmaly.png" 
                 alt="Al-Shmaly Team"
                 className="rounded-2xl  w-full h-96 object-contain"
               />
