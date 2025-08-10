@@ -88,7 +88,7 @@ const AdminLayout = () => {
         <div className="flex items-center justify-between h-20 px-6 border-b border-gray-200 flex-shrink-0">
           <div className="flex items-center gap-3">
             <img
-              src="./images/logo.png"
+              src="../images/logo.png"
               alt="Al-Shamaly Logo"
               className="h-8 w-8 object-contain"
               width={32}
