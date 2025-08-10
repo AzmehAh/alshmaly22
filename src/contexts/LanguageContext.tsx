@@ -831,6 +831,7 @@ const adminTranslations = {
   },
   ar: {
     'admin.products.management': 'إدارة المنتجات',
+    'admin.products.management2': 'إضافة منتجات',
     'admin.categories.management': 'إدارة الفئات',
     'admin.blog.management': 'إدارة المدونة',
     'admin.blog_categories.management': 'إدارة فئات المدونة',
