@@ -586,6 +586,7 @@ const adminTranslations = {
     'admin.language.arabic': 'العربية',
     
     // Admin Interface
+    'admin.products':'products',
     'add.to.homepage': 'Add to Homepage',
     'homepage.products': 'Homepage Products',
     'homepage.blog.posts': 'Homepage Blog Posts',
@@ -902,6 +903,7 @@ const adminTranslations = {
     'admin.product': 'المنتج',
     'admin.confirm_delete': 'تأكيد الحذف',
     'admin.delete_warning': 'لن تتمكن من استعادة هذا العنصر بعد الحذف.',
+     'admin.products':'المنتجات',
     
     'categories.title': 'إدارة الفئات',
     'categories.add_category': 'إضافة فئة',
