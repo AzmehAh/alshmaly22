@@ -572,6 +572,7 @@ const adminTranslations = {
   en: {
     'admin.dashboard': 'Dashboard',
     'admin.products.management': 'Products Management',
+     'admin.products.management2': 'Add Products ',
     'admin.categories.management': 'Categories Management',
     'admin.blog.management': 'Blog Management',
     'admin.contacts.management': 'Contacts Management',
