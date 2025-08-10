@@ -433,7 +433,7 @@ const ProductsPage = () => {
           className="bg-[#b9a779] hover:bg-[#054239] text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200 flex items-center"
         >
           <Plus size={20} className="mr-2" />
-          {t('admin.add')} {t('admin.products.management')}
+          {t('admin.products.management2')}
         </button>
       </div>
 
