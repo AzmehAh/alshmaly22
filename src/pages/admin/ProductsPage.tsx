@@ -1014,7 +1014,10 @@ const ProductsPage = () => {
                           <img
                             src={product.images?.[0]?.image_url || 'https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=100&h=100'}
                             alt={product.name}
-                            className="h-10 w-10 rounded-lg object-cover mr-3"
+                          className={`h-10 w-10 rounded-lg object-cover ${
+  direction === 'rtl' ? 'ml-3' : 'mr-3'
+}`}
+
                           />
                           <div>
                             <div className="font-medium text-[#054239]">
