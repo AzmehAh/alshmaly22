@@ -41,7 +41,7 @@ const LoginPage = () => {
       <div className="max-w-md w-full space-y-8" dir={direction}>
         <div className="text-center">
           <img
-            src="https://i.postimg.cc/0Q8pxwTM/logo.png"
+            src="./images/logo.png"
             alt="Al-Shmaly Logo"
             className="h-16 w-16 mx-auto object-contain"
           />
