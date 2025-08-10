@@ -966,7 +966,7 @@ const ProductsPage = () => {
               {/* Existing Relations */}
               <div className="mb-8">
                 <h4 className="text-lg font-semibold text-[#054239] mb-4"> {t('admin.related')}</h4>
-                <div className="space-y-3 max-h-64 overflow-y-auto">
+                <div className="gap-3 max-h-64 overflow-y-auto">
                   {relations.map((relation) => (
                     <div key={relation.id} className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
                       <div className="flex items-center">
