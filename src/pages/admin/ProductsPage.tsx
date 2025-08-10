@@ -563,7 +563,7 @@ const ProductsPage = () => {
             <div className="mt-3">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-2xl font-bold text-[#054239]">
-                  {editingProduct ? t('admin.edit') : t('admin.add')} {t('admin.products.management')}
+                  {editingProduct ? t('admin.edit') : {t('admin.products.management')}
                 </h3>
                 <button
                   onClick={resetForm}
