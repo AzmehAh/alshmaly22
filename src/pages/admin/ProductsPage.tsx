@@ -397,12 +397,17 @@ const ProductsPage = () => {
     setPackages(prev => prev.filter((_, i) => i !== index));
   };
 
-  const filteredProducts = products.filter(product => {
-    const term = searchTerm.toLowerCase();
-    const nameEn = product.name.toLowerCase();
-    const nameAr = product.name_ar?.toLowerCase() || '';
-    return nameEn.includes(term) || nameAr.includes(term);
-  });
+ const filteredProducts = products.filter(product => {
+  const term = searchTerm.toLowerCase();
+  const nameEn = product.name.toLowerCase();
+  const nameAr = product.name_ar?.toLowerCase() || '';
+
+  const matchesSearch = nameEn.includes(term) || nameAr.includes(term);
+  const matchesCategory = selectedCategory === 'all' || product.category_id === selectedCategory;
+
+  return matchesSearch && matchesCategory;
+});
+
 
   const getProductName = (product: Product) => {
     if (direction === 'rtl') {
