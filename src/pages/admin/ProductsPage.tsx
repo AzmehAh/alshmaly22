@@ -560,10 +560,10 @@ const ProductsPage = () => {
       {showForm && (
         <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
           <div className="relative top-4 mx-auto p-5 border w-11/12 max-w-6xl shadow-lg rounded-md bg-white mb-4">
-            <div className="mt-3">
+            <div className="mt-3"> 
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-2xl font-bold text-[#054239]">
-                  {editingProduct ? t('admin.edit') : {t('admin.products.management')}
+                  {editingProduct ? t('admin.edit') : t('admin.add')} {t('admin.products.management')}
                 </h3>
                 <button
                   onClick={resetForm}
