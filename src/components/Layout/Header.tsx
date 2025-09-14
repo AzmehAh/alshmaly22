@@ -10,15 +10,25 @@ const Header = () => {
   const { t, direction } = useLanguage();
 
   const isActive = (path) => location.pathname === path;
- const downloadPDF = () => {
-  const link = document.createElement('a');
-  link.href = 'https://knejwjwqwgssrjlrvhsp.supabase.co/storage/v1/object/public/certificates/iso-cert-v2.pdf';
-  link.download = 'iso-cert-v2.pdf';
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
+ const downloadPDF = async () => {
+  try {
+    const res = await fetch(
+      'https://knejwjwqwgssrjlrvhsp.supabase.co/storage/v1/object/public/certificates/iso-cert-v2.pdf'
+    );
+    if (!res.ok) throw new Error('Failed to fetch PDF');
+    const blob = await res.blob();
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'iso-cert-v2.pdf';
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.URL.revokeObjectURL(url);
+  } catch (err) {
+    console.error('Download error:', err);
+  }
 };
-
   return (
 <header className="bg-[#edebe0] backdrop-blur-md fixed top-0 left-0 w-full z-50 shadow-sm">
 
@@ -78,7 +88,10 @@ const Header = () => {
             >
               {t('nav.contact')}
             </Link>
-         <button onClick={downloadPDF} className="flex items-center space-x-1 text-[#b9a779] hover:text-[#054239] transition-colors duration-300">
+         <button
+  onClick={downloadPDF}
+  className="flex items-center space-x-1 text-[#b9a779] hover:text-[#054239] transition-colors duration-300"
+>
   <Download size={16} />
   <span className="text-sm">{t('nav.iso_certificate')}</span>
 </button>
