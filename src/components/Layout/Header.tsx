@@ -22,7 +22,7 @@ const Header = () => {
     link.href = url;
     link.download = 'iso-cert-v2.pdf';
     document.body.appendChild(link);
-    link.click();
+    link.click(); 
     link.remove(); 
     window.URL.revokeObjectURL(url);
   } catch (err) {
