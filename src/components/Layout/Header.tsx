@@ -71,8 +71,9 @@ const Header = () => {
               {t('nav.contact')}
             </Link>
           <a
-  href="/files/iso-cert-v2.pdf"
-  download="iso-cert-v2.pdf"
+  href="/files/iso-certificate.pdf"
+  target="_blank"
+  rel="noopener noreferrer"
   className="flex items-center space-x-1 text-[#b9a779] hover:text-[#054239] transition-colors duration-300"
 >
   <Download size={16} />
