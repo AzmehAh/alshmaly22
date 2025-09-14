@@ -101,12 +101,12 @@ const Header = () => {
   <img
     src="./images/cert1.jpeg"
     alt="Certificate 1"
-    className="h-10 w-10 object-contain"
+    className="h-15 w-15 object-contain"
   />
   <img
     src="./images/cert2.jpeg"
     alt="Certificate 2"
-    className="h-10 w-10 object-contain"
+    className="h-15 w-15 object-contain"
   />
 </div>
           </nav>
