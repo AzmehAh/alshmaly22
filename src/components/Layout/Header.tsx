@@ -70,21 +70,14 @@ const Header = () => {
             >
               {t('nav.contact')}
             </Link>
-<button
-  onClick={() => {
-    const link = document.createElement('a');
-    link.href = '/files/iso-certificate.pdf';
-    link.setAttribute('download', 'iso-certificate.pdf');
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  }}
+          <a
+  href="/files/iso-cert-v2.pdf"
+  download="iso-cert-v2.pdf"
   className="flex items-center space-x-1 text-[#b9a779] hover:text-[#054239] transition-colors duration-300"
 >
   <Download size={16} />
   <span className="text-sm">{t('nav.iso_certificate')}</span>
-</button>
-
+</a>
 
           </nav>
 
