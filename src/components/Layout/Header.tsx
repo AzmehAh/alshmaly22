@@ -74,8 +74,10 @@ const Header = () => {
   onClick={() => {
     const link = document.createElement('a');
     link.href = '/files/iso-certificate.pdf';
-    link.download = 'iso-certificate.pdf';
+    link.setAttribute('download', 'iso-certificate.pdf');
+    document.body.appendChild(link);
     link.click();
+    document.body.removeChild(link);
   }}
   className="flex items-center space-x-1 text-[#b9a779] hover:text-[#054239] transition-colors duration-300"
 >
