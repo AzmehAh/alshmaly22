@@ -21,12 +21,12 @@ const Header = () => {
     const link = document.createElement('a');
     link.href = url;
     link.download = 'iso-cert-v2.pdf';
-    document.body.appendChild(link);
+    document.body.appendChild(link); 
     link.click(); 
     link.remove(); 
     window.URL.revokeObjectURL(url);
   } catch (err) {
-    console.error('Download error:', err); 
+    console.error('Download error:', err);
   }
 }; 
   return (
@@ -95,10 +95,11 @@ const Header = () => {
   <Download size={16} />
   <span className="text-sm">{t('nav.iso_certificate')}</span>
 </button>
- 
+
+
           </nav>
 
-          {/* Language Switcher */}
+          {/* Language Switcher */} 
           <div className="hidden md:flex">
             <LanguageSwitcher />
           </div>
