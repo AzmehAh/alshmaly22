@@ -99,12 +99,12 @@ const Header = () => {
 {/* الصور بعد زر الشهادة */}
 <div className="flex items-center gap-2 ml-4">
   <img
-    src="./images/cert1.png"
+    src="./images/cert1.jpeg"
     alt="Certificate 1"
     className="h-8 w-8 object-contain"
   />
   <img
-    src="./images/cert2.png"
+    src="./images/cert2.jpeg"
     alt="Certificate 2"
     className="h-8 w-8 object-contain"
   />
