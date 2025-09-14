@@ -182,10 +182,24 @@ const Header = () => {
   <span className="text-sm">{t('nav.iso_certificate')}</span>
 </button>
               
-              {/* Mobile Language Switcher */}
-              <div className="pt-4 border-t border-gray-200">
-                <LanguageSwitcher />
-              </div>
+             {/* الصور بعد زر الشهادة */}
+<div className="flex items-center gap-2 mt-2">
+  <img
+    src="./images/cert1.jpeg"
+    alt="Certificate 1"
+    className="h-12 w-12 object-contain"
+  />
+  <img
+    src="./images/cert2.jpeg"
+    alt="Certificate 2"
+    className="h-14 w-13 object-contain"
+  /> 
+</div>
+
+{/* Mobile Language Switcher */}
+<div className="pt-4 border-t border-gray-200">
+  <LanguageSwitcher />
+</div>
             </nav>
           </div>
         )}
