@@ -95,7 +95,18 @@ const Header = () => {
   <Download size={16} />
   <span className="text-sm">{t('nav.iso_certificate')}</span>
 </button>
-
+<div className="flex items-center gap-2">
+  {/* الشهادات المصغرة */}
+  <img 
+    src="/images/cert1.jpeg" 
+    alt="Certificate 1" 
+    className="h-8 w-8 object-contain rounded-sm"
+  />
+  <img 
+    src="/images/cert2.png" 
+    alt="Certificate 2" 
+    className="h-8 w-8 object-contain rounded-sm"
+  />
 
           </nav>
 
