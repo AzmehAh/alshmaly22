@@ -70,10 +70,15 @@ const Header = () => {
             >
               {t('nav.contact')}
             </Link>
-            {/*<button className="flex items-center space-x-1 text-[#b9a779] hover:text-[#054239] transition-colors duration-300">
-              <Download size={16} />
-              <span className="text-sm">{t('nav.iso_certificate')}</span>
-            </button>*/}
+           <a
+  href="/files/iso-certificate.pdf"
+  download
+  className="flex items-center space-x-1 text-[#b9a779] hover:text-[#054239] transition-colors duration-300"
+>
+  <Download size={16} />
+  <span className="text-sm">{t('nav.iso_certificate')}</span>
+</a>
+
           </nav>
 
           {/* Language Switcher */}
