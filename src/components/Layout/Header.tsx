@@ -106,7 +106,7 @@ const Header = () => {
   <img
     src="./images/cert2.jpeg"
     alt="Certificate 2"
-    className="h-13 w-13 object-contain"
+    className="h-12.5 w-12.5 object-contain"
   />
 </div>
           </nav>
