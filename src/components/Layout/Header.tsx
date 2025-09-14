@@ -162,10 +162,13 @@ const Header = () => {
               > 
                 {t('nav.contact')}
               </Link>
-              {/* <button className="flex items-center space-x-1 text-[#b9a779] hover:text-[#054239] transition-colors duration-300">
-                <Download size={16} />
-                <span>{t('nav.iso_certificate')}</span>
-              </button>*/}
+              <button
+  onClick={downloadPDF}
+  className="flex items-center space-x-1 text-[#b9a779] hover:text-[#054239] transition-colors duration-300"
+>
+  <Download size={16} />
+  <span className="text-sm">{t('nav.iso_certificate')}</span>
+</button>
               
               {/* Mobile Language Switcher */}
               <div className="pt-4 border-t border-gray-200">
