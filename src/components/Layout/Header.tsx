@@ -11,27 +11,43 @@ const Header = () => {
 
   const isActive = (path) => location.pathname === path;
  const DownloadCertificate = ({ t }) => {
-  const downloadPDF = async () => {
+  const [fileUrl, setFileUrl] = useState('');
+
+  useEffect(() => {
+    const getSignedUrl = async () => {
+      const { data, error } = await supabase.storage
+        .from('certificates')
+        .createSignedUrl('iso-cert-v2.pdf', 60); // رابط صالح لمدة 60 ثانية
+      if (error) {
+        console.error('Error getting signed URL:', error);
+        return;
+      }
+      setFileUrl(data.signedUrl);
+    };
+
+    getSignedUrl();
+  }, []);
+
+  const handleDownload = async () => {
+    if (!fileUrl) return;
+
     try {
-      const response = await fetch(
-        'https://knejwjwqwgssrjlrvhsp.supabase.co/storage/v1/object/public/certificates/iso-cert-v2.pdf'
-      );
-
-      if (!response.ok) throw new Error('Failed to fetch PDF');
-
-      const blob = await response.blob();
+      const res = await fetch(fileUrl);
+      if (!res.ok) throw new Error('Failed to fetch PDF');
+      const blob = await res.blob();
       const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'iso-cert-v2.pdf';
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'iso-cert-v2.pdf';
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
       window.URL.revokeObjectURL(url);
-    } catch (error) {
-      console.error('Download error:', error);
+    } catch (err) {
+      console.error('Download error:', err);
     }
   };
+
   return (
 <header className="bg-[#edebe0] backdrop-blur-md fixed top-0 left-0 w-full z-50 shadow-sm">
 
