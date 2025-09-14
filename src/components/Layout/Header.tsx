@@ -87,16 +87,14 @@ const Header = () => {
               }`}
             >
               {t('nav.contact')}
-            </Link>
-      <a
-  href="https://knejwjwqwgssrjlrvhsp.supabase.co/storage/v1/object/public/certificates/iso-cert-v2.pdf"
-  download="iso-cert-v2.pdf"
+            </Link> 
+         <button
+  onClick={downloadPDF}
   className="flex items-center space-x-1 text-[#b9a779] hover:text-[#054239] transition-colors duration-300"
 >
   <Download size={16} />
   <span className="text-sm">{t('nav.iso_certificate')}</span>
-</a>
-
+</button>
 
 
           </nav>
