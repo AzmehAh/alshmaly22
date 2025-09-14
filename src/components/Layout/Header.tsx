@@ -70,15 +70,19 @@ const Header = () => {
             >
               {t('nav.contact')}
             </Link>
-<a
-  href="/files/iso-certificate.pdf"
-  target="_blank"
-  rel="noopener noreferrer"
+<button
+  onClick={() => {
+    const link = document.createElement('a');
+    link.href = '/files/iso-certificate.pdf';
+    link.download = 'iso-certificate.pdf';
+    link.click();
+  }}
   className="flex items-center space-x-1 text-[#b9a779] hover:text-[#054239] transition-colors duration-300"
 >
   <Download size={16} />
   <span className="text-sm">{t('nav.iso_certificate')}</span>
-</a>
+</button>
+
 
           </nav>
 
