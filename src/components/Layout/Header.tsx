@@ -23,7 +23,7 @@ const Header = () => {
     link.download = 'iso-cert-v2.pdf';
     document.body.appendChild(link);
     link.click();
-    link.remove();
+    link.remove(); 
     window.URL.revokeObjectURL(url);
   } catch (err) {
     console.error('Download error:', err);
