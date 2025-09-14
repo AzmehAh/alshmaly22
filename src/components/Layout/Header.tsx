@@ -18,10 +18,12 @@ const downloadPDF = async () => {
     if (!res.ok) throw new Error('Failed to fetch PDF');
 
     const blob = await res.blob();
-    // نحدد نوع الملف لتجنب فتحه تلقائيًا
+
+    // إنشاء Blob جديد مع type 'application/octet-stream' لإجبار التنزيل
     const fileBlob = new Blob([blob], { type: 'application/octet-stream' });
     const url = window.URL.createObjectURL(fileBlob);
 
+    // إنشاء رابط التحميل وتحفيزه
     const link = document.createElement('a');
     link.href = url;
     link.download = 'iso-cert-v2.pdf';
