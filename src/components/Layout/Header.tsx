@@ -28,7 +28,7 @@ const Header = () => {
   } catch (err) {
     console.error('Download error:', err);
   }
-};
+}; 
   return (
 <header className="bg-[#edebe0] backdrop-blur-md fixed top-0 left-0 w-full z-50 shadow-sm">
 
